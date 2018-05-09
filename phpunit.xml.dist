@@ -1,0 +1,24 @@
+<phpunit
+	bootstrap="tests/phpunit/includes/bootstrap.php"
+        backupGlobals="false"
+        colors="true"
+        beStrictAboutTestsThatDoNotTestAnything="true"
+        >
+    <testsuites>
+        <!-- Default test suite to run all tests -->
+        <testsuite>
+            <directory suffix=".php">tests/phpunit/tests</directory>
+        </testsuite>
+    </testsuites>
+	<listeners>
+		<listener class="SpeedTrapListener" file="tests/phpunit/includes/speed-trap-listener.php">
+			<arguments>
+				<array>
+					<element key="slowThreshold">
+						<integer>150</integer>
+					</element>
+				</array>
+			</arguments>
+		</listener>
+	</listeners>
+</phpunit>
