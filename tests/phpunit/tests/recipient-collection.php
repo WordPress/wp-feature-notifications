@@ -25,15 +25,15 @@ class Test_WPNotify_RecipientCollection extends WPNotify_TestCase {
 	}
 
 	public function test_it_can_accept_a_singular_recipient() {
-		$mock_recipient = $this->getMock( 'WPNotify_Recipient' );
+		$mock_recipient = $this->createMock( 'WPNotify_Recipient' );
 		$testee = new WPNotify_RecipientCollection( $mock_recipient );
 		$this->assertCount( 1, $testee );
 	}
 
 	public function test_it_can_accept_an_array_of_recipients() {
-		$mock_recipient_1 = $this->getMock( 'WPNotify_Recipient' );
-		$mock_recipient_2 = $this->getMock( 'WPNotify_Recipient' );
-		$mock_recipient_3 = $this->getMock( 'WPNotify_Recipient' );
+		$mock_recipient_1 = $this->createMock( 'WPNotify_Recipient' );
+		$mock_recipient_2 = $this->createMock( 'WPNotify_Recipient' );
+		$mock_recipient_3 = $this->createMock( 'WPNotify_Recipient' );
 		$testee = new WPNotify_RecipientCollection(
 			array(
 				$mock_recipient_1,
@@ -45,9 +45,9 @@ class Test_WPNotify_RecipientCollection extends WPNotify_TestCase {
 	}
 
 	public function test_recipients_can_be_added() {
-		$mock_recipient_1 = $this->getMock( 'WPNotify_Recipient' );
-		$mock_recipient_2 = $this->getMock( 'WPNotify_Recipient' );
-		$mock_recipient_3 = $this->getMock( 'WPNotify_Recipient' );
+		$mock_recipient_1 = $this->createMock( 'WPNotify_Recipient' );
+		$mock_recipient_2 = $this->createMock( 'WPNotify_Recipient' );
+		$mock_recipient_3 = $this->createMock( 'WPNotify_Recipient' );
 		$testee = new WPNotify_RecipientCollection( $mock_recipient_1 );
 		$this->assertCount( 1, $testee );
 		$testee->add( $mock_recipient_2 );
@@ -58,13 +58,13 @@ class Test_WPNotify_RecipientCollection extends WPNotify_TestCase {
 
 	/** @dataProvider data_provider_it_throws_on_invalid_type */
 	public function test_it_throws_on_invalid_type( $invalid_recipient ) {
-		$this->setExpectedException( 'WPNotify_RuntimeException' );
+		$this->expectException( 'WPNotify_RuntimeException' );
 		new WPNotify_RecipientCollection( $invalid_recipient );
 	}
 
 	public function data_provider_it_throws_on_invalid_type() {
-		$mock_recipient_1 = $this->getMock( 'WPNotify_Recipient' );
-		$mock_recipient_2 = $this->getMock( 'WPNotify_Recipient' );
+		$mock_recipient_1 = $this->createMock( 'WPNotify_Recipient' );
+		$mock_recipient_2 = $this->createMock( 'WPNotify_Recipient' );
 
 		return array(
 			array( null ),

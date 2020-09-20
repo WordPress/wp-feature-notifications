@@ -1,5 +1,7 @@
 <?php
 
-class WPNotify_TestCase extends PHPUnit_Framework_TestCase {
+use PHPUnit\Framework\TestCase;
+
+class WPNotify_TestCase extends TestCase {
 
 }

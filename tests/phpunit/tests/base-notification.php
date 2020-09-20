@@ -5,8 +5,8 @@ class Test_WPNotify_BaseNotification extends WPNotify_TestCase {
 	const JSON_SERIALIZED = '{"WPNotify_RecipientCollection":[],"WPNotify_BaseMessage":"Message"}';
 
 	public function test_it_can_be_instantiated() {
-		$sender_mock     = $this->getMock( 'WPNotify_BaseSender' );
-		$recipients_mock = $this->getMock( 'WPNotify_RecipientCollection' );
+		$sender_mock     = $this->createMock( 'WPNotify_BaseSender' );
+		$recipients_mock = $this->createMock( 'WPNotify_RecipientCollection' );
 		$testee          = new WPNotify_BaseNotification(
 			$sender_mock,
 			$recipients_mock,
@@ -16,8 +16,8 @@ class Test_WPNotify_BaseNotification extends WPNotify_TestCase {
 	}
 
 	public function test_it_implements_the_interface() {
-		$sender_mock     = $this->getMock( 'WPNotify_BaseSender' );
-		$recipients_mock = $this->getMock( 'WPNotify_RecipientCollection' );
+		$sender_mock     = $this->createMock( 'WPNotify_BaseSender' );
+		$recipients_mock = $this->createMock( 'WPNotify_RecipientCollection' );
 		$testee          = new WPNotify_BaseNotification(
 			$sender_mock,
 			$recipients_mock,
@@ -27,8 +27,8 @@ class Test_WPNotify_BaseNotification extends WPNotify_TestCase {
 	}
 
 	public function test_it_can_return_its_content() {
-		$sender_mock     = $this->getMock( 'WPNotify_BaseSender' );
-		$recipients_mock = $this->getMock( 'WPNotify_RecipientCollection' );
+		$sender_mock     = $this->createMock( 'WPNotify_BaseSender' );
+		$recipients_mock = $this->createMock( 'WPNotify_RecipientCollection' );
 		$dummy_message   = new DummyMessage();
 		$testee          = new WPNotify_BaseNotification(
 			$sender_mock,

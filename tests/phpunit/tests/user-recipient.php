@@ -19,7 +19,7 @@ class Test_WPNotify_UserRecipient extends WPNotify_TestCase {
 
 	/** @dataProvider data_provider_it_throws_on_invalid_type */
 	public function test_it_throws_on_invalid_type( $invalid_user_id ) {
-		$this->setExpectedException( 'WPNotify_InvalidRecipient' );
+		$this->expectException( 'WPNotify_InvalidRecipient' );
 		new WPNotify_UserRecipient( $invalid_user_id );
 	}
 
