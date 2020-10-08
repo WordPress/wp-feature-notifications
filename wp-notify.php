@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Plugin Name: WP Notify
+ */
+
 if ( ! defined( 'WP_NOTIFICATION_CENTER_PLUGIN_DIR' ) ) {
 	define( 'WP_NOTIFICATION_CENTER_PLUGIN_DIR', dirname( __FILE__ ) );
 }
