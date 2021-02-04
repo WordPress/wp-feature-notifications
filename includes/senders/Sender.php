@@ -1,5 +1,5 @@
 <?php
 
-interface WPNotify_Sender {
+interface WPNotify_Sender extends JsonSerializable {
 
 }
