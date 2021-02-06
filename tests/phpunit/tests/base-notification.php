@@ -2,7 +2,7 @@
 
 class Test_WPNotify_BaseNotification extends WPNotify_TestCase {
 
-	const JSON_SERIALIZED = '{"WPNotify_RecipientCollection":[],"WPNotify_BaseMessage":"Message"}';
+	const JSON_SERIALIZED = '{"WPNotify_RecipientCollection":[],"WPNotify_BaseMessage":"Message","WPNotify_BaseSender":{"name":"Name 1"}}';
 
 	public function test_it_can_be_instantiated() {
 		$sender_mock     = $this->createMock( 'WPNotify_BaseSender' );
@@ -40,7 +40,7 @@ class Test_WPNotify_BaseNotification extends WPNotify_TestCase {
 	}
 
 	public function test_it_can_be_json_encoded() {
-		$sender_mock      = new WPNotify_BaseSender();
+		$sender_mock      = new WPNotify_BaseSender( 'Name 1' );
 		$empty_recipients = new WPNotify_RecipientCollection();
 		$message          = new WPNotify_BaseMessage( 'Message' );
 		$testee           = new WPNotify_BaseNotification(
@@ -61,5 +61,7 @@ class Test_WPNotify_BaseNotification extends WPNotify_TestCase {
 			$testee->get_recipients() );
 		$this->assertInstanceOf( 'WPNotify_BaseMessage',
 			$testee->get_message() );
+		$this->assertInstanceOf( 'WPNotify_Sender',
+			$testee->get_sender() );
 	}
 }
