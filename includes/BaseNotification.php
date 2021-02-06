@@ -169,6 +169,7 @@ class WPNotify_BaseNotification implements WPNotify_Notification {
 		return array(
 			get_class( $this->recipients ) => $this->recipients,
 			get_class( $this->message )    => $this->message,
+			get_class( $this->sender )     => $this->sender,
 		);
 	}
 
@@ -185,10 +186,16 @@ class WPNotify_BaseNotification implements WPNotify_Notification {
 		reset( $data );
 		$recipients_class = key( $data );
 		$recipients       = new $recipients_class( current( $data ) );
+
 		next( $data );
 		$message_class = key( $data );
 		$message       = new $message_class( current( $data ) );
 
-		return new self( new WPNotify_BaseSender(), $recipients, $message );
+		next( $data );
+		$sender_class      = key( $data );
+		$sender_reflection = new ReflectionClass( $sender_class );
+		$sender            = $sender_reflection->newInstanceArgs( array_values( (array) current( $data ) ) );
+
+		return new self( $sender, $recipients, $message );
 	}
 }
