@@ -7,7 +7,7 @@
     <testsuites>
         <!-- Default test suite to run all tests -->
         <testsuite name="Php tests">
-            <directory suffix=".php">tests/phpunit/tests</directory>
+            <directory suffix=".php" phpVersion="*">tests/phpunit/tests</directory>
         </testsuite>
     </testsuites>
 	<listeners>
