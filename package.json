@@ -1,0 +1,30 @@
+{
+  "name": "@wordpress/wp-notify",
+  "version": "0.1.0",
+  "description": "A notification center for WordPress.",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "preinstall": "wp-env start",
+    "install": "wp-env run composer 'composer --ignore-platform-req=php install'",
+    "pretest-unit-php": "npm run install",
+    "test-unit-php": "wp-env run tests-cli '/var/www/html/wp-content/plugins/wp-notify/vendor/bin/phpunit --configuration=/var/www/html/wp-content/plugins/wp-notify/phpunit.xml.dist'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WordPress/wp-notify.git"
+  },
+  "keywords": [
+    "WordPress",
+    "notifications",
+    "dashboard"
+  ],
+  "author": "The WordPress Contributors",
+  "license": "GPL-2.0-or-later",
+  "bugs": {
+    "url": "https://github.com/WordPress/wp-notify/issues"
+  },
+  "homepage": "https://github.com/WordPress/wp-notify#readme"
+}
