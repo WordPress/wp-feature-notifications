@@ -2,10 +2,36 @@
 
 See [Trac ticket #43484](https://core.trac.wordpress.org/ticket/43484).
 
-## Development environment
+## Developing on a local environment
 
-Any WAMP/MAMP/LAMP local environment that works for WordPress development will be good enough.
+Any WAMP/MAMP/LAMP local environment with a WordPress installation will be suited for local development.
 
-However, it is possible to use the [wp-env tool](https://github.com/WordPress/gutenberg/blob/master/docs/designers-developers/developers/tutorials/devenv/readme.md#wordpress-development-site) developed by the Gutenberg team.
+### Running unit tests
 
-You will then need both Node.js and Docker installed on your computer. Read more about its usage in [WordPres/gutenberg/packages/env/README.md](https://github.com/WordPress/gutenberg/blob/master/packages/env/README.md).
+You need a local installation of [Composer](https://getcomposer.org/doc/00-intro.md).
+
+Then you need to install PHP dependencies.
+
+```bash
+composer install
+```
+
+And you can run the tests from the PHPUnit package:
+
+```bash
+vendor/bin/phpunit
+```
+
+## Developing with wp-env
+
+The [wp-env package](https://developer.wordpress.org/block-editor/packages/packages-env/) was developed with the Gutenberg project as a quick way to create a standard WordPress environment using Docker. It is also published as the `@wordpress/env` npm package.
+
+You can use it for contributing to the WP Notify project, but you need to install it on your computer first. read the [prerequisites](https://developer.wordpress.org/block-editor/packages/packages-env/#prerequisites) and the [install as a global package](https://developer.wordpress.org/block-editor/packages/packages-env/#installation-as-a-global-package) from its manual.
+
+### Running unit tests
+
+An npm script is provided in order to start the PHP unit tests:
+
+```bash
+npm run test-unit-php
+```
