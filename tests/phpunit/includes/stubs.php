@@ -1,18 +1,6 @@
 <?php
 
-function __( $text, $domain ) {
-	return $text;
-}
-
-function _doing_it_wrong( $function, $message ) {
-	throw new Exception( "{$function} - {$message}" );
-}
-
-function apply_filters( $filter, $value ) {
-	return $value;
-}
-
-class DummyMessage implements WP_Notify_Message {
+class DummyMessage implements WPNotify_Message {
 
 	public function serialize() {
 		return ''; }
