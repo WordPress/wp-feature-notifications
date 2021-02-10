@@ -5,6 +5,10 @@ require __DIR__ . '/../../../vendor/autoload.php';
 $tests_dir = getenv( 'WP_TESTS_DIR' );
 
 if ( ! $tests_dir ) {
+    $tests_dir = getenv( 'WP_PHPUNIT__DIR' );
+}
+
+if ( ! $tests_dir ) {
     $tests_dir = '/tmp/wordpress-tests-lib';
 }
 

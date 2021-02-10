@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f3bfa32964d9c9efee143cca7dd43e72",
+    "content-hash": "43450d43868838c548af999c24210742",
     "packages": [],
     "packages-dev": [
         {
@@ -1523,6 +1523,54 @@
                 "validate"
             ],
             "time": "2020-07-08T17:02:28+00:00"
+        },
+        {
+            "name": "wp-phpunit/wp-phpunit",
+            "version": "5.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wp-phpunit/wp-phpunit.git",
+                "reference": "f6b3fb65bccc0ff70b3bc7cc241935597dbd5562"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wp-phpunit/wp-phpunit/zipball/f6b3fb65bccc0ff70b3bc7cc241935597dbd5562",
+                "reference": "f6b3fb65bccc0ff70b3bc7cc241935597dbd5562",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "__loaded.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Evan Mattson",
+                    "email": "me@aaemnnost.tv"
+                },
+                {
+                    "name": "WordPress Community",
+                    "homepage": "https://wordpress.org/about/"
+                }
+            ],
+            "description": "WordPress core PHPUnit library",
+            "homepage": "https://github.com/wp-phpunit",
+            "keywords": [
+                "phpunit",
+                "test",
+                "wordpress"
+            ],
+            "support": {
+                "docs": "https://github.com/wp-phpunit/docs",
+                "issues": "https://github.com/wp-phpunit/issues",
+                "source": "https://github.com/wp-phpunit/wp-phpunit"
+            },
+            "time": "2021-02-04T18:24:14+00:00"
         }
     ],
     "aliases": [],
@@ -1531,5 +1579,6 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
 }
