@@ -7,10 +7,10 @@
     "test": "tests"
   },
   "scripts": {
-    "preinstall": "wp-env start",
-    "install": "wp-env run composer 'composer --ignore-platform-req=php install'",
-    "pretest-unit-php": "npm run install",
-    "test-unit-php": "wp-env run tests-cli '/var/www/html/wp-content/plugins/wp-notify/vendor/bin/phpunit --configuration=/var/www/html/wp-content/plugins/wp-notify/phpunit.xml.dist'"
+    "prephp-install": "wp-env start",
+    "php-install": "wp-env run composer 'composer --ignore-platform-req=php install'",
+    "pretest-unit-php": "wp-env start",
+    "test-unit-php": "wp-env run phpunit 'phpunit --configuration=/var/www/html/wp-content/plugins/wp-notify/phpunit.xml.dist'"
   },
   "repository": {
     "type": "git",
