@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "43450d43868838c548af999c24210742",
+    "content-hash": "b0fe807ed45fa4fc6da78dc5a1729f89",
     "packages": [],
     "packages-dev": [
         {
@@ -62,54 +62,6 @@
                 "instantiate"
             ],
             "time": "2020-05-29T17:27:14+00:00"
-        },
-        {
-            "name": "johnkary/phpunit-speedtrap",
-            "version": "v3.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/johnkary/phpunit-speedtrap.git",
-                "reference": "8c0e149b80c6e86c33315f05699512678655c158"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/johnkary/phpunit-speedtrap/zipball/8c0e149b80c6e86c33315f05699512678655c158",
-                "reference": "8c0e149b80c6e86c33315f05699512678655c158",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1",
-                "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.2-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "JohnKary\\PHPUnit\\Listener\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "John Kary",
-                    "email": "john@johnkary.net"
-                }
-            ],
-            "description": "Find and report on slow tests in your PHPUnit test suite",
-            "homepage": "https://github.com/johnkary/phpunit-speedtrap",
-            "keywords": [
-                "phpunit",
-                "profile",
-                "slow"
-            ],
-            "time": "2020-02-12T16:19:51+00:00"
         },
         {
             "name": "myclabs/deep-copy",
