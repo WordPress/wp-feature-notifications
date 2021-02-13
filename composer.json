@@ -4,7 +4,6 @@
     "type": "wordpress-plugin",
     "require-dev": {
         "phpunit/phpunit": "^7",
-        "johnkary/phpunit-speedtrap": "^3.2",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
         "wp-coding-standards/wpcs": "^2.3",
 	    "wp-phpunit/wp-phpunit": "^5.6"
