@@ -61,7 +61,7 @@ class Test_WPNotify_BaseNotification extends WPNotify_TestCase {
 			$testee->get_recipients() );
 		$this->assertInstanceOf( 'WPNotify_BaseMessage',
 			$testee->get_message() );
-		$this->assertInstanceOf( 'WPNotify_Sender',
+		$this->assertInstanceOf( 'WPNotify_BaseSender',
 			$testee->get_sender() );
 	}
 }
