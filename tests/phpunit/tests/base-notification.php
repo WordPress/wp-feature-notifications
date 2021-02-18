@@ -2,11 +2,11 @@
 
 class Test_WPNotify_BaseNotification extends WPNotify_TestCase {
 
-	const JSON_SERIALIZED = '{"WPNotify_RecipientCollection":[],"WPNotify_BaseMessage":"Message"}';
+	const JSON_SERIALIZED = '{"WPNotify_RecipientCollection":[],"WPNotify_BaseMessage":"Message","WPNotify_BaseSender":{"name":"Name 1"}}';
 
 	public function test_it_can_be_instantiated() {
-		$sender_mock     = $this->getMock( 'WPNotify_BaseSender' );
-		$recipients_mock = $this->getMock( 'WPNotify_RecipientCollection' );
+		$sender_mock     = $this->createMock( 'WPNotify_BaseSender' );
+		$recipients_mock = $this->createMock( 'WPNotify_RecipientCollection' );
 		$testee          = new WPNotify_BaseNotification(
 			$sender_mock,
 			$recipients_mock,
@@ -16,8 +16,8 @@ class Test_WPNotify_BaseNotification extends WPNotify_TestCase {
 	}
 
 	public function test_it_implements_the_interface() {
-		$sender_mock     = $this->getMock( 'WPNotify_BaseSender' );
-		$recipients_mock = $this->getMock( 'WPNotify_RecipientCollection' );
+		$sender_mock     = $this->createMock( 'WPNotify_BaseSender' );
+		$recipients_mock = $this->createMock( 'WPNotify_RecipientCollection' );
 		$testee          = new WPNotify_BaseNotification(
 			$sender_mock,
 			$recipients_mock,
@@ -27,8 +27,8 @@ class Test_WPNotify_BaseNotification extends WPNotify_TestCase {
 	}
 
 	public function test_it_can_return_its_content() {
-		$sender_mock     = $this->getMock( 'WPNotify_BaseSender' );
-		$recipients_mock = $this->getMock( 'WPNotify_RecipientCollection' );
+		$sender_mock     = $this->createMock( 'WPNotify_BaseSender' );
+		$recipients_mock = $this->createMock( 'WPNotify_RecipientCollection' );
 		$dummy_message   = new DummyMessage();
 		$testee          = new WPNotify_BaseNotification(
 			$sender_mock,
@@ -40,7 +40,7 @@ class Test_WPNotify_BaseNotification extends WPNotify_TestCase {
 	}
 
 	public function test_it_can_be_json_encoded() {
-		$sender_mock      = new WPNotify_BaseSender();
+		$sender_mock      = new WPNotify_BaseSender( 'Name 1' );
 		$empty_recipients = new WPNotify_RecipientCollection();
 		$message          = new WPNotify_BaseMessage( 'Message' );
 		$testee           = new WPNotify_BaseNotification(
@@ -61,5 +61,7 @@ class Test_WPNotify_BaseNotification extends WPNotify_TestCase {
 			$testee->get_recipients() );
 		$this->assertInstanceOf( 'WPNotify_BaseMessage',
 			$testee->get_message() );
+		$this->assertInstanceOf( 'WPNotify_BaseSender',
+			$testee->get_sender() );
 	}
 }
