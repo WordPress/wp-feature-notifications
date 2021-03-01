@@ -1,6 +1,6 @@
 <?php
 
-class BaseImage implements WPNotify_Image, WPNotify_JsonUnserializable {
+class WPNotify_BaseImage implements WPNotify_Image, WPNotify_JsonUnserializable {
 
 	/**
 	 * It can be and URL of an image file or and data/image source
@@ -21,10 +21,18 @@ class BaseImage implements WPNotify_Image, WPNotify_JsonUnserializable {
 	 */
 	public function __construct( $source, $alt = '' ) {
 		$this->source = $source;
+		$this->alt    = $alt;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function jsonSerialize() {
-		// TODO: Implement jsonSerialize() method.
+
+		return array(
+			'source' => $this->source,
+			'alt'    => $this->alt
+		);
 	}
 
 	public static function json_unserialize( $json ) {
