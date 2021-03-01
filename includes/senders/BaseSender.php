@@ -8,12 +8,19 @@ class WPNotify_BaseSender implements WPNotify_Sender, WPNotify_JsonUnserializabl
 	protected $name;
 
 	/**
+	 * @var WPNotify_BaseImage
+	 */
+	protected $image;
+
+	/**
 	 * WPNotify_BaseSender constructor.
 	 *
-	 * @param string $name
+	 * @param string                  $name
+	 * @param WPNotify_BaseImage|null $image
 	 */
-	public function __construct( $name ) {
-		$this->name = $name;
+	public function __construct( $name, $image = null ) {
+		$this->name  = $name;
+		$this->image = $image;
 	}
 
 	/**
@@ -21,7 +28,8 @@ class WPNotify_BaseSender implements WPNotify_Sender, WPNotify_JsonUnserializabl
 	 */
 	public function jsonSerialize() {
 		return array(
-			'name' => $this->name,
+			'name'  => $this->name,
+			'image' => $this->image,
 		);
 	}
 
