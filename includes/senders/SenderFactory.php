@@ -9,5 +9,5 @@ interface WPNotify_SenderFactory {
 	 *
 	 * @return WPNotify_Sender
 	 */
-	public function create( string $name ): WPNotify_Sender;
+	public function create( $name );
 }

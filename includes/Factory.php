@@ -45,7 +45,7 @@ class WPNotify_Factory {
 	 */
 	public function create( $args ) {
 
-		[ $message_args, $recipients_args, $sender_args ] = $this->validate( $args );
+		list( $message_args, $recipients_args, $sender_args ) = $this->validate( $args );
 
 		$sender     = $this->sender_factory->create( $sender_args );
 		$recipients = new WPNotify_RecipientCollection();
