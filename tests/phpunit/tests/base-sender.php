@@ -15,11 +15,7 @@ class Test_WPNotify_BaseSender extends WPNotify_TestCase {
 		if ( is_string( $sender ) ) {
 			$sender_instance = new WPNotify_BaseSender( $sender );
 		} else if ( is_array( $sender ) ) {
-			$image = null;
-			if ( ! empty( $sender['image'] ) ) {
-				$image = new WPNotify_BaseImage( $sender['image']['source'], $sender['image']['alt'] );
-			}
-			$sender_instance = new WPNotify_BaseSender( $sender['name'], $image );
+			$sender_instance = new WPNotify_BaseSender( $sender['name'], $sender['image'] );
 		}
 
 		$sender_encoded = json_encode( $sender_instance );
@@ -28,35 +24,54 @@ class Test_WPNotify_BaseSender extends WPNotify_TestCase {
 	}
 
 	/**
-	 * @param string $sender_name
-	 * @param string $json
+	 * @param string|array $sender
+	 * @param string       $json
 	 *
 	 * @dataProvider data_provider_senders
 	 */
-	public function test_it_can_be_instantiated_from_json( $sender_name, $json ) {
+	public function test_it_can_be_instantiated_from_json( $sender, $json ) {
 
-		$sender_instance = WPNotify_BaseSender::json_unserialize( $json );
+		$testee = WPNotify_BaseSender::json_unserialize( $json );
 
-		$this->assertInstanceOf( 'WPNotify_BaseSender', $sender_instance );
-		$this->assertEquals( $sender_name, $sender_instance->get_name() );
+		$sender_name     = '';
+		$sender_instance = null;
+
+		if ( is_string( $sender ) ) {
+			$sender_name     = $sender;
+			$sender_instance = new WPNotify_BaseSender( $sender );
+		} else if ( is_array( $sender ) ) {
+			$sender_name     = $sender['name'];
+			$sender_instance = new WPNotify_BaseSender( $sender['name'], $sender['image'] );
+		}
+
+		$this->assertInstanceOf( 'WPNotify_BaseSender', $testee );
+		$this->assertEquals( $sender_name, $testee->get_name() );
+
+		/**
+		 * If an Image has been sent
+		 */
+		if ( $testee->get_image() ) {
+			$this->assertInstanceOf( 'WPNotify_BaseImage', $testee->get_image() );
+			$this->assertEquals( $sender_instance->get_image()->get_source(), $testee->get_image()->get_source() );
+			$this->assertEquals( $sender_instance->get_image()->get_alt(), $testee->get_image()->get_alt() );
+		}
 	}
 
 	public function data_provider_senders() {
 		return array(
+
 			array(
 				'Name 1',
 				'{"name":"Name 1","image":null}',
 			),
+
 			array(
 				array(
-					'name'  => 'Name 1',
-					'image' => array(
-						'source' => 'img-source',
-						'alt'    => 'img-alt',
-					)
+					'name'  => 'Name 2',
+					'image' => new WPNotify_BaseImage( 'img-source', 'img-alt' ),
 				),
-				'{"name":"Name 1","image":{"source":"img-source","alt":"img-alt"}}'
-			)
+				'{"name":"Name 2","image":{"source":"img-source","alt":"img-alt"}}',
+			),
 		);
 	}
 }
