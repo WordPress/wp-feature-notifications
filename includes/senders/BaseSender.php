@@ -44,16 +44,26 @@ class WPNotify_BaseSender implements WPNotify_Sender, WPNotify_JsonUnserializabl
 
 		$data = json_decode( $json, true );
 
-		$name = ! empty( $data['name'] ) ? $data['name'] : '';
+		$name  = ! empty( $data['name'] ) ? $data['name'] : '';
+		$image = ! empty( $data['image'] ) ? WPNotify_BaseImage::json_unserialize( json_encode( $data['image'] ) ) : null;
 
-		return new self( $name );
+		return new self( $name, $image );
 	}
 
 	/**
+	 * Gets the name of the sender
+	 *
 	 * @return string
 	 */
 	public function get_name() {
 
 		return $this->name;
+	}
+
+	/**
+	 * @return WPNotify_BaseImage|null
+	 */
+	public function get_image() {
+		return $this->image;
 	}
 }

@@ -35,7 +35,36 @@ class WPNotify_BaseImage implements WPNotify_Image, WPNotify_JsonUnserializable 
 		);
 	}
 
+	/**
+	 * Source of the image to be used on src attribute of <img/>
+	 * @return string
+	 */
+	public function get_source() {
+		return $this->source;
+	}
+
+	/**
+	 * Alternative text to be used on alt attribute of <img/>
+	 * @return string
+	 */
+	public function get_alt() {
+		return $this->alt;
+	}
+
+	/**
+	 * Instantiates a WPNotify_BaseImage based on a JSON string
+	 *
+	 * @param string $json
+	 *
+	 * @return WPNotify_JsonUnserializable
+	 */
 	public static function json_unserialize( $json ) {
-		// TODO: Implement json_unserialize() method.
+
+		$data = json_decode( $json, true );
+
+		$source = ! empty( $data['source'] ) ? $data['source'] : '';
+		$alt    = ! empty( $data['alt'] ) ? $data['alt'] : '';
+
+		return new static( $source, $alt );
 	}
 }
