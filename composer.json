@@ -4,7 +4,9 @@
     "type": "wordpress-plugin",
     "require-dev": {
         "phpunit/phpunit": "^7",
-        "johnkary/phpunit-speedtrap": "^3.2"
+        "johnkary/phpunit-speedtrap": "^3.2",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
+        "wp-coding-standards/wpcs": "^2.3"
     },
     "license": "GPL-2.0-or-later",
     "authors": [
@@ -14,6 +16,5 @@
         }
     ],
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "require": {}
+    "prefer-stable": true
 }
