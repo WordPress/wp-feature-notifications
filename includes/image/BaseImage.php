@@ -1,6 +1,6 @@
 <?php
 
-class WPNotify_BaseImage implements WPNotify_Image, WPNotify_JsonUnserializable {
+class WPNotify_BaseImage implements WPNotify_Image {
 
 	/**
 	 * It can be and URL of an image file or and data/image source
@@ -29,10 +29,17 @@ class WPNotify_BaseImage implements WPNotify_Image, WPNotify_JsonUnserializable 
 	 */
 	public function jsonSerialize() {
 
-		return array(
-			'source' => $this->source,
-			'alt'    => $this->alt
-		);
+		$data = array();
+
+		if ( ! empty( $this->get_source() ) ) {
+			$data['source'] = $this->get_source();
+		}
+
+		if ( ! empty( $this->get_alt() ) ) {
+			$data['alt'] = $this->get_alt();
+		}
+
+		return $data;
 	}
 
 	/**
@@ -65,6 +72,6 @@ class WPNotify_BaseImage implements WPNotify_Image, WPNotify_JsonUnserializable 
 		$source = ! empty( $data['source'] ) ? $data['source'] : '';
 		$alt    = ! empty( $data['alt'] ) ? $data['alt'] : '';
 
-		return new static( $source, $alt );
+		return new self( $source, $alt );
 	}
 }
