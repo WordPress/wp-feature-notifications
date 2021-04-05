@@ -2,7 +2,7 @@
 
 class Test_WPNotify_BaseNotification extends WPNotify_TestCase {
 
-	const JSON_SERIALIZED = '{"WPNotify_RecipientCollection":[],"WPNotify_BaseMessage":"Message","WPNotify_BaseSender":{"name":"Name 1","image":null}}';
+	const JSON_SERIALIZED = '{"WPNotify_RecipientCollection":[],"WPNotify_BaseMessage":"Message","WPNotify_BaseSender":{"name":"Name 1"}}';
 
 	public function test_it_can_be_instantiated() {
 		$sender_mock     = $this->createMock( 'WPNotify_BaseSender' );

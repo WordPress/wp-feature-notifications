@@ -43,7 +43,7 @@ class Test_WPNotify_BaseImage extends WPNotify_TestCase {
 
 		return array(
 
-			array(
+			'Image with source and alternative text' => array(
 				array(
 					'source' => 'img-source1',
 					'alt'    => 'img-alt1',
@@ -51,28 +51,28 @@ class Test_WPNotify_BaseImage extends WPNotify_TestCase {
 				'{"source":"img-source1","alt":"img-alt1"}',
 			),
 
-			array(
+			'Image with source and empty string alternative text' => array(
 				array(
 					'source' => 'img-source2',
 					'alt'    => '',
 				),
-				'{"source":"img-source2","alt":""}',
+				'{"source":"img-source2"}',
 			),
 
-			array(
+			'Image with source and null alternative text' => array(
 				array(
 					'source' => 'img-source3',
 					'alt'    => null,
 				),
-				'{"source":"img-source3","alt":null}',
+				'{"source":"img-source3"}',
 			),
 
-			array(
+			'Image with empty string source and alternative text' => array(
 				array(
 					'source' => '',
 					'alt'    => ''
 				),
-				'{"source":"","alt":""}',
+				'[]',
 			),
 		);
 	}
