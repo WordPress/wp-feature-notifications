@@ -36,7 +36,7 @@ class WPNotify_BaseSender implements WPNotify_Sender, WPNotify_JsonUnserializabl
 			$data[ get_class( $this->image ) ] = $this->image;
 		}
 
-		return array_filter( $data );
+		return $data;
 	}
 
 	/**
@@ -59,8 +59,8 @@ class WPNotify_BaseSender implements WPNotify_Sender, WPNotify_JsonUnserializabl
 
 		$image = null;
 
-		if ( 'WPNotify_BaseImage' === $class_name && ! empty( $image_data ) ) {
-			$image_reflection = new ReflectionClass( 'WPNotify_BaseImage' );
+		if ( ! empty( $image_data ) && is_subclass_of( $class_name, 'WPNotify_Image' ) ) {
+			$image_reflection = new ReflectionClass( $class_name );
 			$image            = $image_reflection->newInstanceArgs( array_values( $image_data ) );
 		}
 
