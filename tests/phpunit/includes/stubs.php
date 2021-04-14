@@ -12,17 +12,22 @@ function apply_filters( $filter, $value ) {
 	return $value;
 }
 
-class DummyMessage implements WPNotify_Message {
+class DummyMessage implements WP_Notify_Message {
 
-	public function serialize() { return ''; }
+	public function serialize() {
+		return ''; }
 
 	public function unserialize( $serialized ) { }
 
-	public function jsonSerialize() { return ''; }
+	public function jsonSerialize() {
+		return ''; }
 
-	public static function json_unserialize( $json ) { return new self; }
+	public static function json_unserialize( $json ) {
+		return new self; }
 
-	public function get_content() { return ''; }
+	public function get_content() {
+		return ''; }
 
-	public function __toString() { return ''; }
+	public function __toString() {
+		return ''; }
 }
