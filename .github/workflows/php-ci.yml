@@ -63,5 +63,4 @@ jobs:
         run: composer install
 
       - name: Sniff Code
-        continue-on-error: true
         run: composer run lint
