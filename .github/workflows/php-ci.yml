@@ -1,21 +1,27 @@
-name: PHP Composer
+name: Run Unit Tests on PR
 
 on:
-  push:
-    branches: [ develop, trunk ]
   pull_request:
     branches: [ develop, trunk ]
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
+  test:
+    name: PHP ${{ matrix.php }}
+    runs-on: ubuntu-18.04
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [ '7.2', '7.3', '7.4' ]
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate --strict --no-check-publish
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php }}
+        tools: composer
 
     - name: Cache Composer packages
       id: composer-cache
@@ -28,9 +34,6 @@ jobs:
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
-
-    - name: Check Coding Standards
-      run: composer run lint
 
     - name: Run PHP Unit tests
       run: composer run test
