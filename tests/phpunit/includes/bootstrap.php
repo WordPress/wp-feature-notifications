@@ -34,5 +34,3 @@ remove_filter( 'wp_die_handler', 'handle_wp_setup_failure' );
 
 require dirname( __FILE__ ) . '/stubs.php';
 require dirname( __FILE__ ) . '/TestCase.php';
-
-==== BASE ====

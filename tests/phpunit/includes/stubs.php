@@ -1,6 +1,6 @@
 <?php
 
-class DummyMessage implements WPNotify_Message {
+class DummyMessage implements WP_Notify_Message {
 
 	public function serialize() {
 		return ''; }
