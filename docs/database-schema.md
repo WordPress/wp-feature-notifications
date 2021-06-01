@@ -4,9 +4,9 @@
 * id (int) 11 auto_increment `ID of the notification.`
 * sender_key `Sender of the notification. As defined by the plugin or theme`
 * timestamp `Timestamp of when the notification was triggered.`
-* recipients `Collection of notification recipients.`
-* title_key `Notification title key.`
-* message_key `Notification message key.`  (optional)
+* recipient_key `Single notification recipient. As defined by the plugin or theme`
+* title_key `Notification title key. As defined by the plugin or theme`
+* message_key `Notification message key. As defined by the plugin or theme`  (optional)
 * action_link `Correctly formatted URL to an internal or external action.`
 * status enum (READ, UNREAD) `Notification status.`
 
