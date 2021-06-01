@@ -1,6 +1,6 @@
 <?php
 
-class Test_WP_Notify_BaseImage extends WPNotify_TestCase {
+class Test_WP_Notify_BaseImage extends WP_Notify_TestCase {
 
 	/**
 	 * @param array  $image_data

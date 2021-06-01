@@ -10,15 +10,4 @@
             <directory suffix=".php" phpVersion="*">tests/phpunit/tests</directory>
         </testsuite>
     </testsuites>
-	<listeners>
-		<listener class="JohnKary\PHPUnit\Listener\SpeedTrapListener">
-			<arguments>
-				<array>
-					<element key="slowThreshold">
-						<integer>150</integer>
-					</element>
-				</array>
-			</arguments>
-		</listener>
-	</listeners>
 </phpunit>
