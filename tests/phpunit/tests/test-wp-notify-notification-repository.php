@@ -1,6 +1,6 @@
 <?php
 
-class Test_WP_Notify_Wpdb_Notification_Repository extends WPNotify_TestCase {
+class Test_WP_Notify_Wpdb_Notification_Repository extends WP_Notify_TestCase {
 
 	/** @dataProvider data_provider_it_returns_false_on_invalid_ids */
 	public function test_it_returns_false_on_invalid_ids( $id ) {

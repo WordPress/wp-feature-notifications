@@ -1,6 +1,6 @@
 <?php
 
-class Test_WP_Notify_User_Recipient extends WPNotify_TestCase {
+class Test_WP_Notify_User_Recipient extends WP_Notify_TestCase {
 
 	public function test_it_can_be_instantiated() {
 		$testee = new WP_Notify_User_Recipient( 1 );
@@ -19,7 +19,7 @@ class Test_WP_Notify_User_Recipient extends WPNotify_TestCase {
 
 	/** @dataProvider data_provider_it_throws_on_invalid_type */
 	public function test_it_throws_on_invalid_type( $invalid_user_id ) {
-		$this->expectException('WP_Notify_Invalid_Recipient');
+		$this->expectException( 'WP_Notify_Invalid_Recipient' );
 		new WP_Notify_User_Recipient( $invalid_user_id );
 	}
 
