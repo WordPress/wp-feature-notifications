@@ -18,7 +18,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
-        "lint": "vendor/squizlabs/php_codesniffer/bin/phpcs --report=summary,source",
-	"test": "vendor/bin/phpunit"
+        "lint": "vendor/bin/phpcs",
+        "test": "vendor/bin/phpunit"
     }
 }
