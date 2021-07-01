@@ -62,37 +62,12 @@ jobs:
     name: Check Coding Standards
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 7.4
-          tools: composer
-          extensions: mysql
-          coverage: none
-
-      - name: Get composer cache directory
-        id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-
-      - name: Cache Composer packages
-        uses: actions/cache@v2
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-php-
-
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
-
-      - name: PHPCS check
-        uses: chekalsky/phpcs-action@v1
+      - uses: actions/checkout@v2
+      - name: WPCS check
+        uses: 10up/wpcs-action@v1.3.1
         with:
           enable_warnings: true
-          phpcs_bin_path: './vendor/bin/phpcs'
+          use_local_config: true
 
 
 
