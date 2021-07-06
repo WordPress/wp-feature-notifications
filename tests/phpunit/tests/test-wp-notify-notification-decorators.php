@@ -32,12 +32,15 @@ class Test_WP_Notify_Notification_Decorators extends WPNotify_TestCase {
 	// test_it_can_be_unserialized_with_a_title
 
 	public function test_it_can_be_serialized_with_an_action_link() {
-	    $testee = new WP_Notify_Notification_Action_Link( $this->base_notification, '#', "Read what's new in 5.6" );
+		$testee = new WP_Notify_Notification_Action_Link(
+			$this->base_notification,
+			new WP_Notify_Action_Link( '#', "Read what's new in 5.6" )
+		);
 
-	    $result = json_encode( $testee );
+		$result = json_encode( $testee );
 
-	    $this->assertJsonStringEqualsJsonFile( WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/tests/data/notification-with-action-link.json', $result );
-    }
+		$this->assertJsonStringEqualsJsonFile( WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/tests/data/notification-with-action-link.json', $result );
+	}
 
-    // test_it_can_be_unserialized_with_an_action_link
+	// test_it_can_be_unserialized_with_an_action_link
 }
