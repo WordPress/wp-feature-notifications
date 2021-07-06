@@ -1,6 +1,5 @@
 <?php
 
-
 class Test_WP_Notify_Notification_Decorators extends WPNotify_TestCase {
 
 	/**
@@ -22,7 +21,7 @@ class Test_WP_Notify_Notification_Decorators extends WPNotify_TestCase {
 		);
 	}
 
-	public function test_it_can_be_extended_with_a_title() {
+	public function test_it_can_be_serialized_with_a_title() {
 		$testee = new WP_Notify_Notification_Title( $this->base_notification, 'WordPress' );
 
 		$result = json_encode( $testee );
@@ -32,5 +31,13 @@ class Test_WP_Notify_Notification_Decorators extends WPNotify_TestCase {
 
 	// test_it_can_be_unserialized_with_a_title
 
-	// test_it_can_be_extended_with_an_action_link
+	public function test_it_can_be_serialized_with_an_action_link() {
+	    $testee = new WP_Notify_Notification_Action_Link( $this->base_notification, '#', "Read what's new in 5.6" );
+
+	    $result = json_encode( $testee );
+
+	    $this->assertJsonStringEqualsJsonFile( WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/tests/data/notification-with-action-link.json', $result );
+    }
+
+    // test_it_can_be_unserialized_with_an_action_link
 }
