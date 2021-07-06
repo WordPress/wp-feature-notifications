@@ -5,14 +5,9 @@
  *
  * Decorates a WP_Notify_Notification instance with a title field.
  */
-class WP_Notify_Notification_Title implements WP_Notify_Notification {
+class WP_Notify_Notification_Title extends WP_Notify_Notification_Decorator {
 
-	/**
-	 * @var WP_Notify_Notification
-	 */
-	private $notification;
-
-	/**
+    /**
 	 * @var string
 	 */
 	private $title;
@@ -24,31 +19,11 @@ class WP_Notify_Notification_Title implements WP_Notify_Notification {
 	 * @param string $title
 	 */
 	public function __construct( $notification, $title ) {
-		$this->notification = $notification;
+		parent::__construct( $notification );
 		$this->title        = $title;
 	}
 
-	public function get_id() {
-		return $this->notification->get_id();
-	}
-
-	public function get_timestamp() {
-		return $this->notification->get_timestamp();
-	}
-
-	public function get_sender() {
-		return $this->notification->get_sender();
-	}
-
-	public function get_recipients() {
-		return $this->notification->get_recipients();
-	}
-
-	public function get_message() {
-		return $this->notification->get_message();
-	}
-
-	public function jsonSerialize() {
+    public function jsonSerialize() {
 		return array_merge(
 			$this->notification->jsonSerialize(),
 			array(
@@ -57,7 +32,4 @@ class WP_Notify_Notification_Title implements WP_Notify_Notification {
 		);
 	}
 
-	public static function json_unserialize( $string ) {
-		// TODO: Remove this method from the WP_Notify_interface.
-	}
 }
