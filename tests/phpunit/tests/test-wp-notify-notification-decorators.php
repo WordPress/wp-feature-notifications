@@ -59,4 +59,26 @@ class Test_WP_Notify_Notification_Decorators extends WPNotify_TestCase {
 	}
 
 	// test_it_can_be_unserialized_with_an_action_link
+
+	public function test_it_can_be_serialized_with_an_image_a_title_and_an_action_link() {
+		$testee = new WP_Notify_Notification_Image(
+			new WP_Notify_Notification_Title(
+				new WP_Notify_Notification_Action_Link(
+					$this->base_notification,
+					new WP_Notify_Action_Link( '#', "Read what's new in 5.6" )
+				),
+				'WordPress'
+			),
+			new WP_Notify_Base_Image( WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/tests/data/wordpress-watermark.png' )
+		);
+
+		$result = json_encode( $testee );
+
+		$this->assertJsonStringEqualsJsonFile(
+			WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/tests/data/notification-image-title-link.json',
+			$result
+		);
+	}
+
+	// test_it_can_be_unserialized_with_an_image_a_title_and_an_action_link
 }
