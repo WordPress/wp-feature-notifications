@@ -8,6 +8,7 @@
 class WP_Notify_Composite_Notification extends WP_Notify_Base_Notification {
 
 	const FIELD_TITLE = 'title';
+	const FIELD_IMAGE = 'WP_Notify_Base_Image';
 
 	/**
 	 * Associative array, keys must match the class FIELD_* constants.
@@ -53,6 +54,8 @@ class WP_Notify_Composite_Notification extends WP_Notify_Base_Notification {
 		foreach ( json_decode( $json ) as $name => $value ) {
 			if ( WP_Notify_Composite_Notification::FIELD_TITLE === $name ) {
 				$composite_notification->add( $name, $value );
+			} elseif ( WP_Notify_Composite_Notification::FIELD_IMAGE === $name ) {
+				$composite_notification->add( $name, WP_Notify_Base_Image::json_unserialize( json_encode( $value ) ) );
 			}
 		}
 

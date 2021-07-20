@@ -18,29 +18,51 @@ class Test_WP_Notify_Composite_Notification extends WPNotify_TestCase {
 		);
 	}
 
-	public function test_it_can_be_json_encoded_with_a_title() {
-		$this->composite_notification->add( WP_Notify_Composite_Notification::FIELD_TITLE, 'WordPress' );
+	/**
+	 * @dataProvider json_encoded_notifications_provider
+	 * @param string $field_name
+	 * @param mixed $field_value
+	 * @param string $json_file
+	 */
+	public function test_it_can_be_json_encoded_with_additional_fields( $field_name, $field_value, $json_file ) {
+		$this->composite_notification->add( $field_name, $field_value );
 
 		$result = json_encode( $this->composite_notification );
 
 		$this->assertJsonStringEqualsJsonFile(
-			WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/tests/data/notification-with-title.json',
+			$json_file,
 			$result
 		);
 	}
 
-	public function test_it_can_be_instantiated_from_json_with_a_title() {
-		$this->composite_notification->add(
-			WP_Notify_Composite_Notification::FIELD_TITLE,
-			'WordPress'
+	/**
+	 * @dataProvider json_encoded_notifications_provider
+	 * @param string $field_name
+	 * @param mixed $field_value
+	 * @param string $json_file
+	 */
+	public function test_it_can_be_instantiated_from_json_with_additonal_fields( $field_name, $field_value, $json_file ) {
+		$result = WP_Notify_Composite_Notification::json_unserialize( file_get_contents( $json_file ) );
+
+		$this->assertInstanceOf( WP_Notify_Composite_Notification::class, $result );
+		$this->assertEquals( 'WordPress', $result->get_sender()->get_name() );
+		$this->assertInstanceOf( WP_Notify_Recipient_Collection::class, $result->get_recipients() );
+		$this->assertEquals( 'WordPress was successfully updated to version 5.6.', $result->get_message()->get_content() );
+		$this->assertEquals( $field_value, $result->get_field( $field_name ) );
+	}
+
+	public function json_encoded_notifications_provider() {
+		return array(
+			array(
+				'field_name'  => WP_Notify_Composite_Notification::FIELD_TITLE,
+				'field_value' => 'WordPress',
+				'json_file'   => WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/tests/data/notification-with-title.json',
+			),
+			array(
+				'field_name'  => WP_Notify_Composite_Notification::FIELD_IMAGE,
+				'field_value' => new WP_Notify_Base_Image( '/path/to/my/image.jpg' ),
+				'json_file'   => WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/tests/data/notification-with-image.json',
+			),
 		);
-
-		$testee = WP_Notify_Composite_Notification::json_unserialize( file_get_contents( WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/tests/data/notification-with-title.json' ) );
-
-		$this->assertInstanceOf( WP_Notify_Notification::class, $testee );
-		$this->assertEquals( 'WordPress', $testee->get_sender()->get_name() );
-		$this->assertInstanceOf( WP_Notify_Recipient_Collection::class, $testee->get_recipients() );
-		$this->assertEquals( 'WordPress was successfully updated to version 5.6.', $testee->get_message()->get_content() );
-		$this->assertEquals( 'WordPress', $testee->get_field( WP_Notify_Composite_Notification::FIELD_TITLE ) );
 	}
 }
