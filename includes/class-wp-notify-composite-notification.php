@@ -7,8 +7,9 @@
  */
 class WP_Notify_Composite_Notification extends WP_Notify_Base_Notification {
 
-	const FIELD_TITLE = 'title';
-	const FIELD_IMAGE = 'WP_Notify_Base_Image';
+	const FIELD_TITLE       = 'title';
+	const FIELD_IMAGE       = 'WP_Notify_Base_Image';
+	const FIELD_ACTION_LINK = 'WP_Notify_Action_Link';
 
 	/**
 	 * Associative array, keys must match the class FIELD_* constants.
@@ -56,6 +57,8 @@ class WP_Notify_Composite_Notification extends WP_Notify_Base_Notification {
 				$composite_notification->add( $name, $value );
 			} elseif ( WP_Notify_Composite_Notification::FIELD_IMAGE === $name ) {
 				$composite_notification->add( $name, WP_Notify_Base_Image::json_unserialize( json_encode( $value ) ) );
+			} elseif ( WP_Notify_Composite_Notification::FIELD_ACTION_LINK === $name ) {
+				$composite_notification->add( $name, WP_Notify_Action_Link::json_unserialize( json_encode( $value ) ) );
 			}
 		}
 

@@ -63,6 +63,11 @@ class Test_WP_Notify_Composite_Notification extends WPNotify_TestCase {
 				'field_value' => new WP_Notify_Base_Image( '/path/to/my/image.jpg' ),
 				'json_file'   => WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/tests/data/notification-with-image.json',
 			),
+			array(
+				'field_name'  => WP_Notify_Composite_Notification::FIELD_ACTION_LINK,
+				'field_value' => new WP_Notify_Action_Link( '#', "Read what's new in 5.6" ),
+				'json_file'   => WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/tests/data/notification-with-action-link.json',
+			),
 		);
 	}
 }
