@@ -1,0 +1,8 @@
+{
+  "WP_Notify_Recipient_Collection": [],
+  "WP_Notify_Base_Message": "WordPress was successfully updated to version 5.6.",
+  "WP_Notify_Base_Sender": {
+    "name":"WordPress"
+  },
+  "title": "WordPress"
+}

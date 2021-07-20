@@ -19,6 +19,8 @@ require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/interface-wp-notify-
 require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/class-wp-notify-factory.php';
 require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/class-wp-notify-aggregate-factory.php';
 require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/class-wp-notify-base-notification.php';
+require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/class-wp-notify-composite-notification.php';
+require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/class-wp-notify-action-link.php';
 require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/image/interface-wp-notify-image.php';
 require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/image/class-wp-notify-base-image.php';
 require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/senders/interface-wp-notify-sender.php';
