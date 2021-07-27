@@ -33,10 +33,8 @@ class WP_Notify_Composite_Notification extends WP_Notify_Base_Notification {
 	}
 
 	public function add_field( $name, $value ) {
-		$class        = __CLASS__;
-		$reflection   = new ReflectionClass( $class );
-		$valid_fields = $reflection->getConstants();
-		if ( ! in_array( $name, $valid_fields, true ) ) {
+		$class = __CLASS__;
+		if ( ! in_array( $name, WP_Notify_Composite_Notification::get_valid_fields(), true ) ) {
 			throw new InvalidArgumentException( "'{$name}' is not a valid {$class} additional field type." );
 		}
 
@@ -65,16 +63,24 @@ class WP_Notify_Composite_Notification extends WP_Notify_Base_Notification {
 	public static function json_unserialize( $json ) {
 		$composite_notification = self::from_notification( parent::json_unserialize( $json ) );
 
-		foreach ( json_decode( $json ) as $name => $value ) {
-			if ( WP_Notify_Composite_Notification::FIELD_TITLE === $name ) {
-				$composite_notification->add_field( $name, $value );
-			} elseif ( WP_Notify_Composite_Notification::FIELD_IMAGE === $name ) {
-				$composite_notification->add_field( $name, WP_Notify_Base_Image::json_unserialize( json_encode( $value ) ) );
-			} elseif ( WP_Notify_Composite_Notification::FIELD_ACTION_LINK === $name ) {
-				$composite_notification->add_field( $name, WP_Notify_Action_Link::json_unserialize( json_encode( $value ) ) );
+		foreach ( array_intersect_key( json_decode( $json, true ), array_fill_keys( self::get_valid_fields(), null ) ) as $name => $value ) {
+			if ( is_subclass_of( $name, WP_Notify_Json_Unserializable::class ) ) {
+				$value = call_user_func( array( $name, 'json_unserialize' ), json_encode( $value ) );
 			}
+
+			$composite_notification->add_field( $name, $value );
 		}
 
 		return $composite_notification;
+	}
+
+	/**
+	 * @return array
+	 * @throws ReflectionException
+	 */
+	protected static function get_valid_fields(): array {
+		$reflection   = new ReflectionClass( __CLASS__ );
+		$valid_fields = $reflection->getConstants();
+		return $valid_fields;
 	}
 }
