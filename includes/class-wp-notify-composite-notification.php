@@ -33,11 +33,20 @@ class WP_Notify_Composite_Notification extends WP_Notify_Base_Notification {
 	}
 
 	public function add_field( $name, $value ) {
+		$class        = __CLASS__;
+		$reflection   = new ReflectionClass( $class );
+		$valid_fields = $reflection->getConstants();
+		if ( ! in_array( $name, $valid_fields, true ) ) {
+			throw new InvalidArgumentException( "'{$name}' is not a valid {$class} additional field type." );
+		}
+
 		$this->additional_fields[ $name ] = $value;
 	}
 
 	public function add_fields( $fields ) {
-		$this->additional_fields = array_merge( $this->additional_fields, $fields );
+		foreach ( $fields as $name => $value ) {
+			$this->add_field( $name, $value );
+		}
 	}
 
 	public function get_field( $name ) {

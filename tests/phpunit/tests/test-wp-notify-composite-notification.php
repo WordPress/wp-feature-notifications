@@ -75,4 +75,24 @@ class Test_WP_Notify_Composite_Notification extends WPNotify_TestCase {
 			),
 		);
 	}
+
+	public function test_it_cannot_accept_an_unregistered_field_type() {
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( "'user' is not a valid WP_Notify_Composite_Notification additional field type." );
+
+		$this->composite_notification->add_field( 'user', 'totoro' );
+	}
+
+	public function test_it_cannot_accept_an_unregistered_field_type_in_an_array() {
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( "'user' is not a valid WP_Notify_Composite_Notification additional field type." );
+
+		$this->composite_notification->add_fields(
+			array(
+				WP_Notify_Composite_Notification::FIELD_TITLE => 'WordPress',
+				'user' => 'totore',
+				WP_Notify_Composite_Notification::FIELD_IMAGE => new WP_Notify_Base_Image( '/path/to/my/image.jpg' ),
+			)
+		);
+	}
 }
