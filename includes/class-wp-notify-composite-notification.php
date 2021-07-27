@@ -32,8 +32,12 @@ class WP_Notify_Composite_Notification extends WP_Notify_Base_Notification {
 		);
 	}
 
-	public function add( $name, $value ) {
+	public function add_field( $name, $value ) {
 		$this->additional_fields[ $name ] = $value;
+	}
+
+	public function add_fields( $fields ) {
+		$this->additional_fields = array_merge( $this->additional_fields, $fields );
 	}
 
 	public function get_field( $name ) {
@@ -54,11 +58,11 @@ class WP_Notify_Composite_Notification extends WP_Notify_Base_Notification {
 
 		foreach ( json_decode( $json ) as $name => $value ) {
 			if ( WP_Notify_Composite_Notification::FIELD_TITLE === $name ) {
-				$composite_notification->add( $name, $value );
+				$composite_notification->add_field( $name, $value );
 			} elseif ( WP_Notify_Composite_Notification::FIELD_IMAGE === $name ) {
-				$composite_notification->add( $name, WP_Notify_Base_Image::json_unserialize( json_encode( $value ) ) );
+				$composite_notification->add_field( $name, WP_Notify_Base_Image::json_unserialize( json_encode( $value ) ) );
 			} elseif ( WP_Notify_Composite_Notification::FIELD_ACTION_LINK === $name ) {
-				$composite_notification->add( $name, WP_Notify_Action_Link::json_unserialize( json_encode( $value ) ) );
+				$composite_notification->add_field( $name, WP_Notify_Action_Link::json_unserialize( json_encode( $value ) ) );
 			}
 		}
 
