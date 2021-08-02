@@ -1,0 +1,87 @@
+@import 'core.css';
+
+:root {
+	--wp-notify_color-default: #404040;
+	--wp-notify_color-secondary: #6C7781;
+	--wp-notify_color-light: #E2E4E7;
+	--wp-notify_color-link: #0071A1;
+}
+
+
+/**
+* Background styling - for illustration purposes only
+**/
+
+section {
+	padding: 30px;
+}
+
+body {
+	background-color: gainsboro;
+
+	box-sizing: border-box;
+}
+
+* {
+	box-sizing: inherit;
+}
+
+/**
+* Notifications
+**/
+
+.wp-notification {
+	width: 100%;
+	max-width: 320px;
+	background: white;
+
+	padding-left: 24px;
+	padding-right: 24px;
+
+	padding-top: 14px;
+	padding-bottom: 16px;
+
+	font-style: normal;
+	font-weight: normal;
+	font-size: 13px;
+	line-height: 16px;
+	color: var(--wp-notify_color-default);
+	display: flex;
+
+}
+
+.wp-notification-image {
+	width: 32px;
+	height: 32px;
+	border-radius: 8px;
+	margin-right: 8px;
+	margin-top: 1px;
+	user-select: none;
+	-webkit-user-drag: none;
+}
+
+.wp-notification-image.default {
+	padding: 8px 9px;
+	background-color: var(--wp-notify_color-light);
+}
+
+.wp-notification-title {
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 20px;
+	margin: 0 0 2px 0;
+}
+
+.wp-notification-message {
+	margin: 0 0 8px 0;
+}
+
+.wp-notification-action {
+	text-decoration-line: underline;
+	color: var(--wp-notify_color-link);
+}
+
+.wp-notification-source {
+	color: var(--wp-notify_color-secondary);
+	margin: 10px 0 0 0;
+}
