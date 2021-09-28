@@ -7,6 +7,8 @@
 	--wp-notify_color-link: #0071A1;
 	--wp-notify_hub-width: 320px;
 	--wp-notify_hub-spacing-horizontal: 24px;
+	--wp-notify_hub-spacing-top: 14px;
+	--wp-notify_hub-spacing-bottom: 16px;
 }
 
 
@@ -40,8 +42,8 @@ body {
 	padding-left: var(--wp-notify_hub-spacing-horizontal);
 	padding-right: var(--wp-notify_hub-spacing-horizontal);
 
-	padding-top: 14px;
-	padding-bottom: 16px;
+	padding-top: var(--wp-notify_hub-spacing-top);
+	padding-bottom: var(--wp-notify_hub-spacing-bottom);
 
 	font-style: normal;
 	font-weight: normal;
@@ -108,4 +110,7 @@ body {
 	position: sticky;
 	top: 0;
 	background: white;
+
+	padding-top: var(--wp-notify_hub-spacing-top);
+	padding-bottom: var(--wp-notify_hub-spacing-bottom);
 }
