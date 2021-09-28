@@ -6,6 +6,7 @@
 	--wp-notify_color-light: #E2E4E7;
 	--wp-notify_color-link: #0071A1;
 	--wp-notify_hub-width: 320px;
+	--wp-notify_hub-spacing-horizontal: 24px;
 }
 
 
@@ -13,7 +14,7 @@
 * Background styling - for illustration purposes only
 **/
 
-section {
+.components section {
 	padding: 30px;
 }
 
@@ -36,8 +37,8 @@ body {
 	max-width: var(--wp-notify_hub-width);
 	background: white;
 
-	padding-left: 24px;
-	padding-right: 24px;
+	padding-left: var(--wp-notify_hub-spacing-horizontal);
+	padding-right: var(--wp-notify_hub-spacing-horizontal);
 
 	padding-top: 14px;
 	padding-bottom: 16px;
@@ -98,4 +99,9 @@ body {
 	height: 100%;
 	max-width: var(--wp-notify_hub-width);
 	background: white;
+}
+
+.wp-notification-hub header{
+	padding-left: var(--wp-notify_hub-spacing-horizontal);
+	padding-right: var(--wp-notify_hub-spacing-horizontal);
 }
