@@ -104,4 +104,8 @@ body {
 .wp-notification-hub header{
 	padding-left: var(--wp-notify_hub-spacing-horizontal);
 	padding-right: var(--wp-notify_hub-spacing-horizontal);
+
+	position: sticky;
+	top: 0;
+	background: white;
 }
