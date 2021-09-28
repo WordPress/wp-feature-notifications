@@ -110,6 +110,7 @@ body {
 	position: sticky;
 	top: 0;
 	background: white;
+	box-shadow: 5px 5px 5px white;
 
 	padding-top: var(--wp-notify_hub-spacing-top);
 	padding-bottom: var(--wp-notify_hub-spacing-bottom);
