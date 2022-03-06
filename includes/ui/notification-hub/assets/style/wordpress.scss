@@ -1,0 +1,40 @@
+/**
+* Wordpress Core Style - for illustration purposes only
+**/
+@import "wp-core/normalize.css";
+@import "wp-core/dashboard";
+@import "wp-core/admin-menu";
+@import "wp-core/nav-menus";
+@import "wp-core/common";
+@import "wp-core/site-health";
+@import "wp-core/admin-bar";
+@import "wp-core/dashicons";
+@import "wp-core/edit";
+@import "wp-core/buttons";
+
+/*
+* Body styling - for illustration purposes only
+*/
+
+body {
+  padding-top: 32px;
+  height: calc(100% - 32px);
+}
+
+* {
+  box-sizing: inherit;
+}
+
+/* Text meant only for screen readers. */
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  word-wrap: normal !important;
+}

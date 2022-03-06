@@ -1,1 +1,11 @@
-.DS_Store
+# ignore node dependency directories
+node_modules/
+vendor/
+
+#ide settings
+.idea/
+
+# ignore log files and databases
+*.log
+*.sql
+*.sqlite

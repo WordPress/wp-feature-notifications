@@ -1,0 +1,1 @@
+window.addEventListener("load",(function(t){var e=document.getElementById("wp-admin-bar-notify_hub");e.addEventListener("click",(function(){this.classList.toggle("active")})),document.querySelectorAll(".wp-notification-hub-trigger").forEach((function(t){t.addEventListener("click",(function(){e.classList.toggle("active")}))}))}));

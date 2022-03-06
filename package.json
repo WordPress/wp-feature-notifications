@@ -1,0 +1,39 @@
+{
+  "name": "wp-notify",
+  "version": "0.0.1",
+  "description": "WP Notify UI",
+  "private": true,
+  "scripts": {
+    "serve": "wp-scripts start --hot=true includes/ui/notification-hub/assets/style/main.js includes/ui/notification-hub/assets/script/script.js --output-path=dist/",
+    "start": "wp-scripts start includes/ui/notification-hub/assets/style/main.js includes/ui/notification-hub/assets/script/script.js --output-path=dist/",
+    "start:user-js": "wp-scripts start includes/ui/notification-hub/assets/script/script.js --output-path=dist/",
+    "start:user-css": "wp-scripts start includes/ui/notification-hub/assets/style/main.js --output-path=dist/",
+    "build": "wp-scripts build includes/ui/notification-hub/assets/style/main.js includes/ui/notification-hub/assets/script/script.js --output-path=dist/",
+    "build:user-js": "wp-scripts build includes/ui/notification-hub/assets/script/script.js --output-path=dist/",
+    "build:user-css": "wp-scripts build includes/ui/notification-hub/assets/style/main.js --output-path=dist/",
+    "check-engines": "wp-scripts check-engines",
+    "check-licenses": "wp-scripts check-licenses",
+    "lint:css": "wp-scripts lint-style includes/ui/notification-hub/assets/style/",
+    "lint:js": "wp-scripts lint-js includes/ui/notification-hub/assets/script/",
+    "lint:md:docs": "wp-scripts lint-md-docs",
+    "lint:md:js": "wp-scripts lint-md-js",
+    "lint:pkg-json": "wp-scripts lint-pkg-json",
+    "packages-update": "wp-scripts packages-update"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WordPress/wp-notify.git"
+  },
+  "author": "WordPress/wp-notify",
+  "license": "GPL-2.0-only",
+  "bugs": {
+    "url": "https://github.com/WordPress/wp-notify/issues"
+  },
+  "homepage": "https://github.com/WordPress/wp-notify#readme",
+  "devDependencies": {
+    "@wordpress/scripts": "^21.0.2",
+    "html-loader": "^3.1.0",
+    "html-webpack-plugin": "^5.5.0",
+    "style-loader": "^3.3.1"
+  }
+}
