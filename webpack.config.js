@@ -2,9 +2,8 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 const defaultConfig = require('@wordpress/scripts/config/webpack.config');
 const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
-const postcssPlugins = require('@wordpress/postcss-plugins-preset');
 const path = require("path");
-const {hasBabelConfig, hasPostCSSConfig, hasCssnanoConfig} = require("@wordpress/scripts/utils");
+const {hasBabelConfig, hasCssnanoConfig} = require("@wordpress/scripts/utils");
 const MiniCSSExtractPlugin = require( 'mini-css-extract-plugin' );
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -115,7 +114,7 @@ const config = {
   ...defaultConfig,
   context: __dirname,
   output: {
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'docs')
   },
   plugins: [
     new CleanWebpackPlugin( {
@@ -152,9 +151,9 @@ if ( ! isProduction ) {
     port: 8887,
     open: true,
     proxy: {
-      './build': {
+      './docs': {
         pathRewrite: {
-          '^/build': '',
+          '^/docs': '',
         },
       },
     },
