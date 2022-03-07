@@ -125,6 +125,12 @@ const config = {
       favicon: "./includes/ui/notification-hub/assets/img/favicon.ico",
       template: './includes/ui/notification-hub/assets/template.html'
     }),
+    new HtmlWebpackPlugin({
+      title: 'feature-notifications',
+      filename:'settings.html',
+      favicon: "./includes/ui/notification-hub/assets/img/favicon.ico",
+      template: './includes/ui/notification-hub/assets/settings.html'
+    }),
     // MiniCSSExtractPlugin to extract the CSS thats gets imported into JavaScript.
     new MiniCSSExtractPlugin( {
       filename: '[name].css'
