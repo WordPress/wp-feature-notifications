@@ -203,6 +203,25 @@ window.addEventListener('load', function (event) {
     e.addEventListener("click", function () {
       hub.classList.toggle("active");
     });
+  }); // Basic replacement for jQuery .parents()
+
+  var parents = function parents(elem, selector) {
+    for (; elem && elem !== document; elem = elem.parentNode) {
+      if (elem.matches(selector)) return elem;
+    }
+
+    return null;
+  }; // Click handler for dismiss buttons
+
+
+  document.querySelectorAll('.wp-notification-hub-dismiss').forEach(function (e) {
+    e.addEventListener("click", function () {
+      var el = parents(this, '.wp-notification');
+
+      if (el) {
+        el.parentNode.removeChild(el);
+      }
+    });
   });
 });
 
@@ -3264,7 +3283,7 @@ module.exports.formatError = function (err) {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	!function() {
-/******/ 		__webpack_require__.h = function() { return "3bf26a8a51487ab6e419"; }
+/******/ 		__webpack_require__.h = function() { return "61f43ef58a05861e59b5"; }
 /******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
