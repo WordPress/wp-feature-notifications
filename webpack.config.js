@@ -7,6 +7,15 @@ const {hasBabelConfig, hasCssnanoConfig} = require("@wordpress/scripts/utils");
 const MiniCSSExtractPlugin = require( 'mini-css-extract-plugin' );
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+// https://github.com/webpack-contrib/html-loader/issues/291#issuecomment-721909576
+const INCLUDE_PATTERN = /<include src="(.+)"\s*\/?>(?:<\/html>)?/gi
+const processNestedHtml = (content, loaderContext, dir = null) =>
+  !INCLUDE_PATTERN.test(content) ? content : content.replace(INCLUDE_PATTERN, (m, src) => {
+    const filePath = path.resolve(dir || loaderContext.context, src)
+    loaderContext.dependency(filePath)
+    return processNestedHtml(loaderContext.fs.readFileSync(filePath, 'utf8'), loaderContext, path.dirname(filePath))
+  })
+
 const cssLoaders = [
   MiniCSSExtractPlugin.loader,
   {
@@ -78,6 +87,16 @@ defaultConfig.module = {
       ],
     },
     {
+      test: /\.html$/,
+      loader: 'html-loader',
+      include: [
+        path.resolve(__dirname, "includes/ui/notification-hub/assets")
+      ],
+      options: {
+        preprocessor: processNestedHtml
+      }
+    },
+    {
       test: /\.css$/,
       use: cssLoaders,
     },
@@ -112,7 +131,6 @@ defaultConfig.module = {
 
 const config = {
   ...defaultConfig,
-  context: __dirname,
   output: {
     path: path.resolve(__dirname, 'docs')
   },
@@ -122,6 +140,7 @@ const config = {
     } ),
     new HtmlWebpackPlugin({
       title: 'feature-notifications',
+      filename:'index.html',
       favicon: "./includes/ui/notification-hub/assets/img/favicon.ico",
       template: './includes/ui/notification-hub/assets/template.html'
     }),
