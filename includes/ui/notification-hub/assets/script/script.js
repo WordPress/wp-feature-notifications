@@ -21,9 +21,7 @@ window.addEventListener('load', (event) => {
 
     var div  = document.createElement('div');
     div.className = 'wp-notification wp-notice-alert is-dismissible';
-
-
-    const notice_content =
+    div.innerHTML =
     '<div class="wp-notification-wrap">\n' +
     '  <h2 class="wp-notification-title">' + title + '</h2>\n' +
     '  <p>' + content + '</p>\n' +
@@ -32,8 +30,6 @@ window.addEventListener('load', (event) => {
     '<div class="wp-notification-image">\n' +
     ' <img src="https://source.unsplash.com/random/' + Math.floor(Math.random() * 400) + '×' + Math.floor(Math.random() * 400) + '">\n' +
     '</div>';
-
-    div.innerHTML = notice_content;
 
     document.querySelector('#wpbody-content .wrap h1').insertAdjacentElement("afterend",div);
   })
