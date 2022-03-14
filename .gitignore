@@ -1,3 +1,6 @@
+# OS fixes
+.DS_Store
+
 # ignore node dependency directories
 node_modules/
 vendor/
