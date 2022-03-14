@@ -115,18 +115,23 @@
    * The single notification
    */
   .wp-notification {
+    $image-size: 32px;
+
     width: 100%;
     max-width: var(--wp-notify_hub-width);
     padding: var(--wp-notify_hub-spacing-top) var(--wp-notify_hub-spacing-horizontal) var(--wp-notify_hub-spacing-bottom);
     user-select: none;
     -webkit-user-drag: none;
 
+    grid-template-rows: auto;
+    grid-template-columns: $image-size auto;
+    grid-gap: $image-size * .25;
+    grid-auto-flow: row;
+
     .wp-notification-image {
-      $image-size: 32px;
       min-width: $image-size;
       width: $image-size;
       height: $image-size;
-      margin-right: $image-size * .25;
       position: relative;
 
       * {

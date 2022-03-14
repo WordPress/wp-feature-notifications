@@ -2,7 +2,7 @@
  * General notifications style
  */
 .wp-notification {
-  display: flex;
+  display: grid;
   background: var(--wp-notify_color-white);
   color: var(--wp-notify_color-default);
 
@@ -24,6 +24,11 @@
   --wp-notify_hub-spacing-bottom: 25px;
 
   --wp-notify_hub-element-spacing: 20px;
+
+  grid-template-rows: auto;
+  grid-template-columns: auto 200px;
+  grid-gap: 50px;
+  grid-auto-flow: row;
 
   justify-content: space-between;
 
@@ -68,17 +73,11 @@
     text-decoration: none;
   }
 
-  .wp-notification-image {
-    padding-left: 24px;
-
+  .wp-notification-image img {
     max-width: 200px;
     max-height: 200px;
-    overflow: hidden;
     width: 100%;
-    align-self: center;
-
-    img {
-      width: 100%;
-    }
+    object-position: center;
+    object-fit: contain;
   }
 }
