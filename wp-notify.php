@@ -38,3 +38,58 @@ require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/messages/class-wp-no
 require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/persistence/interface-wp-notify-notification-repository.php';
 require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/persistence/class-wp-notify-abstract-notification-repository.php';
 require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/persistence/class-wp-notify-wpdb-notification-repository.php';
+
+
+/**
+ * ! DEVELOPMENT !
+ *  to be removed as soon we find a better place to fit this functions
+ **/
+
+/**
+ * Adds WP Notify icon after the user avatar in the top admin bar in the "secondary" position
+ *
+ * @param WP_Admin_Bar $wp_admin_bar Toolbar instance.
+ */
+function wp_admin_bar_wp_notify_item( $wp_admin_bar ) {
+
+	$footer = '<footer>
+    <a>
+      <a href="settings.html" class="wp-notification-action wp-notification-action-markread button-link">
+        <span class="ab-icon dashicons-admin-generic"></span>' . __( 'Configure notification settings' ) . '
+      </a>
+    </a></footer>';
+
+	$aside = '<aside id="wp-notification-hub">
+  <div class="wp-notification-hub-wrapper">
+    <h2 class="screen-reader-text">Notifications</h2>
+    ' . $footer . '</div></aside>';
+
+	$args = array(
+		'id'     => 'wp-notify',
+		'title'  => '<span class="ab-icon" aria-hidden="true"></span><span class="ab-label">' . __( 'Notifications' ) . '</span>',
+		'parent' => 'top-secondary',
+		'meta'   => array(
+			'html' => $aside,
+		),
+	);
+	$wp_admin_bar->add_node( $args );
+
+}
+add_action( 'admin_bar_menu', 'wp_admin_bar_wp_notify_item', 1 );
+
+
+/**
+ * Register and enqueue a wp notify scripts and stylesheet in WordPress admin.
+ */
+function wp_notify_enqueue_admin_assets() {
+
+	// Load styles
+	wp_register_style( 'wp_notify_css', plugin_dir_url( __FILE__ ) . '/build/wp-notify.css' );
+	wp_enqueue_style( 'wp_notify_css' );
+
+	// Load scripts
+	wp_register_script( 'wp_notify_js', plugin_dir_url( __FILE__ ) . '/build/wp-notify.js' );
+	wp_enqueue_script( 'wp_notify_js' );
+}
+
+add_action( 'admin_enqueue_scripts', 'wp_notify_enqueue_admin_assets' );

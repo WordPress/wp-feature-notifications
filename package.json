@@ -7,10 +7,28 @@
     "test": "tests"
   },
   "scripts": {
+    "wp-env": "wp-env start",
     "prephp-install": "wp-env start",
     "php-install": "wp-env run composer 'composer --ignore-platform-req=php install'",
     "pretest-unit-php": "npm run php-install",
-    "test-unit-php": "wp-env run phpunit 'phpunit --configuration=/var/www/html/wp-content/plugins/wp-notify/phpunit.xml.dist'"
+    "test-unit-php": "wp-env run phpunit 'phpunit --configuration=/var/www/html/wp-content/plugins/wp-notify/phpunit.xml.dist'",
+    "check-engines": "wp-scripts check-engines",
+    "check-licenses": "wp-scripts check-licenses",
+    "format": "wp-scripts format",
+    "lint:css": "wp-scripts lint-style",
+    "lint:js": "wp-scripts lint-js",
+    "lint:md:docs": "wp-scripts lint-md-docs",
+    "lint:pkg-json": "wp-scripts lint-pkg-json",
+    "packages-update": "wp-scripts packages-update",
+    "plugin-zip": "wp-scripts plugin-zip",
+    "start": "wp-scripts start src/dev/wp-notify.js --output-path=build/",
+    "start:user-js": "wp-scripts start src/scripts/wp-notify.js --output-path=build/",
+    "start:user-css": "wp-scripts start src/styles/wp-notify.js --output-path=build/",
+    "build": "npm run build:user-js & npm run build:user-css",
+    "build:user-js": "wp-scripts build src/scripts/wp-notify.js --output-path=build/",
+    "build:user-css": "wp-scripts build src/styles/wp-notify.js --output-path=build/",
+    "test:e2e": "wp-scripts test-e2e",
+    "test:unit": "wp-scripts test-unit-js"
   },
   "repository": {
     "type": "git",
@@ -26,5 +44,13 @@
   "bugs": {
     "url": "https://github.com/WordPress/wp-notify/issues"
   },
-  "homepage": "https://github.com/WordPress/wp-notify#readme"
+  "homepage": "https://github.com/WordPress/wp-notify#readme",
+  "devDependencies": {
+    "@wordpress/scripts": "^23.0.0"
+  },
+	"browserslist": [
+		"last 1 version",
+		"> 1%",
+		"IE 10"
+	]
 }
