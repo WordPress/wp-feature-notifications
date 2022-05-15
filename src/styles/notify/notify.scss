@@ -1,8 +1,13 @@
 /*
  * General notifications style
  */
+
+#wpbody #wp-notify-dashboard-notices {
+  clear: both;
+  margin: 10px 20px 0 2px;
+}
+
 .wp-notification {
-  display: grid;
   background: var(--wp-notify_color-white);
   color: var(--wp-notify_color-default);
 
@@ -20,14 +25,15 @@
  * Dashboard notifications
  */
 #wpbody .wp-notification {
-  --wp-notify_hub-spacing-top: 20px;
-  --wp-notify_hub-spacing-bottom: 25px;
+  --wp-notify_hub-spacing-top: 1.8em;
+  --wp-notify_hub-spacing-bottom: 2.5em;
+  --wp-notify_hub-element-spacing: 1.6em;
 
-  --wp-notify_hub-element-spacing: 20px;
-
+  display: grid;
   grid-template-rows: auto;
   grid-template-columns: auto 200px;
   grid-auto-flow: row;
+  gap: 50px;
 
   justify-content: space-between;
 

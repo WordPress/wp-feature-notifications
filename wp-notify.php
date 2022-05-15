@@ -61,7 +61,8 @@ function wp_admin_bar_wp_notify_item( $wp_admin_bar ) {
 
 	$aside = '<aside id="wp-notification-hub">
   <div class="wp-notification-hub-wrapper">
-    <h2 class="screen-reader-text">Notifications</h2>
+    <h2 class="screen-reader-text">' . __( 'Notifications' ) . '</h2>
+    <div id="wp-notify-hub"></div>
     ' . $footer . '</div></aside>';
 
 	$args = array(
@@ -88,8 +89,24 @@ function wp_notify_enqueue_admin_assets() {
 	wp_enqueue_style( 'wp_notify_css' );
 
 	// Load scripts
-	wp_register_script( 'wp_notify_js', plugin_dir_url( __FILE__ ) . '/build/wp-notify.js' );
+	wp_enqueue_script('react');
+	wp_register_script( 'wp_notify_js', plugin_dir_url( __FILE__ ) . '/build/wp-notify.js' , ['wp-element'], "VERSION", true );
 	wp_enqueue_script( 'wp_notify_js' );
 }
 
 add_action( 'admin_enqueue_scripts', 'wp_notify_enqueue_admin_assets' );
+
+function wp_notify_admin_notice() {
+?>
+	<div id="wp-notify-dashboard-notices" class="wrap"></div>
+<?php
+}
+add_action( 'admin_notices', 'wp_notify_admin_notice' );
+
+function wp_notify_admin_notice_demo() {
+?>
+	<div id="wp-notify-notice-demo" class="wrap"></div>
+	<div id="wp-notify-notice-demo-buttons" class="wrap"></div>
+<?php
+}
+add_action( 'admin_notices', 'wp_notify_admin_notice_demo' );

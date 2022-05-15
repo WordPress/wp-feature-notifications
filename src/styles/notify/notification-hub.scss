@@ -26,7 +26,12 @@
 
   .wp-notification-hub-wrapper {
     position: relative;
+    height: inherit;
     overflow: auto;
+
+    div#wp-notify-hub {
+      height: 100%;
+    }
 
     // The shadow at the end of sidebar
     &:after {
@@ -110,7 +115,6 @@
     height: inherit;
   }
 
-
   /*
    * The single notification
    */
@@ -123,9 +127,11 @@
     user-select: none;
     -webkit-user-drag: none;
 
+    display: grid;
     grid-template-rows: auto;
     grid-template-columns: $image-size auto;
     grid-auto-flow: row;
+    gap: 8px;
 
     .wp-notification-image {
       min-width: $image-size;

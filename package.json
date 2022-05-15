@@ -2,6 +2,17 @@
   "name": "@wordpress/wp-notify",
   "version": "0.1.0",
   "description": "A notification center for WordPress.",
+	"keywords": [
+		"WordPress",
+		"notifications",
+		"dashboard"
+	],
+	"author": "The WordPress Contributors",
+	"license": "GPL-2.0-or-later",
+	"bugs": {
+		"url": "https://github.com/WordPress/wp-notify/issues"
+	},
+	"homepage": "https://github.com/WordPress/wp-notify#readme",
   "directories": {
     "doc": "docs",
     "test": "tests"
@@ -34,17 +45,10 @@
     "type": "git",
     "url": "git+https://github.com/WordPress/wp-notify.git"
   },
-  "keywords": [
-    "WordPress",
-    "notifications",
-    "dashboard"
-  ],
-  "author": "The WordPress Contributors",
-  "license": "GPL-2.0-or-later",
-  "bugs": {
-    "url": "https://github.com/WordPress/wp-notify/issues"
-  },
-  "homepage": "https://github.com/WordPress/wp-notify#readme",
+	"engines": {
+		"node": ">=12.13",
+		"npm": ">=6.9"
+	},
   "devDependencies": {
     "@wordpress/scripts": "^23.0.0"
   },
