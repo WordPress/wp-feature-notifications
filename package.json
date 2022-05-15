@@ -35,9 +35,7 @@
     "start": "wp-scripts start src/dev/wp-notify.js --output-path=build/",
     "start:user-js": "wp-scripts start src/scripts/wp-notify.js --output-path=build/",
     "start:user-css": "wp-scripts start src/styles/wp-notify.js --output-path=build/",
-    "build": "npm run build:user-js & npm run build:user-css",
-    "build:user-js": "wp-scripts build src/scripts/wp-notify.js --output-path=build/",
-    "build:user-css": "wp-scripts build src/styles/wp-notify.js --output-path=build/",
+    "build": "wp-scripts build src/dev/wp-notify.js --output-path=build/",
     "test:e2e": "wp-scripts test-e2e",
     "test:unit": "wp-scripts test-unit-js"
   },

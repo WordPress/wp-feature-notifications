@@ -119,7 +119,6 @@
    * The single notification
    */
   .wp-notification {
-    $image-size: 32px;
 
     width: 100%;
     max-width: var(--wp-notify_hub-width);
@@ -129,14 +128,14 @@
 
     display: grid;
     grid-template-rows: auto;
-    grid-template-columns: $image-size auto;
+    grid-template-columns: var(--wp-notify_hub-image-size) auto;
     grid-auto-flow: row;
     gap: 8px;
 
     .wp-notification-image {
-      min-width: $image-size;
-      width: $image-size;
-      height: $image-size;
+      min-width: var(--wp-notify_hub-image-size);
+      width: var(--wp-notify_hub-image-size);
+      height: var(--wp-notify_hub-image-size);
       position: relative;
 
       * {

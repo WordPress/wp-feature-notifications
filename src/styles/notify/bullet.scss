@@ -22,9 +22,9 @@ $bullet-width: 6px;
 
 #wpadminbar .wp-notification.unread >:first-child:before {
   top: calc(50% - #{$bullet-width * .5 });
-  left: #{ -24px * .5 - $bullet-width * .5 }; // 9 - left padding - border /2  + bullet/2
+  left: #{ (-24px - $bullet-width) * .5 }; // 9 - left padding - border /2  + bullet/2
 }
 #wpbody .wp-notification-wrap > :first-child:before {
   top: calc(10px - #{$bullet-width * .5 });
-  left: #{ -36px * .5 - $bullet-width * .5 }; // 9 - left padding - border /2  + bullet/2
+  left: #{ (-36px - $bullet-width) * .5 }; // 9 - left padding - border /2  + bullet/2
 }
