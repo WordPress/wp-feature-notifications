@@ -1,2 +1,6 @@
+# OS fixes
+.DS_Store
+
+/node_modules/
 /vendor/
 .phpunit.result.cache
