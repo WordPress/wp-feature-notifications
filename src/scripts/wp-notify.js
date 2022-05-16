@@ -26,7 +26,7 @@ const NotificationsWrap = ({ children, elementId }) => {
   return createPortal(children, NotifyElement);
 };
 
-// Handle notification state
+// Handle changes and returns the array of displayed notifications
 const NotifyReducer = (state, data) => {
   switch (data.action) {
     case "ADD": {
@@ -46,13 +46,11 @@ const NotifyReducer = (state, data) => {
   }
 };
 
+// Notification controller
 const DashNotifyController = ({ children }) => {
   const [state, dispatch] = wp.element.useReducer(NotifyReducer, []);
   const addNotify = ({ props }) =>
-    dispatch({
-      action: "ADD",
-      payload: { id: props },
-    });
+    dispatch({ action: "ADD", payload: { id: props } });
   const removeNotify = (id) => dispatch({ action: "REMOVE", payload: id });
   const clearNotifies = () => dispatch({ action: "CLEAR_ALL" });
 
@@ -137,8 +135,24 @@ class DashNotice extends wp.element.Component {
   }
 }
 
+DashNotice.defaultProps = {
+  image: false,
+  id: false,
+  title: "",
+  message: "",
+  accept: __("Accept"),
+  dismiss: __("Dismiss"),
+  source: "WordPress",
+  date: __("Just now"),
+  dismissible: true,
+};
+
+/**
+ * THIS IS FOR TESTING PURPOSE - TO BE REMOVED
+ */
 const Demo = () => {
   const { addNotify, clearNotifies } = wp.element.useContext(NotifyContext);
+
   return (
     <div className="demo">
       <button
@@ -154,6 +168,9 @@ const Demo = () => {
   );
 };
 
+/**
+ * Render the main dash notification container
+ */
 wp.element.render(
   <DashNotifyController>
     <Demo />
@@ -162,6 +179,21 @@ wp.element.render(
   document.getElementById("wp-notify-dashboard-notices")
 );
 
+/**
+ * THIS IS FOR TESTING PURPOSE - TO BE REMOVED
+ */
+wp.element.render(
+  <DashNotice
+    image="https://source.unsplash.com/random/400×200"
+    title="Try this new Notification feature"
+    source="#WP-Notify"
+    message="We have just added a wonderful feature! you might want to give it a try so click on the bell icon on the right side of the adminbar 😉."
+    accept="Try this new feature"
+  />,
+  document.getElementById("wp-notify-notice-demo")
+);
+
+// the WP-Notify toolbar in the secondary position of the admin bar
 class HubNotice extends wp.element.Component {
   render() {
     return (
@@ -205,29 +237,6 @@ class HubNotice extends wp.element.Component {
     );
   }
 }
-
-DashNotice.defaultProps = {
-  image: false,
-  id: false,
-  title: "",
-  message: "",
-  accept: __("Accept"),
-  dismiss: __("Dismiss"),
-  source: "Wordpress",
-  date: __("Just now"),
-  dismissible: true,
-};
-
-wp.element.render(
-  <DashNotice
-    image="https://source.unsplash.com/random/400×200"
-    title="Try this new Notification feature"
-    source="#WP-Notify"
-    message="We have just added a wonderful feature! you might want to give it a try so click on the bell icon on the right side of the adminbar 😉."
-    accept="Try this new feature"
-  />,
-  document.getElementById("wp-notify-notice-demo")
-);
 
 wp.element.render(
   wp.element.createElement(HubNotice),
