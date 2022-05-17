@@ -49,10 +49,13 @@ const NotifyReducer = (state, data) => {
 // Notification controller
 const DashNotifyController = ({ children }) => {
   const [state, dispatch] = wp.element.useReducer(NotifyReducer, []);
-  const addNotify = ({ props }) =>
-    dispatch({ action: "ADD", payload: { id: props } });
+  const addNotify = (props) => dispatch({ action: "ADD", payload: props });
   const removeNotify = (id) => dispatch({ action: "REMOVE", payload: id });
   const clearNotifies = () => dispatch({ action: "CLEAR_ALL" });
+
+  window.addNotify = addNotify;
+  window.removeNotify = removeNotify;
+  window.clearNotifies = clearNotifies;
 
   console.log(state);
 
@@ -89,7 +92,7 @@ const Notifications = () => {
   );
 };
 
-// Using the class method.
+// DashNotice class method.
 class DashNotice extends wp.element.Component {
   constructor(props) {
     super(props);
@@ -218,7 +221,10 @@ class HubNotice extends wp.element.Component {
         </div>
         <div className="wp-notification plugin" role="status">
           <div className="wp-notification-image default">
-            <img src="https://ps.w.org/contact-form-7/assets/icon-256x256.png" />
+            <img
+              src="https://ps.w.org/contact-form-7/assets/icon-256x256.png"
+              alt="contact form 7 icon"
+            />
           </div>
           <div className="wp-notification-wrap">
             <p className="wp-notification-message">

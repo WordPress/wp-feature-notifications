@@ -18,7 +18,6 @@
     "test": "tests"
   },
   "scripts": {
-    "wp-env": "wp-env start",
     "prephp-install": "wp-env start",
     "php-install": "wp-env run composer 'composer --ignore-platform-req=php install'",
     "pretest-unit-php": "npm run php-install",
@@ -32,10 +31,8 @@
     "lint:pkg-json": "wp-scripts lint-pkg-json",
     "packages-update": "wp-scripts packages-update",
     "plugin-zip": "wp-scripts plugin-zip",
-    "start": "wp-scripts start src/dev/wp-notify.js --output-path=build/",
-    "start:user-js": "wp-scripts start src/scripts/wp-notify.js --output-path=build/",
-    "start:user-css": "wp-scripts start src/styles/wp-notify.js --output-path=build/",
-    "build": "wp-scripts build src/dev/wp-notify.js --output-path=build/",
+    "start": "wp-scripts start src/wp-notify.js --output-path=build/",
+    "build": "wp-scripts build src/wp-notify.js --output-path=build/",
     "test:e2e": "wp-scripts test-e2e",
     "test:unit": "wp-scripts test-unit-js"
   },
