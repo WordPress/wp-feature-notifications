@@ -54,7 +54,7 @@ function wp_admin_bar_wp_notify_item( $wp_admin_bar ) {
 
 	$footer = '<footer>
     <a>
-      <a href="settings.html" class="wp-notification-action wp-notification-action-markread button-link">
+      <a href="' . esc_url( admin_url( 'options-general.php?page=wp-notify' ) ) . '" class="wp-notification-action wp-notification-action-markread button-link">
         <span class="ab-icon dashicons-admin-generic"></span>' . __( 'Configure notification settings' ) . '
       </a>
     </a></footer>';
@@ -110,3 +110,188 @@ function wp_notify_admin_notice_demo() {
 <?php
 }
 add_action( 'admin_notices', 'wp_notify_admin_notice_demo' );
+
+
+/**
+ * Registers the options page.
+ *
+ * @return void
+ */
+function wp_notify_add_admin_options_page() {
+	add_options_page( 'Notifications', 'Notifications', 'manage_options', 'wp-notify', 'wp_notify_render_admin_options_page' );
+}
+add_action( 'admin_menu', 'wp_notify_add_admin_options_page' );
+
+
+
+/**
+ * Renders the options page.
+ *
+ * @return void
+ */
+function wp_notify_render_admin_options_page() {
+	?>
+
+	<h1><?php _e( 'Notifications settings' ); ?></h1>
+
+	<p>Tailor which kinds of notifications you'd like to receive, and where.</p>
+
+	<p>Want to stay informed on the go? Try out the <a href="#">WordPress mobile app</a>!</p>
+
+	<div class="tablenav top">
+		<div class="alignleft actions bulkactions">
+			<label for="bulk-action-selector-top" class="screen-reader-text">Select bulk action</label>
+			<select name="action" id="bulk-action-selector-top">
+				<option value="-1">Bulk actions</option>
+			</select>
+			<input type="submit" id="doaction" class="button action" value="Apply">
+		</div>
+	</div>
+	<h2 class="screen-reader-text">Notifications list</h2>
+
+	<table class="wp-list-table widefat fixed striped table-view-list">
+
+		<thead>
+			<tr>
+				<td id="cb" class="manage-column column-cb check-column"><label class="screen-reader-text" for="cb-select-all-1">Select All</label><input id="cb-select-all-1" type="checkbox"></td>
+				<th scope="col" id="source" class="manage-column column-source column-primary sortable desc"><a href="#"><span>Notification Source</span><span class="sorting-indicator"></span></a></th>
+				<td id="showin" class="manage-column column-format column-showin"><span>Show in:</span></td>
+				<th scope="col" id="admin" class="manage-column column-format column-admin desc"><span>Admin</span></th>
+				<th scope="col" id="email" class="manage-column column-format column-email desc"><span>Email</span></th>
+				<th scope="col" id="sms" class="manage-column column-format column-sms desc"><span>SMS</span></th>
+				<th scope="col" id="app" class="manage-column column-format column-app desc"><span>App</span></th>
+			</tr>
+		</thead>
+
+		<tbody id="the-list">
+
+			<tr>
+				<th scope="row" class="check-column">
+					<label class="screen-reader-text" for="cb-select-123">WordPress</label>
+					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+				</th>
+
+				<td class="title column-source has-row-actions column-primary page-source" data-colname="source" colspan="2">
+					<strong><a class="row-source" href="#" aria-label="">WordPress</a></strong>
+				</td>
+
+				<td scope="row" class="column-format">
+					<label class="screen-reader-text" for="cb-select-123">Admin</label>
+					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+				</td>
+				<td scope="row" class="column-format">
+					<label class="screen-reader-text" for="cb-select-123">Email</label>
+					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+				</td>
+				<td scope="row" class="column-format">
+					<label class="screen-reader-text" for="cb-select-123">SMS</label>
+					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+				</td>
+				<td scope="row" class="column-format">
+					<label class="screen-reader-text" for="cb-select-123">App</label>
+					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+				</td>
+			</tr>
+
+			<tr>
+				<th scope="row" class="check-column">
+					<label class="screen-reader-text" for="cb-select-123">User activity (published, edited, ect)</label>
+					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+				</th>
+
+				<td class="title column-source has-row-actions column-primary page-source" data-colname="source" colspan="2">
+					<strong><a class="row-source" href="#" aria-label="">User activity (published, edited, ect)</a></strong>
+				</td>
+
+				<td scope="row" class="column-format">
+					<label class="screen-reader-text" for="cb-select-123">Admin</label>
+					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+				</td>
+				<td scope="row" class="column-format">
+					<label class="screen-reader-text" for="cb-select-123">Email</label>
+					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+				</td>
+				<td scope="row" class="column-format">
+					<label class="screen-reader-text" for="cb-select-123">SMS</label>
+					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+				</td>
+				<td scope="row" class="column-format">
+					<label class="screen-reader-text" for="cb-select-123">App</label>
+					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+				</td>
+			</tr>
+
+			<tr>
+				<th scope="row" class="check-column">
+					<label class="screen-reader-text" for="cb-select-123">Comments</label>
+					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+				</th>
+
+				<td class="title column-source has-row-actions column-primary page-source" data-colname="source" colspan="2">
+					<strong><a class="row-source" href="#" aria-label="">Comments</a></strong>
+				</td>
+
+				<td scope="row" class="column-format">
+					<label class="screen-reader-text" for="cb-select-123">Admin</label>
+					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+				</td>
+				<td scope="row" class="column-format">
+					<label class="screen-reader-text" for="cb-select-123">Email</label>
+					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+				</td>
+				<td scope="row" class="column-format">
+					<label class="screen-reader-text" for="cb-select-123">SMS</label>
+					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+				</td>
+				<td scope="row" class="column-format">
+					<label class="screen-reader-text" for="cb-select-123">App</label>
+					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+				</td>
+			</tr>
+
+			<tr>
+				<th scope="row" class="check-column">
+					<label class="screen-reader-text" for="cb-select-123">Site health</label>
+					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+				</th>
+
+				<td class="title column-source has-row-actions column-primary page-source" data-colname="source" colspan="2">
+					<strong><a class="row-source" href="#" aria-label="">Site health</a></strong>
+				</td>
+
+				<td scope="row" class="column-format">
+					<label class="screen-reader-text" for="cb-select-123">Admin</label>
+					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+				</td>
+				<td scope="row" class="column-format">
+					<label class="screen-reader-text" for="cb-select-123">Email</label>
+					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+				</td>
+				<td scope="row" class="column-format">
+					<label class="screen-reader-text" for="cb-select-123">SMS</label>
+					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+				</td>
+				<td scope="row" class="column-format">
+					<label class="screen-reader-text" for="cb-select-123">App</label>
+					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+				</td>
+			</tr>
+
+		</tbody>
+
+		<tfoot>
+			<tr>
+				<td id="cb" class="manage-column column-cb check-column"><label class="screen-reader-text" for="cb-select-all-1">Select All</label><input id="cb-select-all-1" type="checkbox"></td>
+				<th scope="col" id="source" class="manage-column column-source column-primary sortable desc"><a href="#"><span>Notification Source</span><span class="sorting-indicator"></span></a></th>
+				<td id="showin" class="manage-column column-format column-showin"><span>Show in:</span></td>
+				<th scope="col" id="admin" class="manage-column column-format column-admin desc"><span>Admin</span></th>
+				<th scope="col" id="email" class="manage-column column-format column-email desc"><span>Email</span></th>
+				<th scope="col" id="sms" class="manage-column column-format column-sms desc"><span>SMS</span></th>
+				<th scope="col" id="app" class="manage-column column-format column-app desc"><span>App</span></th>
+			</tr>
+		</tfoot>
+	</table>
+
+	<?php
+}
+
