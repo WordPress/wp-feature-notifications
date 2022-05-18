@@ -81,7 +81,8 @@ const Notifications = () => {
           title={notify.title}
           message={notify.message}
           accept={notify.accept}
-          dismiss={notify.dismiss}
+          acceptAction={notify.acceptAction}
+          dismissLabel={notify.dismiss}
           source={notify.source}
           date={notify.date}
           dismissible={notify.dismissible}
@@ -94,11 +95,6 @@ const Notifications = () => {
 
 // DashNotice class method.
 class DashNotice extends wp.element.Component {
-  constructor(props) {
-    super(props);
-    this.buttonElement = wp.element.createRef(null);
-  }
-
   render() {
     let classes = "wp-notification wp-notice-" + this.props.id;
     classes += this.props.dismissible ? " is-dismissible" : "";
@@ -108,20 +104,21 @@ class DashNotice extends wp.element.Component {
           <h2 className="wp-notification-title">{this.props.title}</h2>
           <p>{this.props.message}</p>
           <div className="wp-notification-actions-wrap">
-            <button
+            <a
               className="button button-primary wp-notification-hub-trigger"
-              href="#"
+              href={this.props.acceptAction}
             >
               {this.props.accept}
-            </button>
-            <button
-              className="button button-link wp-notification-hub-dismiss"
-              onClick={this.props.onDismiss}
-              ref={this.buttonElement}
-            >
-              <span className="dashicons dashicons-no-alt"></span>
-              {__("dismiss")}
-            </button>
+            </a>
+            {this.props.dismissible && (
+              <button
+                className="button button-link wp-notification-hub-dismiss"
+                onClick={this.props.onDismiss}
+              >
+                <span className="dashicons dashicons-no-alt"></span>
+                {this.props.dismissLabel}
+              </button>
+            )}
           </div>
           <p className="wp-notification-source">
             <span className="name">{this.props.source}</span> {"\u2022 "}
@@ -130,7 +127,7 @@ class DashNotice extends wp.element.Component {
         </div>
         {this.props.image && (
           <div className="wp-notification-image">
-            <img src={this.props.image} alt={this.props.title} />
+            <img src={this.props.image} alt={this.props.title + " image"} />
           </div>
         )}
       </div>
@@ -139,12 +136,13 @@ class DashNotice extends wp.element.Component {
 }
 
 DashNotice.defaultProps = {
-  image: false,
   id: false,
+  image: false,
   title: "",
   message: "",
   accept: __("Accept"),
-  dismiss: __("Dismiss"),
+  acceptAction: "#",
+  dismissLabel: __("dismiss"),
   source: "WordPress",
   date: __("Just now"),
   dismissible: true,
@@ -187,11 +185,13 @@ wp.element.render(
  */
 wp.element.render(
   <DashNotice
-    image="https://source.unsplash.com/random/400×200"
+    image="https://gifimage.net/wp-content/uploads/2018/10/animation-notification-gif-2.gif"
     title="Try this new Notification feature"
     source="#WP-Notify"
-    message="We have just added a wonderful feature! you might want to give it a try so click on the bell icon on the right side of the adminbar 😉."
+    message="We have just added a wonderful feature! You might want to give it a try so click on the bell icon on the right side of the adminbar 😉."
     accept="Try this new feature"
+    acceptAction="https://github.com/WordPress/wp-notify"
+    dismissible={false}
   />,
   document.getElementById("wp-notify-notice-demo")
 );
@@ -230,7 +230,7 @@ class HubNotice extends wp.element.Component {
             <p className="wp-notification-message">
               There is a new version of Contact Form 7 available.
             </p>
-            <a href="#" className="wp-notification-action">
+            <a href="./wp-admin/plugins.php" className="wp-notification-action">
               Update now
             </a>
             <p className="wp-notification-source">
