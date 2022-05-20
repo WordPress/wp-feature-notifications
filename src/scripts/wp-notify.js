@@ -80,8 +80,8 @@ const Notifications = () => {
           image={notify.image}
           title={notify.title}
           message={notify.message}
-          accept={notify.accept}
-          acceptAction={notify.acceptAction}
+          acceptMessage={notify.accept}
+          acceptLink={notify.acceptLink}
           dismissLabel={notify.dismiss}
           source={notify.source}
           date={notify.date}
@@ -101,14 +101,14 @@ class DashNotice extends wp.element.Component {
     return (
       <div className={classes}>
         <div className="wp-notification-wrap">
-          <h2 className="wp-notification-title">{this.props.title}</h2>
-          <p>{this.props.message}</p>
+          <h3 className="wp-notification-title">{this.props.title}</h3>
+          <p dangerouslySetInnerHTML={{ __html: this.props.message }} />
           <div className="wp-notification-actions-wrap">
             <a
               className="button button-primary wp-notification-hub-trigger"
-              href={this.props.acceptAction}
+              href={this.props.acceptLink}
             >
-              {this.props.accept}
+              {this.props.acceptMessage}
             </a>
             {this.props.dismissible && (
               <button
@@ -140,8 +140,8 @@ DashNotice.defaultProps = {
   image: false,
   title: "",
   message: "",
-  accept: __("Accept"),
-  acceptAction: "#",
+  acceptMessage: __("Accept"),
+  acceptLink: "#",
   dismissLabel: __("dismiss"),
   source: "WordPress",
   date: __("Just now"),
@@ -188,9 +188,9 @@ wp.element.render(
     image="https://gifimage.net/wp-content/uploads/2018/10/animation-notification-gif-2.gif"
     title="Try this new Notification feature"
     source="#WP-Notify"
-    message="We have just added a wonderful feature! You might want to give it a try so click on the bell icon on the right side of the adminbar 😉."
-    accept="Try this new feature"
-    acceptAction="https://github.com/WordPress/wp-notify"
+    message="We have just added a <b>wonderful feature!</b> You might want to give it a try so click on the bell icon on the right side of the adminbar 😉."
+    acceptMessage="Try this new feature"
+    acceptLink="https://github.com/WordPress/wp-notify"
     dismissible={false}
   />,
   document.getElementById("wp-notify-notice-demo")

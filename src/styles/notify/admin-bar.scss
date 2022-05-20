@@ -6,6 +6,11 @@
   position: relative;
   z-index: 100002;
 
+  > .ab-item .ab-icon:before {
+    content: "\f16d";
+    top: 3px;
+  }
+
   .ab-label {
     position: absolute;
     width: 6px;
@@ -44,11 +49,6 @@
     .ab-label{
       border-color: var(--wp-notify_color-blue);
     }
-  }
-
-  .ab-icon:before {
-    content: "\f16d";
-    top: 3px;
   }
 
 }
