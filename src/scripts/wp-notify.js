@@ -183,18 +183,16 @@ wp.element.render(
 /**
  * THIS IS FOR TESTING PURPOSE - TO BE REMOVED
  */
-wp.element.render(
-  <DashNotice
-    image="https://gifimage.net/wp-content/uploads/2018/10/animation-notification-gif-2.gif"
-    title="Try this new Notification feature"
-    source="#WP-Notify"
-    message="We have just added a <b>wonderful feature!</b> You might want to give it a try so click on the bell icon on the right side of the adminbar 😉."
-    acceptMessage="Try this new feature"
-    acceptLink="https://github.com/WordPress/wp-notify"
-    dismissible={false}
-  />,
-  document.getElementById("wp-notify-notice-demo")
-);
+addNotify({
+  title: 'Try this new Notification feature',
+  image:"https://gifimage.net/wp-content/uploads/2018/10/animation-notification-gif-2.gif",
+  title:"Try this new Notification feature",
+  source:"#WP-Notify",
+  message:"We have just added a <b>wonderful feature!</b> You might want to give it a try so click on the bell icon on the right side of the adminbar 😉.",
+  acceptMessage:"Try this new feature",
+  acceptLink:"https://github.com/WordPress/wp-notify",
+  dismissible:false
+});
 
 // the WP-Notify toolbar in the secondary position of the admin bar
 class HubNotice extends wp.element.Component {
