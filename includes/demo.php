@@ -251,3 +251,42 @@ function wp_notify_render_admin_options_page() {
 
 	<?php
 }
+
+
+
+/**
+ * Registers our dashboard widget.
+ */
+function wp_notify_dashboard_widget() {
+	add_meta_box( 'wp_notify', __( 'WP Notify' ), 'wp_notify_render_dashboard_widget', 'dashboard', 'side', 'high' );
+}
+add_action( 'wp_dashboard_setup', 'wp_notify_dashboard_widget' );
+
+
+/**
+ * Renders our dashboard widget.
+ */
+function wp_notify_render_dashboard_widget() {
+	?>
+	<div id="wp-notification-metabox">
+		<form id="wp-notification-metabox-form" class="initial-form hide-if-no-js">
+			<p><?php _e( 'Use the form below to beta test the new notifications feature.' ); ?></p>
+			<div class="input-text-wrap" id="title-wrap">
+				<label for="title"><?php _e( 'Title' ); ?></label>
+				<input type="text" name="post_title" id="wp-notification-metabox-form-title" autocomplete="off">
+			</div>
+
+			<div class="textarea-wrap" id="description-wrap">
+				<label for="content"><?php _e( 'Content' ); ?></label>
+				<textarea name="content" id="wp-notification-metabox-form-message" placeholder="<?php esc_attr_e( 'What\'s on your mind?' ); ?>" class="mceEditor" rows="3" cols="15" autocomplete="off"></textarea>
+			</div>
+
+			<p class="submit">
+				<input type="submit" name="save" id="save-wp-notify" class="button button-primary" value="<?php esc_attr_e( 'Test Notification' ); ?>">
+				<br class="clear">
+			</p>
+
+			</form>
+	</div>
+	<?php
+}

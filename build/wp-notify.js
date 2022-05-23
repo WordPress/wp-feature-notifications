@@ -15,33 +15,44 @@ window.addEventListener("load", function () {
   //   });
   // });
   // Click handler to add a new notification
-  document.getElementById("save-post").addEventListener("click", function (e) {
+  document.getElementById("wp-notification-metabox-form").addEventListener("submit", function (e) {
     e.preventDefault();
-    var title = document.getElementById("title").value;
-    var content = document.getElementById("content").value;
-    var div = document.createElement("div");
-    div.className = "wp-notification wp-notice-alert is-dismissible";
-    div.innerHTML = "<div class=\"wp-notification-wrap\">\n      <h2 class=\"wp-notification-title\">".concat(title, "</h2>\n      <p>").concat(content, "</p>\n      <p class=\"wp-notification-source\"><span class=\"name\">#feature-notification</span> \u2022 <span class=\"date\">just now</span></p>\n    </div>\n    <div class=\"wp-notification-image\">\n     <img src=\"https://source.unsplash.com/random/").concat(Math.floor(Math.random() * 400), "\xD7").concat(Math.floor(Math.random() * 400), "\">\n    </div>");
-    document.querySelector("#wpbody-content .wrap h1").insertAdjacentElement("afterend", div);
-  }); // Basic replacement for jQuery .parents()
-
-  var parents = function parents(elem, selector) {
-    for (; elem && elem !== document; elem = elem.parentNode) {
-      if (elem.matches(selector)) return elem;
-    }
-
-    return null;
-  }; // Click handler for dismiss buttons
-
-
-  document.querySelectorAll(".wp-notification-hub-dismiss").forEach(function (e) {
-    e.addEventListener("click", function () {
-      var el = parents(this, ".wp-notification");
-
-      if (el) {
-        el.parentNode.removeChild(el);
-      }
-    });
+    var title = document.getElementById("wp-notification-metabox-form-title").value;
+    var message = document.getElementById("wp-notification-metabox-form-message").value;
+    addNotify({
+      title: title,
+      message: message
+    }); //   const div = document.createElement("div");
+    //   div.className = "wp-notification wp-notice-alert is-dismissible";
+    //   div.innerHTML = `<div class="wp-notification-wrap">
+    //     <h2 class="wp-notification-title">${title}</h2>
+    //     <p>${content}</p>
+    //     <p class="wp-notification-source"><span class="name">#feature-notification</span> • <span class="date">just now</span></p>
+    //   </div>
+    //   <div class="wp-notification-image">
+    //    <img src="https://source.unsplash.com/random/${Math.floor(
+    //      Math.random() * 400
+    //    )}×${Math.floor(Math.random() * 400)}">
+    //   </div>`;
+    //   document
+    //     .querySelector("#wpbody-content .wrap h1")
+    //     .insertAdjacentElement("afterend", div);
+    // });
+    // // Basic replacement for jQuery .parents()
+    // const parents = function (elem, selector) {
+    //   for (; elem && elem !== document; elem = elem.parentNode) {
+    //     if (elem.matches(selector)) return elem;
+    //   }
+    //   return null;
+    // };
+    // // Click handler for dismiss buttons
+    // document.querySelectorAll(".wp-notification-hub-dismiss").forEach((e) => {
+    //   e.addEventListener("click", function () {
+    //     const el = parents(this, ".wp-notification");
+    //     if (el) {
+    //       el.parentNode.removeChild(el);
+    //     }
+    //   });
   });
 });
 
