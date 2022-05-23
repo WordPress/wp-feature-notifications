@@ -61,7 +61,6 @@ add_action( 'admin_enqueue_scripts', 'wp_notify_enqueue_admin_assets' );
 function wp_notify_admin_notice() {
 	?>
 	<!-- Demo Stuff -->
-	<div id="wp-notify-notice-demo" class="wrap"></div>
 	<div id="wp-notify-notice-demo-buttons" class="wrap"></div>
 
 	<!-- WP-Notify wrapper -->
