@@ -19,7 +19,8 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
-		"lint": "vendor/squizlabs/php_codesniffer/bin/phpcs --standard=phpcs.xml.dist --report=summary,source includes/",
+		"lint": "vendor/bin/phpcs --standard=phpcs.xml.dist --report=summary,source includes/",
+		"lint-fix": "vendor/bin/phpcbf --standard=phpcs.xml.dist includes/",
 		"cghooks": "vendor/bin/cghooks",
 		"phpcs-fix": "phpcbf --standard=phpcs.xml.dist includes/",
 		"post-install-cmd": "cghooks add --ignore-lock",

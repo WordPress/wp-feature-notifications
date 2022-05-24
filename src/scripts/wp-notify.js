@@ -1,5 +1,8 @@
 const { __ } = wp.i18n;
 
+// delay util function
+const delay = (ms) => new Promise((f) => setTimeout(f, ms));
+
 // handle click on wp-admin bar bell icon that show the WP-Notify sidebar
 document
   .getElementById("wp-admin-bar-wp-notify")
@@ -72,6 +75,12 @@ const DashNotifyController = ({ children }) => {
 const Notifications = () => {
   const { notification, removeNotify } = wp.element.useContext(NotifyContext);
 
+  const exitAnimation = (id) => {
+    delay(100).then(() => {
+      removeNotify(id);
+    });
+  };
+
   return (
     <NotificationsWrap elementId="wp-notify-dashboard-notices">
       {notification.map((notify, id) => (
@@ -87,7 +96,7 @@ const Notifications = () => {
           source={notify.source}
           date={notify.date}
           dismissible={notify.dismissible}
-          onDismiss={() => removeNotify(id)}
+          onDismiss={() => exitAnimation(id)}
         />
       ))}
     </NotificationsWrap>

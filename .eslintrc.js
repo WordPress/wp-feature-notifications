@@ -4,10 +4,6 @@
 
 const eslintConfig = {
   extends: ["plugin:@wordpress/eslint-plugin/recommended"],
-  globals: {
-    jQuery: true,
-    $: true,
-  },
   rules: {
     "padding-line-between-statements": [
       "error",
