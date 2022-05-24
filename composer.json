@@ -28,7 +28,7 @@
 	"extra": {
 		"hooks": {
 			"pre-commit": [
-				"npm run build && phpcbf --standard=phpcs.xml.dist includes/"
+				"composer lint && npm run build"
 			],
 			"post-merge": "composer install"
 		}

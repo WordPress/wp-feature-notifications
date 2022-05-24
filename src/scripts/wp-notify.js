@@ -7,12 +7,13 @@ document
     this.classList.toggle("active");
   });
 
-// creates notify container
+// This will create the dashboard notification container element
 const { createPortal } = wp.element;
 
-// the dashboard notifications context
+// The dashboard notifications context
 const NotifyContext = wp.element.createContext();
 
+// Initialize the dashboard notification portal
 const NotificationsWrap = ({ children, elementId }) => {
   const [NotifyElement, setNotifyElement] = wp.element.useState();
 
@@ -80,9 +81,9 @@ const Notifications = () => {
           image={notify.image}
           title={notify.title}
           message={notify.message}
-          acceptMessage={notify.accept}
+          acceptMessage={notify.acceptMessage}
           acceptLink={notify.acceptLink}
-          dismissLabel={notify.dismiss}
+          dismissLabel={notify.dismissLabel}
           source={notify.source}
           date={notify.date}
           dismissible={notify.dismissible}
@@ -183,16 +184,19 @@ wp.element.render(
 /**
  * THIS IS FOR TESTING PURPOSE - TO BE REMOVED
  */
-addNotify({
-  title: 'Try this new Notification feature',
-  image:"https://gifimage.net/wp-content/uploads/2018/10/animation-notification-gif-2.gif",
-  title:"Try this new Notification feature",
-  source:"#WP-Notify",
-  message:"We have just added a <b>wonderful feature!</b> You might want to give it a try so click on the bell icon on the right side of the adminbar 😉.",
-  acceptMessage:"Try this new feature",
-  acceptLink:"https://github.com/WordPress/wp-notify",
-  dismissible:false
-});
+delay(2000).then(() =>
+  addNotify({
+    image:
+      "https://gifimage.net/wp-content/uploads/2018/10/animation-notification-gif-2.gif",
+    title: "Try this new Notification feature",
+    source: "#WP-Notify",
+    message:
+      "We have just added a <b>wonderful feature!</b> You might want to give it a try so click on the bell icon on the right side of the adminbar 😉.",
+    acceptMessage: "Try this new feature",
+    acceptLink: "https://github.com/WordPress/wp-notify",
+    dismissible: false,
+  })
+);
 
 // the WP-Notify toolbar in the secondary position of the admin bar
 class HubNotice extends wp.element.Component {
