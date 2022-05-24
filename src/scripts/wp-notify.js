@@ -152,34 +152,17 @@ DashNotice.defaultProps = {
 /**
  * THIS IS FOR TESTING PURPOSE - TO BE REMOVED
  */
-const Demo = () => {
-  const { addNotify, clearNotifies } = wp.element.useContext(NotifyContext);
-
-  return (
-    <div className="demo">
-      <button
-        className="button button-primary"
-        onClick={() => addNotify({ title: "Hello world!" })}
-      >
-        {__("Add")}
-      </button>
-      <button className="button button-primary" onClick={clearNotifies}>
-        {__("Clear all")}
-      </button>
-    </div>
-  );
-};
 
 /**
  * Render the main dash notification container
  */
-wp.element.render(
-  <DashNotifyController>
-    <Demo />
-    <Notifications />
-  </DashNotifyController>,
-  document.getElementById("wp-notify-dashboard-notices")
-);
+if (pagenow === "dashboard")
+  wp.element.render(
+    <DashNotifyController>
+      <Notifications />
+    </DashNotifyController>,
+    document.getElementById("wp-notify-dashboard-notices")
+  );
 
 /**
  * THIS IS FOR TESTING PURPOSE - TO BE REMOVED

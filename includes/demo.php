@@ -60,9 +60,6 @@ add_action( 'admin_enqueue_scripts', 'wp_notify_enqueue_admin_assets' );
 
 function wp_notify_admin_notice() {
 	?>
-	<!-- Demo Stuff -->
-	<div id="wp-notify-notice-demo-buttons" class="wrap"></div>
-
 	<!-- WP-Notify wrapper -->
 	<div id="wp-notify-dashboard-notices" class="wrap"></div>
 	<?php
@@ -283,8 +280,10 @@ function wp_notify_render_dashboard_widget() {
 
 			<p class="submit">
 				<input type="submit" name="save" id="save-wp-notify" class="button button-primary" value="<?php esc_attr_e( 'Test Notification' ); ?>">
+				<input type="button" id="clear-all-wp-notify" class="button" value="<?php esc_attr_e( 'Clear All Notifications' ); ?>">
 				<br class="clear">
 			</p>
+
 
 			</form>
 	</div>
