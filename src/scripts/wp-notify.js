@@ -20,7 +20,7 @@ const NotifyContext = wp.element.createContext();
 const NotificationsWrap = ({ children, elementId }) => {
   const [NotifyElement, setNotifyElement] = wp.element.useState();
 
-  wp.element.useLayoutEffect(() => {
+  wp.element.useEffect(() => {
     const element = document.querySelector(`#${elementId}`);
     setNotifyElement(element);
   }, [elementId]);
@@ -72,36 +72,36 @@ const DashNotifyController = ({ children }) => {
   );
 };
 
-const Notifications = () => {
-  const { notification, removeNotify } = wp.element.useContext(NotifyContext);
+class Notifications extends wp.element.Component {
+  static context = NotifyContext;
 
-  const exitAnimation = (id) => {
-    delay(100).then(() => {
-      removeNotify(id);
-    });
-  };
-
-  return (
-    <NotificationsWrap elementId="wp-notify-dashboard-notices">
-      {notification.map((notify, id) => (
-        <DashNotice
-          key={id}
-          id={id}
-          image={notify.image}
-          title={notify.title}
-          message={notify.message}
-          acceptMessage={notify.acceptMessage}
-          acceptLink={notify.acceptLink}
-          dismissLabel={notify.dismissLabel}
-          source={notify.source}
-          date={notify.date}
-          dismissible={notify.dismissible}
-          onDismiss={() => exitAnimation(id)}
-        />
-      ))}
-    </NotificationsWrap>
-  );
-};
+  render() {
+    return (
+      <NotificationsWrap elementId="wp-notify-dashboard-notices">
+        <NotifyContext.Consumer>
+          {({ notification: notification, removeNotify }) =>
+            notification.map((notify, id) => (
+              <DashNotice
+                key={id}
+                id={id}
+                image={notify.image}
+                title={notify.title}
+                message={notify.message}
+                acceptMessage={notify.acceptMessage}
+                acceptLink={notify.acceptLink}
+                dismissLabel={notify.dismissLabel}
+                source={notify.source}
+                date={notify.date}
+                dismissible={notify.dismissible}
+                onDismiss={() => delay(100).then(() => removeNotify(id))}
+              />
+            ))
+          }
+        </NotifyContext.Consumer>
+      </NotificationsWrap>
+    );
+  }
+}
 
 // DashNotice class method.
 class DashNotice extends wp.element.Component {
