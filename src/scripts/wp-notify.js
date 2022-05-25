@@ -105,6 +105,20 @@ class Notifications extends wp.element.Component {
 
 // DashNotice class method.
 class DashNotice extends wp.element.Component {
+  static defaultProps = {
+    id: false,
+    image: false,
+    title: "",
+    message: "",
+    acceptMessage: __("Accept"),
+    acceptLink: "#",
+    dismissLabel: __("dismiss"),
+    source: "WordPress",
+    date: __("Just now"),
+    dismissible: false,
+    onDismiss: () => delay(100).then(() => this.unmount()),
+  };
+
   render() {
     let classes = "wp-notification wp-notice-" + this.props.id;
     classes += this.props.dismissible ? " is-dismissible" : "";
@@ -144,19 +158,6 @@ class DashNotice extends wp.element.Component {
     );
   }
 }
-
-DashNotice.defaultProps = {
-  id: false,
-  image: false,
-  title: "",
-  message: "",
-  acceptMessage: __("Accept"),
-  acceptLink: "#",
-  dismissLabel: __("dismiss"),
-  source: "WordPress",
-  date: __("Just now"),
-  dismissible: true,
-};
 
 /**
  * THIS IS FOR TESTING PURPOSE - TO BE REMOVED
