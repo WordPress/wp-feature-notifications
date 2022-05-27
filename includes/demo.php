@@ -42,6 +42,17 @@ function wp_admin_bar_wp_notify_item( $wp_admin_bar ) {
 add_action( 'admin_bar_menu', 'wp_admin_bar_wp_notify_item', 1 );
 
 /**
+ * Adds WP Notify area at the top of the dashboard
+ */
+function wp_notify_admin_notice() {
+	?>
+	<!-- WP-Notify wrapper -->
+	<div id="wp-notify-dashboard-notices" class="wrap"></div>
+	<?php
+}
+add_action( 'admin_notices', 'wp_notify_admin_notice' );
+
+/**
  * Register and enqueue a wp notify scripts and stylesheet in WordPress admin.
  */
 function wp_notify_enqueue_admin_assets() {
@@ -58,13 +69,6 @@ function wp_notify_enqueue_admin_assets() {
 
 add_action( 'admin_enqueue_scripts', 'wp_notify_enqueue_admin_assets' );
 
-function wp_notify_admin_notice() {
-	?>
-	<!-- WP-Notify wrapper -->
-	<div id="wp-notify-dashboard-notices" class="wrap"></div>
-	<?php
-}
-add_action( 'admin_notices', 'wp_notify_admin_notice' );
 
 /**
  * Registers the options page.
@@ -283,9 +287,7 @@ function wp_notify_render_dashboard_widget() {
 				<input type="button" id="clear-all-wp-notify" class="button" value="<?php esc_attr_e( 'Clear All Notifications' ); ?>">
 				<br class="clear">
 			</p>
-
-
-			</form>
+		</form>
 	</div>
 	<?php
 }

@@ -1,4 +1,9 @@
 window.addEventListener("load", () => {
+  const wpNotificationMetabox = document.getElementById(
+    "wp-notification-metabox-form"
+  );
+
+  if (!wpNotificationMetabox) return;
   // Click handler to add a new notification
   document
     .getElementById("wp-notification-metabox-form")
