@@ -36,20 +36,19 @@
     "test:e2e": "wp-scripts test-e2e",
     "test:unit": "wp-scripts test-unit-js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/WordPress/wp-notify.git"
-  },
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/WordPress/wp-notify.git"
+	},
 	"engines": {
 		"node": ">=12.13",
 		"npm": ">=6.9"
 	},
-  "devDependencies": {
-    "@wordpress/scripts": "^23.0.0"
-  },
+	"devDependencies": {
+		"@wordpress/scripts": "^23.2.0"
+	},
 	"browserslist": [
-		"last 1 version",
-		"> 1%",
-		"IE 10"
+		"> 0.5%",
+		"not ie > 0"
 	]
 }
