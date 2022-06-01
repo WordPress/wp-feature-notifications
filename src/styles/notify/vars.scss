@@ -1,0 +1,28 @@
+// https://make.wordpress.org/design/handbook/design-guide/foundations/colors/
+:root {
+  // WP-Notify base colors
+  --wp-notify_color-default: #404040;
+  --wp-notify_color-white: #fff; // Dark Gray 300
+  --wp-notify_color-light-gray-500: #E2E4E7; // Light Gray 500
+  --wp-notify_color-light-gray-400: #E8EAEB; // Light Gray 400
+  --wp-notify_color-light-gray: #c3c4c7;
+  --wp-notify_color-secondary: #6C7781; // Dark Gray 300
+  --wp-notify_color-light-gray-800: #23282D; // Light Gray 800
+  --wp-notify_color-red-alert: #D94F4F; // Alert Red
+  --wp-notify_color-blue: #0071A1; // Blue Dark 900
+
+  --wp-notify_color-link: var(--wp-notify_color-blue); // Blue Dark 900
+  --wp-notify_color-scrollbar: var(--wp-notify_color-light-gray-400); // Light Gray 400
+  --wp-notify_color-error: var(--wp-notify_color-red-alert);
+  --wp-notify_color-warning: #FFB900;
+  --wp-notify_color-success: #46B450;
+
+  // WP-Notify hub (admin top bar)
+  --wp-notify_hub-width: 320px;
+  --wp-notify_hub-image-size: 32px;
+
+  --wp-notify_hub-spacing-top: 15px;
+  --wp-notify_hub-spacing-bottom: 17px;
+  --wp-notify_hub-spacing-horizontal: 24px;
+  --wp-notify_hub-element-spacing: 8px;
+}

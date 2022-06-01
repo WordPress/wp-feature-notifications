@@ -1,0 +1,54 @@
+/*
+ * WP admin bar
+ */
+#wpadminbar #wp-admin-bar-wp-notify {
+  padding-right: 8px;
+  position: relative;
+  z-index: 100002;
+
+  > .ab-item .ab-icon:before {
+    content: "\f16d";
+    top: 3px;
+  }
+
+  .ab-label {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    top: 12px;
+    left: 20px;
+    border-radius: 50%;
+    font-size: 0;
+
+    /* WP Editor / Alert Red */
+    background: var(--wp-notify_color-red-alert);
+
+    /* Classic / Dark Gray 800 */
+    border: 1px solid var(--wp-notify_color-light-gray-800);
+  }
+
+  &.active .ab-item {
+
+    &:hover {
+      background: transparent;
+    }
+
+    &:before {
+      display: block;
+      content: '';
+      width: 30px;
+      height: 27px;
+      margin: 3px;
+      padding: 0;
+      border-radius: 4px;
+      left: 0;
+      position: absolute;
+      background: var(--wp-notify_color-blue);
+    }
+
+    .ab-label{
+      border-color: var(--wp-notify_color-blue);
+    }
+  }
+
+}
