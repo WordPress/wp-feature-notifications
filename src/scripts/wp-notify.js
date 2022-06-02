@@ -60,6 +60,12 @@ if (notifyWrapper) {
   const NotifyReducer = (state, data) => {
     switch (data.action) {
       case "ADD": {
+        if (!data.payload.title && !data.payload.message) {
+          console.warn(
+            "WP-Notify Error - A title or a message is needed. Please check the documentation to know more"
+          );
+          return state;
+        }
         return [{ ...data.payload }, ...state];
       }
       case "REMOVE": {
@@ -107,6 +113,7 @@ if (notifyWrapper) {
         <NotificationsWrap elementId="wp-notify-dashboard-notices">
           <NotifyContext.Consumer>
             {({ notification: notification, removeNotify }) =>
+              notification &&
               notification.map((notify, id) => (
                 <Notice
                   key={id}
@@ -134,8 +141,8 @@ if (notifyWrapper) {
   class Notice extends Component {
     static defaultProps = {
       id: false,
-      title: "",
-      message: "",
+      title: undefined,
+      message: undefined,
       acceptMessage: __("Accept"),
       acceptLink: "#",
       dismissLabel: __("dismiss"),
