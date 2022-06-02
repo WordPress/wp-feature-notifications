@@ -1,4 +1,14 @@
 const { __ } = wp.i18n;
+import {
+  Component,
+  createPortal,
+  createContext,
+  createElement,
+  useState,
+  useEffect,
+  useReducer,
+  render,
+} from "@wordpress/element";
 import demoImage from "../images/i.svg";
 import wpLogo from "../images/wl.svg";
 
@@ -24,22 +34,19 @@ wpNotifyHub.addEventListener("click", function (e) {
   }
 });
 
+// The dashboard notifications context
+const NotifyContext = createContext();
+
 /**
  * Enable the main dash notifications if available
  */
 const notifyWrapper = document.getElementById("wp-notify-dashboard-notices");
 if (notifyWrapper) {
-  // This will create the dashboard notification container element
-  const { createPortal } = wp.element;
-
-  // The dashboard notifications context
-  const NotifyContext = wp.element.createContext();
-
   // Initialize the dashboard notification portal
   const NotificationsWrap = ({ children, elementId }) => {
-    const [NotifyElement, setNotifyElement] = wp.element.useState();
+    const [NotifyElement, setNotifyElement] = useState();
 
-    wp.element.useEffect(() => {
+    useEffect(() => {
       const element = document.querySelector(`#${elementId}`);
       setNotifyElement(element);
     }, [elementId]);
@@ -70,8 +77,8 @@ if (notifyWrapper) {
   };
 
   // Notification controller
-  const DashNotifyController = ({ children }) => {
-    const [state, dispatch] = wp.element.useReducer(NotifyReducer, []);
+  const NotifyController = ({ children }) => {
+    const [state, dispatch] = useReducer(NotifyReducer, []);
     const addNotify = (props) => dispatch({ action: "ADD", payload: props });
     const removeNotify = (id) => dispatch({ action: "REMOVE", payload: id });
     const clearNotifies = () => dispatch({ action: "CLEAR_ALL" });
@@ -90,7 +97,7 @@ if (notifyWrapper) {
   };
 
   // The notification container class
-  class Notifications extends wp.element.Component {
+  class Notifications extends Component {
     static context = NotifyContext;
 
     render() {
@@ -99,7 +106,7 @@ if (notifyWrapper) {
           <NotifyContext.Consumer>
             {({ notification: notification, removeNotify }) =>
               notification.map((notify, id) => (
-                <DashNotice
+                <Notice
                   key={id}
                   id={id}
                   image={notify.image}
@@ -121,8 +128,8 @@ if (notifyWrapper) {
     }
   }
 
-  // DashNotice class method.
-  class DashNotice extends wp.element.Component {
+  // Notice class method.
+  class Notice extends Component {
     static defaultProps = {
       id: false,
       title: "",
@@ -179,10 +186,10 @@ if (notifyWrapper) {
   /**
    * Render the main dash notification container
    */
-  wp.element.render(
-    <DashNotifyController>
+  render(
+    <NotifyController>
       <Notifications />
-    </DashNotifyController>,
+    </NotifyController>,
     notifyWrapper
   );
 
@@ -244,7 +251,7 @@ if (notifyWrapper) {
 /**
  * the WP-Notify toolbar in the secondary position of the admin bar
  */
-class HubNotice extends wp.element.Component {
+class HubNotice extends Component {
   render() {
     return (
       <>
@@ -478,7 +485,4 @@ class HubNotice extends wp.element.Component {
   }
 }
 
-wp.element.render(
-  wp.element.createElement(HubNotice),
-  document.getElementById("wp-notify-hub")
-);
+render(createElement(HubNotice), document.getElementById("wp-notify-hub"));
