@@ -177,27 +177,28 @@ if (notifyWrapper) {
   /**
    * add some demo notifications to the dashboard
    */
-  if (pagenow && (pagenow === "settings_page_wp-notify" || pagenow === "dashboard"))
-    delay(300)
-      .then(() =>
-        addNotify({
-          image:
-            "https://gifimage.net/wp-content/uploads/2018/10/animation-notification-gif-2.gif",
-          title: "Test title 3",
-          message:
-            "We have just added a wonderful feature! ipsum dolor sit amet, consectetur adipiscing elit. Mauris in tellus volutpat, scelerisque augue pharetra, volutpat ligula. Morbi dui nisi, interdum et nulla tincidunt, efficitur laoreet quam.We have just added a wonderful feature! ipsum dolor sit amet, consectetur adipiscing elit. Mauris in tellus volutpat, scelerisque augue pharetra, volutpat ligula. Morbi dui nisi, interdum et nulla tincidunt, efficitur laoreet quam.We have just added a wonderful feature! ipsum dolor sit amet, consectetur adipiscing elit. Mauris in tellus volutpat, scelerisque augue pharetra, volutpat ligula. Morbi dui nisi, interdum et nulla tincidunt, efficitur laoreet quam.",
-          acceptLink: "https://github.com/WordPress/wp-notify",
-          dismissible: true,
-        })
-      )
+  if (
+    pagenow &&
+    (pagenow === "settings_page_wp-notify" || pagenow === "dashboard")
+  )
+    (async () =>
+      await addNotify({
+        image:
+          "https://gifimage.net/wp-content/uploads/2018/10/animation-notification-gif-2.gif",
+        title: "Message variant #3",
+        message:
+          "This is an example of on-page message variant #3. It has a title, a message, an action button with a URL, is dismissable, and has an image. To see the notification hub messages, click on the bell icon on the right side of the admin bar 😉.",
+        acceptLink: "https://github.com/WordPress/wp-notify",
+        dismissible: true,
+      }))()
       .then(() => delay(600))
       .then(() =>
         addNotify({
-          title: "Test title 2",
+          title: "Message variant #2",
           source: "#WP-Notify",
           date: new Date().toLocaleDateString(),
           message:
-            "We have just added a wonderful feature! ipsum dolor sit amet, consectetur adipiscing elit. Mauris in tellus volutpat, scelerisque augue pharetra, volutpat ligula",
+            "This is an example of on-page message variant #2. It has a title, a message, a custom date, an action button with a URL, is dismissable, but has no images.",
           acceptMessage: "OK",
           acceptLink: "https://github.com/WordPress/wp-notify",
           dismissible: true,
@@ -207,7 +208,7 @@ if (notifyWrapper) {
       .then(() =>
         addNotify({
           image: "https://source.unsplash.com/random/400×400/?notify",
-          title: "Test title 1",
+          title: "Message variant #1",
           source: "#Test",
           acceptMessage: "TEST",
           acceptLink: "https://github.com/WordPress/wp-notify",
