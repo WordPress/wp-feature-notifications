@@ -79,13 +79,15 @@ if (notifyWrapper) {
   // Notification controller
   const NotifyController = ({ children }) => {
     const [state, dispatch] = useReducer(NotifyReducer, []);
+    window.wp.notify = [];
+
     const addNotify = (props) => dispatch({ action: "ADD", payload: props });
     const removeNotify = (id) => dispatch({ action: "REMOVE", payload: id });
     const clearNotifies = () => dispatch({ action: "CLEAR_ALL" });
 
-    window.addNotify = addNotify;
-    window.removeNotify = removeNotify;
-    window.clearNotifies = clearNotifies;
+    wp.notify.add = addNotify;
+    wp.notify.remove = removeNotify;
+    wp.notify.clear = clearNotifies;
 
     return (
       <NotifyContext.Provider
@@ -201,7 +203,7 @@ if (notifyWrapper) {
     (pagenow === "settings_page_wp-notify" || pagenow === "dashboard")
   )
     (async () =>
-      await addNotify({
+      await wp.notify.add({
         image:
           "https://gifimage.net/wp-content/uploads/2018/10/animation-notification-gif-2.gif",
         title: "Message variant #3",
@@ -212,7 +214,7 @@ if (notifyWrapper) {
       }))()
       .then(() => delay(600))
       .then(() =>
-        addNotify({
+        wp.notify.add({
           title: "Message variant #2",
           source: "#WP-Notify",
           date: new Date().toLocaleDateString(),
@@ -225,7 +227,7 @@ if (notifyWrapper) {
       )
       .then(() => delay(1200))
       .then(() =>
-        addNotify({
+        wp.notify.add({
           image: "https://source.unsplash.com/random/400×400/?notify",
           title: "Message variant #1",
           source: "#Test",
@@ -235,7 +237,7 @@ if (notifyWrapper) {
       )
       .then(() => delay(2400))
       .then(() =>
-        addNotify({
+        wp.notify.add({
           image: demoImage,
           title: "Try this new Notification feature",
           source: "#WP-Notify",
