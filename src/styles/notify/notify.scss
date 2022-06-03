@@ -85,7 +85,7 @@
       object-fit: contain;
     }
 
-    @media screen and ( max-width:782px ) {
+    @media #{$breakpoint} {
       grid-template-columns: auto;
       .wp-notification-wrap{
         order: 2

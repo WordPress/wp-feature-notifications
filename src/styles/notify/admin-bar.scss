@@ -53,7 +53,7 @@
   }
 
   /* Mobile */
-  @media screen and (max-width: 782px) {
+  @media #{$breakpoint} {
     display: block;
     .ab-label {
       clip: unset;

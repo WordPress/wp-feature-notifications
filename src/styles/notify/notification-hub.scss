@@ -109,7 +109,7 @@
     .ab-icon:before {
       color: var(--wp-notify_color-link);
     }
-    @media screen and ( max-width:782px ) {
+    @media #{$breakpoint} {
       line-height: 40px;
     }
   }
