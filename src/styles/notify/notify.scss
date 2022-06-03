@@ -84,5 +84,12 @@
       object-position: center;
       object-fit: contain;
     }
+
+    @media screen and ( max-width:782px ) {
+      grid-template-columns: auto;
+      .wp-notification-wrap{
+        order: 2
+      }
+    }
   }
 }

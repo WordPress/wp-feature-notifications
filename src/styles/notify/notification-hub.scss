@@ -109,6 +109,9 @@
     .ab-icon:before {
       color: var(--wp-notify_color-link);
     }
+    @media screen and ( max-width:782px ) {
+      line-height: 40px;
+    }
   }
 
   #wpadminbar .quicklinks & a {
