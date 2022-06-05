@@ -92,10 +92,14 @@
     box-sizing: border-box;
   }
 
-  h3 {
+  h2 {
     font-weight: 600;
     font-size: 18px;
     margin: 0;
+  }
+
+  h3 {
+    font-size: 13px;
   }
 
   // the bell icon at the end of wp-admin-bar
@@ -140,6 +144,7 @@
       width: var(--wp-notify_hub-image-size);
       height: var(--wp-notify_hub-image-size);
       position: relative;
+      grid-row: 1;
 
       * {
         width: 100%;
