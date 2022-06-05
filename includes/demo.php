@@ -45,10 +45,8 @@ add_action( 'admin_bar_menu', 'wp_admin_bar_wp_notify_item', 1 );
  * Adds WP Notify area at the top of the dashboard
  */
 function wp_notify_admin_notice() {
-	?>
-	<!-- WP-Notify wrapper -->
-	<div id="wp-notify-dashboard-notices" class="wrap"></div>
-	<?php
+	// WP-Notify wrapper
+	echo '<div id="wp-notify-dashboard-notices" class="wrap"></div>';
 }
 add_action( 'admin_notices', 'wp_notify_admin_notice' );
 
