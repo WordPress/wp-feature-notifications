@@ -1,5 +1,5 @@
 {
-    "name": "wordpress/wp-notify",
+    "name": "wordpress/wp-feature-notifications",
     "description": "Notification Center for WordPress (Feature Plugin)",
     "type": "wordpress-plugin",
     "require-dev": {
