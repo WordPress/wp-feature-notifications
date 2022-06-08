@@ -5,15 +5,27 @@ import wpLogo from "../images/wl.svg";
 // delay util function
 const delay = (ms) => new Promise((f) => setTimeout(f, ms));
 
+/**
+ * Toggle notification hub
+ */
+const wpNotifyHub = document.getElementById("wp-admin-bar-wp-notify");
+
+const disableNotifyDrawer = () => {
+  wpNotifyHub.classList.remove("active");
+  document.body.removeEventListener("click", disableNotifyDrawer);
+};
+
 // handle click on wp-admin bar bell icon that show the WP-Notify sidebar
-document
-  .getElementById("wp-admin-bar-wp-notify")
-  .addEventListener("click", function () {
-    this.classList.toggle("active");
-  });
+wpNotifyHub.addEventListener("click", function (e) {
+  e.stopPropagation();
+  if (!wpNotifyHub.classList.contains("active")) {
+    this.classList.add("active");
+    document.body.addEventListener("click", disableNotifyDrawer);
+  }
+});
 
 /**
- * enable the main dash notifications if available
+ * Enable the main dash notifications if available
  */
 const notifyWrapper = document.getElementById("wp-notify-dashboard-notices");
 if (notifyWrapper) {

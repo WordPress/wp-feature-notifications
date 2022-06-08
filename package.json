@@ -1,5 +1,5 @@
 {
-  "name": "@wordpress/wp-notify",
+  "name": "@wordpress/wp-feature-notifications",
   "version": "0.1.0",
   "description": "A notification center for WordPress.",
 	"keywords": [
@@ -36,20 +36,20 @@
     "test:e2e": "wp-scripts test-e2e",
     "test:unit": "wp-scripts test-unit-js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/WordPress/wp-notify.git"
-  },
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/WordPress/wp-notify.git"
+	},
 	"engines": {
 		"node": ">=12.13",
 		"npm": ">=6.9"
 	},
-  "devDependencies": {
-    "@wordpress/scripts": "^23.0.0"
-  },
+	"devDependencies": {
+		"@wordpress/scripts": "^23.2.0",
+		"@wordpress/browserslist-config": "^4.1.2",
+		"browserslist": "^4.20.3"
+	},
 	"browserslist": [
-		"last 1 version",
-		"> 1%",
-		"IE 10"
+		"extends @wordpress/browserslist-config"
 	]
 }

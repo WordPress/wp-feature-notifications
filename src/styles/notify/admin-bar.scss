@@ -1,6 +1,7 @@
 /*
  * WP admin bar
  */
+
 #wpadminbar #wp-admin-bar-wp-notify {
   padding-right: 8px;
   position: relative;
@@ -51,4 +52,16 @@
     }
   }
 
+  /* Mobile */
+  @media #{$breakpoint} {
+    display: block;
+    .ab-label {
+      clip: unset;
+      clip-path: unset;
+      width: 11px;
+      height: 11px;
+      top: 16px;
+      left: 28px;
+    }
+  }
 }

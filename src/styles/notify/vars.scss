@@ -26,3 +26,6 @@
   --wp-notify_hub-spacing-horizontal: 24px;
   --wp-notify_hub-element-spacing: 8px;
 }
+
+// Mobile breakpoint used in wp-admin.
+$breakpoint: 'screen and (max-width: 782px)';
