@@ -1,5 +1,5 @@
 {
-  "name": "@wordpress/wp-notify",
+  "name": "@wordpress/wp-feature-notifications",
   "version": "0.1.0",
   "description": "A notification center for WordPress.",
 	"keywords": [
