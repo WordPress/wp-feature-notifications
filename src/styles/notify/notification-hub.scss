@@ -109,6 +109,9 @@
     .ab-icon:before {
       color: var(--wp-notify_color-link);
     }
+    @media #{$breakpoint} {
+      line-height: 40px;
+    }
   }
 
   #wpadminbar .quicklinks & a {
