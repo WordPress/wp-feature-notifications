@@ -4,6 +4,11 @@
  * Plugin Name: WP Notify
  */
 
+
+if ( ! defined( 'WP_NOTIFICATION_CENTER_PLUGIN_VERSION' ) ) {
+	define( 'WP_NOTIFICATION_CENTER_PLUGIN_VERSION', '0.0.1' );
+}
+
 if ( ! defined( 'WP_NOTIFICATION_CENTER_PLUGIN_DIR' ) ) {
 	define( 'WP_NOTIFICATION_CENTER_PLUGIN_DIR', dirname( __FILE__ ) );
 }
