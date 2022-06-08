@@ -1,5 +1,5 @@
 === Plugin Name ===
-Contributors: schlessera, psykro, raaaahman, danbilauca
+Contributors: schlessera, psykro, raaaahman, danbilauca, bacoords
 Tags: feature-notifications
 Requires at least: 5.0
 Tested up to: 6.0
