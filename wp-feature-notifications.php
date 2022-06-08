@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name: WP Notify
+ * Plugin Name: WP Feature Notifications
  */
 
 if ( ! defined( 'WP_NOTIFICATION_CENTER_PLUGIN_DIR' ) ) {
