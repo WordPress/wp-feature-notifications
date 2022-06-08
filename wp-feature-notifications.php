@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name: WP Notify
+ * Plugin Name: WP Feature Notifications
  */
 
 
