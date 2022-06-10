@@ -47,6 +47,7 @@
 	<!-- Directories and third party library exclusions. -->
 	<exclude-pattern>/node_modules/*</exclude-pattern>
 	<exclude-pattern>/vendor/*</exclude-pattern>
+	<exclude-pattern>/build/*</exclude-pattern>
 
 	<!-- Exclude the unit tests from select sniffs. -->
 	<rule ref="WordPress.Files.FileName.NotHyphenatedLowercase">

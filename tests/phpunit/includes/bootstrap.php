@@ -28,6 +28,12 @@ function handle_wp_setup_failure( $message ) {
 }
 tests_add_filter( 'wp_die_handler', 'handle_wp_setup_failure' );
 
+/*
+* Load PHPUnit Polyfills for the WP testing suite.
+*/
+define( 'WP_TESTS_PHPUNIT_POLYFILLS_PATH', __DIR__ . '/../../../vendor/yoast/phpunit-polyfills/phpunitpolyfills-autoload.php' );
+
+// load the WP testing environment.
 require $tests_dir . '/includes/bootstrap.php';
 
 remove_filter( 'wp_die_handler', 'handle_wp_setup_failure' );
