@@ -18,6 +18,7 @@
 		"message": "This is an example of on-page message variant #1. It has a title, a message, an image, an action button with a URL, is dismissable.",
 		"source": "#Test",
 		"dismissible": true,
+		"unread": true,
 		"acceptMessage": "TEST",
 		"acceptLink": "https://github.com/WordPress/wp-notify"
 	},
@@ -52,6 +53,7 @@
 		"message": "WordPress was successfully updated to version 6.1",
 		"acceptMessage": "Read what's new in 6.1",
 		"acceptLink": "#",
+		"unread": true,
 		"source": "WordPress",
 		"date": 1654866081
 	},
@@ -66,7 +68,7 @@
 		"acceptMessage": "Read what's new in 6.1",
 		"acceptLink": "#",
 		"source": "WordPress",
-		"date": 1654866081
+		"date": 1654850000
 	},
 	{
 		"title": "WordPress",
@@ -74,7 +76,7 @@
 		"acceptMessage": "Read what's new in 6.1",
 		"acceptLink": "#",
 		"source": "WordPress",
-		"date": 1654866081
+		"date": 1654840000
 	},
 	{
 		"image": "https://ps.w.org/contact-form-7/assets/icon-256x256.png",
@@ -82,7 +84,7 @@
 		"acceptMessage": "Update now",
 		"acceptLink": "#",
 		"source": "Plugins Updates",
-		"date": 1654866081
+		"date": 1654830000
 	},
 	{
 		"image": "https://ps.w.org/akismet/assets/icon-256x256.png",
@@ -90,48 +92,48 @@
 		"acceptMessage": "Your API key is no longer valid.",
 		"acceptLink": "#",
 		"source": "Akismet",
-		"date": 1654866081
+		"date": 1654820000
 	},
 	{
-		"icon": "dashicons-paperclip",
+		"icon": "paperclip",
 		"title": "Default",
 		"acceptLink": "#",
 		"source": "Wordpress",
-		"date": 1654866081
+		"date": 1654800000
 	},
 	{
-		"icon": "dashicons-sos",
-		"image": "https://ps.w.org/akismet/assets/icon-256x256.png",
+		"severity": "alert",
+		"icon": "sos",
 		"title": "Site Health status",
 		"message": "Your site has critical issues that should be addressed",
-		"severity": "alert",
 		"source": "Wordpress",
-		"date": 1654866081
+		"date": 1654800000
 	},
 	{
-		"icon": "dashicons-admin-plugins",
-		"title": "Some plugins needs to be updated",
 		"severity": "warning",
+		"icon": "admin-plugins",
+		"title": "Some plugins needs to be updated",
 		"source": "Wordpress",
-		"date": 1654866081
+		"date": 1654800000
 	},
 	{
-		"icon": "dashicons-megaphone",
+		"severity": "success",
+		"icon": "megaphone",
 		"title": "Word Camp Europe 2022",
 		"message": "Word Camp was successfully updated to version 2022",
-		"severity": "success",
 		"source": "Wordpress",
-		"date": 1654866081
+		"date": 1654800000
 	},
 	{
-		"gravatar": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y",
+		"image": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y",
 		"message": "WordPress User has left a message on Lorem Ipsum.",
 		"source": "Comment",
-		"date": 1654866081
+		"date": 1654400000
 	},
 	{
+		"image": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y",
 		"message": "WordPress User has left a message on Lorem Ipsum.",
 		"source": "Comment",
-		"date": 1654866081
+		"date": 1654000000
 	}
 ]

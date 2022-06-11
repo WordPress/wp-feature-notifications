@@ -8,12 +8,13 @@
   --wp-notify_color-light-gray: #c3c4c7;
   --wp-notify_color-secondary: #6C7781; // Dark Gray 300
   --wp-notify_color-light-gray-800: #23282D; // Light Gray 800
-  --wp-notify_color-red-alert: #D94F4F; // Alert Red
+  --wp-notify_color-red: #D94F4F; // Alert Red
   --wp-notify_color-blue: #0071A1; // Blue Dark 900
 
   --wp-notify_color-link: var(--wp-notify_color-blue); // Blue Dark 900
   --wp-notify_color-scrollbar: var(--wp-notify_color-light-gray-400); // Light Gray 400
-  --wp-notify_color-error: var(--wp-notify_color-red-alert);
+  --wp-notify_color-error: var(--wp-notify_color-red);
+  --wp-notify_color-info: var(--wp-notify_color-blue);
   --wp-notify_color-warning: #FFB900;
   --wp-notify_color-success: #46B450;
 
