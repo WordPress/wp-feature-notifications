@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 // TODO: maybe a filter is needed in order to add some custom places?
 const locations = [ 'dashboard', 'adminbar' ];
 const notifyCollection = {};
-locations.forEach( ( location ) => notifyCollection[ location ] = [] );
+locations.forEach( ( location ) => ( notifyCollection[ location ] = [] ) );
 
 /**
  * Handle changes and returns the array of displayed notifications
@@ -20,8 +21,10 @@ const notifyController = createSlice( {
 		},
 		removeNotice( state, action ) {
 			state[ action.payload.location ].splice(
-				state[ action.payload.location ].findIndex( ( arrow ) => arrow.id === action.payload.key )
-				, 1
+				state[ action.payload.location ].findIndex(
+					( arrow ) => arrow.id === action.payload.key
+				),
+				1
 			);
 		},
 		clearNotices( state, action ) {
@@ -29,6 +32,16 @@ const notifyController = createSlice( {
 		},
 	},
 } );
+
+export function fetchApi( path ) {
+	return function ( dispatch ) {
+		return axios.get( path ).then( ( response ) => {
+			response.data.forEach( ( notice ) => {
+				dispatch( addNotice( notice ) );
+			} );
+		} );
+	};
+}
 
 export const {
 	addNotice,
