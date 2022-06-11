@@ -122,6 +122,10 @@
     height: inherit;
   }
 
+  li:hover .ab-icon:before {
+    color: inherit;
+  }
+
   /*
    * The single notification
    */
@@ -171,7 +175,6 @@
       padding: 0;
     }
 
-
     /*
      * Notice type
      */
@@ -183,39 +186,42 @@
 
     &.plugin {}
 
-    &.notify {
-
-      .ab-icon {
-        font-size: 24px;
-        padding: 4px;
-        line-height: 1;
-        &:before {
-          color: var(--wp-notify_color-white);
-          opacity: .9;
-        }
+    .wp-notification-icon .ab-icon {
+      font-size: 24px;
+      padding: 4px;
+      line-height: 1;
+      &:before {
+        color: var(--wp-notify_color-white);
+        opacity: .9;
       }
+    }
 
+    .wp-notification-icon {
+      background: var(--wp-notify_color-light-gray-500);
+      border-radius: 8px;
+    }
+
+    &.alert {
       .wp-notification-image {
-        background: var(--wp-notify_color-light-gray-500);
-        border-radius: 8px;
+        background: var(--wp-notify_color-error);
       }
+    }
 
-      &.wp-notification-error {
-        .wp-notification-image {
-          background: var(--wp-notify_color-error);
-        }
+    &.warning {
+      .wp-notification-image {
+        background: var(--wp-notify_color-warning);
       }
+    }
 
-      &.wp-notification-warning {
-        .wp-notification-image {
-          background: var(--wp-notify_color-warning);
-        }
+    &.success {
+      .wp-notification-image {
+        background: var(--wp-notify_color-success);
       }
+    }
 
-      &.wp-notification-success {
-        .wp-notification-image {
-          background: var(--wp-notify_color-success);
-        }
+    &.info {
+      .wp-notification-image {
+        background: var(--wp-notify_color-blue);
       }
     }
 
