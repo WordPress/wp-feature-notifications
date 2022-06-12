@@ -1,7 +1,7 @@
 [
 	{
 		"location": "dashboard",
-		"image": "demoImage",
+		"image": "https://raw.githubusercontent.com/erikyo/wp-notify/design_implementation/src/images/i.svg",
 		"title": "Try this new Notification feature",
 		"source": "#WP-Notify",
 		"date": 1654866061,		
@@ -36,7 +36,8 @@
 		"message": "This is an example of on-page message variant #2. It has a title, a message, a custom date, an action button with a URL, is dismissable, but has no images.",
 		"acceptMessage": "OK",
 		"acceptLink": "https://github.com/WordPress/wp-notify",
-		"dismissible": true
+		"dismissible": true,
+		"unread": true
 	},
 	{
 		"location": "dashboard",
@@ -45,7 +46,8 @@
 		"title": "Message variant #3",
 		"message": "if you're wondering where notice #2 is try looking at the adminbar at the top right near the bell icon 😉.",
 		"acceptLink": "https://github.com/WordPress/wp-notify",
-		"dismissible": true
+		"dismissible": true,
+		"unread": true
 	},
 	
 	{

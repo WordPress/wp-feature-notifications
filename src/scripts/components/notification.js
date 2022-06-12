@@ -1,5 +1,7 @@
 /**
  * Single Notification UI component
+ * https://github.com/WordPress/wp-feature-notifications/issues/16#issuecomment-896031592
+ * https://github.com/WordPress/wp-feature-notifications/issues/37#issuecomment-896080025
  */
 const { __ } = wp.i18n;
 import { Component } from '@wordpress/element';
@@ -19,17 +21,23 @@ export default class Notice extends Component {
 		dismissLabel: __( 'dismiss' ),
 		source: 'WordPress',
 		dismissible: false,
-		onDismiss: () => delay( 100 ).then( this.unmount() ),
+		onDismiss: () => async () => {
+			delay( 100 ).then( this.unmount() );
+		},
 	};
 
 	render() {
-		let classes = 'wp-notification wp-notice-' + this.props.id;
-		classes += this.props.dismissible ? ' is-dismissible' : '';
-		classes += this.props.severity ? ' ' + this.props.severity : null;
-		classes += this.props.unread ? ' unread' : '';
+		const classes = [ 'wp-notification', 'wp-notice-' + this.props.id ];
+
+		classes.push(
+			this.props.dismissible ? 'is-dismissible' : null,
+			this.props.severity,
+			this.props.unread ? 'unread' : null,
+			this.props.additionalClassName
+		);
 
 		return (
-			<div className={ classes }>
+			<div className={ classes.join( ' ' ) }>
 				<div className="wp-notification-wrap">
 					<h3 className="wp-notification-title">
 						{ this.props.title }
