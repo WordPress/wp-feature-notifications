@@ -3,7 +3,7 @@
  */
 
 const eslintConfig = {
-	extends: [ 'plugin:@wordpress/eslint-plugin/recommended' ]
+	extends: [ 'plugin:@wordpress/eslint-plugin/recommended' ],
 };
 
 eslintConfig.parserOptions = {

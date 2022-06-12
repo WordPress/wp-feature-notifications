@@ -83,11 +83,6 @@ export default class Notice extends Component {
 					alt={
 						( this.props.location || this.props.title ) + 'image'
 					}
-					roundBorder={
-						this.props.icon || this.props.source === 'Comment'
-							? '8px'
-							: false
-					}
 				/>
 			</div>
 		);

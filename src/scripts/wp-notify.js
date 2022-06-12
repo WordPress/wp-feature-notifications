@@ -16,24 +16,21 @@ import Notifications from './components/notifications';
 /**
  * Toggle notification hub
  */
-const wpNotifyHub = document.getElementById("wp-admin-bar-wp-notify");
+const wpNotifyHub = document.getElementById( 'wp-admin-bar-wp-notify' );
 
 const disableNotifyDrawer = () => {
-  wpNotifyHub.classList.remove("active");
-  document.body.removeEventListener("click", disableNotifyDrawer);
+	wpNotifyHub.classList.remove( 'active' );
+	document.body.removeEventListener( 'click', disableNotifyDrawer );
 };
 
 // handle click on wp-admin bar bell icon that show the WP-Notify sidebar
-wpNotifyHub.addEventListener("click", function (e) {
-  e.stopPropagation();
-  if (!wpNotifyHub.classList.contains("active")) {
-    this.classList.add("active");
-    document.body.addEventListener("click", disableNotifyDrawer);
-  }
-});
-
-// The dashboard notifications context
-const NotifyContext = createContext();
+wpNotifyHub.addEventListener( 'click', function ( e ) {
+	e.stopPropagation();
+	if ( ! wpNotifyHub.classList.contains( 'active' ) ) {
+		this.classList.add( 'active' );
+		document.body.addEventListener( 'click', disableNotifyDrawer );
+	}
+} );
 
 /**
  * Enable the main dash notifications if available
@@ -101,32 +98,7 @@ class HubNotice extends Component {
 	}
 
 	render() {
-		return (
-			<>
-				<section>
-					<header>
-						<h2>2 unread notifications</h2>
-						<button
-							id="clear-all-wp-notify-hub"
-							className="wp-notification-action wp-notification-action-markread button-link"
-						>
-							<span className="ab-icon dashicons-saved"></span>{ ' ' }
-							Mark all as read
-						</button>
-					</header>
-
-					<Notifications location={ 'adminbar' } />
-				</section>
-
-				<section>
-					<header>
-						<h2>Older notifications</h2>
-					</header>
-
-					<Notifications location={ 'adminbar' } />
-				</section>
-			</>
-		);
+		return <Notifications location={ 'adminbar' } splitBy={ 'date' } />;
 	}
 }
 render( createElement( HubNotice ), notifyHub );
