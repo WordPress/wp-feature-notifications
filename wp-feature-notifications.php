@@ -1,11 +1,20 @@
 <?php
 
 /**
- * Plugin Name: WP Notify
+ * Plugin Name: WP Feature Notifications
  */
+
+
+if ( ! defined( 'WP_NOTIFICATION_CENTER_PLUGIN_VERSION' ) ) {
+	define( 'WP_NOTIFICATION_CENTER_PLUGIN_VERSION', '0.0.1' );
+}
 
 if ( ! defined( 'WP_NOTIFICATION_CENTER_PLUGIN_DIR' ) ) {
 	define( 'WP_NOTIFICATION_CENTER_PLUGIN_DIR', dirname( __FILE__ ) );
+}
+
+if ( ! defined( 'WP_NOTIFICATION_CENTER_PLUGIN_DIR_URL' ) ) {
+	define( 'WP_NOTIFICATION_CENTER_PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) );
 }
 
 // Require interface/class declarations..
@@ -38,3 +47,4 @@ require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/messages/class-wp-no
 require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/persistence/interface-wp-notify-notification-repository.php';
 require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/persistence/class-wp-notify-abstract-notification-repository.php';
 require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/persistence/class-wp-notify-wpdb-notification-repository.php';
+require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/demo.php';

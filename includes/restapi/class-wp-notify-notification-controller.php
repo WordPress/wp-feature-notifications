@@ -1,2 +1,5 @@
 <?php
-// TODO: Implement class
+
+interface WP_Notify_Notification_Controller {
+
+}

@@ -1,0 +1,95 @@
+/*
+ * General notifications style
+ */
+.wp-notification {
+  background: var(--wp-notify_color-white);
+  color: var(--wp-notify_color-default);
+
+  .wp-notification-action {
+    text-decoration-line: underline;
+    color: var(--wp-notify_color-link);
+  }
+
+  .wp-notification-source {
+    color: var(--wp-notify_color-secondary);
+  }
+}
+
+/*
+ * Dashboard notifications
+ */
+
+#wpbody {
+
+  #wp-notify-dashboard-notices,
+  #wp-notify-notice-demo {
+    clear: both;
+  }
+
+  .wp-notification {
+    --wp-notify_hub-spacing-top: 1.8em;
+    --wp-notify_hub-spacing-bottom: 2.5em;
+    --wp-notify_hub-element-spacing: 1.6em;
+
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: auto 200px;
+    grid-auto-flow: row;
+    gap: 50px;
+
+    justify-content: space-between;
+
+    padding: var(--wp-notify_hub-spacing-top) 20px var(--wp-notify_hub-spacing-bottom) 36px;
+    margin: 10px 0 var(--wp-notify_hub-element-spacing);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+
+    border-left-width: 4px;
+    border-left-style: solid;
+    border-color: var(--wp-notify_color-light-gray);
+
+    + .wp-notification {
+      margin-top: calc(var(--wp-notify_hub-element-spacing) * -1);
+      border-top: none;
+    }
+
+    .wp-notification-wrap {
+      > :first-child {
+        margin-top: 0;
+      }
+
+      > :last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .wp-notification-actions-wrap {
+
+      .button {
+        padding: 8px;
+        text-decoration: none;
+        line-height: 20px;
+        border: 1px solid transparent;
+        border-radius: 3px;
+      }
+
+      .button-primary {
+        padding: 8px 32px;
+      }
+    }
+
+    .wp-notification-image img {
+      max-width: 200px;
+      max-height: 200px;
+      width: 100%;
+      object-position: center;
+      object-fit: contain;
+    }
+
+    @media #{$breakpoint} {
+      grid-template-columns: auto;
+      .wp-notification-wrap{
+        order: 2
+      }
+    }
+  }
+}
