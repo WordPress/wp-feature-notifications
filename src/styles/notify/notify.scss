@@ -4,6 +4,8 @@
 .wp-notification {
   background: var(--wp-notify_color-white);
   color: var(--wp-notify_color-default);
+  overflow: hidden;
+  max-height: 600px;
 
   .wp-notification-action {
     text-decoration-line: underline;
@@ -13,7 +15,17 @@
   .wp-notification-source {
     color: var(--wp-notify_color-secondary);
   }
+
+  &.dismissing {
+    transition: opacity 100ms, padding 100ms, max-height 100ms;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    max-height: 0;
+    opacity: 0;
+  }
 }
+
+
 
 /*
  * Dashboard notifications
