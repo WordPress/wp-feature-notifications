@@ -15,7 +15,7 @@ if ( ! $tests_dir ) {
 require_once $tests_dir . '/includes/functions.php';
 
 function manually_load_plugin() {
-	require __DIR__ . '/../../../wp-notify.php';
+	require __DIR__ . '/../../../wp-feature-notifications.php';
 }
 tests_add_filter( 'plugins_loaded', 'manually_load_plugin' );
 
