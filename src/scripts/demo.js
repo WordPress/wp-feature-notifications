@@ -35,12 +35,6 @@ window.addEventListener( 'load', () => {
 		.addEventListener( 'click', () =>
 			store.dispatch( clearNotices( 'dashboard' ) )
 		);
-
-	document
-		.getElementById( 'clear-all-wp-notify-hub' )
-		.addEventListener( 'click', () =>
-			store.dispatch( clearNotices( 'adminbar' ) )
-		);
 } );
 
 /**

@@ -1,7 +1,7 @@
 {
-  "name": "@wordpress/wp-feature-notifications",
-  "version": "0.1.0",
-  "description": "A notification center for WordPress.",
+	"name": "@wordpress/wp-feature-notifications",
+	"version": "0.1.0",
+	"description": "A notification center for WordPress.",
 	"keywords": [
 		"WordPress",
 		"notifications",
@@ -13,29 +13,29 @@
 		"url": "https://github.com/WordPress/wp-notify/issues"
 	},
 	"homepage": "https://github.com/WordPress/wp-notify#readme",
-  "directories": {
-    "doc": "docs",
-    "test": "tests"
-  },
-  "scripts": {
-    "prephp-install": "wp-env start",
-    "php-install": "wp-env run composer 'composer --ignore-platform-req=php install'",
-    "pretest-unit-php": "npm run php-install",
-    "test-unit-php": "wp-env run phpunit 'phpunit --configuration=/var/www/html/wp-content/plugins/wp-notify/phpunit.xml.dist'",
-    "check-engines": "wp-scripts check-engines",
-    "check-licenses": "wp-scripts check-licenses",
-    "format": "wp-scripts format",
-    "lint:css": "wp-scripts lint-style",
-    "lint:js": "wp-scripts lint-js",
-    "lint:md:docs": "wp-scripts lint-md-docs",
-    "lint:pkg-json": "wp-scripts lint-pkg-json",
-    "packages-update": "wp-scripts packages-update",
-    "plugin-zip": "wp-scripts plugin-zip",
-    "start": "wp-scripts start src/wp-notify.js --output-path=build/",
-    "build": "wp-scripts build src/wp-notify.js --output-path=build/",
-    "test:e2e": "wp-scripts test-e2e",
-    "test:unit": "wp-scripts test-unit-js"
-  },
+	"directories": {
+		"doc": "docs",
+		"test": "tests"
+	},
+	"scripts": {
+		"prephp-install": "wp-env start",
+		"php-install": "wp-env run composer 'composer --ignore-platform-req=php install'",
+		"pretest-unit-php": "npm run php-install",
+		"test-unit-php": "wp-env run phpunit 'phpunit --configuration=/var/www/html/wp-content/plugins/wp-notify/phpunit.xml.dist'",
+		"check-engines": "wp-scripts check-engines",
+		"check-licenses": "wp-scripts check-licenses",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"lint:md:docs": "wp-scripts lint-md-docs",
+		"lint:pkg-json": "wp-scripts lint-pkg-json",
+		"packages-update": "wp-scripts packages-update",
+		"plugin-zip": "wp-scripts plugin-zip",
+		"start": "wp-scripts start src/wp-notify.js --output-path=build/",
+		"build": "wp-scripts build src/wp-notify.js --output-path=build/",
+		"test:e2e": "wp-scripts test-e2e",
+		"test:unit": "wp-scripts test-unit-js"
+	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/WordPress/wp-notify.git"
