@@ -35,6 +35,8 @@
     "build": "wp-scripts build src/wp-notify.js --output-path=build/",
     "test:e2e": "wp-scripts test-e2e",
     "test:unit": "wp-scripts test-unit-js",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
@@ -47,6 +49,14 @@
   "devDependencies": {
     "@babel/core": "^7.18.2",
     "@reduxjs/toolkit": "^1.8.2",
+    "@storybook/addon-actions": "^6.5.8",
+    "@storybook/addon-essentials": "^6.5.8",
+    "@storybook/addon-interactions": "^6.5.8",
+    "@storybook/addon-links": "^6.5.8",
+    "@storybook/builder-webpack5": "^6.5.8",
+    "@storybook/manager-webpack5": "^6.5.8",
+    "@storybook/react": "^6.5.8",
+    "@storybook/testing-library": "^0.0.12",
     "@wordpress/babel-preset-default": "^6.12.0",
     "@wordpress/browserslist-config": "^4.1.2",
     "@wordpress/components": "^19.12.0",
