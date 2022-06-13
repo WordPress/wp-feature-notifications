@@ -4,6 +4,7 @@
 import { clearNotices, removeNotice } from '../reducer';
 
 import { Component } from '@wordpress/element';
+import { Button } from '@wordpress/components';
 import { store } from '../wp-notify';
 import { delay } from '../utils';
 
@@ -84,7 +85,7 @@ export default class Notifications extends Component {
 					{ ! index && list ? (
 						<header>
 							<h2>{ list.length } unread notifications</h2>
-							<button
+							<Button
 								id="clear-all-wp-notify-hub"
 								className="wp-notification-action wp-notification-action-markread button-link"
 								onClick={ () =>
@@ -95,7 +96,7 @@ export default class Notifications extends Component {
 							>
 								<span className="ab-icon dashicons-saved"></span>{ ' ' }
 								Mark all as read
-							</button>
+							</Button>
 						</header>
 					) : (
 						<header>
