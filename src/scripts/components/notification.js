@@ -3,12 +3,16 @@
  * https://github.com/WordPress/wp-feature-notifications/issues/16#issuecomment-896031592
  * https://github.com/WordPress/wp-feature-notifications/issues/37#issuecomment-896080025
  */
-const { __ } = wp.i18n;
+import { useI18n } from '@wordpress/react-i18n';
+import { __ } from '@wordpress/i18n';
+
+// Register components
 import { Component } from '@wordpress/element';
+import { Button } from '@wordpress/components';
+import NoticeImage from './noticeImage';
+
 import moment from 'moment';
 import { delay } from '../utils';
-
-import NoticeImage from './noticeImage';
 
 // Notice class method.
 export default class Notice extends Component {
@@ -49,30 +53,39 @@ export default class Notice extends Component {
 					/>
 					{ this.props.location === 'dashboard' ? (
 						<div className="wp-notification-actions-wrap">
-							<a
+							<Button
+								variant="primary"
 								className="button button-primary wp-notification-hub-trigger"
-								href={ this.props.acceptLink }
+								onClick={ () =>
+									( window.location.href = this.props.acceptLink )
+								}
 							>
 								{ this.props.acceptMessage }
-							</a>
+							</Button>
 							{ this.props.dismissible && (
-								<button
-									className="button button-link wp-notification-hub-dismiss"
+								<Button
+									variant="link"
+									className={
+										'button button-link wp-notification-hub-dismiss'
+									}
 									onClick={ this.props.onDismiss }
+									icon={ 'no-alt' }
 								>
-									<span className="dashicons dashicons-no-alt"></span>
 									{ this.props.dismissLabel }
-								</button>
+								</Button>
 							) }
 						</div>
 					) : (
 						this.props.dismissible && (
-							<a
-								href={ this.props.acceptLink }
+							<Button
+								variant="link"
+								onClick={ () =>
+									( window.location.href = this.props.acceptLink )
+								}
 								className={ 'wp-notification-action' }
 							>
 								{ this.props.acceptMessage }
-							</a>
+							</Button>
 						)
 					) }
 					<p className="wp-notification-source">
