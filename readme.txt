@@ -12,11 +12,11 @@ A new (better) way to manage and deliver WordPress notifications to the relevant
 == Description ==
 
 1. Allow WordPress core to send notifications to administrative users to give them feedback about changes in the system.
-1. Allow plugin and theme authors to send notifications to administrative users to give them feedback about changes in the system
-1. Prevent plugin and theme authors from abusing this notification system in “spammy” ways.
-1. Allow WordPress users who have access to notifications to control which, how, and where they receive them.
+2. Allow plugin and theme authors to send notifications to administrative users to give them feedback about changes in the system
+3. Prevent plugin and theme authors from abusing this notification system in “spammy” ways.
+4. Allow WordPress users who have access to notifications to control which, how, and where they receive them.
 
-Want to contribute, checkout the code [on GitHug](https://github.com/WordPress/wp-feature-notifications) and read more about the projects goals on our [wiki](https://github.com/WordPress/wp-feature-notifications/wiki).
+Want to contribute, checkout the code [on GitHub](https://github.com/WordPress/wp-feature-notifications) and read more about the projects goals on our [wiki](https://github.com/WordPress/wp-feature-notifications/wiki).
 
 == Screenshots ==
 
