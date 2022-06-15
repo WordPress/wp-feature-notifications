@@ -63,10 +63,13 @@ function wp_notify_enqueue_admin_assets() {
 	wp_enqueue_script( 'react' );
 
 	// Load scripts
-	wp_register_script( 'wp_notify_js', WP_NOTIFICATION_CENTER_PLUGIN_DIR_URL . '/build/wp-notify.js', array( 'wp-element' ), WP_NOTIFICATION_CENTER_PLUGIN_VERSION, true );
+	wp_register_script( 'wp_notify_js', WP_NOTIFICATION_CENTER_PLUGIN_DIR_URL . '/build/wp-notify.js', array( 'wp-i18n', 'wp-components', 'wp-element' ), WP_NOTIFICATION_CENTER_PLUGIN_VERSION, true );
 	wp_enqueue_script( 'wp_notify_js' );
-	wp_localize_script( 'wp_notify_js', 'wp_notify_data', array(
-			'pluginUrl' => WP_NOTIFICATION_CENTER_PLUGIN_DIR_URL
+	wp_localize_script(
+		'wp_notify_js',
+		'wp_notify_data',
+		array(
+			'pluginUrl' => WP_NOTIFICATION_CENTER_PLUGIN_DIR_URL,
 		)
 	);
 }
