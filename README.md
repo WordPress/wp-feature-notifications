@@ -29,7 +29,7 @@ Installation:
 ```bash
 $ git clone https://github.com/WordPress/wp-feature-notifications.git
 $ cd wp-feature-notifications
-$ npm i && composer install
+$ nvm use && npm i && composer install
 $ wp-env start
 ```
 
