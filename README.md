@@ -19,13 +19,15 @@ We love your input! We want to make contributing to this project as easy and tra
 We use GitHub to host code, to track issues and feature requests, as well as accept pull requests.
 By contributing, you agree that your contributions will be licensed under its GPLv2 License.
 
-Prerequisites:
+### Prerequisites:
 - [NodeJS](https://nodejs.org/en/download/)
 - [Composer](https://getcomposer.org/download/)
 - [wp-env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/) (optional)
 - [Docker](https://docs.docker.com/get-docker/) (optional)
 
-Installation:
+We recommend using [nvm](https://github.com/nvm-sh/nvm) to ensure a compatible node version.
+
+### Installation:
 ```bash
 $ git clone https://github.com/WordPress/wp-feature-notifications.git
 $ cd wp-feature-notifications
