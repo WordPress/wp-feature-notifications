@@ -5,7 +5,8 @@ https://github.com/WordPress/wp-feature-notifications/wiki/Code-contributions --
 <!-- In a few words, what is the PR actually doing? -->
 
 ## Why?
-<!-- Why is this PR necessary? What problem is it solving? Reference any existing previous issue(s) or PR(s), but please add a short summary here, too -->
+<!-- Why is this PR necessary? What problem is it solving? Please add a short summary here and reference any existing previous issue(s) or PR(s):
+https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue -->
 
 ## How?
 <!-- How is your PR addressing the issue at hand? What are the implementation details? -->
