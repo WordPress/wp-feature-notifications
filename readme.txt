@@ -1,5 +1,5 @@
-=== Plugin Name ===
-Contributors: schlessera, psykro, raaaahman, danbilauca, bacoords
+=== WP Feature Notifications ===
+Contributors: schlessera, psykro, raaaahman, danbilauca, sephsekla, bacoords
 Tags: feature-notifications
 Requires at least: 5.0
 Tested up to: 6.0
@@ -16,7 +16,7 @@ A new (better) way to manage and deliver WordPress notifications to the relevant
 1. Prevent plugin and theme authors from abusing this notification system in “spammy” ways.
 1. Allow WordPress users who have access to notifications to control which, how, and where they receive them.
 
-Want to contribute, checkout the code [on GitHug](https://github.com/WordPress/wp-feature-notifications) and read more about the projects goals on our [wiki](https://github.com/WordPress/wp-feature-notifications/wiki).
+Want to contribute? Checkout the code [on GitHub](https://github.com/WordPress/wp-feature-notifications) and read more about the project's goals on our [wiki](https://github.com/WordPress/wp-feature-notifications/wiki).
 
 == Screenshots ==
 
