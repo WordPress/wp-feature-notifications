@@ -1,5 +1,5 @@
 === WP Feature Notifications ===
-Contributors: schlessera, psykro, raaaahman, danbilauca, sephsekla
+Contributors: schlessera, psykro, raaaahman, danbilauca, sephsekla, bacoords, erikyo
 Tags: feature-notifications
 Requires at least: 5.0
 Tested up to: 6.0
