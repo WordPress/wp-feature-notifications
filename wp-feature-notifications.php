@@ -1,9 +1,18 @@
 <?php
-
 /**
- * Plugin Name: WP Feature Notifications
+ * Plugin Name:       WP Feature Notifications
+ * Plugin URI:        https://github.com/WordPress/wp-feature-notifications
+ * Description:       A new (better) way to manage and deliver WordPress notifications to the relevant audience.
+ * Version:           0.1.0
+ * Requires at least: 5.0
+ * Requires PHP:      7.4
+ * Author:            WP Feature Notifications Contributors
+ * Text Domain:       wp-feature-notifications
+ * License:           GPL v2 or later
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ *
+ * @package wp-feature-notifications
  */
-
 
 if ( ! defined( 'WP_NOTIFICATION_CENTER_PLUGIN_VERSION' ) ) {
 	define( 'WP_NOTIFICATION_CENTER_PLUGIN_VERSION', '0.0.1' );
