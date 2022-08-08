@@ -3,7 +3,6 @@
  * https://github.com/WordPress/wp-feature-notifications/issues/16#issuecomment-896031592
  * https://github.com/WordPress/wp-feature-notifications/issues/37#issuecomment-896080025
  */
-import { useI18n } from '@wordpress/react-i18n';
 import { __ } from '@wordpress/i18n';
 
 // Register components
@@ -57,7 +56,8 @@ export default class Notice extends Component {
 								variant="primary"
 								className="button button-primary wp-notification-hub-trigger"
 								onClick={ () =>
-									( window.location.href = this.props.acceptLink )
+									( window.location.href =
+										this.props.acceptLink )
 								}
 							>
 								{ this.props.acceptMessage }
@@ -80,7 +80,8 @@ export default class Notice extends Component {
 							<Button
 								variant="link"
 								onClick={ () =>
-									( window.location.href = this.props.acceptLink )
+									( window.location.href =
+										this.props.acceptLink )
 								}
 								className={ 'wp-notification-action' }
 							>

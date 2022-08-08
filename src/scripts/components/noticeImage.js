@@ -10,7 +10,9 @@ export default class NoticeImage extends Component {
 
 		return (
 			<div
-				className={this.props.type ? 'wp-notification-image ' + classes : null}
+				className={
+					this.props.type ? 'wp-notification-image ' + classes : null
+				}
 			>
 				{ this.props.type === 'icon' ? (
 					<span className={ 'ab-icon dashicons-' + image }></span>

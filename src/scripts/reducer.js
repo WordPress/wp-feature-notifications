@@ -47,9 +47,6 @@ export function fetchApi( path ) {
 	};
 }
 
-export const {
-	addNotice,
-	removeNotice,
-	clearNotices,
-} = notifyController.actions;
+export const { addNotice, removeNotice, clearNotices } =
+	notifyController.actions;
 export default notifyController.reducer;
