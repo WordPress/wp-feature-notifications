@@ -258,7 +258,7 @@ class HubNotice extends wp.element.Component {
 
           <div className="wp-notification plugin unread" role="status">
             <div className="wp-notification-image">
-              <img src={wpLogo} />
+              <img src={wpLogo} alt="" />
             </div>
             <div className="wp-notification-wrap">
               <h4 className="wp-notification-title">WordPress</h4>
@@ -277,7 +277,7 @@ class HubNotice extends wp.element.Component {
 
           <div className="wp-notification plugin unread" role="status">
             <div className="wp-notification-image default">
-              <img src={wpLogo} />
+              <img src={wpLogo} alt="" />
             </div>
             <div className="wp-notification-wrap">
               <p className="wp-notification-message">
@@ -298,7 +298,7 @@ class HubNotice extends wp.element.Component {
 
           <div className="wp-notification plugin" role="status">
             <div className="wp-notification-image default">
-              <img src={wpLogo} />
+              <img src={wpLogo} alt="" />
             </div>
             <div className="wp-notification-wrap">
               <h4 className="wp-notification-title">WordPress</h4>
@@ -317,7 +317,7 @@ class HubNotice extends wp.element.Component {
 
           <div className="wp-notification plugin" role="status">
             <div className="wp-notification-image default">
-              <img src={wpLogo} />
+              <img src={wpLogo} alt="" />
             </div>
             <div className="wp-notification-wrap">
               <h4 className="wp-notification-title">WordPress</h4>
@@ -336,7 +336,7 @@ class HubNotice extends wp.element.Component {
 
           <div className="wp-notification plugin" role="status">
             <div className="wp-notification-image default">
-              <img src="https://ps.w.org/contact-form-7/assets/icon-256x256.png" />
+              <img src="https://ps.w.org/contact-form-7/assets/icon-256x256.png" alt="" />
             </div>
             <div className="wp-notification-wrap">
               <p className="wp-notification-message">
@@ -357,6 +357,7 @@ class HubNotice extends wp.element.Component {
               <img
                 src="https://ps.w.org/akismet/assets/icon-256x256.png"
                 className="wp-notification-image"
+                alt=""
               />
             </div>
             <div className="wp-notification-wrap">
@@ -445,7 +446,7 @@ class HubNotice extends wp.element.Component {
 
           <div className="wp-notification user" role="status">
             <div className="wp-notification-image">
-              <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y" />
+              <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y" alt="" />
             </div>
             <div className="wp-notification-wrap">
               <p className="wp-notification-message">
@@ -460,7 +461,7 @@ class HubNotice extends wp.element.Component {
 
           <div className="wp-notification user" role="status">
             <div className="wp-notification-image default">
-              <img src="https://secure.gravatar.com/avatar/61ee2579b8905e62b4b4045bdc92c11a" />
+              <img src="https://secure.gravatar.com/avatar/61ee2579b8905e62b4b4045bdc92c11a" alt="" />
             </div>
             <div className="wp-notification-wrap">
               <p className="wp-notification-message">
