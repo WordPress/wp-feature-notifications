@@ -3,6 +3,7 @@ import { store } from './wp-notify';
 import { clearNotices } from './reducer';
 
 window.addEventListener( 'load', () => {
+	/** Getting the metabox with the id of `wp-notification-metabox-form` */
 	const wpNotificationMetabox = document.getElementById(
 		'wp-notification-metabox-form'
 	);
@@ -38,7 +39,14 @@ window.addEventListener( 'load', () => {
 } );
 
 /**
- * add some demo notifications to the dashboard
+ * @module wpNotify
+ *
+ * @description add some demo notifications to the dashboard
+ *
+ * @example if you need to enbale the notification outside dashboard and wpNotify setting page
+ *
+ * @type {wp.notify} notification module
+ * @property {Function} {fetch} - fetch for new notifications
  */
 if (
 	pagenow &&

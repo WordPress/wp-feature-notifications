@@ -30,6 +30,13 @@ export default class Notifications extends Component {
 		} );
 	}
 
+	/**
+	 * Updating the state of the notifications object.
+	 *
+	 * @param {number}           key
+	 * @param {string}           location
+	 * @param {{status: string}} props
+	 */
 	updateNoticeState = ( key, location, props ) => {
 		const newState = this.state;
 		newState.notifications[ key ] = {
@@ -79,39 +86,32 @@ export default class Notifications extends Component {
 			[ [], [] ]
 		);
 
-		return sortedNotifications ? (
-			sortedNotifications.map( ( list, index ) => (
-				<section key={ index }>
-					{ ! index && list ? (
-						<header>
-							<h2>{ list.length } unread notifications</h2>
-							<Button
-								id="clear-all-wp-notify-hub"
-								className="wp-notification-action wp-notification-action-markread button-link"
-								onClick={ () =>
-									store.dispatch(
-										clearNotices( this.props.location )
-									)
-								}
-							>
-								<span className="ab-icon dashicons-saved"></span>{ ' ' }
-								Mark all as read
-							</Button>
-						</header>
-					) : (
-						<header>
-							<h2>Older notifications</h2>
-						</header>
-					) }
-					{ list ? this.printNotices( list ) : null }
-				</section>
-			) )
-		) : (
-			<div>
-				<h1>Notification Cleared!</h1>
-				<h2>Good job 👏</h2>
-			</div>
-		);
+		sortedNotifications.map( ( list, index ) => (
+			<section key={ index }>
+				{ ! index && list ? (
+					<header>
+						<h2>{ list.length } unread notifications</h2>
+						<Button
+							id="clear-all-wp-notify-hub"
+							className="wp-notification-action wp-notification-action-markread button-link"
+							onClick={ () =>
+								store.dispatch(
+									clearNotices( this.props.location )
+								)
+							}
+						>
+							<span className="ab-icon dashicons-saved"></span>{ ' ' }
+							Mark all as read
+						</Button>
+					</header>
+				) : (
+					<header>
+						<h2>Older notifications</h2>
+					</header>
+				) }
+				{ list ? this.printNotices( list ) : null }
+			</section>
+		) );
 	}
 
 	render() {

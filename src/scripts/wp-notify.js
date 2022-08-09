@@ -88,8 +88,8 @@ export const store = configureStore( {
 } );
 
 /**
- * @typedef {Object} window.wp - the WordPress scripts
- * @typedef {Object} window.wp.notify - the notifications controller
+ * @typedef {Object} wp - the WordPress scripts
+ * @typedef {Object} wp.notify - the notifications controller
  * @property {Function} fetch  - fetch api for updates
  * @property {Function} add    - add a new notification
  * @property {Function} remove - remove a new notification
