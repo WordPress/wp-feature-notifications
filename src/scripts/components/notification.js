@@ -40,7 +40,7 @@ export default class Notice extends Component {
 		);
 
 		return (
-			<div className={ classes.join( ' ' ) }>
+			<div className={ classes.join( ' ' ) } tabIndex="0">
 				<div className="wp-notification-wrap">
 					<h3 className="wp-notification-title">
 						{ this.props.title }
