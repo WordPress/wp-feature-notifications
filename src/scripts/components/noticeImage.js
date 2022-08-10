@@ -17,7 +17,7 @@ export default class NoticeImage extends Component {
 				{ this.props.type === 'icon' ? (
 					<span className={ 'ab-icon dashicons-' + image }></span>
 				) : (
-					<img src={ image } alt={ this.props.alt + ' image' } />
+					<img src={ image } alt="" />
 				) }
 			</div>
 		);
