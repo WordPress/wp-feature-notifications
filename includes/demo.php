@@ -16,11 +16,10 @@ function wp_admin_bar_wp_notify_item( $wp_admin_bar ) {
 	}
 
 	$footer = '<footer>
-    <a>
       <a href="' . esc_url( admin_url( 'options-general.php?page=wp-notify' ) ) . '" class="wp-notification-action wp-notification-action-markread button-link">
         <span class="ab-icon dashicons-admin-generic"></span>' . __( 'Configure notification settings' ) . '
       </a>
-    </a></footer>';
+    </footer>';
 
 	$aside = '<aside id="wp-notification-hub">
  	<div class="wp-notification-hub-wrapper">
