@@ -25,10 +25,16 @@ import Notifications from './components/notifications';
 
 /**
  * Notification hub
+ * Enables the main dash notifications if available
+ * Enables the admin area if available
  *
  * @typedef {HTMLElement} wpNotifyHub - the Notification Hub Controller
+ * @member {HTMLElement} notifyHub - the notification hub that you can find on the right side of the admin bar
+ * @member {HTMLElement} notifyDash - the notification container located in the dashboard
  */
 const wpNotifyHub = document.getElementById( 'wp-admin-bar-wp-notify' );
+const notifyHub = document.getElementById( 'wp-notify-hub' );
+const notifyDash = document.getElementById( 'wp-notify-dashboard-notices' );
 
 /**
  * When the user clicks on the notification drawer, the drawer is disabled
@@ -51,7 +57,7 @@ const disableNotifyDrawer = () => {
 const enableNotifyDrawer = ( e ) => {
 	e.stopPropagation();
 	if ( ! wpNotifyHub.classList.contains( 'active' ) ) {
-		this.classList.add( 'active' );
+		wpNotifyHub.classList.add( 'active' );
 		document.body.addEventListener( 'click', disableNotifyDrawer );
 	}
 };
@@ -62,15 +68,6 @@ const enableNotifyDrawer = ( e ) => {
  * @event enableNotifyDrawer - by default on click
  */
 wpNotifyHub.addEventListener( 'click', enableNotifyDrawer );
-
-/**
- * Enable the main dash notifications if available
- *
- * @member {HTMLElement} notifyHub - the notification hub that you can find on the right side of the admin bar
- * @member {HTMLElement} notifyDash - the notification container located in the dashboard
- */
-const notifyHub = document.getElementById( 'wp-notify-hub' );
-const notifyDash = document.getElementById( 'wp-notify-dashboard-notices' );
 
 /**
  * Creating a store for the redux state.
