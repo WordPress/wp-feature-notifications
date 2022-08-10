@@ -15,17 +15,31 @@ import { delay } from '../utils';
 
 // Notice class method.
 export default class Notice extends Component {
-	// the default props
+	/**
+	 * Setting the default props for the component.
+	 *
+	 * @typedef Notice
+	 * @property {string}   title         - The Notice title
+	 * @property {string}   message       - The notice message
+	 * @property {string}   acceptLink    - The notice Href
+	 * @property {string}   acceptMessage - The notice "Accept" message
+	 * @property {string}   dismissLabel  - The notice "Dismiss" message
+	 * @property {string}   source        - The notice source
+	 * @property {string}   severity      - The notice severity
+	 * @property {boolean}  unread        - the notice is unread
+	 * @property {boolean}  dismissible   - if this notice is dismissible
+	 * @property {Function} onDismiss     - Unmount this notice
+	 */
 	static defaultProps = {
 		title: undefined,
 		message: undefined,
 		acceptMessage: __( 'Accept' ),
 		acceptLink: '#',
-		dismissLabel: __( 'dismiss' ),
+		dismissLabel: __( 'Dismiss' ),
 		source: 'WordPress',
 		dismissible: false,
 		onDismiss: () => async () => {
-			delay( 100 ).then( this.unmount() );
+			delay( 100 ).then( () => this.unmount );
 		},
 	};
 

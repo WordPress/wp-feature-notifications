@@ -52,7 +52,7 @@ const notifyController = createSlice( {
  *
  * @param {string} path - The path to the API endpoint.
  *
- * @return A function that takes a dispatch function as an argument.
+ * @return {Function} A function that takes a dispatch function as an argument.
  */
 export function fetchApi( path ) {
 	return function ( dispatch ) {

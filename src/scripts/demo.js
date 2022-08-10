@@ -2,6 +2,7 @@
 import { store } from './wp-notify';
 import { clearNotices } from './reducer';
 
+/* Adding an event listener to the window object. */
 window.addEventListener( 'load', () => {
 	/** Getting the metabox with the id of `wp-notification-metabox-form` */
 	const wpNotificationMetabox = document.getElementById(
@@ -11,7 +12,7 @@ window.addEventListener( 'load', () => {
 	if ( ! wpNotificationMetabox ) {
 		return;
 	}
-	// Click handler to add a new notification
+	/* Adding an event listener to the form with the id of `wp-notification-metabox-form` that handles "add a new notification" */
 	document
 		.getElementById( 'wp-notification-metabox-form' )
 		.addEventListener( 'submit', function ( e ) {
@@ -30,7 +31,7 @@ window.addEventListener( 'load', () => {
 			} );
 		} );
 
-	// flush all notices
+	/* Adding an event listener to the form with the id of `wp-notification-metabox-form` that handles "clear all notifications" */
 	document
 		.getElementById( 'clear-all-wp-notify' )
 		.addEventListener( 'click', () =>

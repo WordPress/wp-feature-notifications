@@ -16,6 +16,13 @@ export default class Notifications extends Component {
 		notifications: [],
 	};
 
+	/**
+	 * Sets the initial state of the component and binds the updateNoticeState function to the component
+	 *
+	 * @function Object() { [native code] }
+	 *
+	 * @param {Object} props - The props passed to the component.
+	 */
 	constructor( props ) {
 		super( props );
 		this.location = this.props.location;
@@ -46,6 +53,14 @@ export default class Notifications extends Component {
 		return this.setState( { newState } );
 	};
 
+	/**
+	 * Returns a list of notices
+	 * each notice is a component that has a key, an id, an image, an additional class name, and an onDismiss function
+	 *
+	 * @param {Array} notifications - An array of objects that contain the notice data.
+	 *
+	 * @return {Array} An array of Notice components.
+	 */
 	printNotices( notifications ) {
 		return notifications.map( ( notify, k ) => (
 			<Notice
@@ -73,6 +88,14 @@ export default class Notifications extends Component {
 		) );
 	}
 
+	/**
+	 * It takes a list of notifications, sorts them into two lists,
+	 * one for current notifications and one for past notifications,
+	 * and then renders a list of notifications for each list
+	 *
+	 * @param {Array} notifications
+	 * @return {Array} A list of notifications split by current (the last 7 days) and past (before current)
+	 */
 	noticesList( notifications ) {
 		if ( ! notifications.length ) return null;
 
@@ -86,7 +109,7 @@ export default class Notifications extends Component {
 			[ [], [] ]
 		);
 
-		sortedNotifications.map( ( list, index ) => (
+		return sortedNotifications.map( ( list, index ) => (
 			<section key={ index }>
 				{ ! index && list ? (
 					<header>
