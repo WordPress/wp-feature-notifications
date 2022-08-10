@@ -30,14 +30,14 @@ export default class Notice extends Component {
 	};
 
 	render() {
-		const classes = [ 'wp-notification', 'wp-notice-' + this.props.id ];
-
-		classes.push(
+		const classes = [
+			'wp-notification',
+			'wp-notice-' + this.props.id,
 			this.props.dismissible ? 'is-dismissible' : null,
-			this.props.severity,
+			this.props.severity || null,
 			this.props.unread ? 'unread' : null,
-			this.props.additionalClassName
-		);
+			this.props.additionalClassName,
+		].filter( Boolean );
 
 		return (
 			<div className={ classes.join( ' ' ) } tabIndex="0">
