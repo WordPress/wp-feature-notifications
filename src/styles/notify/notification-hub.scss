@@ -24,6 +24,11 @@
     transform: translateX(-100%);
   }
 
+  // reset child icons color since by default the icon is lightened when the mouse is in hover state
+  #wpadminbar &:hover #wp-notify-hub .ab-icon:before {
+    color: var(--wp-notify_color-white);
+  }
+
   .wp-notification-hub-wrapper {
     position: relative;
     height: inherit;
@@ -75,6 +80,19 @@
     padding: 0 var(--wp-notify_hub-spacing-horizontal) 10px;
   }
 
+
+  // reset icon color since by default the icon
+  // is lightened when the mouse is in hover state
+  #wpadminbar &:hover footer a {
+    .ab-icon:before {
+      color: var(--wp-notify_color-link);
+    }
+    &:hover .ab-icon:before {
+      color: var(--wp-notify_color-link-active);
+    }
+  }
+
+
   footer {
     position: fixed;
     bottom: 0;
@@ -84,6 +102,15 @@
     line-height: 20px;
     padding: 15px var(--wp-notify_hub-spacing-horizontal);
     border-top: 1px solid var(--wp-notify_color-light-gray);
+
+    a,
+    .ab-icon:before {
+      color: var(--wp-notify_color-link);
+    }
+
+    a:hover {
+      color: var(--wp-notify_color-link-active);
+    }
   }
 
   * {
@@ -109,9 +136,6 @@
 
     .ab-icon {
       padding: 0;
-    }
-    .ab-icon:before {
-      color: var(--wp-notify_color-link);
     }
     @media #{$breakpoint} {
       line-height: 40px;
