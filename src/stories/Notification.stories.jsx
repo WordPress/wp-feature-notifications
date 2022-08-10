@@ -22,7 +22,13 @@ export default {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template = ( args ) => (
-	<div id="wpbody" style={{fontFamily:'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif'}}>
+	<div
+		id="wpbody"
+		style={ {
+			fontFamily:
+				'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
+		} }
+	>
 		<div id="wp-notify-dashboard-notices" className="wrap">
 			<Notice { ...args } />
 		</div>

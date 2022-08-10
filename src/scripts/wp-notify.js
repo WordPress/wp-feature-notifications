@@ -110,7 +110,7 @@ wp.notify.clear = ( location = 'adminbar' ) =>
  * @property {Object} notifications - the notification collection
  * @return {JSX.Element} Notifications
  */
-class DashNotices extends Component {
+export class DashNotices extends Component {
 	state = {
 		notifications: { ...store.getState().notifications },
 	};
@@ -140,7 +140,7 @@ render( createElement( DashNotices ), notifyDash );
  * @param {store} store
  * @type {Function} store.getState
  */
-class HubNotice extends Component {
+export class HubNotice extends Component {
 	state = {
 		notifications: { ...store.getState().notifications },
 	};
