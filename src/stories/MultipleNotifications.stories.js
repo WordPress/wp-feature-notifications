@@ -17,10 +17,9 @@ import '../../src/stories/assets/wp-core/site-health.css';
 
 /** Wp-notify style */
 import '../../build/wp-notify.css';
-import '@wordpress/components/build-style/style.css';
 
 export default {
-	title: 'Notification/Dashboard',
+	title: 'MultipleNotifications/Dashboard',
 	component: Notice,
 	parameters: {
 		backgrounds: {
@@ -37,23 +36,47 @@ export default {
  */
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template = ( args ) => (
-	<div
-		id="wpbody"
-		style={ {
-			fontFamily:
-				'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
-		} }
-	>
-		<div id="wp-notify-dashboard-notices" className="wrap">
-			<Notice { ...args } />
+const MultipleNotificationsTemplate = ( args ) => (
+	<>
+		<div
+			id="wpbody"
+			style={ {
+				fontFamily:
+          '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
+			} }
+		>
+			<div id="wp-notify-dashboard-notices" className="wrap">
+				<Notice { ...args } />
+			</div>
 		</div>
-	</div>
+		<div
+			id="wpbody"
+			style={ {
+				fontFamily:
+          '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
+			} }
+		>
+			<div id="wp-notify-dashboard-notices" className="wrap">
+				<Notice { ...args } />
+			</div>
+		</div>
+		<div
+			id="wpbody"
+			style={ {
+				fontFamily:
+          '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
+			} }
+		>
+			<div id="wp-notify-dashboard-notices" className="wrap">
+				<Notice { ...args } />
+			</div>
+		</div>
+	</>
 );
 
-export const Simple = Template.bind( {} );
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-Simple.args = {
+export const Multiple = MultipleNotificationsTemplate.bind( {} );
+Multiple.args = {
 	title: 'Notice Example',
 	message: 'ciao',
 	location: 'dashboard',
