@@ -39,9 +39,9 @@
   }
 
   .wp-notification {
-    --wp-notify_hub-spacing-top: 1.8em;
-    --wp-notify_hub-spacing-bottom: 2.5em;
-    --wp-notify_hub-element-spacing: 1.6em;
+    --wp-notify_hub-spacing-top: clamp(2em, 3vh, 3em);
+    --wp-notify_hub-element-bottom: clamp(1.5em, 3vh, 3em);
+    --wp-notify_hub-spacing-spacing: clamp(2.5em, 3vh, 4em);
 
     display: grid;
     grid-template-rows: auto;
@@ -51,8 +51,8 @@
 
     justify-content: space-between;
 
-    padding: var(--wp-notify_hub-spacing-top) 20px var(--wp-notify_hub-spacing-bottom) 36px;
-    margin: 10px 0 var(--wp-notify_hub-element-spacing);
+    padding: var(--wp-notify_hub-spacing-top) 20px var(--wp-notify_hub-spacing-spacing) 36px;
+    margin: 10px 0 var(--wp-notify_hub-element-bottom);
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
 
     border-left-width: 4px;
@@ -60,7 +60,7 @@
     border-color: var(--wp-notify_color-light-gray);
 
     + .wp-notification {
-      margin-top: calc(var(--wp-notify_hub-element-spacing) * -1);
+      margin-top: calc(var(--wp-notify_hub-element-bottom) * -1);
       border-top: none;
     }
 
