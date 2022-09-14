@@ -10,7 +10,7 @@
   "author": "The WordPress Contributors",
   "license": "GPL-2.0-or-later",
   "bugs": {
-    "url": "https://github.com/WordPress/wp-notify/issues"
+    "url": "https://github.com/WordPress/wp-feature-notifications/issues"
   },
   "homepage": "https://github.com/WordPress/wp-notify#readme",
   "directories": {
