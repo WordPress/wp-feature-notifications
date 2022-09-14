@@ -12,7 +12,7 @@
   "bugs": {
     "url": "https://github.com/WordPress/wp-feature-notifications/issues"
   },
-  "homepage": "https://github.com/WordPress/wp-notify#readme",
+  "homepage": "https://github.com/WordPress/wp-feature-notifications#readme",
   "directories": {
     "doc": "docs",
     "test": "tests"
