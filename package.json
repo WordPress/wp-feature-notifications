@@ -41,7 +41,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/WordPress/wp-notify.git"
+    "url": "git+https://github.com/WordPress/wp-feature-notifications.git"
   },
   "engines": {
     "node": ">=12.13",
