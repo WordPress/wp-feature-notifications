@@ -5,4 +5,4 @@
  *
  * @return {Promise} - the resolution of the promise
  */
-export const delay = ( ms ) => new Promise( ( f ) => setTimeout( f, ms ) );
+export const delay = (ms) => new Promise((f) => setTimeout(f, ms));

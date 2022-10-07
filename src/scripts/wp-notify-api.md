@@ -1,40 +1,18 @@
 # API
 
-## DashNotices
+## default
 
-WP-Notify dashboard notifications
-It watches for state updates and renders the Notifications component when it detects a change
+Undocumented declaration.
 
+## notifyDash
 
-*Returns*
-
-- `JSX.Element`: Notifications
-
-*Type Definition*
-
-- *DashNotices* `JSX.Element`
-
-*Properties*
-
-- *notifications* `Object`: - the notification collection
-
-## HubNotice
-
-WP-Notify toolbar in the secondary position of the admin bar
-It watches for state updates and renders a <Notifications /> component with the updated state
+Renders the DashNotices component
 
 
-*Type*
+## notifyHub
 
-- `Function`store.getState
+Renders the HubNotice component
 
-*Parameters*
-
-- *store* `store`: 
-
-*Returns*
-
-- `JSX.Element`: Notifications
 
 ## store
 

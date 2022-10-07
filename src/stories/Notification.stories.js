@@ -1,7 +1,7 @@
 import React from '@wordpress/element';
 
 /** the single notification component */
-import Notice from '../scripts/components/notification';
+import Notice from '../scripts/components/Notice';
 
 /** Backend style */
 import '../../src/stories/assets/wp-core/admin-bar.css';
@@ -25,7 +25,7 @@ export default {
 	parameters: {
 		backgrounds: {
 			default: 'WordPress',
-			values: [ { name: 'WordPress', value: '#f0f0f1' } ],
+			values: [{ name: 'WordPress', value: '#f0f0f1' }],
 		},
 	},
 };
@@ -37,21 +37,21 @@ export default {
  */
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template = ( args ) => (
+const Template = (args) => (
 	<div
 		id="wpbody"
-		style={ {
+		style={{
 			fontFamily:
 				'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
-		} }
+		}}
 	>
 		<div id="wp-notify-dashboard-notices" className="wrap">
-			<Notice { ...args } />
+			<Notice {...args} />
 		</div>
 	</div>
 );
 
-export const Simple = Template.bind( {} );
+export const Simple = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Simple.args = {
 	title: 'Notice Example',

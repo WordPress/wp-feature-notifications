@@ -1,17 +1,20 @@
 /**
- * Set WordPress presets
+ * ESLint presets
  */
-
-const eslintConfig = {
-	extends: [ 'plugin:@wordpress/eslint-plugin/recommended' ],
-};
-
-eslintConfig.parserOptions = {
-	ecmaVersion: 6,
-	env: { es6: true },
-	babelOptions: {
-		presets: [ require.resolve( '@wordpress/babel-preset-default' ) ],
+module.exports = {
+	env: {
+		browser: true,
+		es2021: true,
+	},
+	extends: ['plugin:@wordpress/eslint-plugin/recommended'],
+	parserOptions: {
+		ecmaVersion: 'latest',
+		requireConfigFile: false,
+		env: { es6: true },
+		ecmaFeatures: {
+			jsx: true,
+			modules: true,
+			experimentalObjectRestSpread: true,
+		},
 	},
 };
-
-module.exports = eslintConfig;

@@ -1,0 +1,90 @@
+/*
+ * Hub Elements style (header, footer etc)
+ */
+#wp-notification-hub {
+  section {
+    padding: 0;
+  }
+
+  header {
+    position: sticky;
+    z-index: 2;
+    min-height: 50px;
+    top: 0;
+    background: var(--wp-notify_color-white);
+    box-shadow: 0 0 0 1px var(--wp-notify_color-white);
+    padding: 0 var(--wp-notify_hub-spacing-horizontal) 10px;
+  }
+
+
+  // reset icon color since by default the icon
+  // is lightened when the mouse is in hover state
+  #wpadminbar &:hover footer a {
+    .ab-icon:before {
+      color: var(--wp-notify_color-link);
+    }
+
+    &:hover .ab-icon:before {
+      color: var(--wp-notify_color-link-active);
+    }
+  }
+
+
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--wp-notify_color-white);
+    line-height: 20px;
+    padding: 15px var(--wp-notify_hub-spacing-horizontal);
+    border-top: 1px solid var(--wp-notify_color-light-gray);
+
+    a,
+    .ab-icon:before {
+      color: var(--wp-notify_color-link);
+    }
+
+    a:hover {
+      color: var(--wp-notify_color-link-active);
+    }
+  }
+
+  * {
+    margin: 0;
+    line-height: 1.5;
+    box-sizing: border-box;
+  }
+
+  h2 {
+    font-weight: 600;
+    font-size: 18px;
+    margin: 0;
+  }
+
+  h3 {
+    font-size: 13px;
+  }
+
+  // the bell icon at the end of wp-admin-bar
+  .wp-notification-action {
+    text-decoration: none;
+    line-height: 20px;
+
+    .ab-icon {
+      padding: 0;
+    }
+
+    @media #{$breakpoint} {
+      line-height: 40px;
+    }
+  }
+
+  #wpadminbar .quicklinks & a {
+    height: inherit;
+  }
+
+  li:hover .ab-icon:before {
+    color: inherit;
+  }
+}

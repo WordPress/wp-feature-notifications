@@ -1,7 +1,6 @@
 /*
  * WP admin bar
  */
-
 #wpadminbar #wp-admin-bar-wp-notify {
   padding-right: 8px;
   position: relative;
@@ -47,7 +46,7 @@
       background: var(--wp-notify_color-blue);
     }
 
-    .ab-label{
+    .ab-label {
       border-color: var(--wp-notify_color-blue);
     }
   }

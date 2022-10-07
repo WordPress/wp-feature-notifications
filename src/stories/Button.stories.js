@@ -16,11 +16,9 @@ export default {
 };
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template = ( args ) => (
-	<Button { ...args }>{ args.label || 'clickme' }</Button>
-);
+const Template = (args) => <Button {...args}>{args.label || 'clickme'}</Button>;
 
-export const Primary = Template.bind( {} );
+export const Primary = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Primary.args = {
 	variant: 'primary', // The accepted values are 'primary' (the primary button styles), 'secondary' (the default button styles), 'tertiary' (the text-based button styles), and 'link' (the link button styles).
@@ -29,12 +27,12 @@ Primary.args = {
 
 export const pressed = () => {
 	const label = 'isPressed';
-	return <Button isPressed>{ label }</Button>;
+	return <Button isPressed>{label}</Button>;
 };
 
 export const buttons = () => {
 	return (
-		<div style={ { padding: '20px' } }>
+		<div style={{ padding: '20px' }}>
 			<h2>Small Buttons</h2>
 			<div className="story-buttons-container">
 				<Button isSmall>Button</Button>
@@ -47,11 +45,11 @@ export const buttons = () => {
 				<Button variant="tertiary" isSmall>
 					Tertiary Button
 				</Button>
-				<Button isSmall icon={ more } />
-				<Button isSmall variant="primary" icon={ more } />
-				<Button isSmall variant="secondary" icon={ more } />
-				<Button isSmall variant="tertiary" icon={ more } />
-				<Button isSmall variant="primary" icon={ more }>
+				<Button isSmall icon={more} />
+				<Button isSmall variant="primary" icon={more} />
+				<Button isSmall variant="secondary" icon={more} />
+				<Button isSmall variant="tertiary" icon={more} />
+				<Button isSmall variant="primary" icon={more}>
 					Icon & Text
 				</Button>
 			</div>
@@ -62,11 +60,11 @@ export const buttons = () => {
 				<Button variant="primary">Primary Button</Button>
 				<Button variant="secondary">Secondary Button</Button>
 				<Button variant="tertiary">Tertiary Button</Button>
-				<Button icon={ more } />
-				<Button variant="primary" icon={ more } />
-				<Button variant="secondary" icon={ more } />
-				<Button variant="tertiary" icon={ more } />
-				<Button variant="primary" icon={ more }>
+				<Button icon={more} />
+				<Button variant="primary" icon={more} />
+				<Button variant="secondary" icon={more} />
+				<Button variant="tertiary" icon={more} />
+				<Button variant="primary" icon={more}>
 					Icon & Text
 				</Button>
 			</div>

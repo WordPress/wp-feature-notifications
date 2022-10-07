@@ -1,7 +1,7 @@
 import React from '@wordpress/element';
 
 /** the single notification component */
-import Notice from '../scripts/components/notification';
+import Notice from '../scripts/components/Notice';
 
 /** Backend style */
 import '../../src/stories/assets/wp-core/admin-bar.css';
@@ -24,7 +24,7 @@ export default {
 	parameters: {
 		backgrounds: {
 			default: 'WordPress',
-			values: [ { name: 'WordPress', value: '#f0f0f1' } ],
+			values: [{ name: 'WordPress', value: '#f0f0f1' }],
 		},
 	},
 };
@@ -36,53 +36,31 @@ export default {
  */
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const MultipleNotificationsTemplate = ( args ) => (
+const MultipleNotificationsTemplate = (args) => (
 	<>
 		<div
 			id="wpbody"
-			style={ {
+			style={{
 				fontFamily:
-          '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
-			} }
+					'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
+			}}
 		>
-			<div id="wp-notify-dashboard-notices" className="wrap">
-				<Notice { ...args } />
-			</div>
-		</div>
-		<div
-			id="wpbody"
-			style={ {
-				fontFamily:
-          '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
-			} }
-		>
-			<div id="wp-notify-dashboard-notices" className="wrap">
-				<Notice { ...args } />
-			</div>
-		</div>
-		<div
-			id="wpbody"
-			style={ {
-				fontFamily:
-          '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
-			} }
-		>
-			<div id="wp-notify-dashboard-notices" className="wrap">
-				<Notice { ...args } />
-			</div>
+			<Notice {...args} />
+			<Notice {...args} />
+			<Notice {...args} />
 		</div>
 	</>
 );
 
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-export const Multiple = MultipleNotificationsTemplate.bind( {} );
+export const Multiple = MultipleNotificationsTemplate.bind({});
 Multiple.args = {
-	title: 'Notice Example',
-	message: 'ciao',
+	title: 'Multiple Notices Example',
+	message: 'WP-Notify Test',
 	location: 'dashboard',
-	acceptMessage: 'OK',
-	acceptLink: '',
-	dismissLabel: 'bye',
+	acceptMessage: 'Accept',
+	acceptLink: '#',
+	dismissLabel: 'Dismiss',
 	dismissible: true,
 	date: Date.now() / 1000,
 };

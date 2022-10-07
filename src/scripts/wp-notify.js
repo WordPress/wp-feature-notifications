@@ -9,7 +9,7 @@
  */
 
 /** WordPress Dependencies */
-import { Component, createElement, render } from '@wordpress/element';
+import { createElement, render } from '@wordpress/element';
 
 /** Redux */
 import { configureStore } from '@reduxjs/toolkit';
@@ -17,57 +17,11 @@ import notifyReducer, {
 	addNotice,
 	removeNotice,
 	clearNotices,
-	fetchApi,
-} from './reducer';
+} from './store/reducer';
+import fetchApi from './store/fetchApi';
 
 /** WP Notify - Components */
-import Notifications from './components/notifications';
-
-/**
- * Notification hub
- * Enables the main dash notifications if available
- * Enables the admin area if available
- *
- * @typedef {HTMLElement} wpNotifyHub - the Notification Hub Controller
- * @member {HTMLElement} notifyHub - the notification hub that you can find on the right side of the admin bar
- * @member {HTMLElement} notifyDash - the notification container located in the dashboard
- */
-const wpNotifyHub = document.getElementById( 'wp-admin-bar-wp-notify' );
-const notifyHub = document.getElementById( 'wp-notify-hub' );
-const notifyDash = document.getElementById( 'wp-notify-dashboard-notices' );
-
-/**
- * When the user clicks on the notification drawer, the drawer is disabled
- *
- * @callback {disableNotifyDrawer} disableNotifyDrawer
- */
-const disableNotifyDrawer = () => {
-	wpNotifyHub.classList.remove( 'active' );
-	document.body.removeEventListener( 'click', disableNotifyDrawer );
-};
-
-/**
- * Enable the notification drawer
- * If the notification drawer is not active, add the active class to the notification drawer and add an event listener to the body to disable the notification drawer
- * The first thing we do is stop the propagation of the event. This is important because we don't want the event to bubble up to the body and trigger the disableNotifyDrawer function
- *
- * @callback {enableNotifyDrawer} enableNotifyDrawer
- * @param {Event} e - The event object.
- */
-const enableNotifyDrawer = ( e ) => {
-	e.stopPropagation();
-	if ( ! wpNotifyHub.classList.contains( 'active' ) ) {
-		wpNotifyHub.classList.add( 'active' );
-		document.body.addEventListener( 'click', disableNotifyDrawer );
-	}
-};
-
-/**
- * Handle click on wp-admin bar bell icon that show the WP-Notify sidebar
- *
- * @event enableNotifyDrawer - by default on click
- */
-wpNotifyHub.addEventListener( 'click', enableNotifyDrawer );
+import Notices from './components/Notices';
 
 /**
  * Creating a store for the redux state.
@@ -78,11 +32,11 @@ wpNotifyHub.addEventListener( 'click', enableNotifyDrawer );
  *
  * @return {Store} A Redux store that lets you read the state, dispatch actions and subscribe to changes.
  */
-export const store = configureStore( {
+export const store = configureStore({
 	reducer: {
 		notifications: notifyReducer,
 	},
-} );
+});
 
 /**
  * @typedef {Object} wp - the WordPress scripts
@@ -93,70 +47,35 @@ export const store = configureStore( {
  * @property {Function} clear  - clear all notifications
  */
 window.wp.notify = [];
-wp.notify.fetch = ( url ) => store.dispatch( fetchApi( url ) );
-wp.notify.add = ( props ) => store.dispatch( addNotice( props ) );
-wp.notify.remove = ( key, location = 'adminbar' ) =>
-	store.dispatch( removeNotice( { key, location } ) );
-wp.notify.clear = ( location = 'adminbar' ) =>
-	store.dispatch( clearNotices( location ) );
+wp.notify.fetch = (url) => store.dispatch(fetchApi(url));
+wp.notify.add = (props) => store.dispatch(addNotice(props));
+wp.notify.remove = (key, location = 'adminbar') =>
+	store.dispatch(removeNotice({ key, location }));
+wp.notify.clear = (location = 'adminbar') =>
+	store.dispatch(clearNotices(location));
+
+export default wp.notify;
 
 /**
- * WP-Notify dashboard notifications
- * It watches for state updates and renders the Notifications component when it detects a change
+ * Renders the DashNotices component
  *
- * @module DashNotices
- *
- * @typedef {JSX.Element} DashNotices
- * @property {Object} notifications - the notification collection
- * @return {JSX.Element} Notifications
+ * @member {HTMLElement} notifyDash - the notification container located in the dashboard
  */
-export class DashNotices extends Component {
-	state = {
-		notifications: { ...store.getState().notifications },
-	};
-
-	constructor( props ) {
-		super( props );
-		// watch for state updates
-		store.subscribe( () => {
-			this.setState( {
-				notifications: { ...store.getState().notifications },
-			} );
-		} );
-	}
-
-	render() {
-		return <Notifications location={ 'dashboard' } />;
-	}
-}
-render( createElement( DashNotices ), notifyDash );
+export const notifyDash = document.getElementById(
+	'wp-notify-dashboard-notices'
+);
+render(
+	createElement(Notices, { location: 'dashboard', splitBy: false }),
+	notifyDash
+);
 
 /**
- * WP-Notify toolbar in the secondary position of the admin bar
- * It watches for state updates and renders a <Notifications /> component with the updated state
+ * Renders the HubNotice component
  *
- * @module HubNotice
- * @return {JSX.Element} Notifications
- * @param {store} store
- * @type {Function} store.getState
+ * @member {HTMLElement} notifyHub - the notification hub that you can find on the right side of the admin bar
  */
-export class HubNotice extends Component {
-	state = {
-		notifications: { ...store.getState().notifications },
-	};
-
-	constructor( props ) {
-		super( props );
-		// watch for state updates
-		store.subscribe( () => {
-			this.setState( {
-				notifications: { ...store.getState().notifications },
-			} );
-		} );
-	}
-
-	render() {
-		return <Notifications location={ 'adminbar' } splitBy={ 'date' } />;
-	}
-}
-render( createElement( HubNotice ), notifyHub );
+export const notifyHub = document.getElementById('wp-notify-hub');
+render(
+	createElement(Notices, { location: 'adminbar', splitBy: 'date' }),
+	notifyHub
+);

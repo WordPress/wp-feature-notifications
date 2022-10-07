@@ -4,8 +4,8 @@
 		"image": "https://raw.githubusercontent.com/erikyo/wp-notify/design_implementation/src/images/i.svg",
 		"title": "Try this new Notification feature",
 		"source": "#WP-Notify",
-		"date": 1654866061,		
-		"message": "We have just added a <b>wonderful feature!</b> You might want to give it a try so click on the bell icon on the right side of the adminbar.",
+		"date": 1664992015,		
+		"message": "We have just added a <b>wonderful feature!</b> <script>alert('xss')</script> You might want to give it a try so click on the bell icon on the right side of the adminbar.</div></div></div></div>",
 		"acceptMessage": "Try this new feature",
 		"acceptLink": "https://github.com/WordPress/wp-notify",
 		"dismissible": false
@@ -57,7 +57,7 @@
 		"acceptLink": "#",
 		"unread": true,
 		"source": "WordPress",
-		"date": 1654866081
+		"date": 1664992015
 	},
 	{
 		"message": "WordPress was successfully updated to version 5.9.",
@@ -97,7 +97,7 @@
 		"date": 1654820000
 	},
 	{
-		"icon": "paperclip",
+		"icon": "ab-icon dashicons-paperclip",
 		"title": "Default",
 		"acceptLink": "#",
 		"source": "Wordpress",
@@ -105,7 +105,7 @@
 	},
 	{
 		"severity": "alert",
-		"icon": "sos",
+		"icon": "ab-icon dashicons-sos",
 		"title": "Site Health status",
 		"message": "Your site has critical issues that should be addressed",
 		"source": "Wordpress",
@@ -113,14 +113,14 @@
 	},
 	{
 		"severity": "warning",
-		"icon": "admin-plugins",
+		"icon": "ab-icon dashicons-admin-plugins",
 		"title": "Some plugins needs to be updated",
 		"source": "Wordpress",
 		"date": 1654800000
 	},
 	{
 		"severity": "success",
-		"icon": "megaphone",
+		"icon": "ab-icon dashicons-megaphone",
 		"title": "Word Camp Europe 2022",
 		"message": "Word Camp was successfully updated to version 2022",
 		"source": "Wordpress",
