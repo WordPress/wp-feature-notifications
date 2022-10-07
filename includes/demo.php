@@ -32,13 +32,13 @@ function wp_admin_bar_wp_notify_item( $wp_admin_bar ) {
 			<div id="wp-notify-hub"></div>%s
 		</div>
 	</aside>',
-		__( 'NoticesLoop' ),
+		__( 'Notifications' ),
 		$footer
 	);
 
 	$args = array(
 		'id'     => 'wp-notify',
-		'title'  => sprintf( "<span class='ab-icon' aria-hidden='true'></span><span class='ab-label'>%s</span>", __( 'NoticesLoop' ) ),
+		'title'  => sprintf( "<span class='ab-icon' aria-hidden='true'></span><span class='ab-label'>%s</span>", __( 'Notifications' ) ),
 		'parent' => 'top-secondary',
 		'meta'   => array(
 			'html' => $aside,
@@ -92,7 +92,7 @@ add_action( 'admin_enqueue_scripts', 'wp_notify_enqueue_admin_assets' );
  * @return void
  */
 function wp_notify_add_admin_options_page() {
-	add_options_page( 'NoticesLoop', 'NoticesLoop', 'manage_options', 'wp-notify', 'wp_notify_render_admin_options_page' );
+	add_options_page( 'Notifications', 'Notifications', 'manage_options', 'wp-notify', 'wp_notify_render_admin_options_page' );
 }
 add_action( 'admin_menu', 'wp_notify_add_admin_options_page' );
 
@@ -106,7 +106,7 @@ add_action( 'admin_menu', 'wp_notify_add_admin_options_page' );
 function wp_notify_render_admin_options_page() {
 	?>
 
-	<h1><?php _e( 'NoticesLoop settings' ); ?></h1>
+	<h1><?php _e( 'Notifications settings' ); ?></h1>
 
 	<p>Tailor which kinds of notifications you'd like to receive, and where.</p>
 
@@ -121,7 +121,7 @@ function wp_notify_render_admin_options_page() {
 			<input type="submit" id="doaction" class="button action" value="Apply">
 		</div>
 	</div>
-	<h2 class="screen-reader-text">NoticesLoop list</h2>
+	<h2 class="screen-reader-text">Notifications list</h2>
 
 	<table class="wp-list-table widefat fixed striped table-view-list">
 
@@ -300,7 +300,7 @@ function wp_notify_render_dashboard_widget() {
 
 			<p class="submit">
 				<input type="submit" name="save" id="save-wp-notify" class="button button-primary" value="<?php esc_attr_e( 'Test Notification' ); ?>">
-				<input type="button" id="clear-all-wp-notify" class="button" value="<?php esc_attr_e( 'Clear All NoticesLoop' ); ?>">
+				<input type="button" id="clear-all-wp-notify" class="button" value="<?php esc_attr_e( 'Clear All Notifications' ); ?>">
 				<br class="clear">
 			</p>
 		</form>

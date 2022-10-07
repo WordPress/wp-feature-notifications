@@ -1,7 +1,6 @@
 /* global pagenow, wp_notify_data */
 
 import './utils/metaBox';
-import fetchApi from './store/fetchApi';
 
 /**
  * @module wpNotify
