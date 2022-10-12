@@ -53,7 +53,7 @@ export default class Notice extends Component {
 		this.source = this.props.source || 'WordPress';
 		this.location = this.props.location || 'adminbar';
 		this.severity = this.props.severity;
-		this.date = this.props.date || Date.now();
+		this.date = this.props.date || Date.now() / 1000;
 
 		this.action = {
 			acceptMessage: this.props.acceptMessage || undefined,
