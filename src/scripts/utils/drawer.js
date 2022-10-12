@@ -10,6 +10,7 @@ export const wpNotifyHub = document.getElementById('wp-admin-bar-wp-notify');
  */
 export const disableNotifyDrawer = () => {
 	wpNotifyHub.classList.remove('active');
+	document.onkeydown = null;
 	document.body.removeEventListener('click', disableNotifyDrawer);
 };
 
@@ -26,6 +27,11 @@ export const enableNotifyDrawer = (e) => {
 	if (!wpNotifyHub.classList.contains('active')) {
 		wpNotifyHub.classList.add('active');
 		document.body.addEventListener('click', disableNotifyDrawer);
+		document.onkeydown = (ev) => {
+			if ('key' in ev && (ev.key === 'Escape' || ev.key === 'Esc')) {
+				disableNotifyDrawer();
+			}
+		};
 	}
 };
 
@@ -37,11 +43,6 @@ export const enableNotifyDrawer = (e) => {
  * @event enableNotifyDrawer - by default on click
  */
 wpNotifyHub.addEventListener('click', enableNotifyDrawer);
-
-/* Adding an event listener to the form with the id of `wp-notification-metabox-form` that handles "clear all notifications" */
-export const wpNotificationClearAll = document.getElementById(
-	'clear-all-wp-notify'
-);
 
 /**
  * It clears the notices in the selected location
