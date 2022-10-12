@@ -11,6 +11,7 @@ import { removeNotice } from '../store/reducer';
 
 import { delay } from '../utils/effects';
 import { clearNotifyDrawer } from '../utils/drawer';
+import { Icon, comment } from '@wordpress/icons';
 
 /**
  * The notification container class
@@ -99,7 +100,14 @@ export default class NoticesLoop extends Component {
 	 * @return {Array} A list of notifications split by current (the last 7 days) and past (before current)
 	 */
 	noticesList(notifications) {
-		if (!notifications.length) return null;
+		// TODO: Component for "Congratulations! You have read all the notifications" (an icon and with text/i18n)
+		if (!notifications.length)
+			return (
+				<div style={{ padding: '20px', textAlign: 'center' }}>
+					<Icon icon={comment} size={96} />
+					<p>empty</p>
+				</div>
+			);
 
 		// TODO: i've faked the sorting option and whatever argument passed will render a list of notifications split by current (the last 7 days) and past (before current)
 		const sortedNotifications = notifications.reduce(
