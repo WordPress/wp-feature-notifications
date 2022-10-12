@@ -17,6 +17,8 @@ import notifyReducer, {
 	addNotice,
 	removeNotice,
 	clearNotices,
+	listNotices,
+	findNotice,
 } from './store/reducer';
 import fetchApi from './store/fetchApi';
 
@@ -39,20 +41,51 @@ export const store = configureStore({
 });
 
 /**
- * @typedef {Object} wp - the WordPress scripts
+ * Wp-Notify Api
+ *
+ * @example if you need to enable the notification outside dashboard and wpNotify setting page
+ *
+ * @typedef {Object} wp - wp
  * @typedef {Object} wp.notify - the notifications controller
- * @property {Function} fetch  - fetch api for updates
+ * @property {Function} fetch  - fetch for new notices
  * @property {Function} add    - add a new notification
- * @property {Function} remove - remove a new notification
+ * @property {Function} remove - remove a notification by key
  * @property {Function} clear  - clear all notifications
+ * @property {Function} list   - list all notifications or those of a particular location
+ * @property {Function} find   - search for a notification by source
+ *
  */
 window.wp.notify = [];
+/**
+ * @param {string} url
+ */
 wp.notify.fetch = (url) => store.dispatch(fetchApi(url));
-wp.notify.add = (props) => store.dispatch(addNotice(props));
-wp.notify.remove = (key, location = 'adminbar') =>
+/**
+ * @param {{location: string, title: *, message: *}} props
+ * @param {*}                                        location
+ */
+wp.notify.add = (props, location = 'dashboard') =>
+	store.dispatch(addNotice(props, location));
+/**
+ * @param {null}   key
+ * @param {string} location
+ */
+wp.notify.remove = (key, location = 'dashboard') =>
 	store.dispatch(removeNotice({ key, location }));
+/**
+ * @param {string|false} location
+ */
 wp.notify.clear = (location = 'adminbar') =>
 	store.dispatch(clearNotices(location));
+/**
+ * @param {string|false} location
+ */
+wp.notify.list = (location) => listNotices(location);
+/**
+ * @param {string} term
+ * @param {Object} args
+ */
+wp.notify.find = (term, args) => findNotice(term, args);
 
 export default wp.notify;
 
