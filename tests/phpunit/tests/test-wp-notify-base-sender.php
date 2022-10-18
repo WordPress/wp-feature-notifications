@@ -1,6 +1,6 @@
 <?php
 
-class Test_WP_Notify_Base_Sender extends WPNotify_TestCase {
+class Test_WP_Notify_Base_Sender extends WP_Notify_TestCase {
 
 	/**
 	 * @param array  $sender_params
@@ -10,7 +10,7 @@ class Test_WP_Notify_Base_Sender extends WPNotify_TestCase {
 	 */
 	public function test_it_can_be_json_encoded( $sender_params, $expected_json ) {
 
-		$sender_reflection = new ReflectionClass('WP_Notify_Base_Sender');
+		$sender_reflection = new ReflectionClass( 'WP_Notify_Base_Sender' );
 		$sender            = $sender_reflection->newInstanceArgs( array_values( $sender_params ) );
 
 		$sender_encoded = json_encode( $sender );
@@ -28,7 +28,7 @@ class Test_WP_Notify_Base_Sender extends WPNotify_TestCase {
 
 		$testee = WP_Notify_Base_Sender::json_unserialize( $json );
 
-		$sender_reflection = new ReflectionClass('WP_Notify_Base_Sender');
+		$sender_reflection = new ReflectionClass( 'WP_Notify_Base_Sender' );
 		/** @var WP_Notify_Base_Sender $sender */
 		$sender = $sender_reflection->newInstanceArgs( array_values( (array) $sender_params ) );
 
@@ -60,7 +60,7 @@ class Test_WP_Notify_Base_Sender extends WPNotify_TestCase {
 
 			'sender with image'    => array(
 				array(
-					'name'               => 'Name 2',
+					'name'                 => 'Name 2',
 					'WP_Notify_Base_Image' => new WP_Notify_Base_Image( 'img-source', 'img-alt' ),
 				),
 				'{"name":"Name 2","WP_Notify_Base_Image":{"source":"img-source","alt":"img-alt"}}',

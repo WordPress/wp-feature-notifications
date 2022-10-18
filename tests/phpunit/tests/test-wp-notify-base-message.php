@@ -1,6 +1,6 @@
 <?php
 
-class Test_WP_Notify_Base_Message extends WPNotify_TestCase {
+class Test_WP_Notify_Base_Message extends WP_Notify_TestCase {
 
 	const SERIALIZED = 'C:20:"WPNotify_BaseMessage":14:{s:7:"Message";}';
 

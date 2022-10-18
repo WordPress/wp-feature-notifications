@@ -1,42 +1,47 @@
 {
-    "name": "wordpress/wp-feature-notifications",
-    "description": "Notification Center for WordPress (Feature Plugin)",
-    "type": "wordpress-plugin",
-    "require-dev": {
-        "phpunit/phpunit": "^7",
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
-        "wp-coding-standards/wpcs": "^2.3",
-	    "wp-phpunit/wp-phpunit": "^5.6",
-        "brainmaestro/composer-git-hooks": "^2.8"
-    },
-    "license": "GPL-2.0-or-later",
-    "authors": [
-        {
-            "name": "Alain Schlesser",
-            "email": "alain.schlesser@gmail.com"
-        }
-    ],
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "scripts": {
-		"lint": "vendor/bin/phpcs --standard=phpcs.xml.dist --report=summary,source includes/",
-		"lint-fix": "vendor/bin/phpcbf --standard=phpcs.xml.dist includes/",
-		"cghooks": "vendor/bin/cghooks",
-		"phpcs-fix": "phpcbf --standard=phpcs.xml.dist includes/",
-		"post-install-cmd": "cghooks add --ignore-lock",
-		"post-update-cmd": "cghooks update"
-	},
-	"extra": {
-		"hooks": {
-			"pre-commit": [
-				"composer lint && npm run build"
-			],
-			"post-merge": "composer install"
-		}
-	},
-    "config": {
-        "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true
-        }
+"name": "wordpress/wp-feature-notifications",
+  "description": "Notification Center for WordPress (Feature Plugin)",
+  "type": "wordpress-plugin",
+  "require-dev": {
+    "phpunit/phpunit": "^7",
+    "yoast/phpunit-polyfills": "1.0.3",
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
+    "wp-coding-standards/wpcs": "^2.3",
+    "wp-phpunit/wp-phpunit": "^5.6",
+    "brainmaestro/composer-git-hooks": "^2.8"
+  },
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Alain Schlesser",
+      "email": "alain.schlesser@gmail.com"
     }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "scripts": {
+    "lint": "vendor/squizlabs/php_codesniffer/bin/phpcs --report=summary,source",
+    "test": "vendor/bin/phpunit",
+    "lint-fix": "vendor/bin/phpcbf --standard=phpcs.xml.dist includes/",
+    "cghooks": "vendor/bin/cghooks",
+    "phpcs-fix": "phpcbf --standard=phpcs.xml.dist includes/",
+    "post-install-cmd": "cghooks add --ignore-lock",
+    "post-update-cmd": "cghooks update"
+  },
+  "extra": {
+    "hooks": {
+      "pre-commit": [
+        "composer lint-fix && npm run build"
+      ],
+      "post-merge": "composer install"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    },
+    "platform": {
+      "php": "7.2"
+    }
+  }
 }
