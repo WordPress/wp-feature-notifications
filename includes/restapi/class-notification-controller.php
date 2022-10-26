@@ -32,8 +32,7 @@ class Notification_Controller extends WP_REST_Controller {
 	 */
 	const NOTIFICATION_BASE = 'notifications';
 
-	public function __construct()
-	{
+	public function __construct() {
 		add_action( 'rest_api_init', array( $this, 'register_routes' ) );
 	}
 
