@@ -59,6 +59,7 @@ require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/persistence/interfac
 require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/persistence/class-wp-notify-abstract-notification-repository.php';
 require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/persistence/class-wp-notify-wpdb-notification-repository.php';
 require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/demo.php';
+require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/class-notification-controller.php';
 
 // TODO: Standardise structure and/or autoloading.
 new REST\Notification_Controller();

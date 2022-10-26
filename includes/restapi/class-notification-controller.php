@@ -37,7 +37,6 @@ class Notification_Controller extends WP_REST_Controller {
 		add_action( 'rest_api_init', array( $this, 'register_routes' ) );
 	}
 
-
 	/**
 	 * Register REST routes
 	 *
