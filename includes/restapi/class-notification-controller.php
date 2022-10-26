@@ -74,12 +74,12 @@ class Notification_Controller extends WP_REST_Controller {
 	 * @return WP_REST_RESPONSE|WP_Error REST response or WP Error
 	 */
 	public function get_notifications( $request ) {
-		$demo_data = file_get_contents( dirname( __FILE__ ) . 'fake_api.json' );
+		$demo_data = file_get_contents( dirname( __FILE__ ) . '/fake_api.json' );
 
 		if ( empty( $demo_data ) ) {
 			return new WP_Error( 'demo', __( 'Could not read demo data.' ) );
 		}
 
-		return rest_ensure_response( $demo_data );
+		return rest_ensure_response( json_decode( $demo_data ) );
 	}
 }
