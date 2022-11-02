@@ -51,7 +51,7 @@ class Notification_Controller extends WP_REST_Controller {
 				'callback'            => array( $this, 'get_notifications' ),
 				'permission_callback' => array( $this, 'authenticate' ),
 			),
-			false,
+			false
 		);
 	}
 
