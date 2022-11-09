@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: [ '7.2', '7.3', '7.4' ]
+        php: [ '7.2', '7.3', '7.4', '8.0' ]
         wp: [ 'latest' ]
     services:
       database:
@@ -27,7 +27,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
@@ -42,7 +42,7 @@ jobs:
       run: echo "::set-output name=dir::$(composer config cache-files-dir)"
 
     - name: Cache Composer packages
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ${{ steps.composer-cache.outputs.dir }}
         key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
@@ -62,9 +62,9 @@ jobs:
     name: Check Coding Standards
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: WPCS check
-        uses: 10up/wpcs-action@v1.3.1
+        uses: 10up/wpcs-action@v1.3.4
         with:
           enable_warnings: true
           use_local_config: true
