@@ -3,6 +3,7 @@ name: PHP Continuous Integration
 on:
   pull_request:
     branches: [ develop, trunk ]
+  workflow_dispatch:
 
 jobs:
   test:
@@ -64,7 +65,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: WPCS check
-        uses: 10up/wpcs-action@v1.3.4
+        uses: 10up/wpcs-action@stable
         with:
           enable_warnings: true
           use_local_config: true
