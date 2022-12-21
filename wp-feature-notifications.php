@@ -14,6 +14,8 @@
  * @package wp-feature-notifications
  */
 
+use WP\Notifications\REST;
+
 if ( ! defined( 'WP_NOTIFICATION_CENTER_PLUGIN_VERSION' ) ) {
 	define( 'WP_NOTIFICATION_CENTER_PLUGIN_VERSION', '0.0.1' );
 }
@@ -57,3 +59,7 @@ require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/persistence/interfac
 require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/persistence/class-wp-notify-abstract-notification-repository.php';
 require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/persistence/class-wp-notify-wpdb-notification-repository.php';
 require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/demo.php';
+require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/restapi/class-notification-controller.php';
+
+// TODO: Standardise structure and/or autoloading.
+new REST\Notification_Controller();
