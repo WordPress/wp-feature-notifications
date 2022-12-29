@@ -1,4 +1,4 @@
-import axios from 'axios';
+import apiFetch from '@wordpress/api-fetch';
 import { delay } from '../utils/effects';
 import { addNotice } from './reducer';
 
@@ -10,11 +10,14 @@ import { addNotice } from './reducer';
  *
  * @return {Function} A function that takes a dispatch function as an argument.
  */
-export default function fetchApi(path) {
+export default function fetchApi(path = '/wp/v2/notifications') {
 	return function (dispatch) {
-		return axios.get(path).then((response) => {
+		apiFetch({
+			method: 'GET',
+			path,
+		}).then((response) => {
 			// TODO: maybe it's better to deliver all notifications immediately? 🤔
-			response.data.forEach((notice) => {
+			response.forEach((notice) => {
 				delay(100).then(() => dispatch(addNotice(notice)));
 			});
 		});

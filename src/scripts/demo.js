@@ -17,5 +17,5 @@ if (
 	(pagenow === 'settings_page_wp-notify' || pagenow === 'dashboard')
 ) {
 	// eslint-disable-next-line camelcase
-	wp.notify.fetch(wp_notify_data.pluginUrl + '/src/scripts/fake_api.json');
+	wp.notify.fetch();
 }
