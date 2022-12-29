@@ -7,7 +7,7 @@ import classNames from 'classnames';
  * @param {Object} props
  * @return {JSX} NoticeImage - the image or the icon wrapped into a div
  */
-export function NoticeImage(props) {
+export const NoticeImage = (props) => {
 	const image =
 		props.image || (props.location === 'adminbar' && wpLogo) || null;
 
@@ -21,7 +21,7 @@ export function NoticeImage(props) {
 			<img src={image} alt={''} />
 		</div>
 	);
-}
+};
 
 /**
  * It returns a div with a class name of `wp-notification-image` and `wp-notification-` plus the type of notification,
@@ -32,17 +32,15 @@ export function NoticeImage(props) {
  * @param {Object} props - The props object is a JavaScript object that contains all the properties that were passed to the component.
  * @return {JSX.Element} A div with a className of 'wp-notification-image' and 'wp-notification-' + props.type.
  */
-export function NoticeIcon(props) {
-	return (
-		<div
-			className={classNames(
-				'wp-notification-image',
-				'wp-notification-icon',
-				'wp-notification-' + props.location
-			)}
-			style={{ background: props.color || undefined }}
-		>
-			<span className={props.icon}></span>
-		</div>
-	);
-}
+export const NoticeIcon = (props) => (
+	<div
+		className={classNames(
+			'wp-notification-image',
+			'wp-notification-icon',
+			'wp-notification-' + props.location
+		)}
+		style={{ background: props.color || undefined }}
+	>
+		<span className={props.icon}></span>
+	</div>
+);
