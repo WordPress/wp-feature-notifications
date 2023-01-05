@@ -1,17 +1,19 @@
 [
 	{
-		"location": "dashboard",
+		"id": 1,
+		"context": "dashboard",
 		"image": "https://raw.githubusercontent.com/erikyo/wp-notify/design_implementation/src/images/i.svg",
 		"title": "Try this new Notification feature",
 		"source": "#WP-Notify",
-		"date": 1664992015,		
+		"date": 1664992015,
 		"message": "We have just added a <b>wonderful feature!</b> <script>alert('xss')</script> You might want to give it a try so click on the bell icon on the right side of the adminbar.</div></div></div></div>",
 		"acceptMessage": "Try this new feature",
 		"acceptLink": "https://github.com/WordPress/wp-notify",
 		"dismissible": false
 	},
 	{
-		"location": "dashboard",
+	  	"id": 2,
+		"context": "dashboard",
 		"image": "https://source.unsplash.com/random/400×400/?notify",
 		"title": "Message variant #1",
 		"date": 1654866071,
@@ -23,13 +25,15 @@
 		"acceptLink": "https://github.com/WordPress/wp-notify"
 	},
 	{
+	  	"id": 3,
 		"title": "Message variant #1 (copy)",
 		"date": 1654866081,
 		"acceptMessage": "TEST",
 		"acceptLink": "https://github.com/WordPress/wp-notify"
 	},
 	{
-		"location": "adminbar",
+	  	"id": 4,
+		"context": "adminbar",
 		"title": "Message variant #2",
 		"source": "#WP-Notify",
 		"date": 1654866091,
@@ -40,7 +44,8 @@
 		"unread": true
 	},
 	{
-		"location": "dashboard",
+	  	"id": 5,
+		"context": "dashboard",
 		"image": "https://gifimage.net/wp-content/uploads/2018/10/animation-notification-gif-2.gif",
 		"date": 1654866101,
 		"title": "Message variant #3",
@@ -49,8 +54,9 @@
 		"dismissible": true,
 		"unread": true
 	},
-	
+
 	{
+	  	"id": 6,
 		"title": "WordPress",
 		"message": "WordPress was successfully updated to version 6.1",
 		"acceptMessage": "Read what's new in 6.1",
@@ -60,11 +66,13 @@
 		"date": 1664992015
 	},
 	{
+	  	"id": 7,
 		"message": "WordPress was successfully updated to version 5.9.",
 		"source": "WordPress",
 		"date": 1654866081
 	},
 	{
+	  	"id": 8,
 		"title": "WordPress",
 		"message": "WordPress was successfully updated to version 6.1",
 		"acceptMessage": "Read what's new in 6.1",
@@ -73,6 +81,7 @@
 		"date": 1654850000
 	},
 	{
+	  	"id": 9,
 		"title": "WordPress",
 		"message": "WordPress was successfully updated to version 6.1",
 		"acceptMessage": "Read what's new in 6.1",
@@ -81,6 +90,7 @@
 		"date": 1654840000
 	},
 	{
+	  	"id": 10,
 		"image": "https://ps.w.org/contact-form-7/assets/icon-256x256.png",
 		"message": "There is a new version of Contact Form 7 available.",
 		"acceptMessage": "Update now",
@@ -89,6 +99,7 @@
 		"date": 1654830000
 	},
 	{
+	  "id": 11,
 		"image": "https://ps.w.org/akismet/assets/icon-256x256.png",
 		"title": "Akismet",
 		"acceptMessage": "Your API key is no longer valid.",
@@ -97,6 +108,7 @@
 		"date": 1654820000
 	},
 	{
+	  "id": 12,
 		"icon": "ab-icon dashicons-paperclip",
 		"title": "Default",
 		"acceptLink": "#",
@@ -104,6 +116,7 @@
 		"date": 1654800000
 	},
 	{
+	  	"id": 13,
 		"severity": "alert",
 		"icon": "ab-icon dashicons-sos",
 		"title": "Site Health status",
@@ -112,6 +125,7 @@
 		"date": 1654800000
 	},
 	{
+	  	"id": 14,
 		"severity": "warning",
 		"icon": "ab-icon dashicons-admin-plugins",
 		"title": "Some plugins needs to be updated",
@@ -119,6 +133,7 @@
 		"date": 1654800000
 	},
 	{
+	  	"id": 15,
 		"severity": "success",
 		"icon": "ab-icon dashicons-megaphone",
 		"title": "Word Camp Europe 2022",
@@ -127,12 +142,14 @@
 		"date": 1654800000
 	},
 	{
+	    "id": 16,
 		"image": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y",
 		"message": "WordPress User has left a message on Lorem Ipsum.",
 		"source": "Comment",
 		"date": 1654400000
 	},
 	{
+	  	"id": 17,
 		"image": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y",
 		"message": "WordPress User has left a message on Lorem Ipsum.",
 		"source": "Comment",
