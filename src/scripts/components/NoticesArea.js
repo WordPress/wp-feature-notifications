@@ -1,49 +1,34 @@
-/**
- * Notification UI components
- */
-import { Component } from '@wordpress/element';
+import { comment, Icon } from '@wordpress/icons';
 import { Button } from '@wordpress/components';
+import { dispatch, useSelect } from '@wordpress/data';
 
-import Notice from './Notice';
-
-import { store } from '../wp-notify';
-import { removeNotice } from '../store/reducer';
-
+import { NOTIFY_NAMESPACE } from '../store/constants';
 import { delay } from '../utils/effects';
+
+import { Notice } from './Notice';
 import { clearNotifyDrawer } from '../utils/drawer';
-import { Icon, comment } from '@wordpress/icons';
+import { updateNotice } from '../store/actions';
 
 /**
- * The notification container class
- * It takes a list of notifications, sorts them into two lists,
- * one for current notifications and one for past notifications, and then renders a list of notifications for each list
+ * WP-Notify toolbar in the secondary position of the admin bar
+ * It watches for state updates and renders a <Notifications /> component with the updated state
+ *
+ * @param {Object} props
+ * @return {JSX.Element} Notifications
  */
-export default class NoticesLoop extends Component {
-	state = {
-		notifications: [],
-	};
+export const NoticesArea = (props) => {
+	const { splitBy, context } = props;
+
+	const notifications =
+		useSelect(
+			(select) => select(NOTIFY_NAMESPACE).getNotices(context),
+			[]
+		) || [];
 
 	/**
 	 * Sets the initial state of the component and binds the updateNoticeState function to the component
-	 *
-	 * @function Object() { [native code] }
-	 *
-	 * @param {Object} props - The props passed to the component.
 	 */
-	constructor(props) {
-		super(props);
-		this.location = this.props.location;
-		this.splitBy = this.props.splitBy;
-		// fire a state update
-		this.updateNoticeState = this.updateNoticeState.bind(this);
-		store.subscribe(() => {
-			this.setState({
-				notifications: [
-					...store.getState().notifications[this.location],
-				],
-			});
-		});
-	}
+	//useEffect(() => {}, []);
 
 	/**
 	 * Updating the state of the notifications object.
@@ -51,57 +36,49 @@ export default class NoticesLoop extends Component {
 	 * @param {number}           key
 	 * @param {{status: string}} newProps
 	 */
-	updateNoticeState = (key, newProps) => {
-		const newState = this.state;
-		newState.notifications[key] = {
-			...newState.notifications[key],
-			...newProps,
-		};
-		return this.setState({ newState });
+	const updateNoticeState = (key, newProps) => {
+		return updateNotice({
+			key: newProps,
+		});
 	};
 
 	/**
 	 * Returns a list of notices
 	 * each notice is a component that has a key, an id, an image, an additional class name, and an onDismiss function
 	 *
-	 * @param {Array} notifications - An array of objects that contain the notice data.
+	 * @param {Array} notifyList - An array of objects that contain the notice data.
 	 *
 	 * @return {Array} An array of Notice components.
 	 */
-	printNotices(notifications) {
-		return notifications.map((notify, k) => (
+	const printNotices = (notifyList) => {
+		return notifyList.map((notify, k) => (
 			<Notice
 				{...notify}
 				key={k}
 				id={k}
 				onDismiss={() => {
-					this.updateNoticeState(k, {
+					updateNoticeState(k, {
 						status: 'dismissing',
 					});
 					delay(100).then(() =>
-						store.dispatch(
-							removeNotice({
-								location: notify.location,
-								key: k,
-							})
-						)
+						dispatch('notifyStore').removeNotice(k)
 					);
 				}}
 			/>
 		));
-	}
+	};
 
 	/**
 	 * It takes a list of notifications, sorts them into two lists,
 	 * one for current notifications and one for past notifications,
 	 * and then renders a list of notifications for each list
 	 *
-	 * @param {Array} notifications
+	 * @param {Array} notifyList
 	 * @return {Array} A list of notifications split by current (the last 7 days) and past (before current)
 	 */
-	noticesList(notifications) {
+	const noticesList = (notifyList) => {
 		// TODO: Component for "Congratulations! You have read all the notifications" (an icon and with text/i18n)
-		if (!notifications.length)
+		if (!notifyList.length)
 			return (
 				<div style={{ padding: '20px', textAlign: 'center' }}>
 					<Icon icon={comment} size={96} />
@@ -125,10 +102,10 @@ export default class NoticesLoop extends Component {
 					<header>
 						<h2>{list.length} unread notifications</h2>
 						<Button
-							id="clear-all-wp-notify-hub"
+							id="clear-all-wp-notify-adminbar"
 							className="wp-notification-action wp-notification-action-markread button-link"
 							onClick={() =>
-								clearNotifyDrawer(this.props.location)
+								clearNotifyDrawer(this.props.context)
 							}
 						>
 							<span className="ab-icon dashicons-saved"></span>{' '}
@@ -140,14 +117,14 @@ export default class NoticesLoop extends Component {
 						<h2>Older notifications</h2>
 					</header>
 				)}
-				{list ? this.printNotices(list) : null}
+				{list ? printNotices(list) : null}
 			</section>
 		));
-	}
+	};
 
-	render() {
-		return this.splitBy
-			? this.noticesList(this.state.notifications) || null
-			: this.printNotices(this.state.notifications);
-	}
-}
+	if (!notifications) return null;
+
+	return splitBy
+		? noticesList(notifications) || null
+		: printNotices(notifications);
+};

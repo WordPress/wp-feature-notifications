@@ -7,19 +7,17 @@ import { __ } from '@wordpress/i18n';
  * @param {Object} props
  * @return {JSX.Element} NoticeImage - the image or the icon wrapped into a div
  */
-export default function NoticeActions(props) {
+const NoticeActions = (props) => {
 	const {
-		location,
-		action: {
-			dismissible,
-			acceptLink,
-			acceptMessage,
-			onDismiss,
-			dismissLabel,
-		},
+		context,
+		dismissible,
+		acceptLink,
+		acceptMessage,
+		onDismiss,
+		dismissLabel,
 	} = props;
 
-	if (location !== 'dashboard') {
+	if (context !== 'dashboard') {
 		return acceptMessage ? (
 			<Button
 				variant="link"
@@ -33,7 +31,7 @@ export default function NoticeActions(props) {
 	}
 
 	return (
-		<div className="wp-notification-actions-wrap">
+		<div className="wp-notification-actions-meta">
 			<Button
 				variant="primary"
 				className="button button-primary wp-notification-hub-trigger"
@@ -54,3 +52,5 @@ export default function NoticeActions(props) {
 		</div>
 	);
 }
+
+export { NoticeActions }

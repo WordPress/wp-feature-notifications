@@ -9,13 +9,13 @@ import classNames from 'classnames';
  */
 export const NoticeImage = (props) => {
 	const image =
-		props.image || (props.location === 'adminbar' && wpLogo) || null;
+		props.image || (props.context === 'adminbar' && wpLogo) || null;
 
 	return (
 		<div
 			className={classNames(
 				'wp-notification-image',
-				'wp-notification-' + props.location
+				'wp-notification-' + props.context
 			)}
 		>
 			<img src={image} alt={''} />
@@ -37,7 +37,7 @@ export const NoticeIcon = (props) => (
 		className={classNames(
 			'wp-notification-image',
 			'wp-notification-icon',
-			'wp-notification-' + props.location
+			'wp-notification-' + props.context
 		)}
 		style={{ background: props.color || undefined }}
 	>
