@@ -50,12 +50,11 @@
 		"url": "git+https://github.com/WordPress/wp-feature-notifications.git"
 	},
 	"engines": {
-		"node": ">=12.13",
+		"node": ">=14",
 		"npm": ">=6.9"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.20.7",
-		"@reduxjs/toolkit": "^1.9.1",
 		"@storybook/addon-actions": "^6.5.15",
 		"@storybook/addon-essentials": "^6.5.15",
 		"@storybook/addon-interactions": "^6.5.15",
@@ -67,16 +66,15 @@
 		"@wordpress/api-fetch": "^6.20.0",
 		"@wordpress/babel-preset-default": "^7.7.0",
 		"@wordpress/components": "^23.0.0",
+		"@wordpress/data": "^8.0.0",
 		"@wordpress/docgen": "^1.32.0",
 		"@wordpress/element": "^5.0.0",
 		"@wordpress/i18n": "^4.23.0",
 		"@wordpress/icons": "^9.14.0",
 		"@wordpress/scripts": "^25.0.0",
 		"babel-loader": "^9.1.0",
-		"browserslist": "^4.20.3",
 		"classnames": "^2.3.2",
-		"moment": "^2.29.3",
-		"prop-types": "^15.8.1"
+		"moment": "^2.29.3"
 	},
 	"dependencies": {
 		"dompurify": "^2.4.0"
