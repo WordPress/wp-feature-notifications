@@ -1,5 +1,5 @@
-import { store } from '../wp-notify';
-import { clearNotices } from '../store/reducer';
+import { dispatch } from '@wordpress/data';
+import store from '../store';
 
 export const wpNotifyHub = document.getElementById('wp-admin-bar-wp-notify');
 
@@ -45,10 +45,10 @@ export const enableNotifyDrawer = (e) => {
 wpNotifyHub.addEventListener('click', enableNotifyDrawer);
 
 /**
- * It clears the notices in the selected location
+ * It clears the notices in the selected context
  *
- * @param {string} location - The location of the notices. This is used to determine which notices to clear.
+ * @param {string} context - The context of the notices. This is used to determine which notices to clear.
  */
-export const clearNotifyDrawer = (location) => {
-	store.dispatch(clearNotices(location || 'adminhub'));
+export const clearNotifyDrawer = (context) => {
+	dispatch(store).clear(context || 'adminhub');
 };

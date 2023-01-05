@@ -14,6 +14,9 @@
     --wp-notify_hub-element-bottom: clamp(1.5em, 3vh, 3em);
     --wp-notify_hub-spacing-gap: clamp(2.5em, 3vh, 4em);
 
+		width: 100%;
+		box-sizing: border-box;
+
     display: grid;
     grid-template-rows: auto;
     grid-template-columns: auto 200px;
@@ -45,7 +48,7 @@
       }
     }
 
-    .wp-notification-actions-wrap {
+    .wp-notification-actions-meta {
 
       .button {
         padding: 8px;

@@ -27,7 +27,7 @@
   // reset child icons color since by default the icon is lightened when the mouse is in hover state
   #wpadminbar &:hover,
   #wpadminbar &:focus {
-    #wp-notify-hub .ab-icon:before {
+    #wp-notify-adminbar .ab-icon:before {
       color: var(--wp-notify_color-white);
     }
   }
@@ -37,7 +37,7 @@
     height: inherit;
     overflow: auto;
 
-    div#wp-notify-hub {
+    div#wp-notify-adminbar {
       min-height: 100%;
     }
 

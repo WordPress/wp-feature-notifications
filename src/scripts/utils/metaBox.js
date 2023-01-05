@@ -1,5 +1,4 @@
-import { clearNotices } from '../store/reducer';
-import { store } from '../wp-notify';
+
 
 window.addEventListener('load', () => {
 	/**
@@ -22,7 +21,7 @@ window.addEventListener('load', () => {
 			wp.notify.add({
 				title,
 				message,
-				location: 'dashboard',
+				context: 'dashboard',
 			});
 		});
 	}
@@ -35,6 +34,6 @@ window.addEventListener('load', () => {
 	);
 	if (wpNotificationClearAll)
 		wpNotificationClearAll.addEventListener('click', () => {
-			store.dispatch(clearNotices('dashboard'));
+			dispatch(notifyStore).clear('dashboard');
 		});
 });
