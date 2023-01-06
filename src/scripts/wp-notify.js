@@ -10,13 +10,10 @@
 
 /** WordPress Dependencies */
 import { createElement, render } from '@wordpress/element';
-import { select } from '@wordpress/data';
+import { dispatch, select } from '@wordpress/data';
 
 /** WP Notify - Components */
 import { NoticesArea } from './components/NoticesArea';
-
-/** The notices redux store */
-import store from './store/';
 
 /** The store default data */
 import { NOTIFY_NAMESPACE, contexts } from './store/constants';
@@ -43,22 +40,6 @@ const notify = {
 	fetchUpdates: () => select(NOTIFY_NAMESPACE).fetchUpdates(),
 
 	/**
-	 * @param {{context: string, title: *, message: *}} payload
-	 */
-	add: (payload) => select(NOTIFY_NAMESPACE).addNotice({ payload }),
-
-	/**
-	 * @param {null}   key
-	 * @param {string} context
-	 */
-	remove: (key) => select(NOTIFY_NAMESPACE).removeNotice(key),
-
-	/**
-	 * @param {string|false} context
-	 */
-	clear: (context = 'adminbar') => select(NOTIFY_NAMESPACE).clear(context),
-
-	/**
 	 * @param {string|false} context
 	 */
 	get: (context = '') => select(NOTIFY_NAMESPACE).getNotices(context),
@@ -67,7 +48,22 @@ const notify = {
 	 * @param {string} term
 	 * @param {Object} args
 	 */
-	find: (term, args) => select(NOTIFY_NAMESPACE).find(term, args),
+	find: (term, args) => select(NOTIFY_NAMESPACE).findNotice(term, args),
+
+	/**
+	 * @param {{context: string, title: *, message: *}} payload
+	 */
+	add: (payload) => dispatch(NOTIFY_NAMESPACE).addNotice(payload),
+
+	/**
+	 * @param {null} id
+	 */
+	remove: (id) => dispatch(NOTIFY_NAMESPACE).removeNotice(id),
+
+	/**
+	 * @param {string|false} context
+	 */
+	clear: (context = 'adminbar') => dispatch(NOTIFY_NAMESPACE).clear(context),
 };
 /** export wp-notify for further uses */
 export default notify;
@@ -76,7 +72,7 @@ export default notify;
 window.wp.notify = notify;
 
 /**
- * Loops into contexts items and add a component for each one
+ * Loops into contexts and register the found locations into the store state
  *
  * @param {context} context
  */
@@ -84,8 +80,12 @@ contexts.forEach((context) =>
 	select(NOTIFY_NAMESPACE).registerContext(context)
 );
 
-select(store).fetchUpdates();
+/** after registering contexts we could fetch the notifications */
+select(NOTIFY_NAMESPACE).fetchUpdates();
 
+/**
+ * Loops into contexts and adds a NoticesArea component for each one
+ */
 contexts.forEach((context) => {
 	/**
 	 * Renders the component into the specified context
@@ -93,7 +93,10 @@ contexts.forEach((context) => {
 	 * @member {HTMLElement} notifyDash - the area that will host the notifications
 	 */
 	render(
-		createElement(NoticesArea, { context }),
+		createElement(NoticesArea, {
+			context,
+			splitBy: context === 'adminbar' ? 'date' : undefined,
+		}),
 		document.getElementById(`wp-notify-${context}`)
 	);
 });
