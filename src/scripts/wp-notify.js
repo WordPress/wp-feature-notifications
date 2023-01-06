@@ -18,6 +18,8 @@ import { NoticesArea } from './components/NoticesArea';
 /** The store default data */
 import { NOTIFY_NAMESPACE, contexts } from './store/constants';
 
+export * as store from './store';
+
 /**
  * Wp-Notify Api
  *

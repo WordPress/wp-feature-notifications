@@ -1,5 +1,6 @@
-
-
+/**
+ * On load listen for metabox events like submit, clear etc
+ */
 window.addEventListener('load', () => {
 	/**
 	 * Adding an event listener to the form with the id of `wp-notification-metabox-form` that adds a new notification using the form data
@@ -18,7 +19,7 @@ window.addEventListener('load', () => {
 				'wp-notification-metabox-form-message'
 			).value;
 
-			wp.notify.add({
+			wp.notify.addNotice({
 				title,
 				message,
 				context: 'dashboard',
@@ -34,6 +35,6 @@ window.addEventListener('load', () => {
 	);
 	if (wpNotificationClearAll)
 		wpNotificationClearAll.addEventListener('click', () => {
-			dispatch(notifyStore).clear('dashboard');
+			wp.notify.clear('dashboard');
 		});
 });
