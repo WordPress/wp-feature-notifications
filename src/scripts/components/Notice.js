@@ -5,42 +5,50 @@
  */
 
 // Register components
-import { NoticeImage, NoticeIcon } from './NoticeImage';
+import { NoticeIcon } from './NoticeImage';
 import { NoticeActions } from './NoticeAction';
 
 // Import utilities
 import classnames from 'classnames';
 import { purify } from '../utils/sanitization';
 import moment from 'moment';
+import { __ } from '@wordpress/i18n';
+import { defaultContext, NOTIFY_NAMESPACE } from '../store/constants';
+import { delay } from '../utils/effects';
+import { dispatch } from '@wordpress/data';
 
 /**
  * It renders a single notice
  *
- * @param  props
+ * @param {Object} props
  * @return {JSX.Element} Notice - the single notice
  */
 export const Notice = (props) => {
 	const {
 		id,
-		context,
 		title,
-		image,
-		icon,
-		figure,
-		action,
-		iconBackgroundColor,
 		status,
-		source,
-		date,
+		context = defaultContext,
+		source = 'WordPress',
+		date = __('Just now'),
 		message,
-		acceptMessage,
-		acceptLink,
-		dismissLabel,
 		severity,
+		dismissible,
 		unread,
-		dismissible = false,
-		onDismiss,
 	} = props;
+
+	/**
+	 * Dismiss the target notification
+	 *
+	 * @param  notifyID
+	 */
+	function dismissNotice() {
+		dispatch(NOTIFY_NAMESPACE).updateNotice({
+			id,
+			status: 'dismissing',
+		});
+		delay(100).then(dispatch(NOTIFY_NAMESPACE).removeNotice(id));
+	}
 
 	return (
 		<div
@@ -57,22 +65,18 @@ export const Notice = (props) => {
 			<div className="wp-notification-wrap">
 				<h3 className="wp-notification-title">{title}</h3>
 				<p dangerouslySetInnerHTML={purify(message)} />
-				<NoticeActions {...props} />
+				<NoticeActions
+					action={props?.action ?? {}}
+					onDismiss={dismissNotice}
+					context={context}
+				/>
 				<p className="wp-notification-source">
 					<span className="name">{source}</span> {'\u2022 '}
 					<span className="date">{moment.unix(date).fromNow()}</span>
 				</p>
 			</div>
-			{icon ? (
-				<NoticeIcon
-					context={context}
-					severity={severity}
-					color={iconBackgroundColor}
-					icon={icon}
-				/>
-			) : (
-				<NoticeImage context={context} image={image} />
-			)}
+
+			<NoticeIcon {...props} />
 		</div>
 	);
 };
