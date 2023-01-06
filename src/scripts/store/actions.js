@@ -5,6 +5,13 @@ export const hydrate = (payload) => {
 	};
 };
 
+export const clear = (context) => {
+	return {
+		type: 'CLEAR',
+		context,
+	};
+};
+
 export const addNotice = (payload) => {
 	return {
 		type: 'ADD',
@@ -12,10 +19,10 @@ export const addNotice = (payload) => {
 	};
 };
 
-export const removeNotice = (key) => {
+export const removeNotice = (id) => {
 	return {
 		type: 'DELETE',
-		key
+		id,
 	};
 };
 

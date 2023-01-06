@@ -1,11 +1,5 @@
-function findContext(notifications, key) {
-	notifications.forEach((location) => {
-		const found = location.find((notification) => notification.id === key);
-		if (found) {
-			return found;
-		}
-	});
-}
+import { findContext } from './utils';
+
 /**
  * Reducer returning the next notices state. The notices state is an object
  * where each key is a context, its value an array of notice objects.
@@ -17,15 +11,6 @@ function findContext(notifications, key) {
  */
 const reducer = (state = {}, action) => {
 	switch (action.type) {
-		case 'ADD':
-			return {
-				...state,
-				[action.payload.context]: [
-					...state[action.payload.context],
-					action.payload,
-				],
-			};
-
 		case 'HYDRATE':
 			let updated = { ...state };
 			action.payload.forEach((notification) => {
@@ -37,20 +22,34 @@ const reducer = (state = {}, action) => {
 			});
 			return updated;
 
-		case 'DELETE':
-			const context = findContext(action.key);
+		case 'ADD':
 			return {
-				...state[context].slice(0, action.key),
-				...state[context].slice(action.key + 1),
+				...state,
+				[action.payload.context]: [
+					...state[action.payload.context],
+					action.payload,
+				],
+			};
+
+		case 'DELETE':
+			const context = findContext(state, action.id);
+			return {
+				...state,
+				[context]: state[context].filter(
+					(notice) => notice.id !== action.id
+				),
 			};
 
 		case 'CLEAR':
-			state[action.payload.context] = [];
-			return state;
+			state[action.context] = [];
+			return { ...state };
 
 		case 'UPDATE':
-			return state[action.payload.context].map((notice) =>
-				notice.key === action.key ? action.payload : notice
+			const location = findContext(state, action.payload.id);
+			state[location].map((notice) =>
+				notice.id === action.payload.id
+					? { ...notice, ...action.payload } // merge the new object with the old object
+					: notice
 			);
 	}
 
