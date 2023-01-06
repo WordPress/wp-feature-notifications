@@ -1,23 +1,27 @@
 import { Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { defaultContext } from '../store/constants';
 
 /**
  * Renders an image or icon based on the type of notification
  *
- * @param {Object} props
+ * @param {Object} param
+ * @param {Object} param.action
+ * @param {string} param.context
+ * @param          param.onDismiss
+ * @param          param.dismissAction
+ * @param          param.id
  * @return {JSX.Element} NoticeImage - the image or the icon wrapped into a div
  */
-const NoticeActions = (props) => {
+const NoticeActions = ({ action, context, onDismiss }) => {
 	const {
-		context,
-		dismissible,
-		acceptLink,
-		acceptMessage,
-		onDismiss,
-		dismissLabel,
-	} = props;
+		acceptLink = '#',
+		acceptMessage = __('Accept'),
+		dismissible = false,
+		dismissLabel = __('Dismiss'),
+	} = action;
 
-	if (context !== 'dashboard') {
+	if (context === defaultContext) {
 		return acceptMessage ? (
 			<Button
 				variant="link"
@@ -37,20 +41,20 @@ const NoticeActions = (props) => {
 				className="button button-primary wp-notification-hub-trigger"
 				onClick={() => (window.location.href = acceptLink)}
 			>
-				{acceptMessage || __('Accept')}
+				{acceptMessage}
 			</Button>
 			{dismissible && (
 				<Button
 					variant="link"
 					className={'button button-link wp-notification-hub-dismiss'}
-					onClick={onDismiss}
+					onClick={() => onDismiss()}
 					icon={'no-alt'}
 				>
-					{dismissLabel || __('Dismiss')}
+					{dismissLabel}
 				</Button>
 			)}
 		</div>
 	);
-}
+};
 
-export { NoticeActions }
+export { NoticeActions };
