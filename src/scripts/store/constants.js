@@ -9,6 +9,11 @@ export const NOTIFY_NAMESPACE = 'core/wp-notify';
 export const API_PATH = '/wp/v2/notifications/';
 
 /**
- *  @member context WP-Notify default context
+ *  @member defaultContext WP-Notify default context
  */
-export const contexts = ['dashboard', 'adminbar'];
+export const defaultContext = 'adminbar';
+
+/**
+ *  @member context WP-Notify default contexts
+ */
+export const contexts = [defaultContext, 'dashboard'];
