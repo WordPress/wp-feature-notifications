@@ -1,5 +1,6 @@
 import { dispatch } from '@wordpress/data';
-import store from '../store';
+import { WEEK_IN_SECONDS } from '../components/NoticesArea';
+import { NOTIFY_NAMESPACE } from '../store/constants';
 
 export const wpNotifyHub = document.getElementById('wp-admin-bar-wp-notify');
 
@@ -12,6 +13,29 @@ export const disableNotifyDrawer = () => {
 	wpNotifyHub.classList.remove('active');
 	document.onkeydown = null;
 	document.body.removeEventListener('click', disableNotifyDrawer);
+};
+
+/**
+ * At the moment the function return the notifications if the split by isn't set to "date"
+ *
+ * @param {Array}  notifications
+ * @param {string} by
+ *
+ * @return {Array} two list of Notifications, one for the new and one for the old
+ */
+export const getSorted = (notifications, by = 'date') => {
+	const Limit = by === 'date' ? Date.now() / WEEK_IN_SECONDS : false;
+	if (Limit) {
+		return notifications.reduce(
+			([current, past], item) => {
+				return item.date >= Limit
+					? [[...current, item], past]
+					: [current, [...past, item]];
+			},
+			[[], []]
+		);
+	}
+	return notifications;
 };
 
 /**
@@ -50,5 +74,5 @@ wpNotifyHub.addEventListener('click', enableNotifyDrawer);
  * @param {string} context - The context of the notices. This is used to determine which notices to clear.
  */
 export const clearNotifyDrawer = (context) => {
-	dispatch(store).clear(context || 'adminhub');
+	dispatch(NOTIFY_NAMESPACE).clear(context);
 };
