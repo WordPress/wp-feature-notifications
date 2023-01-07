@@ -4,6 +4,7 @@ class WP_Notify_Base_Image implements WP_Notify_Image {
 
 	/**
 	 * It can be and URL of an image file or and data/image source
+	 *
 	 * @var string source for "src" attribute of an <img/> html node
 	 */
 	protected $source;
@@ -44,6 +45,7 @@ class WP_Notify_Base_Image implements WP_Notify_Image {
 
 	/**
 	 * Source of the image to be used on src attribute of <img/>
+	 *
 	 * @return string
 	 */
 	public function get_source() {
@@ -52,6 +54,7 @@ class WP_Notify_Base_Image implements WP_Notify_Image {
 
 	/**
 	 * Alternative text to be used on alt attribute of <img/>
+	 *
 	 * @return string
 	 */
 	public function get_alt() {

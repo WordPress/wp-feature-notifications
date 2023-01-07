@@ -5,37 +5,25 @@ import { NOTIFY_NAMESPACE } from '../store/constants';
 export const wpNotifyHub = document.getElementById('wp-admin-bar-wp-notify');
 
 /**
- * When the user clicks on the notification drawer, the drawer is disabled
+ * It clears the notices in the selected context
  *
- * @callback {disableNotifyDrawer} disableNotifyDrawer
+ * @param {string} context - The context of the notices. This is used to determine which notices to clear.
  */
-export const disableNotifyDrawer = () => {
-	wpNotifyHub.classList.remove('active');
-	document.onkeydown = null;
-	document.body.removeEventListener('click', disableNotifyDrawer);
+export const clearNotifyDrawer = (context) => {
+	dispatch(NOTIFY_NAMESPACE).clear(context);
 };
 
 /**
- * At the moment the function return the notifications if the split by isn't set to "date"
+ * When the user clicks on the notification drawer, the drawer is disabled
  *
- * @param {Array}  notifications
- * @param {string} by
- *
- * @return {Array} two list of Notifications, one for the new and one for the old
+ * @param  e
+ * @callback {disableNotifyDrawer} disableNotifyDrawer
  */
-export const getSorted = (notifications, by = 'date') => {
-	const Limit = by === 'date' ? Date.now() / WEEK_IN_SECONDS : false;
-	if (Limit) {
-		return notifications.reduce(
-			([current, past], item) => {
-				return item.date >= Limit
-					? [[...current, item], past]
-					: [current, [...past, item]];
-			},
-			[[], []]
-		);
-	}
-	return notifications;
+export const disableNotifyDrawer = (e) => {
+	e.stopPropagation();
+	wpNotifyHub.classList.remove('active');
+	document.onkeydown = null;
+	document.body.removeEventListener('click', disableNotifyDrawer);
 };
 
 /**
@@ -67,12 +55,28 @@ export const enableNotifyDrawer = (e) => {
  * @event enableNotifyDrawer - by default on click
  */
 wpNotifyHub.addEventListener('click', enableNotifyDrawer);
+wpNotifyHub.addEventListener('focus', enableNotifyDrawer, true);
+wpNotifyHub.addEventListener('blur', disableNotifyDrawer, true);
 
 /**
- * It clears the notices in the selected context
+ * At the moment the function return the notifications if the split by isn't set to "date"
  *
- * @param {string} context - The context of the notices. This is used to determine which notices to clear.
+ * @param {Array}  notifications
+ * @param {string} by
+ *
+ * @return {Array} two list of Notifications, one for the new and one for the old
  */
-export const clearNotifyDrawer = (context) => {
-	dispatch(NOTIFY_NAMESPACE).clear(context);
+export const getSorted = (notifications, by = 'date') => {
+	const Limit = by === 'date' ? Date.now() - WEEK_IN_SECONDS : false;
+	if (Limit) {
+		return notifications.reduce(
+			([current, past], item) => {
+				return item.date >= Limit
+					? [[...current, item], past]
+					: [current, [...past, item]];
+			},
+			[[], []]
+		);
+	}
+	return notifications;
 };

@@ -1,6 +1,9 @@
 /**
  * On load listen for metabox events like submit, clear etc
  */
+import { dispatch } from '@wordpress/data';
+import { NOTIFY_NAMESPACE } from '../store/constants';
+
 window.addEventListener('load', () => {
 	/**
 	 * Adding an event listener to the form with the id of `wp-notification-metabox-form` that adds a new notification using the form data
@@ -19,7 +22,7 @@ window.addEventListener('load', () => {
 				'wp-notification-metabox-form-message'
 			).value;
 
-			wp.notify.addNotice({
+			dispatch(NOTIFY_NAMESPACE).addNotice({
 				title,
 				message,
 				context: 'dashboard',

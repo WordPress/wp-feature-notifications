@@ -15,7 +15,7 @@ class WP_Notify_Base_Sender implements WP_Notify_Sender, WP_Notify_Json_Unserial
 	/**
 	 * WPNotify_BaseSender constructor.
 	 *
-	 * @param string                  $name
+	 * @param string                    $name
 	 * @param WP_Notify_Base_Image|null $image
 	 */
 	public function __construct( $name, $image = null ) {
