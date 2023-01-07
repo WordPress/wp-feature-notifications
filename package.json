@@ -34,10 +34,10 @@
 		"check-engines": "wp-scripts check-engines",
 		"check-licenses": "wp-scripts check-licenses",
 		"format": "wp-scripts format",
-		"lint:css": "wp-scripts lint-style",
-		"lint:js": "wp-scripts lint-js",
-		"lint:md:docs": "wp-scripts lint-md-docs",
-		"lint:pkg-json": "wp-scripts lint-pkg-json",
+		"lint:css": "wp-scripts lint-style ./src",
+		"lint:js": "wp-scripts lint-js ./src",
+		"lint:md:docs": "wp-scripts lint-md-docs ./src",
+		"lint:pkg-json": "wp-scripts lint-pkg-json ./src",
 		"plugin-zip": "wp-scripts plugin-zip",
 		"test:e2e": "wp-scripts test-e2e",
 		"test:unit": "wp-scripts test-unit-js",
@@ -74,6 +74,7 @@
 		"@wordpress/scripts": "^25.1.0",
 		"babel-loader": "^9.1.0",
 		"classnames": "^2.3.2",
+		"husky": "^8.0.3",
 		"moment": "^2.29.3"
 	},
 	"dependencies": {
@@ -81,10 +82,5 @@
 	},
 	"browserslist": [
 		"extends @wordpress/browserslist-config"
-	],
-	"babel": {
-		"presets": [
-			"@wordpress/babel-preset-default"
-		]
-	}
+	]
 }
