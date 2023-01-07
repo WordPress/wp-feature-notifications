@@ -44,7 +44,7 @@ export const NoticesArea = (props) => {
 				{sorted.map((list, index) => (
 					<section key={index}>
 						<NoticeSectionHeader
-							location={location}
+							context={context}
 							unreadCount={list.length}
 							isMain={index === 0} // the main section is the first one
 						/>

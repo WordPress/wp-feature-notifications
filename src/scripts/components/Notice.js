@@ -14,7 +14,6 @@ import { purify } from '../utils/sanitization';
 import moment from 'moment';
 import { __ } from '@wordpress/i18n';
 import { defaultContext, NOTIFY_NAMESPACE } from '../store/constants';
-import { delay } from '../utils/effects';
 import { dispatch } from '@wordpress/data';
 
 /**
@@ -47,7 +46,7 @@ export const Notice = (props) => {
 			id,
 			status: 'dismissing',
 		});
-		delay(100).then(dispatch(NOTIFY_NAMESPACE).removeNotice(id));
+		dispatch(NOTIFY_NAMESPACE).removeNotice(id);
 	}
 
 	return (
@@ -56,7 +55,7 @@ export const Notice = (props) => {
 				'wp-notification',
 				'wp-notice-' + id,
 				dismissible,
-				severity || null,
+				severity ? severity : null,
 				unread ? 'unread' : null,
 				status
 			)}
@@ -64,7 +63,7 @@ export const Notice = (props) => {
 		>
 			<div className="wp-notification-wrap">
 				<h3 className="wp-notification-title">{title}</h3>
-				<p dangerouslySetInnerHTML={purify(message)} />
+				{message || <p dangerouslySetInnerHTML={purify(message)} />}
 				<NoticeActions
 					action={props?.action ?? {}}
 					onDismiss={dismissNotice}

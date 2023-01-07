@@ -35,10 +35,10 @@ const NoticeActions = ({ action, context, onDismiss }) => {
 	}
 
 	return (
-		<div className="wp-notification-actions-meta">
+		<div className="wp-notification-actions">
 			<Button
 				variant="primary"
-				className="button button-primary wp-notification-hub-trigger"
+				className="button button-primary wp-notification-actions-trigger"
 				onClick={() => (window.location.href = acceptLink)}
 			>
 				{acceptMessage}
@@ -46,7 +46,9 @@ const NoticeActions = ({ action, context, onDismiss }) => {
 			{dismissible && (
 				<Button
 					variant="link"
-					className={'button button-link wp-notification-hub-dismiss'}
+					className={
+						'button button-link wp-notification-actions-dismiss'
+					}
 					onClick={() => onDismiss()}
 					icon={'no-alt'}
 				>
