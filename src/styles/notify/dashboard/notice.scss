@@ -38,6 +38,7 @@
       border-top: none;
     }
 
+		// removes the top and the bottom margin from the first and the last notification of the dashboard
     .wp-notification-wrap {
       > :first-child {
         margin-top: 0;
@@ -48,7 +49,8 @@
       }
     }
 
-    .wp-notification-actions-meta {
+    .wp-notification-actions {
+			margin-top: 1em;
 
       .button {
         padding: 8px;
@@ -63,12 +65,15 @@
       }
     }
 
-    .wp-notification-image img {
+    .wp-notification-image figure {
       max-width: 200px;
       max-height: 200px;
-      width: 100%;
-      object-position: center;
-      object-fit: contain;
+			margin: 0;
+			img {
+				width: 100%;
+				object-position: center;
+				object-fit: contain;
+			}
     }
 
     @media #{$breakpoint} {

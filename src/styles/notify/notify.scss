@@ -7,15 +7,16 @@
   overflow: hidden;
   max-height: 600px;
 
-  .wp-notification-action {
+  &-action {
     text-decoration-line: underline;
     color: var(--wp-notify_color-link);
   }
 
-  .wp-notification-source {
+  &-source {
     color: var(--wp-notify_color-secondary);
   }
 
+	// Default animation
   &.dismissing {
     transition: opacity 100ms, padding 100ms, max-height 100ms;
     padding-top: 0 !important;
