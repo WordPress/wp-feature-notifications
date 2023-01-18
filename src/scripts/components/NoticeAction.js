@@ -11,20 +11,20 @@ import { defaultContext } from '../store/constants';
  * @param          param.onDismiss
  * @param          param.dismissAction
  * @param          param.id
+ * @param          param.dismissible
  * @return {JSX.Element} NoticeImage - the image or the icon wrapped into a div
  */
-const NoticeActions = ({ action, context, onDismiss }) => {
+const NoticeActions = ({ action, context, dismissible = false, onDismiss }) => {
 	const {
 		acceptLink = '#',
 		acceptMessage = __('Accept'),
-		dismissible = false,
 		dismissLabel = __('Dismiss'),
 	} = action;
 
 	if (context === defaultContext) {
 		return acceptMessage ? (
 			<Button
-				variant="link"
+				variant={'link'}
 				// TODO: at the moment it is only possible to use a link but it would not be complex to extend this functionality
 				onClick={() => (window.location.href = acceptLink)}
 				className={'wp-notification-action'}
@@ -37,18 +37,16 @@ const NoticeActions = ({ action, context, onDismiss }) => {
 	return (
 		<div className="wp-notification-actions">
 			<Button
-				variant="primary"
-				className="button button-primary wp-notification-actions-trigger"
+				variant={'primary'}
+				className={'button-primary wp-notification-action'}
 				onClick={() => (window.location.href = acceptLink)}
 			>
 				{acceptMessage}
 			</Button>
 			{dismissible && (
 				<Button
-					variant="link"
-					className={
-						'button button-link wp-notification-actions-dismiss'
-					}
+					variant={'tertiary'}
+					className={'button-tertiary wp-notification-action'}
 					onClick={() => onDismiss()}
 					icon={'no-alt'}
 				>

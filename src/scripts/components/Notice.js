@@ -16,6 +16,13 @@ import { __ } from '@wordpress/i18n';
 import { defaultContext, NOTIFY_NAMESPACE } from '../store/constants';
 import { dispatch } from '@wordpress/data';
 
+export const NoticeMeta = ({ date, source }) => (
+	<p className="wp-notification-meta">
+		<span className="name">{source}</span> {'\u2022 '}
+		<span className="date">{moment(date).fromNow()}</span>
+	</p>
+);
+
 /**
  * It renders a single notice
  *
@@ -38,8 +45,6 @@ export const Notice = (props) => {
 
 	/**
 	 * Dismiss the target notification
-	 *
-	 * @param  notifyID
 	 */
 	function dismissNotice() {
 		dispatch(NOTIFY_NAMESPACE).updateNotice({
@@ -59,20 +64,17 @@ export const Notice = (props) => {
 				unread ? 'unread' : null,
 				status
 			)}
-			tabIndex="0"
 		>
 			<div className="wp-notification-wrap">
 				<h3 className="wp-notification-title">{title}</h3>
-				{message || <p dangerouslySetInnerHTML={purify(message)} />}
+				{message ?? <p dangerouslySetInnerHTML={purify(message)} />}
 				<NoticeActions
 					action={props?.action ?? {}}
 					onDismiss={dismissNotice}
 					context={context}
+					dismissible={dismissible}
 				/>
-				<p className="wp-notification-source">
-					<span className="name">{source}</span> {'\u2022 '}
-					<span className="date">{moment.unix(date).fromNow()}</span>
-				</p>
+				<NoticeMeta date={date} source={source} />
 			</div>
 
 			<NoticeIcon {...props} />
