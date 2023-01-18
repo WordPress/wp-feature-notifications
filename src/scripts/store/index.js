@@ -10,9 +10,8 @@ import * as resolvers from './resolvers';
 /**
  * Creating a store for the redux state.
  *
- * @typedef {Object} Store
- * @property {Function} dispatch - The only way to update the state is to call store.dispatch() and pass in an action object.
- * @property {Function} getState - Returns the current state tree of your application. It is equal to the last value returned by the store's reducer.
+ * @typedef { import('node_modules/@wordpress/data/build-types/index.d.ts').createReduxStore } createReduxStore
+ * @typedef { import('node_modules/@wordpress/data/build-types/index.d.ts').register } register
  *
  * @return {store} A Redux store that lets you read the state, dispatch actions and subscribe to changes.
  */

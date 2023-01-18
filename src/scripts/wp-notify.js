@@ -1,13 +1,3 @@
-/**
- * WP Notify
- *
- * @file index.js
- * @name wpNotify
- * @description A feature plugin for WordPress, which aims to create a new (better) way to manage and deliver notifications to the relevant audience.
- * @author the WordPress Community
- *
- */
-
 /** WordPress Dependencies */
 import { createElement, render } from '@wordpress/element';
 import { dispatch, select } from '@wordpress/data';
@@ -18,65 +8,72 @@ import { NoticesArea } from './components/NoticesArea';
 /** The store default data */
 import { NOTIFY_NAMESPACE, contexts } from './store/constants';
 
+/**
+ * The redux store
+ */
 export * as store from './store';
 
 /**
  * Wp-Notify Api
  *
- * @example if you need to enable the notification outside dashboard and wpNotify setting page
- *
- * @typedef {Object} notify - the notifications controller
- *
- * @property {Function} fetchUpdates - fetch for new notices
- * @property {Function} add          - add a new notification
- * @property {Function} remove       - remove a notification by key
- * @property {Function} clear        - clear all notifications
- * @property {Function} list         - list all notifications or those of a particular context
- * @property {Function} find         - search for a notification by source
- *
+ * @member {Object} notify
  */
 const notify = {
 	/**
-	 * fetches api and update notification store
+	 * Fetch for new notices
 	 */
 	fetchUpdates: () => select(NOTIFY_NAMESPACE).fetchUpdates(),
 
 	/**
+	 * List all notifications or those of a particular context
+	 *
 	 * @param {string|false} context
 	 */
 	get: (context = '') => select(NOTIFY_NAMESPACE).getNotices(context),
 
 	/**
+	 * Search for a notification by key or term (term is optional, returns an array of objects)
+	 *
 	 * @param {string} term
 	 * @param {Object} args
+	 * @example ```js
+	 * // if you need to find a notification by key
+	 * notify.find(5) // [{ 'id': 5, title: "hello", location: "dashboard", ... }]
+	 * // or by term
+	 * notify.find("hello", {term: 'title'}) // [{ 'id': 5, title: "hello", location: "dashboard", ... }, {...}]
+	 * ```
 	 */
 	find: (term, args) => select(NOTIFY_NAMESPACE).findNotice(term, args),
 
 	/**
-	 * @param {{context: string, title: *, message: *}} payload
+	 * Add a new notification
+	 *
+	 * @param {Object} payload
 	 */
 	add: (payload) => dispatch(NOTIFY_NAMESPACE).addNotice(payload),
 
 	/**
-	 * @param {null} id
+	 * Remove a notification by key
+	 *
+	 * @param {number} id
 	 */
 	remove: (id) => dispatch(NOTIFY_NAMESPACE).removeNotice(id),
 
 	/**
+	 * Clear all notifications
+	 *
 	 * @param {string|false} context
 	 */
 	clear: (context = 'adminbar') => dispatch(NOTIFY_NAMESPACE).clear(context),
 };
-/** export wp-notify for further uses */
-export default notify;
 
-/** append the wp-notify instance to window.wp in order to provide a public API */
+/** Appends the wp-notify instance to window.wp in order to provide a public API */
 window.wp.notify = notify;
 
 /**
  * Loops into contexts and register the found locations into the store state
  *
- * @param {context} context
+ * @param {string} context
  */
 contexts.forEach((context) =>
 	select(NOTIFY_NAMESPACE).registerContext(context)
@@ -102,3 +99,8 @@ contexts.forEach((context) => {
 		document.getElementById(`wp-notify-${context}`)
 	);
 });
+
+/**
+ *  exports notify store functions for further uses
+ */
+export default notify;

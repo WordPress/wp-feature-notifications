@@ -41,15 +41,11 @@ export const registerContext = (state, context) => {
  *
  * @param {Object}        state      - the current state
  * @param {string|number} searchTerm - The term you want to search for.
- * @param {?Object}       [args]     - search args
+ * @param {?Object|Array} [args]     - search args
  *
  * @return {Object} the search result
  */
-export const findNotice = (
-	state,
-	searchTerm,
-	args = { term: 'source', location: undefined }
-) => {
+export const findNotice = (state, searchTerm, args = { term: 'source' }) => {
 	// return the notification by id
 	if (typeof searchTerm === 'number') {
 		const context = findContext(state, searchTerm);

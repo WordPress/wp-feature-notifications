@@ -37,7 +37,7 @@ export const NoticeIcon = ({ icon, severity, context = defaultContext }) => {
 		image = (
 			<span
 				className={classNames(
-					! severity || 'severity-' + severity,
+					!severity || 'severity-' + severity,
 					'ab-icon',
 					'dashicons-' + icon.dashicons
 				)}
