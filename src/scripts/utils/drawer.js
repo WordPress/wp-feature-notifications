@@ -2,8 +2,6 @@ import { dispatch } from '@wordpress/data';
 import { WEEK_IN_SECONDS } from '../components/NoticesArea';
 import { NOTIFY_NAMESPACE } from '../store/constants';
 
-export const wpNotifyHub = document.getElementById('wp-admin-bar-wp-notify');
-
 /**
  * It clears the notices in the selected context
  *
@@ -14,9 +12,34 @@ export const clearNotifyDrawer = (context) => {
 };
 
 /**
+ * At the moment the function return the notifications if the split by isn't set to "date"
+ *
+ * @param {Array}  notifications
+ * @param {string} by
+ *
+ * @return {Array} two list of Notifications, one for the new and one for the old
+ */
+export const getSorted = (notifications, by = 'date') => {
+	const Limit = by === 'date' ? Date.now() - WEEK_IN_SECONDS : false;
+	if (Limit) {
+		return notifications.reduce(
+			([current, past], item) => {
+				return item.date >= Limit
+					? [[...current, item], past]
+					: [current, [...past, item]];
+			},
+			[[], []]
+		);
+	}
+	return notifications;
+};
+
+export const wpNotifyHub = document.getElementById('wp-admin-bar-wp-notify');
+
+/**
  * When the user clicks on the notification drawer, the drawer is disabled
  *
- * @param  e
+ * @param {Event} e
  * @callback {disableNotifyDrawer} disableNotifyDrawer
  */
 export const disableNotifyDrawer = (e) => {
@@ -48,35 +71,18 @@ export const enableNotifyDrawer = (e) => {
 };
 
 /**
- * Notification hub
- * Handle click on wp-admin bar bell icon that show the WP-Notify sidebar
- *
- * @member {HTMLElement} wpNotifyHub - the Notification Hub Controller
- * @event enableNotifyDrawer - by default on click
+ * Action handler for the notification drawer
  */
-wpNotifyHub.addEventListener('click', enableNotifyDrawer);
-wpNotifyHub.addEventListener('focus', enableNotifyDrawer, true);
-wpNotifyHub.addEventListener('blur', disableNotifyDrawer, true);
-
-/**
- * At the moment the function return the notifications if the split by isn't set to "date"
- *
- * @param {Array}  notifications
- * @param {string} by
- *
- * @return {Array} two list of Notifications, one for the new and one for the old
- */
-export const getSorted = (notifications, by = 'date') => {
-	const Limit = by === 'date' ? Date.now() - WEEK_IN_SECONDS : false;
-	if (Limit) {
-		return notifications.reduce(
-			([current, past], item) => {
-				return item.date >= Limit
-					? [[...current, item], past]
-					: [current, [...past, item]];
-			},
-			[[], []]
-		);
-	}
-	return notifications;
-};
+if (wpNotifyHub) {
+	/**
+	 * Notification hub
+	 * Handle click on wp-admin bar bell icon that show the WP-Notify sidebar
+	 *
+	 * @member {HTMLElement} wpNotifyHub - the Notification Hub Controller
+	 * @event enableNotifyDrawer - When the user clicks or focus on the notification drawer, the drawer is enabled
+	 * @event disableNotifyDrawer - on focus out
+	 */
+	wpNotifyHub.addEventListener('click', enableNotifyDrawer);
+	wpNotifyHub.addEventListener('focus', enableNotifyDrawer, true);
+	wpNotifyHub.addEventListener('blur', disableNotifyDrawer, true);
+}
