@@ -50,9 +50,12 @@
 	/*
 	 * Hub FOOTER
 	 */
-  footer {
+	#wpadminbar & footer {
     position: fixed;
 		text-align: center;
+		display: flex;
+		justify-content: center;
+    align-items: center;
     bottom: 0;
     left: 0;
     right: 0;
@@ -60,40 +63,28 @@
     padding: 15px var(--wp-notify_hub-spacing-horizontal);
     border-top: 1px solid var(--wp-notify_color-light-gray);
 
-		.ab-icon {
-			position: inherit;
-		}
+		a.components-button {
+			height: inherit;
+			line-height: 1;
 
-    a,
-    .ab-icon:before {
-      color: var(--wp-notify_color-link);
-			line-height: 20px;
-
-			&:hover {
+			&:hover,
+			&:focus {
 				color: var(--wp-notify_color-link-active);
+				svg {
+					color: var(--wp-notify_color-link-active);
+				}
+			}
+
+			// Outline the footer element if it is selected with tab
+			&:focus {
+				border-radius: 2px;
+				outline: 2px solid black;
+			}
+
+			svg {
+				fill: var(--wp-notify_color-link);
+				vertical-align: middle;
 			}
 		}
-
-
-		// Outline the footer element if it is selected with tab
-		a:focus-visible {
-			border-radius: 2px;
-			outline: 2px solid black;
-		}
-  }
-
-  #wpadminbar .quicklinks & a {
-    height: inherit;
-  }
-
-	// links color
-  li {
-		&:active .ab-icon:before {
-			color: var(--wp-notify_color-link);
-		}
-		&:hover .ab-icon:before{
-			color: inherit;
-		}
 	}
-
 }
