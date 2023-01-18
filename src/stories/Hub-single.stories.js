@@ -1,7 +1,6 @@
 import React from '@wordpress/element';
 
 /** the single notification component */
-import Notice from '../scripts/components/Notice';
 
 /** Backend style */
 import '../../src/stories/assets/wp-core/admin-bar.css';
@@ -19,8 +18,10 @@ import '../../src/stories/assets/wp-core/site-health.css';
 import '../../build/wp-notify.css';
 import '@wordpress/components/build-style/style.css';
 
+import { Notice } from '../scripts/components/Notice';
+
 export default {
-	title: 'Notification/Dashboard',
+	title: 'Notification Hub/Single',
 	component: Notice,
 	parameters: {
 		backgrounds: {
@@ -28,38 +29,38 @@ export default {
 			values: [{ name: 'WordPress', value: '#f0f0f1' }],
 		},
 	},
+	argTypes: {
+		date: {
+			control: {
+				type: 'date',
+			},
+		},
+	},
 };
 
 /**
- * Single Notification UI component
- * https://github.com/WordPress/wp-feature-notifications/issues/16#issuecomment-896031592
- * https://github.com/WordPress/wp-feature-notifications/issues/37#issuecomment-896080025
+ * Notification UI component
+ *
+ * @param  args
  */
+const Template = (args) => {
+	return (
+		<aside id={'wp-notification-hub'} style={{ opacity: 1, right: 0 }}>
+			<Notice {...args} context={'adminbar'} />
+		</aside>
+	);
+};
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template = (args) => (
-	<div
-		id="wpbody"
-		style={{
-			fontFamily:
-				'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
-		}}
-	>
-		<div id="wp-notify-dashboard-notices" className="wrap">
-			<Notice {...args} />
-		</div>
-	</div>
-);
-
-export const Simple = Template.bind({});
+export const Single = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-Simple.args = {
+
+Single.args = {
 	title: 'Notice Example',
-	message: 'ciao',
-	location: 'dashboard',
-	acceptMessage: 'OK',
-	acceptLink: '',
-	dismissLabel: 'bye',
-	dismissible: true,
-	date: Date.now() / 1000,
+	message:
+		'Notice message. This is a simple example and will be shown in the admin bar.',
+	date: Date.now(),
+	action: {
+		acceptMessage: 'Aknowledge',
+		acceptLink: '#',
+	},
 };

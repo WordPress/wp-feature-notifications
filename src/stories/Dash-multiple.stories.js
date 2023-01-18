@@ -1,7 +1,7 @@
 import React from '@wordpress/element';
 
 /** the single notification component */
-import Notice from '../scripts/components/Notice';
+import { Notice } from '../scripts/components/Notice';
 
 /** Backend style */
 import '../../src/stories/assets/wp-core/admin-bar.css';
@@ -17,9 +17,17 @@ import '../../src/stories/assets/wp-core/site-health.css';
 
 /** Wp-notify style */
 import '../../build/wp-notify.css';
+import jsonData from '../../includes/restapi/fake_api.json';
+import { NoticesLoop } from '../scripts/components/NoticesLoop';
+import { getSorted } from '../scripts/utils/drawer';
+
+// filter out non dashboard notices
+const adminBarNotices = jsonData.filter(
+	(term) => term.hasOwnProperty('context') && term.context === 'dashboard'
+);
 
 export default {
-	title: 'MultipleNotifications/Dashboard',
+	title: 'Dashboard/Multiple',
 	component: Notice,
 	parameters: {
 		backgrounds: {
@@ -45,22 +53,19 @@ const MultipleNotificationsTemplate = (args) => (
 					'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
 			}}
 		>
-			<Notice {...args} />
-			<Notice {...args} />
-			<Notice {...args} />
+			{getSorted(adminBarNotices).map((list, index) => (
+				<NoticesLoop
+					key={index}
+					notices={list}
+					sortBy={undefined}
+					context={'dashboard'}
+					{...args}
+				/>
+			))}
 		</div>
 	</>
 );
 
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 export const Multiple = MultipleNotificationsTemplate.bind({});
-Multiple.args = {
-	title: 'Multiple Notices Example',
-	message: 'WP-Notify Test',
-	location: 'dashboard',
-	acceptMessage: 'Accept',
-	acceptLink: '#',
-	dismissLabel: 'Dismiss',
-	dismissible: true,
-	date: Date.now() / 1000,
-};
+Multiple.args = {};
