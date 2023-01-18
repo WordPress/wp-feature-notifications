@@ -3,9 +3,10 @@ import { __ } from '@wordpress/i18n';
 
 import { defaultContext, NOTIFY_NAMESPACE } from '../store/constants';
 import { NoticeEmpty } from './NoticeEmpty';
-import { NoticeSectionHeader } from './NoticeSectionHeader';
+import { NoticeHubSectionHeader } from './NoticeHubSectionHeader';
 import { NoticesLoop } from './NoticesLoop';
 import { getSorted } from '../utils/drawer';
+import { NoticeHubFooter } from './NoticeHubFooter';
 
 export const WEEK_IN_SECONDS = 1000 - 3600 * 24 * 7;
 
@@ -17,15 +18,15 @@ export const WEEK_IN_SECONDS = 1000 - 3600 * 24 * 7;
  * @return {JSX.Element} Notifications
  */
 export const NoticesArea = (props) => {
-	const { splitBy, context = defaultContext } = props;
+	let { notifications, splitBy, context = defaultContext } = props;
 
-	const notifications = useSelect(
+	/*
+	 * Todo: this method should supply to rest api the user data, current page, moreover the request args may be added (notice per page, notice filters and sort)
+	 */
+	notifications = useSelect(
 		(select) => select(NOTIFY_NAMESPACE).getNotices(context),
 		[]
 	);
-
-	/** if there aren't notifications fail softly */
-	//if (!notifications) return null;
 
 	/**
 	 * if the context is the adminbar we need to render a list of notifications with the recent notifications and the old notifications
@@ -43,7 +44,7 @@ export const NoticesArea = (props) => {
 			<>
 				{sorted.map((list, index) => (
 					<section key={index}>
-						<NoticeSectionHeader
+						<NoticeHubSectionHeader
 							context={context}
 							unreadCount={list.length}
 							isMain={index === 0} // the main section is the first one
@@ -51,6 +52,7 @@ export const NoticesArea = (props) => {
 						<NoticesLoop notices={list} />
 					</section>
 				))}
+				<NoticeHubFooter />
 			</>
 		);
 	}

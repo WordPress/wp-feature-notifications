@@ -6,16 +6,15 @@ import { clearNotifyDrawer } from '../utils/drawer';
 /**
  * The section header for the notices section drawer.
  *
- * @param  props
- * @param  props.isMain
+ * @param {Object}  props
+ * @param {boolean} props.isMain
+ * @param {number}  props.unreadCount
+ * @param {string}  props.context
  *
- * @param  props.unreadCount
- * @param  props.location
- * @param  props.context
  * @return {JSX.Element}
  * @function Object() { [native code] }
  */
-export const NoticeSectionHeader = ({ isMain, unreadCount, context }) => {
+export const NoticeHubSectionHeader = ({ isMain, unreadCount, context }) => {
 	return isMain ? (
 		<header>
 			<h2>{unreadCount} unread notifications</h2>
