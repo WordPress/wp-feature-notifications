@@ -1,8 +1,22 @@
 /*
  * WP-Notify Style
  */
+
+// Vars
 @import "notify/vars";
-@import "notify/bullet";
+
+// Notification base style
 @import "notify/notify";
-@import "notify/admin-bar";
-@import "notify/notification-hub";
+
+// Components
+@import "notify/components/bullet";
+
+// The dashboard notification style
+@import "notify/dashboard/notice";
+
+// The notification hub style
+@import "notify/hub/admin-bar";
+@import "notify/hub/layout";
+@import "notify/hub/elements";
+@import "notify/hub/notice";
+

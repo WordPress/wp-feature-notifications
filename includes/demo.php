@@ -110,143 +110,143 @@ function wp_notify_render_admin_options_page() {
 	<table class="wp-list-table widefat fixed striped table-view-list">
 
 		<thead>
-			<tr>
-				<td id="cb" class="manage-column column-cb check-column"><label class="screen-reader-text" for="cb-select-all-1">Select All</label><input id="cb-select-all-1" type="checkbox"></td>
-				<th scope="col" id="source" class="manage-column column-source column-primary sortable desc"><a href="#"><span>Notification Source</span><span class="sorting-indicator"></span></a></th>
-				<td id="showin" class="manage-column column-format column-showin"><span>Show in:</span></td>
-				<th scope="col" id="admin" class="manage-column column-format column-admin desc"><span>Admin</span></th>
-				<th scope="col" id="email" class="manage-column column-format column-email desc"><span>Email</span></th>
-				<th scope="col" id="sms" class="manage-column column-format column-sms desc"><span>SMS</span></th>
-				<th scope="col" id="app" class="manage-column column-format column-app desc"><span>App</span></th>
-			</tr>
+		<tr>
+			<td id="cb" class="manage-column column-cb check-column"><label class="screen-reader-text" for="cb-select-all-1">Select All</label><input id="cb-select-all-1" type="checkbox"></td>
+			<th scope="col" id="source" class="manage-column column-source column-primary sortable desc"><a href="#"><span>Notification Source</span><span class="sorting-indicator"></span></a></th>
+			<td id="showin" class="manage-column column-format column-showin"><span>Show in:</span></td>
+			<th scope="col" id="admin" class="manage-column column-format column-admin desc"><span>Admin</span></th>
+			<th scope="col" id="email" class="manage-column column-format column-email desc"><span>Email</span></th>
+			<th scope="col" id="sms" class="manage-column column-format column-sms desc"><span>SMS</span></th>
+			<th scope="col" id="app" class="manage-column column-format column-app desc"><span>App</span></th>
+		</tr>
 		</thead>
 
 		<tbody id="the-list">
 
-			<tr>
-				<th scope="row" class="check-column">
-					<label class="screen-reader-text" for="cb-select-123">WordPress</label>
-					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
-				</th>
+		<tr>
+			<th scope="row" class="check-column">
+				<label class="screen-reader-text" for="cb-select-123">WordPress</label>
+				<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+			</th>
 
-				<td class="title column-source has-row-actions column-primary page-source" data-colname="source" colspan="2">
-					<strong><a class="row-source" href="#" aria-label="">WordPress</a></strong>
-				</td>
+			<td class="title column-source has-row-actions column-primary page-source" data-colname="source" colspan="2">
+				<strong><a class="row-source" href="#" aria-label="">WordPress</a></strong>
+			</td>
 
-				<td scope="row" class="column-format">
-					<label class="screen-reader-text" for="cb-select-123">Admin</label>
-					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
-				</td>
-				<td scope="row" class="column-format">
-					<label class="screen-reader-text" for="cb-select-123">Email</label>
-					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
-				</td>
-				<td scope="row" class="column-format">
-					<label class="screen-reader-text" for="cb-select-123">SMS</label>
-					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
-				</td>
-				<td scope="row" class="column-format">
-					<label class="screen-reader-text" for="cb-select-123">App</label>
-					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
-				</td>
-			</tr>
+			<td scope="row" class="column-format">
+				<label class="screen-reader-text" for="cb-select-123">Admin</label>
+				<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+			</td>
+			<td scope="row" class="column-format">
+				<label class="screen-reader-text" for="cb-select-123">Email</label>
+				<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+			</td>
+			<td scope="row" class="column-format">
+				<label class="screen-reader-text" for="cb-select-123">SMS</label>
+				<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+			</td>
+			<td scope="row" class="column-format">
+				<label class="screen-reader-text" for="cb-select-123">App</label>
+				<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+			</td>
+		</tr>
 
-			<tr>
-				<th scope="row" class="check-column">
-					<label class="screen-reader-text" for="cb-select-123">User activity (published, edited, ect)</label>
-					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
-				</th>
+		<tr>
+			<th scope="row" class="check-column">
+				<label class="screen-reader-text" for="cb-select-123">User activity (published, edited, ect)</label>
+				<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+			</th>
 
-				<td class="title column-source has-row-actions column-primary page-source" data-colname="source" colspan="2">
-					<strong><a class="row-source" href="#" aria-label="">User activity (published, edited, ect)</a></strong>
-				</td>
+			<td class="title column-source has-row-actions column-primary page-source" data-colname="source" colspan="2">
+				<strong><a class="row-source" href="#" aria-label="">User activity (published, edited, ect)</a></strong>
+			</td>
 
-				<td scope="row" class="column-format">
-					<label class="screen-reader-text" for="cb-select-123">Admin</label>
-					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
-				</td>
-				<td scope="row" class="column-format">
-					<label class="screen-reader-text" for="cb-select-123">Email</label>
-					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
-				</td>
-				<td scope="row" class="column-format">
-					<label class="screen-reader-text" for="cb-select-123">SMS</label>
-					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
-				</td>
-				<td scope="row" class="column-format">
-					<label class="screen-reader-text" for="cb-select-123">App</label>
-					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
-				</td>
-			</tr>
+			<td scope="row" class="column-format">
+				<label class="screen-reader-text" for="cb-select-123">Admin</label>
+				<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+			</td>
+			<td scope="row" class="column-format">
+				<label class="screen-reader-text" for="cb-select-123">Email</label>
+				<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+			</td>
+			<td scope="row" class="column-format">
+				<label class="screen-reader-text" for="cb-select-123">SMS</label>
+				<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+			</td>
+			<td scope="row" class="column-format">
+				<label class="screen-reader-text" for="cb-select-123">App</label>
+				<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+			</td>
+		</tr>
 
-			<tr>
-				<th scope="row" class="check-column">
-					<label class="screen-reader-text" for="cb-select-123">Comments</label>
-					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
-				</th>
+		<tr>
+			<th scope="row" class="check-column">
+				<label class="screen-reader-text" for="cb-select-123">Comments</label>
+				<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+			</th>
 
-				<td class="title column-source has-row-actions column-primary page-source" data-colname="source" colspan="2">
-					<strong><a class="row-source" href="#" aria-label="">Comments</a></strong>
-				</td>
+			<td class="title column-source has-row-actions column-primary page-source" data-colname="source" colspan="2">
+				<strong><a class="row-source" href="#" aria-label="">Comments</a></strong>
+			</td>
 
-				<td scope="row" class="column-format">
-					<label class="screen-reader-text" for="cb-select-123">Admin</label>
-					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
-				</td>
-				<td scope="row" class="column-format">
-					<label class="screen-reader-text" for="cb-select-123">Email</label>
-					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
-				</td>
-				<td scope="row" class="column-format">
-					<label class="screen-reader-text" for="cb-select-123">SMS</label>
-					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
-				</td>
-				<td scope="row" class="column-format">
-					<label class="screen-reader-text" for="cb-select-123">App</label>
-					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
-				</td>
-			</tr>
+			<td scope="row" class="column-format">
+				<label class="screen-reader-text" for="cb-select-123">Admin</label>
+				<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+			</td>
+			<td scope="row" class="column-format">
+				<label class="screen-reader-text" for="cb-select-123">Email</label>
+				<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+			</td>
+			<td scope="row" class="column-format">
+				<label class="screen-reader-text" for="cb-select-123">SMS</label>
+				<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+			</td>
+			<td scope="row" class="column-format">
+				<label class="screen-reader-text" for="cb-select-123">App</label>
+				<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+			</td>
+		</tr>
 
-			<tr>
-				<th scope="row" class="check-column">
-					<label class="screen-reader-text" for="cb-select-123">Site health</label>
-					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
-				</th>
+		<tr>
+			<th scope="row" class="check-column">
+				<label class="screen-reader-text" for="cb-select-123">Site health</label>
+				<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+			</th>
 
-				<td class="title column-source has-row-actions column-primary page-source" data-colname="source" colspan="2">
-					<strong><a class="row-source" href="#" aria-label="">Site health</a></strong>
-				</td>
+			<td class="title column-source has-row-actions column-primary page-source" data-colname="source" colspan="2">
+				<strong><a class="row-source" href="#" aria-label="">Site health</a></strong>
+			</td>
 
-				<td scope="row" class="column-format">
-					<label class="screen-reader-text" for="cb-select-123">Admin</label>
-					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
-				</td>
-				<td scope="row" class="column-format">
-					<label class="screen-reader-text" for="cb-select-123">Email</label>
-					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
-				</td>
-				<td scope="row" class="column-format">
-					<label class="screen-reader-text" for="cb-select-123">SMS</label>
-					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
-				</td>
-				<td scope="row" class="column-format">
-					<label class="screen-reader-text" for="cb-select-123">App</label>
-					<input id="cb-select-123" type="checkbox" name="post[]" value="123">
-				</td>
-			</tr>
+			<td scope="row" class="column-format">
+				<label class="screen-reader-text" for="cb-select-123">Admin</label>
+				<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+			</td>
+			<td scope="row" class="column-format">
+				<label class="screen-reader-text" for="cb-select-123">Email</label>
+				<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+			</td>
+			<td scope="row" class="column-format">
+				<label class="screen-reader-text" for="cb-select-123">SMS</label>
+				<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+			</td>
+			<td scope="row" class="column-format">
+				<label class="screen-reader-text" for="cb-select-123">App</label>
+				<input id="cb-select-123" type="checkbox" name="post[]" value="123">
+			</td>
+		</tr>
 
 		</tbody>
 
 		<tfoot>
-			<tr>
-				<td id="cb" class="manage-column column-cb check-column"><label class="screen-reader-text" for="cb-select-all-1">Select All</label><input id="cb-select-all-1" type="checkbox"></td>
-				<th scope="col" id="source" class="manage-column column-source column-primary sortable desc"><a href="#"><span>Notification Source</span><span class="sorting-indicator"></span></a></th>
-				<td id="showin" class="manage-column column-format column-showin"><span>Show in:</span></td>
-				<th scope="col" id="admin" class="manage-column column-format column-admin desc"><span>Admin</span></th>
-				<th scope="col" id="email" class="manage-column column-format column-email desc"><span>Email</span></th>
-				<th scope="col" id="sms" class="manage-column column-format column-sms desc"><span>SMS</span></th>
-				<th scope="col" id="app" class="manage-column column-format column-app desc"><span>App</span></th>
-			</tr>
+		<tr>
+			<td id="cb" class="manage-column column-cb check-column"><label class="screen-reader-text" for="cb-select-all-1">Select All</label><input id="cb-select-all-1" type="checkbox"></td>
+			<th scope="col" id="source" class="manage-column column-source column-primary sortable desc"><a href="#"><span>Notification Source</span><span class="sorting-indicator"></span></a></th>
+			<td id="showin" class="manage-column column-format column-showin"><span>Show in:</span></td>
+			<th scope="col" id="admin" class="manage-column column-format column-admin desc"><span>Admin</span></th>
+			<th scope="col" id="email" class="manage-column column-format column-email desc"><span>Email</span></th>
+			<th scope="col" id="sms" class="manage-column column-format column-sms desc"><span>SMS</span></th>
+			<th scope="col" id="app" class="manage-column column-format column-app desc"><span>App</span></th>
+		</tr>
 		</tfoot>
 	</table>
 

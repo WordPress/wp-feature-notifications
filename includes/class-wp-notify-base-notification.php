@@ -47,21 +47,21 @@ class WP_Notify_Base_Notification implements WP_Notify_Notification {
 	/**
 	 * Instantiates a WPNotify_Base_Notification object.
 	 *
-	 * @param WP_Notify_Sender              $sender     Sender that sent the
-	 *                                                 notification.
+	 * @param WP_Notify_Sender               $sender     Sender that sent the
+	 *                                                  notification.
 	 * @param WP_Notify_Recipient_Collection $recipients Recipients that should
 	 *                                                 receive the
 	 *                                                 notification.
-	 * @param WP_Notify_Message             $message    Message of the
-	 *                                                 notification.
-	 * @param mixed                        $timestamp  Optional. Timestamp of
-	 *                                                 when the notification
-	 *                                                 was triggered. Defaults
-	 *                                                 to the moment of
-	 *                                                 instantiation.
-	 * @param int                          $id         Optional. ID of the
-	 *                                                 notification. Defaults
-	 *                                                 to -1.
+	 * @param WP_Notify_Message              $message    Message of the
+	 *                                                  notification.
+	 * @param mixed                          $timestamp  Optional. Timestamp of
+	 *                                                   when the notification
+	 *                                                   was triggered. Defaults
+	 *                                                   to the moment of
+	 *                                                   instantiation.
+	 * @param int                            $id         Optional. ID of the
+	 *                                                   notification. Defaults
+	 *                                                   to -1.
 	 */
 	public function __construct(
 		WP_Notify_Sender $sender,

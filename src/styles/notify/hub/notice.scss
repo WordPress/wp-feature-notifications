@@ -1,0 +1,105 @@
+/*
+ * The single notification
+ */
+#wp-notification-hub {
+  .wp-notification {
+
+    max-width: calc(var(--wp-notify_hub-width) - var(--wp-notify_hub-spacing-gap) * 2);
+		margin-left: var(--wp-notify_hub-spacing-gap);
+		margin-right: var(--wp-notify_hub-spacing-gap);
+    user-select: none;
+    -webkit-user-drag: none;
+
+    padding: var(--wp-notify_hub-spacing-top) var(--wp-notify_hub-spacing-horizontal) var(--wp-notify_hub-spacing-gap);
+
+    gap: 12px;
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: var(--wp-notify_hub-image-size) auto;
+    grid-auto-flow: row;
+
+		// shows the selected item using the webkit default styling
+    &:focus-visible {
+			border-radius: 2px;
+			outline: 2px solid black;
+    }
+
+		&-wrap {
+			margin-top: -4px;
+
+			> * {
+				margin: 0 0 4px;
+			}
+		}
+
+		&-title {
+			font-weight: 600;
+			line-height: 1.5;
+		}
+
+		&-action {
+			display: block;
+			border: 0;
+			background: transparent;
+		}
+
+		&-image {
+			min-width: var(--wp-notify_hub-image-size);
+			width: var(--wp-notify_hub-image-size);
+			height: var(--wp-notify_hub-image-size);
+			position: relative;
+			grid-row: 1;
+
+			* {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+		}
+
+		&-icon {
+
+			background: var(--wp-notify_color-light-gray-500);
+			border-radius: 8px;
+
+			.ab-icon {
+				font-size: 24px;
+				padding: 4px;
+				line-height: 1;
+
+				&:before {
+					color: var(--wp-notify_color-white);
+					opacity: .9;
+				}
+			}
+		}
+
+		/*
+		* Notice type
+		*/
+    &.user {
+      .wp-notification-image img {
+        border-radius: 8px;
+      }
+    }
+
+    &.plugin {}
+  }
+
+
+	/*
+	* Notice Severity
+	*/
+	$alertSeverity: (
+			"alert": var(--wp-notify_color-error),
+			"warning": var(--wp-notify_color-warning),
+			"success": var(--wp-notify_color-success),
+			"info": var(--wp-notify_color-blue)
+	);
+
+	@each $key, $value in $alertSeverity {
+		.wp-notification .severity-#{$key} {
+				background-color: #{$value};
+		}
+	}
+}

@@ -1,7 +1,7 @@
 {
-  "name": "@wordpress/wp-feature-notifications",
-  "version": "0.1.0",
-  "description": "A notification center for WordPress.",
+	"name": "@wordpress/wp-feature-notifications",
+	"version": "0.1.0",
+	"description": "A notification center for WordPress.",
 	"keywords": [
 		"WordPress",
 		"notifications",
@@ -10,44 +10,75 @@
 	"author": "The WordPress Contributors",
 	"license": "GPL-2.0-or-later",
 	"bugs": {
-		"url": "https://github.com/WordPress/wp-notify/issues"
+		"url": "https://github.com/WordPress/wp-feature-notifications/issues"
 	},
-	"homepage": "https://github.com/WordPress/wp-notify#readme",
-  "directories": {
-    "doc": "docs",
-    "test": "tests"
-  },
-  "scripts": {
-    "prephp-install": "wp-env start",
-    "php-install": "wp-env run composer 'composer --ignore-platform-req=php install'",
-    "pretest-unit-php": "npm run php-install",
-    "test-unit-php": "wp-env run phpunit 'phpunit --configuration=/var/www/html/wp-content/plugins/wp-notify/phpunit.xml.dist'",
-    "check-engines": "wp-scripts check-engines",
-    "check-licenses": "wp-scripts check-licenses",
-    "format": "wp-scripts format",
-    "lint:css": "wp-scripts lint-style",
-    "lint:js": "wp-scripts lint-js",
-    "lint:md:docs": "wp-scripts lint-md-docs",
-    "lint:pkg-json": "wp-scripts lint-pkg-json",
-    "packages-update": "wp-scripts packages-update",
-    "plugin-zip": "wp-scripts plugin-zip",
-    "start": "wp-scripts start src/wp-notify.js --output-path=build/",
-    "build": "wp-scripts build src/wp-notify.js --output-path=build/",
-    "test:e2e": "wp-scripts test-e2e",
-    "test:unit": "wp-scripts test-unit-js"
-  },
+	"homepage": "https://github.com/WordPress/wp-feature-notifications#readme",
+	"directories": {
+		"doc": "docs",
+		"test": "tests"
+	},
+	"files": [
+		"build/*",
+		"includes/*",
+		"readme.txt",
+		"wp-feature-notifications.php"
+	],
+	"scripts": {
+		"start": "wp-scripts start",
+		"build": "wp-scripts build",
+		"prephp-install": "wp-env start",
+		"php-install": "wp-env run composer 'composer --ignore-platform-req=php install'",
+		"pretest-unit-php": "npm run php-install",
+		"test-unit-php": "wp-env run phpunit 'phpunit --configuration=/var/www/html/wp-content/plugins/wp-notify/phpunit.xml.dist'",
+		"packages-update": "wp-scripts packages-update",
+		"check-engines": "wp-scripts check-engines",
+		"check-licenses": "wp-scripts check-licenses",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style ./src",
+		"lint:js": "wp-scripts lint-js ./src",
+		"lint:md:docs": "wp-scripts lint-md-docs ./src",
+		"lint:pkg-json": "wp-scripts lint-pkg-json ./src",
+		"plugin-zip": "wp-scripts plugin-zip",
+		"test:e2e": "wp-scripts test-e2e",
+		"test:unit": "wp-scripts test-unit-js",
+		"storybook": "start-storybook -p 6006",
+		"build-storybook": "build-storybook",
+		"docGen": "npx docgen src/scripts/wp-notify.js"
+	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/WordPress/wp-notify.git"
+		"url": "git+https://github.com/WordPress/wp-feature-notifications.git"
 	},
 	"engines": {
-		"node": ">=12.13",
+		"node": ">=14",
 		"npm": ">=6.9"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^23.2.0",
-		"@wordpress/browserslist-config": "^4.1.2",
-		"browserslist": "^4.20.3"
+		"@babel/core": "^7.20.7",
+		"@storybook/addon-actions": "^6.5.15",
+		"@storybook/addon-essentials": "^6.5.15",
+		"@storybook/addon-interactions": "^6.5.15",
+		"@storybook/addon-links": "^6.5.15",
+		"@storybook/builder-webpack5": "^6.5.15",
+		"@storybook/manager-webpack5": "^6.5.15",
+		"@storybook/react": "^6.5.15",
+		"@storybook/testing-library": "^0.0.13",
+		"@wordpress/api-fetch": "^6.21.0",
+		"@wordpress/babel-preset-default": "^7.8.0",
+		"@wordpress/components": "^23.1.0",
+		"@wordpress/data": "^8.1.0",
+		"@wordpress/docgen": "^1.33.0",
+		"@wordpress/element": "^5.1.0",
+		"@wordpress/i18n": "^4.24.0",
+		"@wordpress/icons": "^9.15.0",
+		"@wordpress/scripts": "^25.1.0",
+		"babel-loader": "^9.1.0",
+		"classnames": "^2.3.2",
+		"husky": "^8.0.3",
+		"moment": "^2.29.3"
+	},
+	"dependencies": {
+		"dompurify": "^2.4.0"
 	},
 	"browserslist": [
 		"extends @wordpress/browserslist-config"

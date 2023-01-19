@@ -1,17 +1,18 @@
 /*
  * WP admin bar
  */
-
 #wpadminbar #wp-admin-bar-wp-notify {
   padding-right: 8px;
   position: relative;
   z-index: 100002;
 
+	/* this below is the bell located in the adminbar */
   > .ab-item .ab-icon:before {
     content: "\f16d";
     top: 3px;
   }
 
+	/* the label is the red dot over the bell */
   .ab-label {
     position: absolute;
     width: 6px;
@@ -22,34 +23,10 @@
     font-size: 0;
 
     /* WP Editor / Alert Red */
-    background: var(--wp-notify_color-red-alert);
+    background: var(--wp-notify_color-red);
 
     /* Classic / Dark Gray 800 */
     border: 1px solid var(--wp-notify_color-light-gray-800);
-  }
-
-  &.active .ab-item {
-
-    &:hover {
-      background: transparent;
-    }
-
-    &:before {
-      display: block;
-      content: '';
-      width: 30px;
-      height: 27px;
-      margin: 3px;
-      padding: 0;
-      border-radius: 4px;
-      left: 0;
-      position: absolute;
-      background: var(--wp-notify_color-blue);
-    }
-
-    .ab-label{
-      border-color: var(--wp-notify_color-blue);
-    }
   }
 
   /* Mobile */

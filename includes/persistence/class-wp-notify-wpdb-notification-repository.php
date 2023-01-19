@@ -25,10 +25,10 @@ class WP_Notify_Wpdb_Notification_Repository
 	 *
 	 * @param WP_Notify_Recipient $recipient  Recipient to retrieve the
 	 *                                       notifications for.
-	 * @param int                $pagination Optional. Number of elements per
-	 *                                       page. Defaults to 10.
-	 * @param int                $offset     Optional. Offset into the result
-	 *                                       set. Defaults to 0.
+	 * @param int                 $pagination Optional. Number of elements per
+	 *                                        page. Defaults to 10.
+	 * @param int                 $offset     Optional. Offset into the result
+	 *                                        set. Defaults to 0.
 	 *
 	 * @return WP_Notify_Notification[] Array of notifications, empty array if
 	 *                                 none found.

@@ -1,2 +1,2 @@
-import "./wp-notify.scss";
-import "./wp-notify.css";
+import './wp-notify.scss';
+import './wp-notify.css';
