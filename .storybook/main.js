@@ -11,8 +11,9 @@ module.exports = {
 		'@storybook/addon-interactions',
 		'@storybook/addon-links',
 	],
+	framework: '@storybook/react',
 	features: {
 		babelModeV7: true,
-		emotionAlias: false,
+		emotionAlias: false
 	},
 };
