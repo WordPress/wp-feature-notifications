@@ -1,0 +1,3 @@
+# exclude vendored and generated files
+package.json linguist-generated=true
+/src/stories/assets/** linguist-vendored=true
