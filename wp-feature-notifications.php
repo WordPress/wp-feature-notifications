@@ -58,7 +58,7 @@ require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/messages/class-wp-no
 require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/persistence/interface-wp-notify-notification-repository.php';
 require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/persistence/class-wp-notify-abstract-notification-repository.php';
 require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/persistence/class-wp-notify-wpdb-notification-repository.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/demo.php';
+require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/class-wp-notify-demo.php';
 require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/restapi/class-notification-controller.php';
 
 // TODO: Standardise structure and/or autoloading.
