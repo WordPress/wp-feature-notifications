@@ -1,7 +1,6 @@
 const jestConfig = {
 	verbose: true,
 	preset: '@wordpress/jest-preset-default',
-	modulePaths: ['<rootDir>'],
 	setupFilesAfterEnv: ['expect-puppeteer'],
 	projects: [
 		{

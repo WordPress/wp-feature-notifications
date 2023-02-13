@@ -35,6 +35,9 @@ jobs:
         uses: actions/setup-node@v3
 
       - name: Installing NPM dependencies
+        run: npm install
+
+      - name: Installing wp-env
         run: npm -g i @wordpress/env
 
       - name: Starting the WordPress Environment

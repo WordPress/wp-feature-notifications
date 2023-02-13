@@ -39,7 +39,7 @@
 		"lint:md:docs": "wp-scripts lint-md-docs ./src",
 		"lint:pkg-json": "wp-scripts lint-pkg-json ./src",
 		"plugin-zip": "wp-scripts plugin-zip",
-		"test": "jest --silent=false --coverage",
+		"test": "jest",
 		"storybook": "start-storybook -p 6006",
 		"build-storybook": "build-storybook",
 		"docGen": "npx docgen src/scripts/wp-notify.js"
@@ -64,11 +64,10 @@
 		"@storybook/testing-library": "^0.0.13",
 		"@wordpress/api-fetch": "^6.21.0",
 		"@wordpress/babel-preset-default": "^7.8.0",
-		"@wordpress/e2e-tests": "^6.3.0",
-		"jest-puppeteer": "6.1.1",
 		"@wordpress/components": "^23.1.0",
 		"@wordpress/data": "^8.1.0",
 		"@wordpress/docgen": "^1.33.0",
+		"@wordpress/e2e-test-utils": "^9.3.0",
 		"@wordpress/element": "^5.1.0",
 		"@wordpress/i18n": "^4.24.0",
 		"@wordpress/icons": "^9.15.0",
@@ -76,6 +75,7 @@
 		"babel-loader": "^9.1.0",
 		"classnames": "^2.3.2",
 		"husky": "^8.0.3",
+		"jest-puppeteer": "^6.2.0",
 		"moment": "^2.29.3"
 	},
 	"dependencies": {
