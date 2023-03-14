@@ -1,0 +1,4 @@
+# exclude vendored and generated files
+package-lock.json linguist-generated
+/src/stories/assets/** linguist-vendored
+/docs/** linguist-documentation
