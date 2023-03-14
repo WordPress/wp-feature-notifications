@@ -205,6 +205,7 @@ function wp_notify_render_admin_options_page() {    ?>
 		$list_table = new list_table();
 		$list_table->prepare_items();
 		$list_table->display();
+		printf( '<input type="submit" id="doaction" class="button action primary" value="%s">', __( 'Apply' ) );
 	}
 	init_table();
 }
