@@ -154,11 +154,23 @@ function wp_notify_render_admin_options_page() {    ?>
 		private function table_data(): array {
 			$data = array();
 
-			$indexes = array(
-				'WordPress',
-				'User activity (published, edited, ect)',
-				'Comments',
-				'Site health',
+			/**
+			 * Notification sources
+			 *
+			 * Allows to filter the notification sources that will be shown in the table.
+			 *
+			 * @since 0.0.2
+			 *
+			 * @param array $indexes Array of available notification emitters
+			 */
+			$indexes = apply_filters(
+				'wp_feature_notifications_settings_indexes',
+				array(
+					'WordPress',
+					'User activity (published, edited, ect)',
+					'Comments',
+					'Site health',
+				)
 			);
 
 			$item_count = count( $indexes );
