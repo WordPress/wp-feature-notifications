@@ -2,28 +2,23 @@
 
 ## Key features
 
-- Ability to target individual users and maintain a history of their messages.
+- Ability to target individual users and maintain a history of their notifications.
 - Organization of notifications by channel.
-- Subscriptions and snooze functionality. Notifications can become overwhelming if the user isn't provided with options to snooze and/or unsubscribe from channels.
+- Subscriptions and snooze functionality.
 - Table structure optimized for search by user or channel. Minimizing repetitive string data.
-
-## Possibilities
-
-Create a messaging system for users inside of WordPress. It could give collaborators the ability to have message threads for a specific posts and/or workflows. This seems like a powerful feature, possibly an even a more important use case than plugin notifications.
 
 ## Message schema
 
-Messages data is stored separately from channel data and can be linked to many users through
-the `wp_notifications_queue` table.
+Message data is stored separately from channel data and can be linked to many users through the `wp_notifications_queue` table.
 
 ### wp_notifications_messages table
 
-- `id: int` - The ID of the notification
+- `id: int` - The ID of the notification.
 - `channel_id: int` - The ID of the channel this message was emitted from.
 - `created_at: timestamp` - The timestamp of when the message was broadcast.
 - `updated_at: timestamp` - The timestamp of when the message was last updated.
 
-  Maybe unnecessary, but it could be good to know if a message has been modify after a user dismissed it. This is probably most import if users are given the ability to post messages to channels. They will want the ability to edit their messages.
+  Maybe unnecessary, but it could be good to know if a message has been modify after a user dismissed it.
 
 - `expires_at:  timestamp | null` - The optional timestamp of when the message expires.
 
@@ -38,8 +33,6 @@ the `wp_notifications_queue` table.
 - `message_key: varchar(128)` - The translation key for the notification message content
 
 - `meta: JSON` - data that doesn’t have to be queried, like icon or image information.
-
-  The `meta` field could be stored in another table, similar to other WordPress schemas. Another possibly is to use a concept of message type. A message could be of a type that has metadata attached to it, like icon.
 
 ## Channel schema
 
@@ -56,9 +49,7 @@ Plugins can register channels of their own.
 - `name_key: varchar(128)` - The translation key for the name of the channel.
 - `description_key: varchar(128)` - The translation key for the description of the channel.
 - `role: varchar(128)` The minimum required role to subscribe to messages from the channel.
-- `meta: JSON` - Data that doesn’t have to be queried, like icon or images
-
-  Another way to add metadata to a channel could be the registration process in PHP and JS. Attaching icons could be done in code when calling something like `wp_notifications_register_channel`.
+- `meta: JSON` - Data that doesn’t have to be queried, like icon or images.
 
 ## Message Queue
 
@@ -79,12 +70,22 @@ If a message has been orphan it can safely be deleted.
 
 ## Subscriptions
 
-Join table used determine for whom to enqueue messages for a specific channel.
+Join table used to determine for whom to enqueue messages when emitting to a channel.
 
-Logic to authorize a users to subscribe to a channel would be based on a comparison of the `role` property of the channel and the user.
+Logic to authorize a users to subscribe to a channel would be based on a comparison of the `role` property of the channel and user.
+
+Notifications can become overwhelming if the user isn't provided with options to snooze and/or unsubscribe from channels.
 
 ### wp_notifications_subscriptions
 
 - `user_id: int` - The ID of the user subscribed to the channel.
 - `channel_id: int` - The ID of the channel subscribed to.
 - `snoozed_until: timestamp | null` - The optional timestamp of when to resume the channel.
+
+## Metadata
+
+The `meta` field of the message and channel tables could be stored in another table, similar to other WordPress schemas. Though keeping it in the same table reduces the number of queries.
+
+A message could be of a type defined in code that has metadata attached to it, similar to Gutenberg block registration. Attaching icons could be done in code, calling something like `wp_notifications_register_channel` or `wp_notifications_register_message_type`.
+
+Use case: icon, color, template
