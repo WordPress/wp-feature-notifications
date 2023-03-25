@@ -143,6 +143,11 @@ class Notification_Controller extends WP_REST_Controller {
 					'format'      => 'date-time',
 					'context'     => array( 'view', 'edit', 'embed' ),
 				),
+				'context'      => array(
+					'description' => __( 'The context the notification.' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit', 'embed' ),
+				),
 				'priority'     => array(
 					'description' => __( 'The priority of the notification.' ),
 					'type'        => 'string',
@@ -151,12 +156,12 @@ class Notification_Controller extends WP_REST_Controller {
 				'title'        => array(
 					'description' => __( 'The title of the notification.' ),
 					'type'        => 'string',
-					'context'     => array( 'view', 'edit', 'embed' ),
+					'context'     => array( 'view', 'embed' ),
 				),
 				'message'      => array(
 					'description' => __( 'The message content of the notification.' ),
 					'type'        => 'string',
-					'context'     => array( 'view', 'edit', 'embed' ),
+					'context'     => array( 'view', 'embed' ),
 				),
 				'meta'         => array(
 					'description' => __( 'The metadata of the notification.' ),
