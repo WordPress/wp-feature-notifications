@@ -160,6 +160,7 @@ class Notification_Controller extends WP_REST_Controller {
 					'context'     => array( 'view', 'edit', 'embed' ),
 					'enum'        => array(
 						'alert',
+						'info',
 						'warning',
 						'success',
 					),
