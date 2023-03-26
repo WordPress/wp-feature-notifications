@@ -127,13 +127,13 @@ class Notification_Controller extends WP_REST_Controller {
 				),
 				'dismissed_at' => array(
 					'description' => __( "The datetime the notification was dismissed, in the site's timezone." ),
-					'type'        => 'string',
+					'type'        => array( 'string', 'null' ),
 					'format'      => 'date-time',
 					'context'     => array( 'view', 'edit', 'embed' ),
 				),
 				'displayed_at' => array(
 					'description' => __( "The datetime the notification was displayed, in the site's timezone." ),
-					'type'        => 'string',
+					'type'        => array( 'string', 'null' ),
 					'format'      => 'date-time',
 					'context'     => array( 'view', 'edit', 'embed' ),
 				),
@@ -144,24 +144,55 @@ class Notification_Controller extends WP_REST_Controller {
 					'context'     => array( 'view', 'edit', 'embed' ),
 				),
 				'context'      => array(
-					'description' => __( 'The context the notification.' ),
+					'description' => __( 'The view context the notification.' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit', 'embed' ),
+					'default'     => 'hub',
+					'enum'        => array(
+						'adminbar',
+						'dashboard',
+						'hub',
+					),
 				),
-				'priority'     => array(
-					'description' => __( 'The priority of the notification.' ),
-					'type'        => 'string',
+				'severity'     => array(
+					'description' => __( 'The severity of the notification.' ),
+					'type'        => array( 'string', 'null' ),
 					'context'     => array( 'view', 'edit', 'embed' ),
+					'enum'        => array(
+						'alert',
+						'warning',
+						'success',
+					),
+				),
+				'status'       => array(
+					'description' => __( 'The status of the notification.' ),
+					'type'        => 'string',
+					'default'     => 'undisplayed',
+					'enum'        => array(
+						'undisplayed',
+						'displayed',
+						'dismissed',
+					),
 				),
 				'title'        => array(
 					'description' => __( 'The title of the notification.' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'embed' ),
 				),
+				'title_key'    => array(
+					'description' => __( 'The translation title key of the notification.' ),
+					'type'        => 'string',
+					'context'     => array( 'edit' ),
+				),
 				'message'      => array(
 					'description' => __( 'The message content of the notification.' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'embed' ),
+				),
+				'message_key'  => array(
+					'description' => __( 'The translation message key of the notification.' ),
+					'type'        => 'string',
+					'context'     => array( 'edit' ),
 				),
 				'meta'         => array(
 					'description' => __( 'The metadata of the notification.' ),
