@@ -4,31 +4,31 @@
  */
 class WP_Test_REST_Notification_Controller extends WP_Test_REST_Post_Type_Controller_Testcase {
 	public function test_register_routes() {
-			$this->markTestSkipped( 'TODO Implement' );
+		$this->markTestSkipped( 'TODO Implement' );
 
 	}
 	public function test_context_param() {
-			$this->markTestSkipped( 'TODO Implement' );
+		$this->markTestSkipped( 'TODO Implement' );
 
 	}
 	public function test_get_items() {
-			$this->markTestSkipped( 'TODO Implement' );
+		$this->markTestSkipped( 'TODO Implement' );
 
 	}
 	public function test_get_item() {
-			$this->markTestSkipped( 'TODO Implement' );
+		$this->markTestSkipped( 'TODO Implement' );
 
 	}
 	public function test_create_item() {
-			$this->markTestSkipped( 'TODO Implement' );
+		$this->markTestSkipped( 'TODO Implement' );
 
 	}
 	public function test_update_item() {
-			$this->markTestSkipped( 'TODO Implement' );
+		$this->markTestSkipped( 'TODO Implement' );
 
 	}
 	public function test_delete_item() {
-		$this->assert( true );
+		$this->markTestSkipped( 'TODO Implement' );
 	}
 	public function test_prepare_item() {
 		$this->markTestSkipped( 'TODO Implement' );
@@ -43,6 +43,7 @@ class WP_Test_REST_Notification_Controller extends WP_Test_REST_Post_Type_Contro
 		$this->assertSame(
 			array(
 				'channel',
+				'context',
 				'offset',
 				'order',
 				'orderby',
