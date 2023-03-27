@@ -61,18 +61,20 @@ class WP_Test_REST_Notification_Controller extends WP_Test_REST_Post_Type_Contro
 		$response   = rest_get_server()->dispatch( $request );
 		$data       = $response->get_data();
 		$properties = $data['schema']['properties'];
-		// $this->assertCount( 14, $properties );
+		$this->assertCount( 14, $properties );
 		$this->assertArrayHasKey( 'channel_id', $properties );
 		$this->assertArrayHasKey( 'context', $properties );
 		$this->assertArrayHasKey( 'created_at', $properties );
 		$this->assertArrayHasKey( 'dismissed_at', $properties );
+		$this->assertArrayHasKey( 'displayed_at', $properties );
 		$this->assertArrayHasKey( 'expires_at', $properties );
+		$this->assertArrayHasKey( 'id', $properties );
 		$this->assertArrayHasKey( 'message', $properties );
-		// $this->assertArrayHasKey( 'message_key', $properties );
+		$this->assertArrayHasKey( 'message_key', $properties );
 		$this->assertArrayHasKey( 'meta', $properties );
 		$this->assertArrayHasKey( 'severity', $properties );
 		$this->assertArrayHasKey( 'status', $properties );
 		$this->assertArrayHasKey( 'title', $properties );
-		// $this->assertArrayHasKey( 'title_key', $properties );
+		$this->assertArrayHasKey( 'title_key', $properties );
 	}
 }
