@@ -1,7 +1,7 @@
 <?php
 
 /**
- * REST API controller to get and set notifications.
+ * REST API controller to get and set notification messages.
  *
  * @package wordpress/wp-feature-notifications
  */

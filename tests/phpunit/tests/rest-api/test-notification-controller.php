@@ -1,8 +1,8 @@
 <?php
 /**
- * Unit tests covering WP_REST_Notification_Controller functionality.
+ * Unit tests covering WP/Notifications/Notification_Controller functionality.
  */
-class WP_Test_REST_Notification_Controller extends WP_Test_REST_Post_Type_Controller_Testcase {
+class WP_Test_REST_Notification_Controller extends WP_Test_REST_Controller_Testcase {
 	public function test_register_routes() {
 		$this->markTestSkipped( 'TODO Implement' );
 	}
@@ -36,7 +36,7 @@ class WP_Test_REST_Notification_Controller extends WP_Test_REST_Post_Type_Contro
 	}
 
 	public function test_registered_query_params() {
-		$request  = new WP_REST_Request( 'OPTIONS', '/wp/v2/notifications' );
+		$request  = new WP_REST_Request( 'OPTIONS', '/wp-notifications/v1/notifications' );
 		$response = rest_get_server()->dispatch( $request );
 		$data     = $response->get_data();
 		$keys     = array_keys( $data['endpoints'][0]['args'] );
@@ -58,7 +58,7 @@ class WP_Test_REST_Notification_Controller extends WP_Test_REST_Post_Type_Contro
 	}
 
 	public function test_get_item_schema() {
-		$request    = new WP_REST_Request( 'OPTIONS', '/wp/v2/notifications' );
+		$request    = new WP_REST_Request( 'OPTIONS', '/wp-notifications/v1/notifications' );
 		$response   = rest_get_server()->dispatch( $request );
 		$data       = $response->get_data();
 		$properties = $data['schema']['properties'];
