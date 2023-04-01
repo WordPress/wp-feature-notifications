@@ -59,9 +59,6 @@ jobs:
     - name: Installing NPM dependencies
       run: npm ci
 
-    - name: Installing wp-env
-      run: npm -g i @wordpress/env
-
     - name: Install WordPress and initialize database
       run: ./tests/bin/install-wp-tests.sh wp_notify_tests root wordpress 127.0.0.1 latest
 
