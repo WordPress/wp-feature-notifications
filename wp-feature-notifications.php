@@ -28,7 +28,7 @@ if ( ! defined( 'WP_NOTIFICATION_CENTER_PLUGIN_DIR_URL' ) ) {
 	define( 'WP_NOTIFICATION_CENTER_PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) );
 }
 
-require __DIR__ . '/vendor/autoload.php';
+require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/vendor/autoload.php';
 
 // Require interface/class declarations..
 require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/exceptions/interface-wp-notify-exception.php';
