@@ -25,6 +25,16 @@
     "lint-fix": "vendor/bin/phpcbf --standard=phpcs.xml.dist includes/",
     "test": "vendor/bin/phpunit"
   },
+  "autoload": {
+    "psr-4": {
+        "WP\\Notifications\\": "includes/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+        "WP\\Notifications\\Tests\\": "tests/"
+    }
+  },
   "config": {
     "allow-plugins": {
       "dealerdirect/phpcodesniffer-composer-installer": true
