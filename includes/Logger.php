@@ -63,8 +63,8 @@ class Logger {
 
 	/**
 	 * Log a message.
-   *
-   * Always logs a message regardless of log level.
+	 *
+	 * Always logs a message regardless of log level.
 	 *
 	 * @since 0.1.0
 	 *
