@@ -69,7 +69,7 @@ jobs:
       run: composer run test
 
     - name: Starting the WordPress Environment
-      run: wp-env start
+      run: npm run wp-env:start
 
     - name: Running the tests
       run: npm run test
