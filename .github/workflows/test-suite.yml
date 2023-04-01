@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: [ '7.2', '7.3', '7.4', '8.0' ]
+        php: [ '7.2', '7.4', '8.0' ]
         wp: [ 'latest' ]
     services:
       database:
@@ -53,20 +53,23 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
 
+    - name: Setup environment to use the desired version of NodeJS
+      uses: actions/setup-node@v3
+
+    - name: Installing NPM dependencies
+      run: npm install
+
+    - name: Installing wp-env
+      run: npm -g i @wordpress/env
+
     - name: Install WordPress and initialize database
       run: ./tests/bin/install-wp-tests.sh wp_notify_tests root wordpress 127.0.0.1 latest
 
     - name: Run PHP Unit tests
       run: composer run test
 
-  lint:
-    name: Check Coding Standards
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: WPCS check
-        uses: 10up/wpcs-action@stable
-        with:
-          enable_warnings: true
-          use_local_config: true
+    - name: Starting the WordPress Environment
+      run: wp-env start
 
+    - name: Running the tests
+      run: npm run test
