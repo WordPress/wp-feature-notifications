@@ -32,7 +32,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-        "WP\\Notifications\\Tests\\": "tests/"
+        "WP\\Notifications\\Tests\\": "tests/phpunit/tests"
     }
   },
   "config": {
