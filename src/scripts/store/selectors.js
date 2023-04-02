@@ -7,7 +7,7 @@ import { findContext } from './utils';
  * @param {Object} state the current state
  * @return {Object} the new notifications
  */
-export const fetchUpdates = (state) => state || {};
+export const fetchUpdates = ( state ) => state || {};
 
 /**
  * Get the notices for the given context
@@ -17,8 +17,8 @@ export const fetchUpdates = (state) => state || {};
  *
  * @return {Object[]} the list of notices of the context
  */
-export const getNotices = (state, context) => {
-	return context ? state[context] : state;
+export const getNotices = ( state, context ) => {
+	return context ? state[ context ] : state;
 };
 
 /**
@@ -28,11 +28,10 @@ export const getNotices = (state, context) => {
  * @param {Object} state   the current state
  * @param {string} context the context to add
  */
-export const registerContext = (state, context) => {
-	if (!state[context]) {
-		state[context] = [];
+export const registerContext = ( state, context ) => {
+	if ( ! state[ context ] ) {
+		state[ context ] = [];
 	}
-	console.log('added context ' + context + '. Available context %o', state);
 	return state;
 };
 
@@ -45,29 +44,29 @@ export const registerContext = (state, context) => {
  *
  * @return {Object} the search result
  */
-export const findNotice = (state, searchTerm, args = { term: 'source' }) => {
+export const findNotice = ( state, searchTerm, args = { term: 'source' } ) => {
 	// return the notification by id
-	if (typeof searchTerm === 'number') {
-		const context = findContext(state, searchTerm);
-		return state[context].find((notice) => notice.id === searchTerm);
+	if ( typeof searchTerm === 'number' ) {
+		const context = findContext( state, searchTerm );
+		return state[ context ].find( ( notice ) => notice.id === searchTerm );
 	}
 
 	// Search the notification by key and searchTerm
-	if (typeof searchTerm === 'string') {
+	if ( typeof searchTerm === 'string' ) {
 		const searchFor = args.term || 'source';
 		searchTerm = searchTerm.toLowerCase();
 		// merge all Object state Items into a single state item
-		const found = Object.values(state)
+		const found = Object.values( state )
 			.flat()
 			.filter(
-				(el) =>
-					el[searchFor] &&
-					el[searchFor].toLowerCase().includes(searchTerm)
+				( el ) =>
+					el[ searchFor ] &&
+					el[ searchFor ].toLowerCase().includes( searchTerm )
 			);
 
-		if (found.length) {
+		if ( found.length ) {
 			return found;
 		}
 	}
-	return __('nothing was found');
+	return __( 'nothing was found' );
 };

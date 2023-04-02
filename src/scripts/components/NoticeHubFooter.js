@@ -6,16 +6,16 @@ import { settingsPageUrl } from '../store/constants';
 /**
  * The footer for the notices section drawer.
  *
- * @return {JSX.Element}
+ * @return {JSX.Element} NoticeHubFooter
  * @function Object() { [native code] }
  */
 export const NoticeHubFooter = () => (
 	<footer>
 		<Button
-			href={settingsPageUrl}
+			href={ settingsPageUrl }
 			className="wp-notification-action wp-notification-action-markread button-link"
-			icon={cog}
-			text={__('Configure notification settings')}
+			icon={ cog }
+			text={ __( 'Configure notification settings' ) }
 		/>
 	</footer>
 );

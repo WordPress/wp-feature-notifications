@@ -16,10 +16,10 @@ import { __ } from '@wordpress/i18n';
 import { defaultContext, NOTIFY_NAMESPACE } from '../store/constants';
 import { dispatch } from '@wordpress/data';
 
-export const NoticeMeta = ({ date, source }) => (
+export const NoticeMeta = ( { date, source } ) => (
 	<p className="wp-notification-meta">
-		<span className="name">{source}</span> {'\u2022 '}
-		<span className="date">{moment(date).fromNow()}</span>
+		<span className="name">{ source }</span> { '\u2022 ' }
+		<span className="date">{ moment( date ).fromNow() }</span>
 	</p>
 );
 
@@ -29,14 +29,14 @@ export const NoticeMeta = ({ date, source }) => (
  * @param {Object} props
  * @return {JSX.Element} Notice - the single notice
  */
-export const Notice = (props) => {
+export const Notice = ( props ) => {
 	const {
 		id,
 		title,
 		status,
 		context = defaultContext,
 		source = 'WordPress',
-		date = __('Just now'),
+		date = __( 'Just now' ),
 		message,
 		severity,
 		dismissible,
@@ -47,37 +47,39 @@ export const Notice = (props) => {
 	 * Dismiss the target notification
 	 */
 	function dismissNotice() {
-		dispatch(NOTIFY_NAMESPACE).updateNotice({
+		dispatch( NOTIFY_NAMESPACE ).updateNotice( {
 			id,
 			status: 'dismissing',
-		});
-		dispatch(NOTIFY_NAMESPACE).removeNotice(id);
+		} );
+		dispatch( NOTIFY_NAMESPACE ).removeNotice( id );
 	}
 
 	return (
 		<div
-			className={classnames(
+			className={ classnames(
 				'wp-notification',
 				'wp-notice-' + id,
 				dismissible,
 				severity ? severity : null,
 				unread ? 'unread' : null,
 				status
-			)}
+			) }
 		>
 			<div className="wp-notification-wrap">
-				<h3 className="wp-notification-title">{title}</h3>
-				{message ?? <p dangerouslySetInnerHTML={purify(message)} />}
+				<h3 className="wp-notification-title">{ title }</h3>
+				{ message ?? (
+					<p dangerouslySetInnerHTML={ purify( message ) } />
+				) }
 				<NoticeActions
-					action={props?.action ?? {}}
-					onDismiss={dismissNotice}
-					context={context}
-					dismissible={dismissible}
+					action={ props?.action ?? {} }
+					onDismiss={ dismissNotice }
+					context={ context }
+					dismissible={ dismissible }
 				/>
-				<NoticeMeta date={date} source={source} />
+				<NoticeMeta date={ date } source={ source } />
 			</div>
 
-			<NoticeIcon {...props} />
+			<NoticeIcon { ...props } />
 		</div>
 	);
 };

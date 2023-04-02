@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from '@wordpress/element';
+import { useEffect, useRef } from '@wordpress/element';
 
 /** the single notification component */
 import { NoticesLoop } from '../scripts/components/NoticesLoop';
@@ -23,13 +23,12 @@ import jsonData from '../../includes/restapi/fake_api.json';
 import { NoticeHubSectionHeader } from '../scripts/components/NoticeHubSectionHeader';
 import * as drawer from '../scripts/utils/drawer';
 import { NoticeHubFooter } from '../scripts/components/NoticeHubFooter';
-import { addParameters } from '@storybook/react';
-import draggable from '@wordpress/components/build/draggable';
 const { getSorted } = drawer;
 
 // filter out non adminbar notices
 const adminBarNotices = jsonData.filter(
-	(term) => !term.hasOwnProperty('context') || term.context === 'adminbar'
+	( term ) =>
+		! term.hasOwnProperty( 'context' ) || term.context === 'adminbar'
 );
 
 export default {
@@ -38,12 +37,12 @@ export default {
 	parameters: {
 		backgrounds: {
 			default: 'WordPress',
-			values: [{ name: 'WordPress', value: '#f0f0f1' }],
+			values: [ { name: 'WordPress', value: '#f0f0f1' } ],
 		},
 	},
 	argTypes: {
 		sortBy: {
-			options: ['title', 'date', 'id'],
+			options: [ 'title', 'date', 'id' ],
 			control: { type: 'radio' },
 		},
 	},
@@ -54,30 +53,44 @@ export default {
  *
  * @param {Object} args
  */
-const Template = (args) => {
-	const drawerRef = useRef(null);
+const Template = ( args ) => {
+	const drawerRef = useRef( null );
 	/**
-	 * @param {React.MouseEvent<HTMLLIElement>|React.FocusEvent<HTMLLIElement>} e
+	 * Fired each time you need to enable the sidebar
+	 *
+	 * @param {Event} e - the clicked bell button to enable the sidebar event
 	 */
-	const enableDrawer = (e) => {
+	const enableDrawer = ( e ) => {
 		e.stopPropagation();
-		e.currentTarget.classList.add('active');
+		e.currentTarget.classList.add( 'active' );
 	};
-	const disableDrawer = (e) => {
+
+	/**
+	 * Fired to disable the sidebar
+	 *
+	 * @param {Event} e - the event that fires the close sidebar event
+	 */
+	const disableDrawer = ( e ) => {
 		e.stopPropagation();
-		e.currentTarget.classList.remove('active');
+		e.currentTarget.classList.remove( 'active' );
 	};
-	const disableDrawerOnKey = (e) => {
-		if (e.key === 'Escape') {
-			disableDrawer(e);
+
+	/**
+	 * Fired to close the sidebar with keys
+	 *
+	 * @param {Event} e - the event that fires the close sidebar event
+	 */
+	const disableDrawerOnKey = ( e ) => {
+		if ( e.key === 'Escape' ) {
+			disableDrawer( e );
 		}
 	};
 
-	useEffect(() => {
+	useEffect( () => {
 		return args.forceEnableDrawer
-			? drawerRef.current.classList.add('active')
-			: drawerRef.current.classList.remove('active');
-	}, [args.forceEnableDrawer]);
+			? drawerRef.current.classList.add( 'active' )
+			: drawerRef.current.classList.remove( 'active' );
+	}, [ args.forceEnableDrawer ] );
 
 	return (
 		<div id="wpcontent">
@@ -92,14 +105,15 @@ const Template = (args) => {
 						id="wp-admin-bar-top-secondary"
 						className="ab-top-secondary ab-top-menu"
 					>
+						{ /* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */ }
 						<li
-							key={0}
+							key={ 0 }
 							id="wp-admin-bar-wp-notify"
-							ref={drawerRef}
-							onClick={(e) => enableDrawer(e)}
-							onFocus={(e) => enableDrawer(e)}
-							onBlur={(e) => disableDrawer(e)}
-							onKeyDown={(e) => disableDrawerOnKey(e)}
+							ref={ drawerRef }
+							onClick={ ( e ) => enableDrawer( e ) }
+							onFocus={ ( e ) => enableDrawer( e ) }
+							onBlur={ ( e ) => disableDrawer( e ) }
+							onKeyDown={ ( e ) => disableDrawerOnKey( e ) }
 						>
 							<div className="ab-item ab-empty-item" tabIndex="0">
 								<span
@@ -109,26 +123,28 @@ const Template = (args) => {
 								<span className="ab-label">Notifications</span>
 							</div>
 							<aside
-								id={'wp-notification-hub'}
-								className={'active'}
+								id={ 'wp-notification-hub' }
+								className={ 'active' }
 							>
-								<div className={'wp-notification-hub-wrapper'}>
-									{getSorted(
+								<div
+									className={ 'wp-notification-hub-wrapper' }
+								>
+									{ getSorted(
 										adminBarNotices,
 										args.sortBy
-									).map((list, index) => (
-										<section key={index}>
+									).map( ( list, index ) => (
+										<section key={ index }>
 											<NoticeHubSectionHeader
-												context={'adminbar'}
-												unreadCount={list.length}
-												isMain={index === 0} // the main section is the first one
+												context={ 'adminbar' }
+												unreadCount={ list.length }
+												isMain={ index === 0 } // the main section is the first one
 											/>
 											<NoticesLoop
-												notices={list}
-												{...args}
+												notices={ list }
+												{ ...args }
 											/>
 										</section>
-									))}
+									) ) }
 									<NoticeHubFooter />
 								</div>
 							</aside>
@@ -137,10 +153,10 @@ const Template = (args) => {
 				</div>
 			</div>
 			<p
-				style={{
+				style={ {
 					fontSize: '4rem',
 					padding: '2rem',
-				}}
+				} }
 			>
 				Click the bell ➡️
 			</p>
@@ -148,7 +164,7 @@ const Template = (args) => {
 	);
 };
 
-export const multiple = Template.bind({});
+export const multiple = Template.bind( {} );
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 
 multiple.args = {

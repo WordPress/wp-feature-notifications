@@ -1,5 +1,3 @@
-import React from '@wordpress/element';
-
 /** the single notification component */
 import { Notice } from '../scripts/components/Notice';
 
@@ -23,7 +21,7 @@ import { getSorted } from '../scripts/utils/drawer';
 
 // filter out non dashboard notices
 const adminBarNotices = jsonData.filter(
-	(term) => term.hasOwnProperty('context') && term.context === 'dashboard'
+	( term ) => term.hasOwnProperty( 'context' ) && term.context === 'dashboard'
 );
 
 export default {
@@ -32,7 +30,7 @@ export default {
 	parameters: {
 		backgrounds: {
 			default: 'WordPress',
-			values: [{ name: 'WordPress', value: '#f0f0f1' }],
+			values: [ { name: 'WordPress', value: '#f0f0f1' } ],
 		},
 	},
 };
@@ -44,28 +42,28 @@ export default {
  */
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const MultipleNotificationsTemplate = (args) => (
+const MultipleNotificationsTemplate = ( args ) => (
 	<>
 		<div
 			id="wpbody"
-			style={{
+			style={ {
 				fontFamily:
 					'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
-			}}
+			} }
 		>
-			{getSorted(adminBarNotices).map((list, index) => (
+			{ getSorted( adminBarNotices ).map( ( list, index ) => (
 				<NoticesLoop
-					key={index}
-					notices={list}
-					sortBy={undefined}
-					context={'dashboard'}
-					{...args}
+					key={ index }
+					notices={ list }
+					sortBy={ undefined }
+					context={ 'dashboard' }
+					{ ...args }
 				/>
-			))}
+			) ) }
 		</div>
 	</>
 );
 
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-export const Multiple = MultipleNotificationsTemplate.bind({});
+export const Multiple = MultipleNotificationsTemplate.bind( {} );
 Multiple.args = {};

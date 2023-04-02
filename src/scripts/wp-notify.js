@@ -22,14 +22,14 @@ const notify = {
 	/**
 	 * Fetch for new notices
 	 */
-	fetchUpdates: () => select(NOTIFY_NAMESPACE).fetchUpdates(),
+	fetchUpdates: () => select( NOTIFY_NAMESPACE ).fetchUpdates(),
 
 	/**
 	 * List all notifications or those of a particular context
 	 *
 	 * @param {string|false} context
 	 */
-	get: (context = '') => select(NOTIFY_NAMESPACE).getNotices(context),
+	get: ( context = '' ) => select( NOTIFY_NAMESPACE ).getNotices( context ),
 
 	/**
 	 * Search for a notification by key or term (term is optional, returns an array of objects)
@@ -43,28 +43,29 @@ const notify = {
 	 * notify.find("hello", {term: 'title'}) // [{ 'id': 5, title: "hello", location: "dashboard", ... }, {...}]
 	 * ```
 	 */
-	find: (term, args) => select(NOTIFY_NAMESPACE).findNotice(term, args),
+	find: ( term, args ) => select( NOTIFY_NAMESPACE ).findNotice( term, args ),
 
 	/**
 	 * Add a new notification
 	 *
 	 * @param {Object} payload
 	 */
-	add: (payload) => dispatch(NOTIFY_NAMESPACE).addNotice(payload),
+	add: ( payload ) => dispatch( NOTIFY_NAMESPACE ).addNotice( payload ),
 
 	/**
 	 * Remove a notification by key
 	 *
 	 * @param {number} id
 	 */
-	remove: (id) => dispatch(NOTIFY_NAMESPACE).removeNotice(id),
+	remove: ( id ) => dispatch( NOTIFY_NAMESPACE ).removeNotice( id ),
 
 	/**
 	 * Clear all notifications
 	 *
 	 * @param {string|false} context
 	 */
-	clear: (context = 'adminbar') => dispatch(NOTIFY_NAMESPACE).clear(context),
+	clear: ( context = 'adminbar' ) =>
+		dispatch( NOTIFY_NAMESPACE ).clear( context ),
 };
 
 /** Appends the wp-notify instance to window.wp in order to provide a public API */
@@ -75,30 +76,30 @@ window.wp.notify = notify;
  *
  * @param {string} context
  */
-contexts.forEach((context) =>
-	select(NOTIFY_NAMESPACE).registerContext(context)
+contexts.forEach( ( context ) =>
+	select( NOTIFY_NAMESPACE ).registerContext( context )
 );
 
 /** after registering contexts we could fetch the notifications */
-select(NOTIFY_NAMESPACE).fetchUpdates();
+select( NOTIFY_NAMESPACE ).fetchUpdates();
 
 /**
  * Loops into contexts and adds a NoticesArea component for each one
  */
-contexts.forEach((context) => {
+contexts.forEach( ( context ) => {
 	/**
 	 * Renders the component into the specified context
 	 *
 	 * @member {HTMLElement} notifyDash - the area that will host the notifications
 	 */
 	render(
-		createElement(NoticesArea, {
+		createElement( NoticesArea, {
 			context,
 			splitBy: context === 'adminbar' ? 'date' : undefined,
-		}),
-		document.getElementById(`wp-notify-${context}`)
+		} ),
+		document.getElementById( `wp-notify-${ context }` )
 	);
-});
+} );
 
 /**
  *  exports notify store functions for further uses
