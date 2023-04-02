@@ -1,5 +1,5 @@
 module.exports = {
-	'**/*.(ts|tsx)': () => 'pnpm check',
+	'**/*.(ts|tsx)': () => 'npm run check',
 	'**/*.(json|yml|yaml)': (filenames) => {
 		const files = filenames.join(' ');
 		return [`prettier --write ${files}`];
