@@ -45,7 +45,8 @@
 		"docGen": "npx docgen src/scripts/wp-notify.js",
 		"wp-env:start": "wp-env start",
 		"wp-env:stop": "wp-env stop",
-		"wp-env:destroy": "wp-env destroy"
+		"wp-env:destroy": "wp-env destroy",
+		"prepare": "husky install"
 	},
 	"repository": {
 		"type": "git",
