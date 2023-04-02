@@ -3,20 +3,22 @@
 namespace WP\Notifications;
 
 /**
- * Class to simplify logging of plugin information.
+ * Class Logger
  *
- * @since 0.1.0
+ * Defines the plugin's conditional logging logic.
+ *
+ * @package WP_Notifications
  */
 class Logger {
 	/**
 	 * The plugin prefix to log messages.
+	 *
+	 * @var string
 	 */
 	public static $prefix = 'WP_NOTIFICATIONS: ';
 
 	/**
 	 * The log level.
-	 *
-	 * @since 0.1.0
 	 *
 	 * @var int 0 = "always" | 1 = "error" | 2 = "warning" | 3 = "info"
 	 */
@@ -24,8 +26,6 @@ class Logger {
 
 	/**
 	 * Log an info level message.
-	 *
-	 * @since 0.1.0
 	 *
 	 * @param string|array $data - The string/array to log.
 	 *
@@ -38,8 +38,6 @@ class Logger {
 	/**
 	 * Log a warning level message.
 	 *
-	 * @since 0.1.0
-	 *
 	 * @param string|array $data - The string/array to log.
 	 *
 	 * @return void
@@ -51,8 +49,6 @@ class Logger {
 	/**
 	 * Log an error level message.
 	 *
-	 * @since 0.1.0
-	 *
 	 * @param string|array $data - The string/array to log.
 	 *
 	 * @return void
@@ -62,11 +58,7 @@ class Logger {
 	}
 
 	/**
-	 * Log a message.
-	 *
-	 * Always logs a message regardless of log level.
-	 *
-	 * @since 0.1.0
+	 * Always log regardless of log level.
 	 *
 	 * @param string|array $data - The string/array to log.
 	 *
@@ -79,10 +71,9 @@ class Logger {
 	/**
 	 * Conditionally log based on `WP_DEBUG` and log level.
 	 *
-	 * @since 0.1.0
-	 *
 	 * @param string|array $data  The string/array to log.
 	 * @param int          $level The log level. See `Logger::$level`.
+	 *
 	 * @return void
 	 */
 	protected static function maybe_log( $data, $level ) {
