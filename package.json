@@ -29,7 +29,7 @@
 		"prephp-install": "wp-env start",
 		"php-install": "wp-env run composer 'composer --ignore-platform-req=php install'",
 		"pretest-unit-php": "npm run php-install",
-		"test-unit-php": "wp-env run phpunit 'phpunit --configuration=/var/www/html/wp-content/plugins/wp-notify/phpunit.xml.dist'",
+		"test-unit-php": "wp-env run phpunit 'phpunit --configuration=/var/www/html/wp-content/plugins/wp-feature-notifications/phpunit.xml.dist'",
 		"packages-update": "wp-scripts packages-update",
 		"check-engines": "wp-scripts check-engines",
 		"check-licenses": "wp-scripts check-licenses",
