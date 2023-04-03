@@ -1,5 +1,3 @@
-import React from '@wordpress/element';
-
 /** the single notification component */
 
 /** Backend style */
@@ -26,7 +24,7 @@ export default {
 	parameters: {
 		backgrounds: {
 			default: 'WordPress',
-			values: [{ name: 'WordPress', value: '#f0f0f1' }],
+			values: [ { name: 'WordPress', value: '#f0f0f1' } ],
 		},
 	},
 	argTypes: {
@@ -41,17 +39,17 @@ export default {
 /**
  * Notification UI component
  *
- * @param  args
+ * @param {Object} args - the sidebar template arguments
  */
-const Template = (args) => {
+const Template = ( args ) => {
 	return (
-		<aside id={'wp-notification-hub'} style={{ opacity: 1, right: 0 }}>
-			<Notice {...args} context={'adminbar'} />
+		<aside id={ 'wp-notification-hub' } style={ { opacity: 1, right: 0 } }>
+			<Notice { ...args } context={ 'adminbar' } />
 		</aside>
 	);
 };
 
-export const Single = Template.bind({});
+export const Single = Template.bind( {} );
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 
 Single.args = {

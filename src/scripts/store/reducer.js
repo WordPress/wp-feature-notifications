@@ -9,44 +9,44 @@ import { findContext } from './utils';
  *
  * @return {Object} Updated state.
  */
-const reducer = (state = {}, action) => {
-	switch (action.type) {
+const reducer = ( state = {}, action ) => {
+	switch ( action.type ) {
 		case 'HYDRATE':
 			let updated = { ...state };
-			action.payload.forEach((notification) => {
+			action.payload.forEach( ( notification ) => {
 				const context = notification.context || 'adminbar';
 				updated = {
 					...updated,
-					[context]: [...updated[context], notification],
+					[ context ]: [ ...updated[ context ], notification ],
 				};
-			});
+			} );
 			return updated;
 
 		case 'ADD':
 			return {
 				...state,
-				[action.payload.context]: [
-					...state[action.payload.context],
+				[ action.payload.context ]: [
+					...state[ action.payload.context ],
 					action.payload,
 				],
 			};
 
 		case 'DELETE':
-			const context = findContext(state, action.id);
+			const context = findContext( state, action.id );
 			return {
 				...state,
-				[context]: state[context].filter(
-					(notice) => notice.id !== action.id
+				[ context ]: state[ context ].filter(
+					( notice ) => notice.id !== action.id
 				),
 			};
 
 		case 'CLEAR':
-			state[action.context] = [];
+			state[ action.context ] = [];
 			return { ...state };
 
 		case 'UPDATE':
-			const location = findContext(state, action.payload.id);
-			state[location].map((notice) =>
+			const location = findContext( state, action.payload.id );
+			state[ location ].map( ( notice ) =>
 				notice.id === action.payload.id
 					? { ...notice, ...action.payload } // merge the new object with the old object
 					: notice

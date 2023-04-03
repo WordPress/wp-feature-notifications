@@ -10,21 +10,19 @@ import { clearNotifyDrawer } from '../utils/drawer';
  * @param {boolean} props.isMain
  * @param {number}  props.unreadCount
  * @param {string}  props.context
- *
- * @return {JSX.Element}
- * @function Object() { [native code] }
+ * @return {JSX.Element} NoticeHubSectionHeader
  */
-export const NoticeHubSectionHeader = ({ isMain, unreadCount, context }) => {
+export const NoticeHubSectionHeader = ( { isMain, unreadCount, context } ) => {
 	return isMain ? (
 		<header>
-			<h2>{unreadCount} unread notifications</h2>
+			<h2>{ unreadCount } unread notifications</h2>
 			<Button
 				id="clear-all-wp-notify-adminbar"
 				className="wp-notification-action wp-notification-action-markread button-link"
-				onClick={() => clearNotifyDrawer(context)}
-				icon={check}
-				isSmall={true}
-				text={__('Mark all as read')}
+				onClick={ () => clearNotifyDrawer( context ) }
+				icon={ check }
+				isSmall={ true }
+				text={ __( 'Mark all as read' ) }
 			/>
 		</header>
 	) : (

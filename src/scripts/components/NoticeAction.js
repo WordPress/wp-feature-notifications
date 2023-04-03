@@ -5,31 +5,34 @@ import { defaultContext } from '../store/constants';
 /**
  * Renders an image or icon based on the type of notification
  *
- * @param {Object} param
- * @param {Object} param.action
- * @param {string} param.context
- * @param          param.onDismiss
- * @param          param.dismissAction
- * @param          param.id
- * @param          param.dismissible
+ * @param {Object}  param
+ * @param {Object}  param.action
+ * @param {string}  param.context
+ * @param {string}  param.onDismiss   - callback to be called when the notice is dismissed
+ * @param {boolean} param.dismissible - whether the notice is dismissible or not
  * @return {JSX.Element} NoticeImage - the image or the icon wrapped into a div
  */
-const NoticeActions = ({ action, context, dismissible = false, onDismiss }) => {
+const NoticeActions = ( {
+	action,
+	context,
+	dismissible = false,
+	onDismiss,
+} ) => {
 	const {
 		acceptLink = '#',
-		acceptMessage = __('Accept'),
-		dismissLabel = __('Dismiss'),
+		acceptMessage = __( 'Accept' ),
+		dismissLabel = __( 'Dismiss' ),
 	} = action;
 
-	if (context === defaultContext) {
+	if ( context === defaultContext ) {
 		return acceptMessage ? (
 			<Button
-				variant={'link'}
+				variant={ 'link' }
 				// TODO: at the moment it is only possible to use a link but it would not be complex to extend this functionality
-				onClick={() => (window.location.href = acceptLink)}
-				className={'wp-notification-action'}
+				onClick={ () => ( window.location.href = acceptLink ) }
+				className={ 'wp-notification-action' }
 			>
-				{acceptMessage}
+				{ acceptMessage }
 			</Button>
 		) : null;
 	}
@@ -37,22 +40,22 @@ const NoticeActions = ({ action, context, dismissible = false, onDismiss }) => {
 	return (
 		<div className="wp-notification-actions">
 			<Button
-				variant={'primary'}
-				className={'button-primary wp-notification-action'}
-				onClick={() => (window.location.href = acceptLink)}
+				variant={ 'primary' }
+				className={ 'button-primary wp-notification-action' }
+				onClick={ () => ( window.location.href = acceptLink ) }
 			>
-				{acceptMessage}
+				{ acceptMessage }
 			</Button>
-			{dismissible && (
+			{ dismissible && (
 				<Button
-					variant={'tertiary'}
-					className={'button-tertiary wp-notification-action'}
-					onClick={() => onDismiss()}
-					icon={'no-alt'}
+					variant={ 'tertiary' }
+					className={ 'button-tertiary wp-notification-action' }
+					onClick={ () => onDismiss() }
+					icon={ 'no-alt' }
 				>
-					{dismissLabel}
+					{ dismissLabel }
 				</Button>
-			)}
+			) }
 		</div>
 	);
 };

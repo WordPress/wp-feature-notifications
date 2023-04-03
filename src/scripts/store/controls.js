@@ -4,11 +4,11 @@ import { API_PATH } from './constants';
 /**
  * Fetches the wp-notify rest api endpoint for the specified endpoint
  *
- * @param {arguments} action - the action to execute
+ * @param {string} action - the action to execute
  * @return {Promise} - the Promise with the results
  */
-export const FETCH = (action) => {
-	return apiFetch({
+export const FETCH = ( action ) => {
+	return apiFetch( {
 		path: API_PATH + action.path,
-	});
+	} );
 };

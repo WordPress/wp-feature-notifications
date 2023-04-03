@@ -17,7 +17,7 @@ export const defaultContext = 'adminbar';
 /**
  *  @member {Object} context WP-Notify default contexts
  */
-export const contexts = [defaultContext, 'dashboard'];
+export const contexts = [ defaultContext, 'dashboard' ];
 
 /**
  *  @member {string} the url of the notifications settings page

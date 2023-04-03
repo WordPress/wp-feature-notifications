@@ -7,8 +7,8 @@ import { NOTIFY_NAMESPACE } from '../store/constants';
  *
  * @param {string} context - The context of the notices. This is used to determine which notices to clear.
  */
-export const clearNotifyDrawer = (context) => {
-	dispatch(NOTIFY_NAMESPACE).clear(context);
+export const clearNotifyDrawer = ( context ) => {
+	dispatch( NOTIFY_NAMESPACE ).clear( context );
 };
 
 /**
@@ -19,22 +19,22 @@ export const clearNotifyDrawer = (context) => {
  *
  * @return {Array} two list of Notifications, one for the new and one for the old
  */
-export const getSorted = (notifications, by = 'date') => {
+export const getSorted = ( notifications, by = 'date' ) => {
 	const Limit = by === 'date' ? Date.now() - WEEK_IN_SECONDS : false;
-	if (Limit) {
+	if ( Limit ) {
 		return notifications.reduce(
-			([current, past], item) => {
+			( [ current, past ], item ) => {
 				return item.date >= Limit
-					? [[...current, item], past]
-					: [current, [...past, item]];
+					? [ [ ...current, item ], past ]
+					: [ current, [ ...past, item ] ];
 			},
-			[[], []]
+			[ [], [] ]
 		);
 	}
 	return notifications;
 };
 
-export const wpNotifyHub = document.getElementById('wp-admin-bar-wp-notify');
+export const wpNotifyHub = document.getElementById( 'wp-admin-bar-wp-notify' );
 
 /**
  * When the user clicks on the notification drawer, the drawer is disabled
@@ -42,11 +42,11 @@ export const wpNotifyHub = document.getElementById('wp-admin-bar-wp-notify');
  * @param {Event} e
  * @callback {disableNotifyDrawer} disableNotifyDrawer
  */
-export const disableNotifyDrawer = (e) => {
+export const disableNotifyDrawer = ( e ) => {
 	e.stopPropagation();
-	wpNotifyHub.classList.remove('active');
+	wpNotifyHub.classList.remove( 'active' );
 	document.onkeydown = null;
-	document.body.removeEventListener('click', disableNotifyDrawer);
+	document.body.removeEventListener( 'click', disableNotifyDrawer );
 };
 
 /**
@@ -57,13 +57,13 @@ export const disableNotifyDrawer = (e) => {
  * @callback {enableNotifyDrawer} enableNotifyDrawer
  * @param {Event} e - The event object.
  */
-export const enableNotifyDrawer = (e) => {
+export const enableNotifyDrawer = ( e ) => {
 	e.stopPropagation();
-	if (!wpNotifyHub.classList.contains('active')) {
-		wpNotifyHub.classList.add('active');
-		document.body.addEventListener('click', disableNotifyDrawer);
-		document.onkeydown = (ev) => {
-			if ('key' in ev && (ev.key === 'Escape' || ev.key === 'Esc')) {
+	if ( ! wpNotifyHub.classList.contains( 'active' ) ) {
+		wpNotifyHub.classList.add( 'active' );
+		document.body.addEventListener( 'click', disableNotifyDrawer );
+		document.onkeydown = ( ev ) => {
+			if ( 'key' in ev && ( ev.key === 'Escape' || ev.key === 'Esc' ) ) {
 				disableNotifyDrawer();
 			}
 		};
@@ -73,7 +73,7 @@ export const enableNotifyDrawer = (e) => {
 /**
  * Action handler for the notification drawer
  */
-if (wpNotifyHub) {
+if ( wpNotifyHub ) {
 	/**
 	 * Notification hub
 	 * Handle click on wp-admin bar bell icon that show the WP-Notify sidebar
@@ -82,7 +82,7 @@ if (wpNotifyHub) {
 	 * @event enableNotifyDrawer - When the user clicks or focus on the notification drawer, the drawer is enabled
 	 * @event disableNotifyDrawer - on focus out
 	 */
-	wpNotifyHub.addEventListener('click', enableNotifyDrawer);
-	wpNotifyHub.addEventListener('focus', enableNotifyDrawer, true);
-	wpNotifyHub.addEventListener('blur', disableNotifyDrawer, true);
+	wpNotifyHub.addEventListener( 'click', enableNotifyDrawer );
+	wpNotifyHub.addEventListener( 'focus', enableNotifyDrawer, true );
+	wpNotifyHub.addEventListener( 'blur', disableNotifyDrawer, true );
 }
