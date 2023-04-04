@@ -83,7 +83,8 @@
 		"husky": "^8.0.3",
 		"jest-puppeteer": "^6.2.0",
 		"lint-staged": "^13.2.0",
-		"moment": "^2.29.3"
+		"moment": "^2.29.3",
+		"prettier": "npm:wp-prettier@^2.8.5"
 	},
 	"dependencies": {
 		"dompurify": "^2.4.0"
