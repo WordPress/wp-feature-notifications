@@ -1,7 +1,7 @@
 name: Setup PHP
 
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
