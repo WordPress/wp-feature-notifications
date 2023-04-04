@@ -1,0 +1,27 @@
+name: Coding Standards
+
+on:
+  pull_request:
+    branches: [develop, trunk]
+  workflow_dispatch:
+
+jobs:
+  lint:
+    name: Check Coding Standards
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: ./.github/actions/node
+
+      - name: JS check
+        shell: bash
+        run: npm run lint:js
+
+      - name: WPCS check
+        uses: 10up/wpcs-action@stable
+        with:
+          enable_warnings: true
+          use_local_config: true
