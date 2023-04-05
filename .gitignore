@@ -1,7 +1,12 @@
 # OS fixes
 .DS_Store
 
-/node_modules/
-/vendor/
+# IDE-specific
 .phpunit.result.cachecghooks.lock
 
+# Vendor code
+/node_modules/
+/vendor/
+
+# Build Files
+/build/
