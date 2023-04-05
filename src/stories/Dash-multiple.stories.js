@@ -14,7 +14,7 @@ import '../../src/stories/assets/wp-core/normalize.css';
 import '../../src/stories/assets/wp-core/site-health.css';
 
 /** Wp-notify style */
-import '../../build/wp-notify.css';
+import '../styles/wp-notify.scss';
 import jsonData from '../../includes/restapi/fake_api.json';
 import { NoticesLoop } from '../scripts/components/NoticesLoop';
 import { getSorted } from '../scripts/utils/drawer';
