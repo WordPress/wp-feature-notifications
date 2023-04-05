@@ -57,15 +57,6 @@
 		"npm": ">=6.9"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.20.7",
-		"@storybook/addon-actions": "^6.5.15",
-		"@storybook/addon-essentials": "^6.5.15",
-		"@storybook/addon-interactions": "^6.5.15",
-		"@storybook/addon-links": "^6.5.15",
-		"@storybook/builder-webpack5": "^6.5.15",
-		"@storybook/manager-webpack5": "^6.5.15",
-		"@storybook/react": "^6.5.15",
-		"@storybook/testing-library": "^0.0.13",
 		"@types/jest": "^29.5.0",
 		"@wordpress/api-fetch": "^6.21.0",
 		"@wordpress/components": "^23.1.0",
