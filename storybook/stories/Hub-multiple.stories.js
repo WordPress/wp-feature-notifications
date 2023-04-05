@@ -16,7 +16,7 @@ import './assets/wp-core/normalize.css';
 import './assets/wp-core/site-health.css';
 
 /** Wp-notify style */
-import '../../build/wp-notify.css';
+import '../styles/wp-notify.scss';
 import '@wordpress/components/build-style/style.css';
 
 import jsonData from './assets/fake_api.json';
