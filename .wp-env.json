@@ -1,4 +1,4 @@
 {
-	"core": "WordPress/WordPress",
-	"plugins": ["."]
+	"core": null,
+	"plugins": [ "." ]
 }
