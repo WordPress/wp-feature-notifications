@@ -21,7 +21,7 @@ body:
       id: existing
       attributes:
           label: Please confirm that you have searched existing issues in the repo.
-          description: You can do this by searching https://github.com/WordPress/wp-feature-notifications/issues and making sure the bug is not related to another plugin.
+          description: You can do this by searching https://github.com/WordPress/wp-feature-notifications/issues.
           multiple: true
           options:
               - 'Yes'
