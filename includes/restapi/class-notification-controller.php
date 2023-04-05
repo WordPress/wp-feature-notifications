@@ -61,7 +61,9 @@ class Notification_Controller extends WP_REST_Controller {
 
 	/**
 	 * Checks if a given request has access to read notifications.
+	 *
 	 * @param WP_REST_Request $request Full details about the request.
+	 *
 	 * @return true|WP_Error True if the request has access to view the items, error object otherwise.
 	 */
 	public function get_items_permissions_check( $request ) {
@@ -211,7 +213,6 @@ class Notification_Controller extends WP_REST_Controller {
 
 	/**
 	 * Retrieves the query params for collections.
-	 *
 	 *
 	 * @return array Comments collection parameters.
 	 */
