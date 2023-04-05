@@ -5,6 +5,9 @@ on:
         tags:
             - '*.*.*'
 
+env:
+    PLUGIN_SLUG: wp-feature-notifications
+
 jobs:
     release:
         name: Create Release
@@ -21,10 +24,6 @@ jobs:
               shell: bash
               run: npm run build --if-present
 
-            - name: Cleanup
-              shell: bash
-              run: rm -rf node_modules .github
-
             - name: Create artifacts
               shell: bash
-              run: echo test
+              run: rsync -rc --exclude-from="${GITHUB_WORKSPACE}/.distignore" "${GITHUB_WORKSPACE}/" "${PLUGIN_SLUG}/" --delete --delete-excluded && zip -r "${GITHUB_WORKSPACE}/${PLUGIN_SLUG}.zip" "${PLUGIN_SLUG}"
