@@ -39,8 +39,7 @@ export const Notice = ( props ) => {
 		date = __( 'Just now' ),
 		message,
 		severity,
-		dismissible,
-		unread,
+		action,
 	} = props;
 
 	/**
@@ -59,24 +58,23 @@ export const Notice = ( props ) => {
 			className={ classnames(
 				'wp-notification',
 				'wp-notice-' + id,
-				dismissible,
+				action?.dismissible ? 'dismissible' : null,
 				severity ? severity : null,
-				unread ? 'unread' : null,
+				action?.unread ? 'unread' : null,
 				status
 			) }
 		>
 			<div className="wp-notification-wrap">
 				<h3 className="wp-notification-title">{ title }</h3>
-				{ message ?? (
-					<p dangerouslySetInnerHTML={ purify( message ) } />
-				) }
+				{ message ? (
+					<p dangerouslySetInnerHTML={ purify( message ) }></p>
+				) : null }
 				<NoticeActions
-					action={ props?.action ?? {} }
+					action={ action ?? {} }
 					onDismiss={ dismissNotice }
 					context={ context }
-					dismissible={ dismissible }
 				/>
-				<NoticeMeta date={ date } source={ source } />
+				<NoticeMeta date={ date * 1000 } source={ source } />
 			</div>
 
 			<NoticeIcon { ...props } />

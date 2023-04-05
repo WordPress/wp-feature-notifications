@@ -5,23 +5,18 @@ import { defaultContext } from '../store/constants';
 /**
  * Renders an image or icon based on the type of notification
  *
- * @param {Object}  param
- * @param {Object}  param.action
- * @param {string}  param.context
- * @param {string}  param.onDismiss   - callback to be called when the notice is dismissed
- * @param {boolean} param.dismissible - whether the notice is dismissible or not
+ * @param {Object}   param
+ * @param {Object}   param.action
+ * @param {string}   param.context
+ * @param {Function} param.onDismiss - callback to be called when the notice is dismissed
  * @return {JSX.Element} NoticeImage - the image or the icon wrapped into a div
  */
-const NoticeActions = ( {
-	action,
-	context,
-	dismissible = false,
-	onDismiss,
-} ) => {
+const NoticeActions = ( { action, context, onDismiss } ) => {
 	const {
 		acceptLink = '#',
 		acceptMessage = __( 'Accept' ),
 		dismissLabel = __( 'Dismiss' ),
+		dismissible = false,
 	} = action;
 
 	if ( context === defaultContext ) {
@@ -46,7 +41,7 @@ const NoticeActions = ( {
 			>
 				{ acceptMessage }
 			</Button>
-			{ dismissible && (
+			{ dismissible ? (
 				<Button
 					variant={ 'tertiary' }
 					className={ 'button-tertiary wp-notification-action' }
@@ -55,7 +50,7 @@ const NoticeActions = ( {
 				>
 					{ dismissLabel }
 				</Button>
-			) }
+			) : null }
 		</div>
 	);
 };
