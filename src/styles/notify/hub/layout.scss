@@ -22,6 +22,7 @@
   #wp-admin-bar-wp-notify.active & {
     opacity: 1;
     transform: translateX(-100%);
+    padding-bottom: 0; // moves the shadow at the end of sidebar
   }
 
   // reset child icons color since by default the icon is lightened when the mouse is in hover state
