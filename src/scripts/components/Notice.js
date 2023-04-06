@@ -12,7 +12,6 @@ import { NoticeActions } from './NoticeAction';
 import classnames from 'classnames';
 import { purify } from '../utils/sanitization';
 import moment from 'moment';
-import { __ } from '@wordpress/i18n';
 import { defaultContext, NOTIFY_NAMESPACE } from '../store/constants';
 import { dispatch } from '@wordpress/data';
 
@@ -36,7 +35,7 @@ export const Notice = ( props ) => {
 		status,
 		context = defaultContext,
 		source = 'WordPress',
-		date = __( 'Just now' ),
+		date = Date.now() * 0.001,
 		message,
 		severity,
 		action,
