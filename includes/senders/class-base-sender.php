@@ -1,6 +1,11 @@
 <?php
 
-class WP_Notify_Base_Sender implements WP_Notify_Sender, WP_Notify_Json_Unserializable {
+namespace WP\Notifications\Senders;
+
+use ReflectionClass;
+use WP\Notifications\Json_Unserializable;
+
+class Base_Sender implements Sender, Json_Unserializable {
 
 	/**
 	 * @var string
@@ -8,7 +13,7 @@ class WP_Notify_Base_Sender implements WP_Notify_Sender, WP_Notify_Json_Unserial
 	protected $name;
 
 	/**
-	 * @var WP_Notify_Base_Image
+	 * @var Base_Image
 	 */
 	protected $image;
 
@@ -16,7 +21,7 @@ class WP_Notify_Base_Sender implements WP_Notify_Sender, WP_Notify_Json_Unserial
 	 * WPNotify_BaseSender constructor.
 	 *
 	 * @param string                    $name
-	 * @param WP_Notify_Base_Image|null $image
+	 * @param Base_Image|null $image
 	 */
 	public function __construct( $name, $image = null ) {
 		$this->name  = $name;
@@ -59,7 +64,7 @@ class WP_Notify_Base_Sender implements WP_Notify_Sender, WP_Notify_Json_Unserial
 
 		$image = null;
 
-		if ( ! empty( $image_data ) && is_subclass_of( $class_name, 'WP_Notify_Image' ) ) {
+		if ( ! empty( $image_data ) && is_subclass_of( $class_name, 'Image' ) ) {
 			$image_reflection = new ReflectionClass( $class_name );
 			$image            = $image_reflection->newInstanceArgs( array_values( $image_data ) );
 		}
@@ -78,7 +83,7 @@ class WP_Notify_Base_Sender implements WP_Notify_Sender, WP_Notify_Json_Unserial
 	}
 
 	/**
-	 * @return WP_Notify_Base_Image|null
+	 * @return Base_Image|null
 	 */
 	public function get_image() {
 		return $this->image;

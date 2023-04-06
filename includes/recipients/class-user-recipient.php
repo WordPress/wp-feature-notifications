@@ -1,6 +1,12 @@
 <?php
 
-final class WP_Notify_User_Recipient implements WP_Notify_Recipient {
+namespace WP\Notifications\Recipients;
+
+use WP_User;
+
+use WP\Notifications\Exceptions\Invalid_Recipient;
+
+final class User_Recipient implements Recipient {
 
 	private $user_id;
 	private $user_object;
@@ -24,7 +30,7 @@ final class WP_Notify_User_Recipient implements WP_Notify_Recipient {
 	private function validate( $user_id ) {
 		if ( ! is_numeric( $user_id )
 			|| ! ( ( (int) $user_id ) > 0 ) ) {
-			throw WP_Notify_Invalid_Recipient::from_invalid_user_id( $user_id );
+			throw Invalid_Recipient::from_invalid_user_id( $user_id );
 		}
 
 		return $user_id;

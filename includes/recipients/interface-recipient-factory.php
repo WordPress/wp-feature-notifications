@@ -1,6 +1,8 @@
 <?php
 
-interface WP_Notify_Recipient_Factory {
+namespace WP\Notifications\Recipients;
+
+interface Recipient_Factory {
 
 	/**
 	 * Create a new instance of a notification recipient.
@@ -8,7 +10,7 @@ interface WP_Notify_Recipient_Factory {
 	 * @param mixed  $value Value of the recipient.
 	 * @param string $type  Optional. Type of the recipient. Defaults to 'user'.
 	 *
-	 * @return WP_Notify_Recipient
+	 * @return Recipient
 	 */
 	public function create( $value, $type = 'user' );
 

@@ -1,13 +1,15 @@
 <?php
 
-interface WP_Notify_Sender_Factory {
+namespace WP\Notifications\Senders;
+
+interface Sender_Factory {
 
 	/**
 	 * Create a new instance of notification sender
 	 *
 	 * @param string $name
 	 *
-	 * @return WP_Notify_Sender
+	 * @return Sender
 	 */
 	public function create( $name );
 }

@@ -1,6 +1,8 @@
 <?php
 
-abstract class WP_Notify_Aggregate_Factory {
+namespace WP\Notifications;
+
+abstract class Aggregate_Factory {
 
 	/**
 	 * Array of factories that this aggregate factory represents.

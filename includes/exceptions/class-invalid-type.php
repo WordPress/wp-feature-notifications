@@ -1,6 +1,8 @@
 <?php
 
-class WP_Notify_Invalid_Type extends WP_Notify_Runtime_Exception {
+namespace WP\Notifications\Exceptions;
+
+class Invalid_Type extends Runtime_Exception {
 
 	public static function from_message_type( $type ) {
 		$message = sprintf(

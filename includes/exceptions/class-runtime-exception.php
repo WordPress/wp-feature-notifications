@@ -1,7 +1,9 @@
 <?php
 
-class WP_Notify_Runtime_Exception
-	extends RuntimeException
-	implements WP_Notify_Exception {
+namespace WP\Notifications\Exceptions;
+
+class Runtime_Exception
+	extends \RuntimeException
+	implements Exception {
 
 }

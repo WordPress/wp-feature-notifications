@@ -1,6 +1,8 @@
 <?php
 
-interface WP_Notify_Message_Factory {
+namespace WP\Notifications\Messages;
+
+interface Message_Factory {
 
 	/**
 	 * Create a new instance of a notification message.
@@ -9,7 +11,7 @@ interface WP_Notify_Message_Factory {
 	 * @param string $type  Optional. Type of the message. Defaults to
 	 *                      'standard'.
 	 *
-	 * @return WP_Notify_Message
+	 * @return Message
 	 */
 	public function create( $value, $type = 'standard' );
 

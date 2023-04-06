@@ -1,5 +1,7 @@
 <?php
 
-interface WP_Notify_Recipient {
+namespace WP\Notifications\Recipients;
+
+interface Recipient {
 
 }

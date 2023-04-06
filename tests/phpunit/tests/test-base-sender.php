@@ -1,6 +1,13 @@
 <?php
 
-class Test_WP_Notify_Base_Sender extends WP_Notify_TestCase {
+namespace WP\Notifications\Tests;
+
+use ReflectionClass;
+
+use WP\Notifications\Image\Base_Image;
+use WP\Notifications\Senders\Base_Sender;
+
+class Test_Base_Sender extends TestCase {
 
 	/**
 	 * @param array  $sender_params
@@ -10,7 +17,7 @@ class Test_WP_Notify_Base_Sender extends WP_Notify_TestCase {
 	 */
 	public function test_it_can_be_json_encoded( $sender_params, $expected_json ) {
 
-		$sender_reflection = new ReflectionClass( 'WP_Notify_Base_Sender' );
+		$sender_reflection = new ReflectionClass( '\WP\Notifications\Senders\Base_Sender' );
 		$sender            = $sender_reflection->newInstanceArgs( array_values( $sender_params ) );
 
 		$sender_encoded = json_encode( $sender );
@@ -26,13 +33,13 @@ class Test_WP_Notify_Base_Sender extends WP_Notify_TestCase {
 	 */
 	public function test_it_can_be_instantiated_from_json( $sender_params, $json ) {
 
-		$testee = WP_Notify_Base_Sender::json_unserialize( $json );
+		$testee = Base_Sender::json_unserialize( $json );
 
-		$sender_reflection = new ReflectionClass( 'WP_Notify_Base_Sender' );
-		/** @var WP_Notify_Base_Sender $sender */
+		$sender_reflection = new ReflectionClass( '\WP\Notifications\Senders\Base_Sender' );
+		/** @var Base_Sender $sender */
 		$sender = $sender_reflection->newInstanceArgs( array_values( (array) $sender_params ) );
 
-		$this->assertInstanceOf( 'WP_Notify_Base_Sender', $testee );
+		$this->assertInstanceOf( '\WP\Notifications\Senders\Base_Sender', $testee );
 		$this->assertEquals( $sender->get_name(), $testee->get_name() );
 
 		$this->assertEquals( $sender->get_image(), $testee->get_image() );
@@ -60,10 +67,10 @@ class Test_WP_Notify_Base_Sender extends WP_Notify_TestCase {
 
 			'sender with image'    => array(
 				array(
-					'name'                 => 'Name 2',
-					'WP_Notify_Base_Image' => new WP_Notify_Base_Image( 'img-source', 'img-alt' ),
+					'name'       => 'Name 2',
+					'Base_Image' => new Base_Image( 'img-source', 'img-alt' ),
 				),
-				'{"name":"Name 2","WP_Notify_Base_Image":{"source":"img-source","alt":"img-alt"}}',
+				'{"name":"Name 2","Base_Image":{"source":"img-source","alt":"img-alt"}}',
 			),
 		);
 	}

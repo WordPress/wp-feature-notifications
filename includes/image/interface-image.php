@@ -1,5 +1,11 @@
 <?php
 
-interface WP_Notify_Image extends JsonSerializable, WP_Notify_Json_Unserializable {
+namespace WP\Notifications\Image;
+
+use JsonSerializable;
+
+use WP\Notifications\Json_Unserializable;
+
+interface Image extends JsonSerializable, Json_Unserializable {
 
 }

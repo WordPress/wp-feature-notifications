@@ -1,6 +1,10 @@
 <?php
 
-class WP_Notify_Base_Message_Factory implements WP_Notify_Message_Factory {
+namespace WP\Notifications\Messages;
+
+use WP\Notifications\Exceptions\Invalid_Type;
+
+class Base_Message_Factory implements Message_Factory {
 
 	const TYPE_STANDARD = 'standard';
 
@@ -11,13 +15,13 @@ class WP_Notify_Base_Message_Factory implements WP_Notify_Message_Factory {
 	 * @param string $type  Optional. Type of the message. Defaults to
 	 *                      'standard'.
 	 *
-	 * @return WP_Notify_Message
+	 * @return Message
 	 *
-	 * @throws WP_Notify_Invalid_Type If the message type was not valid.
+	 * @throws Invalid_Type If the message type was not valid.
 	 */
 	public function create( $value, $type = 'standard' ) {
 		if ( ! $this->accepts( $type ) ) {
-			throw WP_Notify_Invalid_Type::from_message_type( $type );
+			throw Invalid_Type::from_message_type( $type );
 		}
 
 		list( $type, $value ) = $this->validate( $type, $value );
@@ -25,7 +29,7 @@ class WP_Notify_Base_Message_Factory implements WP_Notify_Message_Factory {
 		switch ( $type ) {
 			case self::TYPE_STANDARD:
 			default:
-				return new WP_Notify_Base_Message( $value );
+				return new Base_Message( $value );
 		}
 	}
 

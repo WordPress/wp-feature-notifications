@@ -1,8 +1,14 @@
 <?php
 
-interface WP_Notify_Message
+namespace WP\Notifications\Messages;
+
+use JsonSerializable;
+
+use WP\Notifications\Json_Unserializable;
+
+interface Message
 	extends JsonSerializable,
-			WP_Notify_Json_Unserializable {
+			Json_Unserializable {
 
 	/**
 	 * Get the message content.

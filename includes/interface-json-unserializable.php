@@ -1,6 +1,8 @@
 <?php
 
-interface WP_Notify_Json_Unserializable {
+namespace WP\Notifications;
+
+interface Json_Unserializable {
 
 	/**
 	 * Creates a new instance from JSON-encoded data.

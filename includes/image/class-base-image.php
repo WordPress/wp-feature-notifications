@@ -1,6 +1,8 @@
 <?php
 
-class WP_Notify_Base_Image implements WP_Notify_Image {
+namespace WP\Notifications\Image;
+
+class Base_Image implements Image {
 
 	/**
 	 * It can be and URL of an image file or and data/image source
@@ -66,7 +68,7 @@ class WP_Notify_Base_Image implements WP_Notify_Image {
 	 *
 	 * @param string $json
 	 *
-	 * @return WP_Notify_Json_Unserializable
+	 * @return Json_Unserializable
 	 */
 	public static function json_unserialize( $json ) {
 

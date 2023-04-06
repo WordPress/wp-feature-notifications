@@ -1,6 +1,10 @@
 <?php
 
-class Test_WP_Notify_BaseImage extends WP_Notify_TestCase {
+namespace WP\Notifications\Tests;
+
+use WP\Notifications\Image\Base_Image;
+
+class Test_BaseImage extends TestCase {
 
 	/**
 	 * @param array  $image_data
@@ -13,7 +17,7 @@ class Test_WP_Notify_BaseImage extends WP_Notify_TestCase {
 		$source = $image_data['source'];
 		$alt    = $image_data['alt'];
 
-		$image_instance = new WP_Notify_Base_Image( $source, $alt );
+		$image_instance = new Base_Image( $source, $alt );
 		$encoded_image  = json_encode( $image_instance );
 
 		$this->assertEquals( $expected_json, $encoded_image );
@@ -29,11 +33,11 @@ class Test_WP_Notify_BaseImage extends WP_Notify_TestCase {
 	 */
 	public function test_it_can_be_instantiated_from_json( $image_data, $json ) {
 
-		$test_instance = WP_Notify_Base_Image::json_unserialize( $json );
+		$test_instance = Base_Image::json_unserialize( $json );
 
 		list( $source, $alt ) = array_values( $image_data );
 
-		$instance = new WP_Notify_Base_Image( $source, $alt );
+		$instance = new Base_Image( $source, $alt );
 
 		$this->assertEquals( $instance->get_source(), $test_instance->get_source() );
 		$this->assertEquals( $instance->get_alt(), $test_instance->get_alt() );

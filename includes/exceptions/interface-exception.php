@@ -1,5 +1,7 @@
 <?php
 
-interface WP_Notify_Exception {
+namespace WP\Notifications\Exceptions;
+
+interface Exception {
 
 }

@@ -1,6 +1,13 @@
 <?php
 
-class WP_Notify_Factory {
+namespace WP\Notifications;
+
+use WP\Notifications\Messages\Message_Factory;
+use WP\Notifications\Recipients\Recipient_Factory;
+use WP\Notifications\Recipients\Recipient_Collection;
+use WP\Notifications\Senders\Sender_Factory;
+
+class Factory {
 
 	const MESSAGE    = 'message';
 	const RECIPIENTS = 'recipients';
@@ -8,28 +15,28 @@ class WP_Notify_Factory {
 	/**
 	 * Message factory implementation to use.
 	 *
-	 * @var WP_Notify_Message_Factory
+	 * @var Message_Factory
 	 */
 	private $message_factory;
 
 	/**
 	 * Recipient factory implementation to use.
 	 *
-	 * @var WP_Notify_Recipient_Factory
+	 * @var Recipient_Factory
 	 */
 	private $recipient_factory;
 
 	/**
 	 * Sender factory implementation to use
 	 *
-	 * @var WP_Notify_Sender_Factory
+	 * @var Sender_Factory
 	 */
 	private $sender_factory;
 
 	public function __construct(
-		WP_Notify_Message_Factory $message_factory,
-		WP_Notify_Recipient_Factory $recipient_factory,
-		WP_Notify_Sender_Factory $sender_factory
+		Message_Factory $message_factory,
+		Recipient_Factory $recipient_factory,
+		Sender_Factory $sender_factory
 	) {
 		$this->message_factory   = $message_factory;
 		$this->recipient_factory = $recipient_factory;
@@ -41,14 +48,14 @@ class WP_Notify_Factory {
 	 *
 	 * @param $args
 	 *
-	 * @return WP_Notify_Base_Notification
+	 * @return Base_Notification
 	 */
 	public function create( $args ) {
 
 		list( $message_args, $recipients_args, $sender_args ) = $this->validate( $args );
 
 		$sender     = $this->sender_factory->create( $sender_args );
-		$recipients = new WP_Notify_Recipient_Collection();
+		$recipients = new Recipient_Collection();
 		$message    = $this->message_factory->create( $message_args );
 
 		foreach ( $recipients_args as $type => $value ) {
@@ -57,7 +64,7 @@ class WP_Notify_Factory {
 			);
 		}
 
-		return new WP_Notify_Base_Notification( $sender, $recipients, $message );
+		return new Base_Notification( $sender, $recipients, $message );
 	}
 
 	private function validate( $args ) {

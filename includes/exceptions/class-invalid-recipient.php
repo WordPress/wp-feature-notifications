@@ -1,6 +1,8 @@
 <?php
 
-class WP_Notify_Invalid_Recipient extends WP_Notify_Runtime_Exception {
+namespace WP\Notifications\Exceptions;
+
+class Invalid_Recipient extends Runtime_Exception {
 
 	public static function from_invalid_user_id( $user_id ) {
 		$type  = is_object( $user_id ) ? get_class( $user_id ) : gettype( $user_id );

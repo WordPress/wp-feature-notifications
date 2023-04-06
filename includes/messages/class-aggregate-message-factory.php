@@ -1,8 +1,12 @@
 <?php
 
-final class WP_Notify_Aggregate_Message_Factory
-	extends WP_Notify_Aggregate_Factory
-	implements WP_Notify_Message_Factory {
+namespace WP\Notifications\Messages;
+
+use WP\Notifications\Aggregate_Factory;
+
+final class Aggregate_Message_Factory
+	extends Aggregate_Factory
+	implements Message_Factory {
 
 	/**
 	 * Get the interface that this aggregate factory can instantiate
@@ -11,6 +15,6 @@ final class WP_Notify_Aggregate_Message_Factory
 	 * @return string Class name of the interface.
 	 */
 	protected function get_interface() {
-		return 'WP_Notify_Message_Factory';
+		return 'Message_Factory';
 	}
 }

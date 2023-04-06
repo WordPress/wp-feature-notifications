@@ -1,6 +1,10 @@
 <?php
 
-interface WP_Notify_Notification extends JsonSerializable, WP_Notify_Json_Unserializable {
+namespace WP\Notifications;
+
+use JsonSerializable;
+
+interface Notification extends JsonSerializable, Json_Unserializable {
 
 	/**
 	 * Get the ID of the notification.
@@ -19,21 +23,21 @@ interface WP_Notify_Notification extends JsonSerializable, WP_Notify_Json_Unseri
 	/**
 	 * Get the sender of the notification.
 	 *
-	 * @return WP_Notify_Sender Sender of the notification.
+	 * @return Sender Sender of the notification.
 	 */
 	public function get_sender();
 
 	/**
 	 * Get the recipients for the notification.
 	 *
-	 * @return WP_Notify_Recipient_Collection Notification recipients.
+	 * @return Recipient_Collection Notification recipients.
 	 */
 	public function get_recipients();
 
 	/**
 	 * Get the message for the notification.
 	 *
-	 * @return WP_Notify_Message Notification message.
+	 * @return Message Notification message.
 	 */
 	public function get_message();
 }

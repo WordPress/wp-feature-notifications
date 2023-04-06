@@ -1,6 +1,8 @@
 <?php
 
-class WP_Notify_Base_Message implements WP_Notify_Message {
+namespace WP\Notifications\Messages;
+
+class Base_Message implements Message {
 
 	/**
 	 * Message content.

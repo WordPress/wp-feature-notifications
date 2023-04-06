@@ -1,6 +1,10 @@
 <?php
 
-final class WP_Notify_Base_Recipient_Factory implements WP_Notify_Recipient_Factory {
+namespace WP\Notifications\Recipients;
+
+use WP\Notifications\Exceptions\Invalid_Type;
+
+final class Base_Recipient_Factory implements Recipient_Factory {
 
 	const TYPE_USER = 'user';
 	const TYPE_ROLE = 'role';
@@ -11,13 +15,13 @@ final class WP_Notify_Base_Recipient_Factory implements WP_Notify_Recipient_Fact
 	 * @param mixed  $value Value of the recipient.
 	 * @param string $type  Optional. Type of the recipient. Defaults to 'user'.
 	 *
-	 * @return WP_Notify_Recipient
+	 * @return Recipient
 	 *
-	 * @throws WP_Notify_Invalid_Type If the recipient type was not valid.
+	 * @throws Invalid_Type If the recipient type was not valid.
 	 */
 	public function create( $value, $type = self::TYPE_USER ) {
 		if ( ! $this->accepts( $type ) ) {
-			throw WP_Notify_Invalid_Type::from_recipient_type( $type );
+			throw Invalid_Type::from_recipient_type( $type );
 		}
 
 		list( $type, $value ) = $this->validate( $type, $value );
@@ -44,11 +48,11 @@ final class WP_Notify_Base_Recipient_Factory implements WP_Notify_Recipient_Fact
 	 * @param string $type Type to get the implementation class for.
 	 *
 	 * @return string Implementation class.
-	 * @throws WP_Notify_Invalid_Type If the recipient type was not valid.
+	 * @throws Invalid_Type If the recipient type was not valid.
 	 */
 	public function get_implementation_for_type( $type ) {
 		if ( ! $this->accepts( $type ) ) {
-			throw WP_Notify_Invalid_Type::from_recipient_type( $type );
+			throw Invalid_Type::from_recipient_type( $type );
 		}
 
 		$mappings = $this->get_type_mappings();
@@ -79,8 +83,8 @@ final class WP_Notify_Base_Recipient_Factory implements WP_Notify_Recipient_Fact
 		return apply_filters(
 			'wp_notify_recipient_type_mappings',
 			array(
-				self::TYPE_USER => 'WP_Notify_User_Recipient',
-				self::TYPE_ROLE => 'WP_Notify_Role_Recipient',
+				self::TYPE_USER => 'User_Recipient',
+				self::TYPE_ROLE => 'Role_Recipient',
 			)
 		);
 	}

@@ -1,6 +1,14 @@
 <?php
 
-class WP_Notify_Base_Notification implements WP_Notify_Notification {
+namespace WP\Notifications;
+
+use ReflectionClass;
+
+use WP\Notifications\Messages\Message;
+use WP\Notifications\Recipients\Recipient_Collection;
+use WP\Notifications\Senders\Sender;
+
+class Base_Notification implements Notification {
 
 	/**
 	 * ID of the notification.
@@ -12,7 +20,7 @@ class WP_Notify_Base_Notification implements WP_Notify_Notification {
 	/**
 	 * Sender of the notification.
 	 *
-	 * @var WP_Notify_Sender
+	 * @var Sender
 	 */
 	protected $sender;
 
@@ -26,14 +34,14 @@ class WP_Notify_Base_Notification implements WP_Notify_Notification {
 	/**
 	 * Collection of notification recipients.
 	 *
-	 * @var WP_Notify_Recipient_Collection
+	 * @var Recipient_Collection
 	 */
 	protected $recipients;
 
 	/**
 	 * Notification message.
 	 *
-	 * @var WP_Notify_Message
+	 * @var Message
 	 */
 	protected $message;
 
@@ -42,17 +50,17 @@ class WP_Notify_Base_Notification implements WP_Notify_Notification {
 	 *
 	 * @var string
 	 */
-	protected $status = WP_Notify_Status::UNREAD;
+	protected $status = Status::UNREAD;
 
 	/**
 	 * Instantiates a WPNotify_Base_Notification object.
 	 *
-	 * @param WP_Notify_Sender               $sender     Sender that sent the
+	 * @param Sender               $sender     Sender that sent the
 	 *                                                  notification.
-	 * @param WP_Notify_Recipient_Collection $recipients Recipients that should
+	 * @param Recipient_Collection $recipients Recipients that should
 	 *                                                 receive the
 	 *                                                 notification.
-	 * @param WP_Notify_Message              $message    Message of the
+	 * @param Message              $message    Message of the
 	 *                                                  notification.
 	 * @param mixed                          $timestamp  Optional. Timestamp of
 	 *                                                   when the notification
@@ -64,9 +72,9 @@ class WP_Notify_Base_Notification implements WP_Notify_Notification {
 	 *                                                   to -1.
 	 */
 	public function __construct(
-		WP_Notify_Sender $sender,
-		WP_Notify_Recipient_Collection $recipients,
-		WP_Notify_Message $message,
+		Sender $sender,
+		Recipient_Collection $recipients,
+		Message $message,
 		$timestamp = null,
 		$id = - 1
 	) {
@@ -113,7 +121,7 @@ class WP_Notify_Base_Notification implements WP_Notify_Notification {
 	/**
 	 * Get the sender of the notification.
 	 *
-	 * @return WP_Notify_Sender Sender of the notification.
+	 * @return Sender Sender of the notification.
 	 */
 	public function get_sender() {
 		return $this->sender;
@@ -122,7 +130,7 @@ class WP_Notify_Base_Notification implements WP_Notify_Notification {
 	/**
 	 * Gets the recipients for the notification.
 	 *
-	 * @return WP_Notify_Recipient_Collection Notification recipients.
+	 * @return Recipient_Collection Notification recipients.
 	 */
 	public function get_recipients() {
 		return $this->recipients;
@@ -131,7 +139,7 @@ class WP_Notify_Base_Notification implements WP_Notify_Notification {
 	/**
 	 * Gets the message for the notification.
 	 *
-	 * @return WP_Notify_Message Notification message.
+	 * @return Message Notification message.
 	 */
 	public function get_message() {
 		return $this->message;

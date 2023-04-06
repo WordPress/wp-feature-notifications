@@ -1,6 +1,8 @@
 <?php
 
-final class WP_Notify_Role_Recipient implements WP_Notify_Recipient {
+namespace WP\Notifications\Recipients;
+
+final class Role_Recipient implements Recipient {
 
 	private $role;
 
