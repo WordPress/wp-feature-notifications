@@ -5,7 +5,7 @@ import { defaultContext, NOTIFY_NAMESPACE } from '../store/constants';
 import { NoticeEmpty } from './NoticeEmpty';
 import { NoticeHubSectionHeader } from './NoticeHubSectionHeader';
 import { NoticesLoop } from './NoticesLoop';
-import { getSorted } from '../utils/drawer';
+import { getSorted } from '../utils/effects';
 import { NoticeHubFooter } from './NoticeHubFooter';
 
 export const WEEK_IN_SECONDS = 1000 - 3600 * 24 * 7;

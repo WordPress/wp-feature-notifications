@@ -4,9 +4,15 @@ import { dispatch, select } from '@wordpress/data';
 
 /** WP Notify - Components */
 import { NoticesArea } from './components/NoticesArea';
+import Drawer from './components/Drawer';
 
 /** The store default data */
 import { NOTIFY_NAMESPACE, contexts } from './store/constants';
+
+render(
+	createElement( Drawer ),
+	document.getElementById( `wp-notification-hub` )
+);
 
 /**
  * The redux store
