@@ -81,7 +81,7 @@ final class Base_Recipient_Factory implements Recipient_Factory {
 	 */
 	private function get_type_mappings() {
 		return apply_filters(
-			'wp_notify_recipient_type_mappings',
+			'wp_feature_notifications_recipient_type_mappings',
 			array(
 				self::TYPE_USER => 'User_Recipient',
 				self::TYPE_ROLE => 'Role_Recipient',

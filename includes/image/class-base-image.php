@@ -64,7 +64,7 @@ class Base_Image implements Image {
 	}
 
 	/**
-	 * Instantiates a WPNotify_BaseImage based on a JSON string
+	 * Instantiates a BaseImage based on a JSON string
 	 *
 	 * @param string $json
 	 *

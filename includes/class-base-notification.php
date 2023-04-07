@@ -3,7 +3,6 @@
 namespace WP\Notifications;
 
 use ReflectionClass;
-
 use WP\Notifications\Messages\Message;
 use WP\Notifications\Recipients\Recipient_Collection;
 use WP\Notifications\Senders\Sender;
@@ -53,7 +52,7 @@ class Base_Notification implements Notification {
 	protected $status = Status::UNREAD;
 
 	/**
-	 * Instantiates a WPNotify_Base_Notification object.
+	 * Instantiates a Base_Notification object.
 	 *
 	 * @param Sender               $sender     Sender that sent the
 	 *                                                  notification.

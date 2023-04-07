@@ -18,7 +18,7 @@ class Base_Sender implements Sender, Json_Unserializable {
 	protected $image;
 
 	/**
-	 * WPNotify_BaseSender constructor.
+	 * BaseSender constructor.
 	 *
 	 * @param string                    $name
 	 * @param Base_Image|null $image

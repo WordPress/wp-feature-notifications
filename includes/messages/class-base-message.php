@@ -12,7 +12,7 @@ class Base_Message implements Message {
 	protected $message;
 
 	/**
-	 * Instantiates a WPNotify_BaseMessage object.
+	 * Instantiates a BaseMessage object.
 	 *
 	 * @param string $message Message content.
 	 */
