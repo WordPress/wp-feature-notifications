@@ -3,6 +3,9 @@ import { dispatch } from '@wordpress/data';
 import { NOTIFY_NAMESPACE } from '../store/constants';
 
 /**
+ * @typedef {import('../store').Notice} Notice
+ */
+/**
  * Delay returns a promise that resolves after the specified number of milliseconds.
  *
  * @param {number} ms - The number of milliseconds to delay.
@@ -14,10 +17,10 @@ export const delay = ( ms ) => new Promise( ( f ) => setTimeout( f, ms ) );
 /**
  * At the moment the function return the notifications if the split by isn't set to "date"
  *
- * @param {Array}  notifications
- * @param {string} by
+ * @param {Notice[]} notifications
+ * @param {string}   by
  *
- * @return {Array} two list of Notifications, one for the new and one for the old
+ * @return {Notice[][]|Notice[]} two list of Notifications, one for the new and one for the old
  */
 export const getSorted = ( notifications, by = 'date' ) => {
 	const Limit = by === 'date' ? Date.now() - WEEK_IN_SECONDS : false;
