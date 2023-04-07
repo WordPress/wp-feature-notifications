@@ -1,13 +1,16 @@
 import { findContext } from './utils';
 
 /**
+ * @typedef {import('redux').Reducer<State, Action>} NoticeReducer
+ * @typedef {import('./index').State} State
+ * @typedef {import('./index').Action} Action
+ */
+
+/**
  * Reducer returning the next notices state. The notices state is an object
  * where each key is a context, its value an array of notice objects.
  *
- * @param {Object} state  Current state.
- * @param {Object} action Dispatched action.
- *
- * @return {Object} Updated state.
+ * @type {NoticeReducer}
  */
 const reducer = ( state = {}, action ) => {
 	switch ( action.type ) {
@@ -21,7 +24,6 @@ const reducer = ( state = {}, action ) => {
 				};
 			} );
 			return updated;
-
 		case 'ADD':
 			return {
 				...state,

@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
 		"checkJs": true,
-		"types": [ "jest" ],
+		"types": [ "./src/index.d.ts", "jest" ],
 		"baseUrl": "./src"
 	},
 	"include": [ "./src/**/*.js", "./src/**/*.jsx" ],

@@ -10,6 +10,9 @@ import Drawer from './components/Drawer';
 import { NOTIFY_NAMESPACE, contexts } from './store/constants';
 
 /**
+ * @typedef {import('./store').Notice} Notice
+ */
+/**
  * The redux store
  */
 export * as store from './store';
@@ -28,7 +31,7 @@ const notify = {
 	/**
 	 * List all notifications or those of a particular context
 	 *
-	 * @param {string|false} context
+	 * @param {string} context
 	 */
 	get: ( context = '' ) => select( NOTIFY_NAMESPACE ).getNotices( context ),
 
@@ -49,7 +52,7 @@ const notify = {
 	/**
 	 * Add a new notification
 	 *
-	 * @param {Object} payload
+	 * @param {Notice} payload
 	 */
 	add: ( payload ) => dispatch( NOTIFY_NAMESPACE ).addNotice( payload ),
 
@@ -63,7 +66,7 @@ const notify = {
 	/**
 	 * Clear all notifications
 	 *
-	 * @param {string|false} context
+	 * @param {string} context
 	 */
 	clear: ( context = 'adminbar' ) =>
 		dispatch( NOTIFY_NAMESPACE ).clear( context ),
