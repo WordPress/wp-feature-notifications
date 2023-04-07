@@ -1,5 +1,5 @@
 /** WordPress Dependencies */
-import { createElement, render } from '@wordpress/element';
+import { createRoot } from '@wordpress/element';
 import { dispatch, select } from '@wordpress/data';
 
 /** WP Notify - Components */
@@ -93,17 +93,22 @@ select( NOTIFY_NAMESPACE ).fetchUpdates();
  * Loops into contexts and adds a NoticesArea component for each one
  */
 contexts.forEach( ( context ) => {
+	/** Get the component container */
+	const container = document.getElementById( `wp-notify-${ context }` );
+
+	/** Creates a root for NoticesArea component. */
+	const root = createRoot( container );
+
 	/**
 	 * Renders the component into the specified context
 	 *
 	 * @member {HTMLElement} notifyDash - the area that will host the notifications
 	 */
-	render(
-		createElement( NoticesArea, {
-			context,
-			splitBy: context === 'adminbar' ? 'date' : undefined,
-		} ),
-		document.getElementById( `wp-notify-${ context }` )
+	root.render(
+		<NoticesArea
+			context={ context }
+			splitBy={ context === 'adminbar' ? 'date' : undefined }
+		/>
 	);
 } );
 
