@@ -1,7 +1,9 @@
 {
-  "compilerOptions": {
-    "checkJs": true,
-    "types": ["jest"]
-  },
-  "include": ["**/*.js"]
+	"compilerOptions": {
+		"checkJs": true,
+		"types": [ "jest" ],
+		"baseUrl": "./src"
+	},
+	"include": [ "./src/**/*.js", "./src/**/*.jsx" ],
+	"exclude": [ "./node_modules" ]
 }
