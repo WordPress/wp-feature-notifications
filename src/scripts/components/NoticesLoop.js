@@ -10,4 +10,4 @@ import { Notice } from './Notice';
  * @return {Array} An array of Notice components.
  */
 export const NoticesLoop = ( { notices } ) =>
-	notices.map( ( notify, index ) => <Notice { ...notify } key={ index } /> );
+	notices.map( ( notify ) => <Notice { ...notify } key={ notify.id } /> );
