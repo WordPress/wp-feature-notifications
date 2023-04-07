@@ -1,7 +1,7 @@
 import { Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { check } from '@wordpress/icons';
-import { clearNotifyDrawer } from '../utils/drawer';
+import { clearNotifyDrawer } from '../utils/effects';
 
 /**
  * The section header for the notices section drawer.

@@ -1,4 +1,6 @@
 import { WEEK_IN_SECONDS } from '../components/NoticesArea';
+import { dispatch } from '@wordpress/data';
+import { NOTIFY_NAMESPACE } from '../store/constants';
 
 /**
  * Delay returns a promise that resolves after the specified number of milliseconds.
@@ -30,4 +32,13 @@ export const getSorted = ( notifications, by = 'date' ) => {
 		);
 	}
 	return notifications;
+};
+
+/**
+ * It clears the notices in the selected context
+ *
+ * @param {string} context - The context of the notices. This is used to determine which notices to clear.
+ */
+export const clearNotifyDrawer = ( context ) => {
+	dispatch( NOTIFY_NAMESPACE ).clear( context );
 };

@@ -9,10 +9,14 @@ import Drawer from './components/Drawer';
 /** The store default data */
 import { NOTIFY_NAMESPACE, contexts } from './store/constants';
 
-render(
-	createElement( Drawer ),
-	document.getElementById( `wp-notification-hub` )
-);
+/** Get the Notification Hub area (admin bar) */
+const adminBarWpNotify = document.getElementById( 'wp-admin-bar-wp-notify' );
+
+/** Creates a root for Notification Hub area */
+const hubRoot = createRoot( adminBarWpNotify );
+
+/** Init the Notification Hub component */
+hubRoot.render( <Drawer /> );
 
 /**
  * The redux store
@@ -94,17 +98,17 @@ select( NOTIFY_NAMESPACE ).fetchUpdates();
  */
 contexts.forEach( ( context ) => {
 	/** Get the component container */
-	const container = document.getElementById( `wp-notify-${ context }` );
+	const notifyContainer = document.getElementById( `wp-notify-${ context }` );
 
 	/** Creates a root for NoticesArea component. */
-	const root = createRoot( container );
+	const notifyRoot = createRoot( notifyContainer );
 
 	/**
 	 * Renders the component into the specified context
 	 *
 	 * @member {HTMLElement} notifyDash - the area that will host the notifications
 	 */
-	root.render(
+	notifyRoot.render(
 		<NoticesArea
 			context={ context }
 			splitBy={ context === 'adminbar' ? 'date' : undefined }
