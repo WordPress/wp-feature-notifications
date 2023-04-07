@@ -5,14 +5,14 @@
 		"title": "Try this new Notification feature",
 		"source": "#WP-Notify",
 		"date": 1664992015,
-		"message": "We have just added a <b>wonderful feature!</b> <script>alert('xss')</script> You might want to give it a try so click on the bell icon on the right side of the adminbar.</div></div></div></div>",
+		"message": "👋 Hello from the WP Feature Notifications team! Thank you for testing out the plugin. You might want to give it a try so click on the bell icon on the right side of the adminbar.",
+		"dismissible": false,
 		"icon": {
 			"src": "https://raw.githubusercontent.com/erikyo/wp-notify/design_implementation/src/images/i.svg"
 		},
 		"action": {
-			"acceptMessage": "Try this new feature",
-			"acceptLink": "https://github.com/WordPress/wp-notify",
-			"dismissible": false
+			"acceptMessage": "Check out the source",
+			"acceptLink": "https://github.com/WordPress/wp-feature-notifications"
 		}
 	},
 	{
@@ -22,14 +22,14 @@
 		"date": 1654866071,
 		"message": "This is an example of on-page message variant #1. It has a title, a message, an image, an action button with a URL, is dismissable.",
 		"source": "#Test",
+		"dismissible": true,
+		"unread": true,
 		"icon": {
 			"src": "https://source.unsplash.com/random/400×400/?notify"
 		},
 		"action": {
 			"acceptMessage": "TEST",
-			"acceptLink": "https://github.com/WordPress/wp-notify",
-			"dismissible": true,
-			"unread": true
+			"acceptLink": "https://github.com/WordPress/wp-notify"
 		}
 	},
 	{
@@ -48,26 +48,11 @@
 		"source": "#WP-Notify",
 		"date": 1654866091,
 		"message": "This is an example of on-page message variant #2. It has a title, a message, a custom date, an action button with a URL, is dismissable, but has no images.",
+		"dismissible": true,
+		"unread": true,
 		"action": {
 			"acceptMessage": "OK",
-			"acceptLink": "https://github.com/WordPress/wp-notify",
-			"dismissible": true,
-			"unread": true
-		}
-	},
-	{
-		"id": 5,
-		"context": "dashboard",
-		"date": 1654866101,
-		"title": "Message variant #3",
-		"message": "if you're wondering where notice #2 is try looking at the adminbar at the top right near the bell icon 😉.",
-		"icon": {
-			"src": "https://gifimage.net/wp-content/uploads/2018/10/animation-notification-gif-2.gif"
-		},
-		"action": {
-			"acceptLink": "https://github.com/WordPress/wp-notify",
-			"dismissible": true,
-			"unread": true
+			"acceptLink": "https://github.com/WordPress/wp-notify"
 		}
 	},
 	{
@@ -76,10 +61,10 @@
 		"message": "WordPress was successfully updated to version 6.1",
 		"date": 1664992015,
 		"source": "WordPress",
+		"unread": true,
 		"action": {
 			"acceptMessage": "Read what's new in 6.1",
-			"acceptLink": "#",
-			"unread": true
+			"acceptLink": "#"
 		}
 	},
 	{
@@ -106,24 +91,24 @@
 		"id": 9,
 		"title": "WordPress",
 		"message": "WordPress was successfully updated to version 6.1",
+		"source": "WordPress",
+		"date": 1654840000,
 		"action": {
 			"acceptMessage": "Read what's new in 6.1",
-			"acceptLink": "#",
-			"source": "WordPress",
-			"date": 1654840000
+			"acceptLink": "#"
 		}
 	},
 	{
 		"id": 10,
 		"message": "There is a new version of Contact Form 7 available.",
+		"source": "Plugins Updates",
 		"date": 1654830000,
 		"icon": {
 			"src": "https://ps.w.org/contact-form-7/assets/icon-256x256.png"
 		},
 		"action": {
 			"acceptMessage": "Update now",
-			"acceptLink": "#",
-			"source": "Plugins Updates"
+			"acceptLink": "#"
 		}
 	},
 	{
