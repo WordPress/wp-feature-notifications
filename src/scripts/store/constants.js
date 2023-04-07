@@ -1,4 +1,3 @@
-/* global wp_notify_data */
 /**
  *  @member {string} NOTIFY_NAMESPACE WP-Notify namespace
  */
@@ -24,4 +23,6 @@ export const contexts = [ defaultContext, 'dashboard' ];
  */
 export const settingsPageUrl =
 	// eslint-disable-next-line camelcase
-	typeof wp_notify_data !== 'undefined' ? wp_notify_data?.settingsPage : '';
+	typeof window.wp_notify_data !== 'undefined'
+		? window.wp_notify_data?.settingsPage
+		: '';
