@@ -4,11 +4,11 @@ namespace WP\Notifications\Messages;
 
 use JsonSerializable;
 
-use WP\Notifications\Json_Unserializable;
+use WP\Notifications;
 
 interface Message
 	extends JsonSerializable,
-			Json_Unserializable {
+	Notifications\Json_Unserializable {
 
 	/**
 	 * Get the message content.

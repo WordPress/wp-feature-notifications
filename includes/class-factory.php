@@ -2,10 +2,9 @@
 
 namespace WP\Notifications;
 
-use WP\Notifications\Messages\Message_Factory;
-use WP\Notifications\Recipients\Recipient_Factory;
-use WP\Notifications\Recipients\Recipient_Collection;
-use WP\Notifications\Senders\Sender_Factory;
+use WP\Notifications\Messages;
+use WP\Notifications\Recipients;
+use WP\Notifications\Senders;
 
 class Factory {
 
@@ -34,9 +33,9 @@ class Factory {
 	private $sender_factory;
 
 	public function __construct(
-		Message_Factory $message_factory,
-		Recipient_Factory $recipient_factory,
-		Sender_Factory $sender_factory
+		Messages\Message_Factory $message_factory,
+		Recipients\Recipient_Factory $recipient_factory,
+		Senders\Sender_Factory $sender_factory
 	) {
 		$this->message_factory   = $message_factory;
 		$this->recipient_factory = $recipient_factory;
@@ -55,7 +54,7 @@ class Factory {
 		list( $message_args, $recipients_args, $sender_args ) = $this->validate( $args );
 
 		$sender     = $this->sender_factory->create( $sender_args );
-		$recipients = new Recipient_Collection();
+		$recipients = new Recipients\Recipient_Collection();
 		$message    = $this->message_factory->create( $message_args );
 
 		foreach ( $recipients_args as $type => $value ) {

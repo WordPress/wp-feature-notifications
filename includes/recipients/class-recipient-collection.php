@@ -6,14 +6,14 @@ use Iterator;
 use Countable;
 use JsonSerializable;
 
-use WP\Notifications\Json_Unserializable;
-use WP\Notifications\Exceptions\Failed_To_Add_Recipient;
+use WP\Notifications;
+use WP\Notifications\Exceptions;
 
 class Recipient_Collection
 	implements Iterator,
 		Countable,
 		JsonSerializable,
-		Json_Unserializable {
+		Notifications\Json_Unserializable {
 
 	/**
 	 * Internal array of recipients.
@@ -36,11 +36,9 @@ class Recipient_Collection
 	 * Validate the recipients.
 	 *
 	 * @param Recipient|array $recipients Recipient or array of
-	 *                                                    recipients to
-	 *                                                    validate.
+	 *                                    recipients to validate.
 	 *
 	 * @return array Validated array of recipients.
-	 *
 	 * @throws Failed_To_Add_Recipient If a recipient could not be added.
 	 */
 	protected function validate_recipients( $recipients ) {
@@ -50,7 +48,7 @@ class Recipient_Collection
 
 		foreach ( $recipients as $recipient ) {
 			if ( ! $recipient instanceof Recipient ) {
-				throw Failed_To_Add_Recipient::from_invalid_recipient( $recipient );
+				throw Exceptions\Failed_To_Add_Recipient::from_invalid_recipient( $recipient );
 			}
 		}
 

@@ -2,10 +2,10 @@
 
 namespace WP\Notifications\Recipients;
 
-use WP\Notifications\Aggregate_Factory;
+use WP\Notifications;
 
 final class Aggregate_Recipient_Factory
-	extends Aggregate_Factory
+	extends Notifications\Aggregate_Factory
 	implements Recipient_Factory {
 
 	/**

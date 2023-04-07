@@ -2,7 +2,7 @@
 
 namespace WP\Notifications\Messages;
 
-use WP\Notifications\Exceptions\Invalid_Type;
+use WP\Notifications\Exceptions;
 
 class Base_Message_Factory implements Message_Factory {
 
@@ -21,7 +21,7 @@ class Base_Message_Factory implements Message_Factory {
 	 */
 	public function create( $value, $type = 'standard' ) {
 		if ( ! $this->accepts( $type ) ) {
-			throw Invalid_Type::from_message_type( $type );
+			throw Exceptions\Invalid_Type::from_message_type( $type );
 		}
 
 		list( $type, $value ) = $this->validate( $type, $value );

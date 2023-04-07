@@ -4,6 +4,7 @@ namespace WP\Notifications\Persistence;
 
 use DateTime;
 use DateInterval;
+use WP\Notifications;
 
 abstract class Abstract_Notification_Repository
 	implements Notification_Repository {
@@ -17,8 +18,8 @@ abstract class Abstract_Notification_Repository
 	 * @param int          $offset     Optional. Offset into the result set.
 	 *                                 Defaults to 0.
 	 *
-	 * @return Notification[] Array of notifications, empty array if
-	 *                                 none found.
+	 * @return Notifications\Notification[] Array of notifications, empty array if
+	 *                                      none found.
 	 */
 	public function find_latest(
 		DateInterval $interval,

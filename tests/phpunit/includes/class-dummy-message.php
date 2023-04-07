@@ -2,9 +2,9 @@
 
 namespace WP\Notifications\Tests;
 
-use WP\Notifications\Messages\Message;
+use WP\Notifications\Messages;
 
-class Dummy_Message implements Message {
+class Dummy_Message implements Messages\Message {
 
 	public function serialize() {
 		return ''; }

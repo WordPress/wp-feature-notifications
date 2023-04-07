@@ -3,9 +3,9 @@
 namespace WP\Notifications;
 
 use ReflectionClass;
-use WP\Notifications\Messages\Message;
-use WP\Notifications\Recipients\Recipient_Collection;
-use WP\Notifications\Senders\Sender;
+use WP\Notifications\Messages;
+use WP\Notifications\Recipients;
+use WP\Notifications\Senders;
 
 class Base_Notification implements Notification {
 
@@ -54,26 +54,24 @@ class Base_Notification implements Notification {
 	/**
 	 * Instantiates a Base_Notification object.
 	 *
-	 * @param Sender               $sender     Sender that sent the
-	 *                                                  notification.
-	 * @param Recipient_Collection $recipients Recipients that should
-	 *                                                 receive the
-	 *                                                 notification.
-	 * @param Message              $message    Message of the
-	 *                                                  notification.
-	 * @param mixed                          $timestamp  Optional. Timestamp of
-	 *                                                   when the notification
-	 *                                                   was triggered. Defaults
-	 *                                                   to the moment of
-	 *                                                   instantiation.
-	 * @param int                            $id         Optional. ID of the
-	 *                                                   notification. Defaults
-	 *                                                   to -1.
+	 * @param Sender                          $sender     Sender that sent the
+	 *                                                    notification.
+	 * @param Recipients\Recipient_Collection $recipients Recipients that should
+	 *                                                    receive the notification.
+	 * @param Message                         $message    Message of the notification.
+	 * @param mixed                           $timestamp  Optional. Timestamp of
+	 *                                                    when the notification
+	 *                                                    was triggered. Defaults
+	 *                                                    to the moment of
+	 *                                                    instantiation.
+	 * @param int                             $id         Optional. ID of the
+	 *                                                    notification. Defaults
+	 *                                                    to -1.
 	 */
 	public function __construct(
-		Sender $sender,
-		Recipient_Collection $recipients,
-		Message $message,
+		Senders\Sender $sender,
+		Recipients\Recipient_Collection $recipients,
+		Messages\Message $message,
 		$timestamp = null,
 		$id = - 1
 	) {
@@ -120,7 +118,7 @@ class Base_Notification implements Notification {
 	/**
 	 * Get the sender of the notification.
 	 *
-	 * @return Sender Sender of the notification.
+	 * @return Senders\Sender Sender of the notification.
 	 */
 	public function get_sender() {
 		return $this->sender;
@@ -129,7 +127,7 @@ class Base_Notification implements Notification {
 	/**
 	 * Gets the recipients for the notification.
 	 *
-	 * @return Recipient_Collection Notification recipients.
+	 * @return Recipients\Recipient_Collection Notification recipients.
 	 */
 	public function get_recipients() {
 		return $this->recipients;
@@ -138,7 +136,7 @@ class Base_Notification implements Notification {
 	/**
 	 * Gets the message for the notification.
 	 *
-	 * @return Message Notification message.
+	 * @return Messages\Message Notification message.
 	 */
 	public function get_message() {
 		return $this->message;

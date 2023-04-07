@@ -2,7 +2,7 @@
 
 namespace WP\Notifications\Recipients;
 
-use WP\Notifications\Exceptions\Invalid_Type;
+use WP\Notifications\Exceptions;
 
 final class Base_Recipient_Factory implements Recipient_Factory {
 
@@ -15,13 +15,12 @@ final class Base_Recipient_Factory implements Recipient_Factory {
 	 * @param mixed  $value Value of the recipient.
 	 * @param string $type  Optional. Type of the recipient. Defaults to 'user'.
 	 *
-	 * @return Recipient
-	 *
-	 * @throws Invalid_Type If the recipient type was not valid.
+	 * @return Recipient The created recipient instance.
+	 * @throws Exceptions\Invalid_Type If the recipient type was not valid.
 	 */
 	public function create( $value, $type = self::TYPE_USER ) {
 		if ( ! $this->accepts( $type ) ) {
-			throw Invalid_Type::from_recipient_type( $type );
+			throw Exceptions\Invalid_Type::from_recipient_type( $type );
 		}
 
 		list( $type, $value ) = $this->validate( $type, $value );
@@ -48,11 +47,11 @@ final class Base_Recipient_Factory implements Recipient_Factory {
 	 * @param string $type Type to get the implementation class for.
 	 *
 	 * @return string Implementation class.
-	 * @throws Invalid_Type If the recipient type was not valid.
+	 * @throws Exceptions\Invalid_Type If the recipient type was not valid.
 	 */
 	public function get_implementation_for_type( $type ) {
 		if ( ! $this->accepts( $type ) ) {
-			throw Invalid_Type::from_recipient_type( $type );
+			throw Exceptions\Invalid_Type::from_recipient_type( $type );
 		}
 
 		$mappings = $this->get_type_mappings();

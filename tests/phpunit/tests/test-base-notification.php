@@ -2,14 +2,14 @@
 
 namespace WP\Notifications\Tests;
 
-use WP\Notifications\Base_Notification;
+use WP\Notifications;
 
 class Test_Base_Notification extends TestCase {
 
 	public function test_it_can_be_instantiated() {
 		$sender_mock     = $this->createMock( '\WP\Notifications\Senders\Base_Sender' );
 		$recipients_mock = $this->createMock( '\WP\Notifications\Recipients\Recipient_Collection' );
-		$testee          = new Base_Notification(
+		$testee          = new Notifications\Base_Notification(
 			$sender_mock,
 			$recipients_mock,
 			new Dummy_Message()
@@ -20,7 +20,7 @@ class Test_Base_Notification extends TestCase {
 	public function test_it_implements_the_interface() {
 		$sender_mock     = $this->createMock( '\WP\Notifications\Senders\Base_Sender' );
 		$recipients_mock = $this->createMock( '\WP\Notifications\Recipients\Recipient_Collection' );
-		$testee          = new Base_Notification(
+		$testee          = new Notifications\Base_Notification(
 			$sender_mock,
 			$recipients_mock,
 			new Dummy_Message()
@@ -32,7 +32,7 @@ class Test_Base_Notification extends TestCase {
 		$sender_mock     = $this->createMock( '\WP\Notifications\Senders\Base_Sender' );
 		$recipients_mock = $this->createMock( '\WP\Notifications\Recipients\Recipient_Collection' );
 		$dummy_message   = new Dummy_Message();
-		$testee          = new Base_Notification(
+		$testee          = new Notifications\Base_Notification(
 			$sender_mock,
 			$recipients_mock,
 			$dummy_message

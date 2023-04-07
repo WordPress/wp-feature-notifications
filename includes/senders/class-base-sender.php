@@ -2,10 +2,11 @@
 
 namespace WP\Notifications\Senders;
 
-use ReflectionClass;
-use WP\Notifications\Json_Unserializable;
+use WP\Notifications;
 
-class Base_Sender implements Sender, Json_Unserializable {
+use ReflectionClass;
+
+class Base_Sender implements Sender, Notifications\Json_Unserializable {
 
 	/**
 	 * @var string
@@ -20,7 +21,7 @@ class Base_Sender implements Sender, Json_Unserializable {
 	/**
 	 * BaseSender constructor.
 	 *
-	 * @param string                    $name
+	 * @param string          $name
 	 * @param Base_Image|null $image
 	 */
 	public function __construct( $name, $image = null ) {

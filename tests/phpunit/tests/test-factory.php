@@ -2,7 +2,7 @@
 
 namespace WP\Notifications\Tests;
 
-use WP\Notifications\Factory;
+use WP\Notifications;
 
 class Test_Factory extends TestCase {
 
@@ -23,7 +23,7 @@ class Test_Factory extends TestCase {
 
 		$sender_factory->method( 'create' )->willReturn( $this->createMock( '\WP\Notifications\Senders\Sender' ) );
 
-		$factory = new Factory(
+		$factory = new Notifications\Factory(
 			$message_factory,
 			$this->createMock( '\WP\Notifications\Recipients\Recipient_Factory' ),
 			$sender_factory

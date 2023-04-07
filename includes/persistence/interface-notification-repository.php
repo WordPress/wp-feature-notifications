@@ -5,8 +5,8 @@ namespace WP\Notifications\Persistence;
 use DateInterval;
 use DateTimeInterface;
 
-use WP\Notifications\Notification;
-use WP\Notifications\Recipients\Recipient;
+use WP\Notifications;
+use WP\Notifications\Recipients;
 
 
 interface Notification_Repository {
@@ -16,26 +16,26 @@ interface Notification_Repository {
 	 *
 	 * @param int $id ID to look for.
 	 *
-	 * @return Notification|false Notification that matches the ID, or
-	 *                                     false if not found.
+	 * @return Notifications\Notification|false Notification that matches the ID, or
+	 *                                          false if not found.
 	 */
 	public function find_by_id( $id );
 
 	/**
 	 * Find all notifications for a given recipient.
 	 *
-	 * @param Recipient $recipient  Recipient to retrieve the
-	 *                                       notifications for.
-	 * @param int                 $pagination Optional. Number of elements per
-	 *                                        page. Defaults to 10.
-	 * @param int                 $offset     Optional. Offset into the result
-	 *                                        set. Defaults to 0.
+	 * @param Recipients\Recipient $recipient  Recipient to retrieve the
+	 *                                         notifications for.
+	 * @param int                  $pagination Optional. Number of elements per
+	 *                                         page. Defaults to 10.
+	 * @param int                  $offset     Optional. Offset into the result
+	 *                                         set. Defaults to 0.
 	 *
-	 * @return Notification[] Array of notifications, empty array if
-	 *                                 none found.
+	 * @return Notifications\Notification[] Array of notifications, empty array if
+	 *                                      none found.
 	 */
 	public function find_by_recipient(
-		Recipient $recipient,
+		Recipients\Recipient $recipient,
 		$pagination = 10,
 		$offset = 0
 	);
@@ -53,8 +53,8 @@ interface Notification_Repository {
 	 * @param int               $offset     Optional. Offset into the result
 	 *                                      set. Defaults to 0.
 	 *
-	 * @return Notification[] Array of notifications, empty array if
-	 *                                 none found.
+	 * @return Notifications\Notification[] Array of notifications, empty array if
+	 *                                      none found.
 	 */
 	public function find_by_date_range(
 		DateTimeInterface $start,
@@ -73,8 +73,8 @@ interface Notification_Repository {
 	 * @param int          $offset     Optional. Offset into the result set.
 	 *                                 Defaults to 0.
 	 *
-	 * @return Notification[] Array of notifications, empty array if
-	 *                                 none found.
+	 * @return Notifications\Notification[] Array of notifications, empty array
+	 *                                      if none found.
 	 */
 	public function find_latest(
 		DateInterval $interval,
@@ -85,9 +85,9 @@ interface Notification_Repository {
 	/**
 	 * Add a new notification to the repository.
 	 *
-	 * @param Notification $notification Notification to add.
+	 * @param Notifications\Notification $notification Notification to add.
 	 *
 	 * @return int ID that the notification was stored under.
 	 */
-	public function add( Notification $notification );
+	public function add( Notifications\Notification $notification );
 }

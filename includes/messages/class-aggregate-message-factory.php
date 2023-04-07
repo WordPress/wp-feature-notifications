@@ -2,10 +2,10 @@
 
 namespace WP\Notifications\Messages;
 
-use WP\Notifications\Aggregate_Factory;
+use WP\Notifications;
 
 final class Aggregate_Message_Factory
-	extends Aggregate_Factory
+	extends Notifications\Aggregate_Factory
 	implements Message_Factory {
 
 	/**
