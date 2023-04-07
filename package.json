@@ -66,6 +66,7 @@
 		"@wordpress/icons": "^9.21.0",
 		"@wordpress/scripts": "^26.1.0",
 		"classnames": "^2.3.2",
+		"eslint-import-resolver-typescript": "^3.5.5",
 		"husky": "^8.0.3",
 		"jest-puppeteer": "^6.2.0",
 		"lint-staged": "^13.2.0",
