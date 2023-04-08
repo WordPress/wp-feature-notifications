@@ -41,7 +41,10 @@ export default () => {
 				toggle={ toggleDrawer }
 				isActive={ isActive }
 			/>
-			<Drawer />
+			<Drawer
+				focus={ () => setIsActive( true ) }
+				blur={ () => setIsActive( false ) }
+			/>
 		</ShortcutProvider>
 	);
 };
