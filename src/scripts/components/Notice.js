@@ -41,6 +41,7 @@ export const Notice = ( props ) => {
 		action,
 		context = defaultContext,
 		date = Date.now() * 0.001,
+		dismissLabel,
 		dismissible,
 		icon,
 		id,
@@ -80,7 +81,7 @@ export const Notice = ( props ) => {
 					<p dangerouslySetInnerHTML={ purify( message ) }></p>
 				) : null }
 				<NoticeActions
-					action={ action ?? {} }
+					action={ { ...action, dismissLabel, dismissible } }
 					onDismiss={ dismissNotice }
 					context={ context }
 				/>
