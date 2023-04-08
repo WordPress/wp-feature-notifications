@@ -5,11 +5,11 @@ import {
 	store as keyboardShortcutsStore,
 } from '@wordpress/keyboard-shortcuts';
 import { useDispatch } from '@wordpress/data';
-import Drawer from './Drawer';
-import NotificationHubIcon from './NotificationHubIcon';
-import classNames from 'classnames';
+import { Drawer } from './Drawer';
+import { NotificationHubIcon } from './NotificationHubIcon';
+import * as classNames from 'classnames';
 
-export default () => {
+export const NotificationHub = () => {
 	/** Drawer state */
 	const [ isActive, setIsActive ] = useState( false );
 

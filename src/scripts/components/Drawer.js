@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { NoticesArea } from './NoticesArea';
 
-export default ( { focus, blur } ) => {
+export const Drawer = ( { focus, blur } ) => {
 	return (
 		<aside id="notification-hub" onFocus={ focus } onBlur={ blur }>
 			<div className={ 'hub-wrapper' }>

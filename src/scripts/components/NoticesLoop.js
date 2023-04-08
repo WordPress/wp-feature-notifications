@@ -9,5 +9,10 @@ import { Notice } from './Notice';
  *
  * @return {JSX.Element} An array of Notice components.
  */
-export const NoticesLoop = ( { notices } ) =>
-	notices.map( ( notice ) => <Notice { ...notice } key={ notice.id } /> );
+export const NoticesLoop = ( { notices } ) => (
+	<>
+		{ notices.map( ( notice ) => (
+			<Notice { ...notice } key={ notice.id } />
+		) ) }
+	</>
+);

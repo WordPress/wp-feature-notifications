@@ -14,7 +14,7 @@ export const WEEK_IN_SECONDS = 1000 - 3600 * 24 * 7;
 /**
  * @typedef {import('../store').Notice} Notice
  * @typedef {import('../store').NoticeStore} NoticeStore
- * @typedef {import('../utils/effects').SortBy} SortBy
+ * @typedef {import('../utils/index').SortBy} SortBy
  */
 
 /**
@@ -37,8 +37,9 @@ export const NoticesArea = ( props ) => {
 	/*
 	 * Todo: this method should supply to rest api the user data, current page, moreover the request args may be added (notice per page, notice filters and sort)
 	 */
+	// @ts-ignore
 	notifications = useSelect(
-		( select ) => select( store, [] ).getNotices( context ),
+		( select ) => select( store ).getNotices( context ),
 		[]
 	);
 

@@ -5,7 +5,7 @@ module.exports = {
 	root: true,
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
-		project: [ './jsconfig.json', 'jsconfig.eslint.json' ],
+		project: [ './tsconfig.json', 'tsconfig.eslint.json' ],
 	},
 	extends: [ 'plugin:@wordpress/eslint-plugin/recommended' ],
 	settings: {
@@ -15,7 +15,7 @@ module.exports = {
 		'import/resolver': {
 			typescript: {
 				alwaysTryTypes: true,
-				project: [ './jsconfig.json', 'jsconfig.eslint.json' ],
+				project: [ './tsconfig.json', 'tsconfig.eslint.json' ],
 			},
 		},
 	},

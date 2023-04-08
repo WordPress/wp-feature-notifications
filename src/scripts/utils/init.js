@@ -1,6 +1,6 @@
 import { createRoot } from '@wordpress/element';
 import { NoticesArea } from '../components/NoticesArea';
-import Hub from '../components/NotificationHub';
+import { NotificationHub as Hub } from '../components/NotificationHub';
 
 export function addContext( context ) {
 	/** Get the component container */

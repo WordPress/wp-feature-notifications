@@ -7,7 +7,7 @@ import { defaultContext } from '../store/constants';
  * @property {string=}  acceptLink    The url of the action.
  * @property {string=}  acceptMessage The label of the action.
  * @property {string=}  dismissLabel  The label of the dismiss action.
- * @property {boolean=} dismissible   Predicate of whether or not the notification can be dismissed.
+ * @property {boolean=} dismissible   Predicate of whether the notification can be dismissed.
  */
 
 /**
@@ -19,7 +19,7 @@ import { defaultContext } from '../store/constants';
  * @param {Function} param.onDismiss - callback to be called when the notice is dismissed
  * @return {JSX.Element} NoticeImage - the image or the icon wrapped into a div
  */
-const NoticeActions = ( { action, context, onDismiss } ) => {
+export const NoticeActions = ( { action, context, onDismiss } ) => {
 	const {
 		acceptLink = '#',
 		acceptMessage = __( 'Accept' ),
@@ -62,5 +62,3 @@ const NoticeActions = ( { action, context, onDismiss } ) => {
 		</div>
 	);
 };
-
-export { NoticeActions };

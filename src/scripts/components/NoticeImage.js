@@ -1,6 +1,6 @@
 // @ts-ignore
 import wpLogo from '../../images/WordPressLogo.svg';
-import classNames from 'classnames';
+import * as classNames from 'classnames';
 import { defaultContext } from '../store/constants';
 import { purify } from '../utils/sanitization';
 import { isDashiconsIcon, isSvgIcon } from '../utils/guards';

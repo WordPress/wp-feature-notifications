@@ -5,6 +5,7 @@ import { dispatch } from '@wordpress/data';
 /**
  * @typedef {import('../store').Notice} Notice
  */
+
 /**
  * Delay returns a promise that resolves after the specified number of milliseconds.
  *
@@ -15,10 +16,13 @@ import { dispatch } from '@wordpress/data';
 export const delay = ( ms ) => new Promise( ( f ) => setTimeout( f, ms ) );
 
 /**
+ * @typedef {'date'} SortBy
+ */
+/**
  * At the moment the function return the notifications if the split by isn't set to "date"
  *
  * @param {Notice[]} notifications
- * @param {string}   by
+ * @param {SortBy}   by
  *
  * @return {Notice[][]|Notice[]} two list of Notifications, one for the new and one for the old
  */

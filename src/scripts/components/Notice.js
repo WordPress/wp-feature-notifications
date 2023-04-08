@@ -9,26 +9,16 @@ import { NoticeIcon } from './NoticeImage';
 import { NoticeActions } from './NoticeAction';
 
 // Import utilities
+// @ts-ignore
 import classnames from 'classnames';
 import { purify } from '../utils/sanitization';
-import moment from 'moment';
 import { defaultContext, NOTIFY_NAMESPACE } from '../store/constants';
 import { dispatch } from '@wordpress/data';
+import { NoticeMeta } from './NoticeMeta';
 
 /**
  * @typedef {import('../store').Notice} Notice
  */
-/**
- * @param {Object} props
- * @param {number} props.date   The date of the notification.
- * @param {string} props.source The source of the notification.
- */
-export const NoticeMeta = ( { date, source } ) => (
-	<p className="wp-notification-meta">
-		<span className="name">{ source }</span> { '\u2022 ' }
-		<span className="date">{ moment( date ).fromNow() }</span>
-	</p>
-);
 
 /**
  * It renders a single notice
