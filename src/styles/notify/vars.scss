@@ -1,6 +1,6 @@
 // https://make.wordpress.org/design/handbook/design-guide/foundations/colors/
 :root {
-  // WP-Notify base colors
+  // WP Notification Feature base colors
   --wp-notify_color-default: #404040;
   --wp-notify_color-white: #fff; // Dark Gray 300
 	--wp-notify_color-light-gray-400: #E8EAEB; // Light Gray 400
@@ -20,7 +20,7 @@
   --wp-notify_color-warning: #FFB900;
   --wp-notify_color-success: #46B450;
 
-  // WP-Notify hub (admin top bar)
+  // WP Notification Feature hub (admin top bar)
   --wp-notify_hub-width: 320px;
   --wp-notify_hub-image-size: 32px;
 

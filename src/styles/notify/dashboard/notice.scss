@@ -4,8 +4,7 @@
 
 #wpbody {
 
-  #wp-notify-dashboard-notices,
-  #wp-notify-notice-demo {
+  #wp-notification-dashboard-notices {
     clear: both;
   }
 
@@ -32,9 +31,6 @@
     border-left-width: 4px;
     border-left-style: solid;
     border-color: var(--wp-notify_color-light-gray);
-
-		.dashicons {
-		}
 
 		// removes the top and the bottom margin from the first and the last notification of the dashboard
 		&-wrap {

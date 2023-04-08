@@ -1,7 +1,7 @@
 /*
  * Notification Hub Layout
  */
-#wp-notification-hub {
+#notification-hub {
   position: fixed;
   right: calc(0px - var(--wp-notify_hub-width));
   top: 0;
@@ -19,13 +19,13 @@
   opacity: 0;
   transition: transform 350ms, opacity 250ms;
 
-  #wp-admin-bar-wp-notify.active & {
+  .notifications.active & {
     opacity: 1;
     transform: translateX(-100%);
     padding-bottom: 0; // moves the shadow at the end of sidebar
   }
 
-  // reset child icons color since by default the icon is lightened when the mouse is in hover state
+  // Reset child icons color since by default the icon is lightened when the mouse is in hover state
   #wpadminbar &:hover,
   #wpadminbar &:active {
     .wp-notification-image .ab-icon:before {
@@ -33,7 +33,7 @@
     }
   }
 
-  .wp-notification-hub-wrapper {
+  .hub-wrapper {
     position: relative;
     height: inherit;
     overflow: auto;
@@ -50,9 +50,11 @@
       box-shadow: 0 10px 24px 2px var(--wp-notify_color-default);
       width: 80%;
       margin: auto;
+      position: absolute;
+      bottom: 0;
     }
 
-    // scrollbar customization
+    // Scrollbar customization
     &::-webkit-scrollbar {
       width: 18px; // width = scrollbar width + border * 2
       height: 48px;

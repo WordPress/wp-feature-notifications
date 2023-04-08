@@ -1,51 +1,64 @@
 /*
  * WP admin bar
  */
-#wpadminbar #wp-admin-bar-wp-notify {
+#wpadminbar #wp-admin-bar-wp-notification-hub {
   padding-right: 8px;
   position: relative;
   z-index: 100002;
 
-	/* this below is the bell located in the adminbar */
-  > .ab-item .ab-icon:before {
-    content: "\f16d";
-    top: 3px;
-  }
+  .notifications {
 
-  /* When the drawer is enabled transforms the bell icon to overlay the drawer */
-  &.active > .ab-item .ab-icon {
-    filter: invert(1);
-    position: relative;
-    z-index: 100002;
-  }
+    /* the bell icon */
+    .ab-item {
+      appearance: none;
+      height: 32px;
+      display: block;
+      padding: 0 10px;
+      border: 0;
+      margin: 0;
+      background: none;
 
-	/* The label is the red dot over the bell */
-  .ab-label {
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    top: 12px;
-    left: 20px;
-    border-radius: 50%;
-    font-size: 0;
+      .ab-icon:before {
+        content: "\f16d";
+        top: 1px;
+      }
+    }
 
-    /* WP Editor / Alert Red */
-    background: var(--wp-notify_color-red);
+    /* When the drawer is enabled transforms the bell icon to overlay the drawer */
+    &.active > .ab-item .ab-icon {
+      filter: invert(1);
+      position: relative;
+      z-index: 100002;
+    }
 
-    /* Classic / Dark Gray 800 */
-    border: 1px solid var(--wp-notify_color-light-gray-800);
-  }
-
-  /* Mobile */
-  @media #{$breakpoint} {
-    display: block;
+    /* The label is the red dot over the bell */
     .ab-label {
-      clip: unset;
-      clip-path: unset;
-      width: 11px;
-      height: 11px;
-      top: 16px;
-      left: 28px;
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      top: 12px;
+      left: 20px;
+      border-radius: 50%;
+      font-size: 0;
+
+      /* WP Editor / Alert Red */
+      background: var(--wp-notify_color-red);
+
+      /* Classic / Dark Gray 800 */
+      border: 1px solid var(--wp-notify_color-light-gray-800);
+    }
+
+    /* Mobile */
+    @media #{$breakpoint} {
+      display: block;
+      .ab-label {
+        clip: unset;
+        clip-path: unset;
+        width: 11px;
+        height: 11px;
+        top: 16px;
+        left: 28px;
+      }
     }
   }
 }
