@@ -1,9 +1,0 @@
-{
-	"compilerOptions": {
-		"checkJs": true,
-		"types": [ "./src/index.d.ts", "jest" ],
-		"baseUrl": "./src"
-	},
-	"include": [ "./src/**/*.js", "./src/**/*.jsx" ],
-	"exclude": [ "./node_modules" ]
-}
