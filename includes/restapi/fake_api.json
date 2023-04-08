@@ -16,23 +16,6 @@
 		}
 	},
 	{
-		"id": 2,
-		"context": "dashboard",
-		"title": "Message variant #1",
-		"date": 1654866071,
-		"message": "This is an example of on-page message variant #1. It has a title, a message, an image, an action button with a URL, is dismissable.",
-		"source": "#Test",
-		"dismissible": true,
-		"unread": true,
-		"icon": {
-			"src": "https://source.unsplash.com/random/400×400/?notify"
-		},
-		"action": {
-			"acceptMessage": "TEST",
-			"acceptLink": "https://github.com/WordPress/wp-notify"
-		}
-	},
-	{
 		"id": 3,
 		"title": "Message variant #1 (copy)",
 		"date": 1654866081,
