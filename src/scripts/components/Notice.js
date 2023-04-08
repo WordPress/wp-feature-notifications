@@ -10,7 +10,7 @@ import { NoticeActions } from './NoticeAction';
 
 // Import utilities
 import classnames from 'classnames';
-import { purify } from '../utils/';
+import { purify } from '../utils/sanitization';
 import moment from 'moment';
 import { defaultContext, NOTIFY_NAMESPACE } from '../store/constants';
 import { dispatch } from '@wordpress/data';

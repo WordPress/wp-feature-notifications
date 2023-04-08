@@ -37,7 +37,10 @@ export const NoticesArea = ( props ) => {
 	/*
 	 * Todo: this method should supply to rest api the user data, current page, moreover the request args may be added (notice per page, notice filters and sort)
 	 */
-	notifications = useSelect( store, [] ).getNotices( context );
+	notifications = useSelect(
+		( select ) => select( store, [] ).getNotices( context ),
+		[]
+	);
 
 	/**
 	 * if the context is the adminbar we need to render a list of notifications with the recent notifications and the old notifications
