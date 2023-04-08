@@ -59,7 +59,7 @@ export const removeNotice = ( id ) => {
 /**
  * Action creator to update a notice in the store.
  *
- * @param {Notice} payload
+ * @param {Pick<Notice, 'id'>|Partial<Notice>} payload
  * @return A redux action.
  */
 export const updateNotice = ( payload ) => {

@@ -15,6 +15,14 @@ import moment from 'moment';
 import { defaultContext, NOTIFY_NAMESPACE } from '../store/constants';
 import { dispatch } from '@wordpress/data';
 
+/**
+ * @typedef {import('../store').Notice} Notice
+ */
+/**
+ * @param {Object} props
+ * @param {number} props.date   The date of the notification.
+ * @param {string} props.source The source of the notification.
+ */
 export const NoticeMeta = ( { date, source } ) => (
 	<p className="wp-notification-meta">
 		<span className="name">{ source }</span> { '\u2022 ' }
@@ -25,20 +33,24 @@ export const NoticeMeta = ( { date, source } ) => (
 /**
  * It renders a single notice
  *
- * @param {Object} props
+ * @param {Notice} props
  * @return {JSX.Element} Notice - the single notice
  */
 export const Notice = ( props ) => {
 	const {
-		id,
-		title,
-		status,
+		action,
 		context = defaultContext,
-		source = 'WordPress',
 		date = Date.now() * 0.001,
+		dismissLabel,
+		dismissible,
+		icon,
+		id,
 		message,
 		severity,
-		action,
+		source = 'WordPress',
+		status,
+		title,
+		unread,
 	} = props;
 
 	/**
@@ -57,9 +69,9 @@ export const Notice = ( props ) => {
 			className={ classnames(
 				'wp-notification',
 				'wp-notice-' + id,
-				action?.dismissible ? 'dismissible' : null,
+				dismissible ? 'dismissible' : null,
 				severity ? severity : null,
-				action?.unread ? 'unread' : null,
+				unread ? 'unread' : null,
 				status
 			) }
 		>
@@ -69,14 +81,18 @@ export const Notice = ( props ) => {
 					<p dangerouslySetInnerHTML={ purify( message ) }></p>
 				) : null }
 				<NoticeActions
-					action={ action ?? {} }
+					action={ { ...action, dismissLabel, dismissible } }
 					onDismiss={ dismissNotice }
 					context={ context }
 				/>
 				<NoticeMeta date={ date * 1000 } source={ source } />
 			</div>
 
-			<NoticeIcon { ...props } />
+			<NoticeIcon
+				icon={ icon }
+				context={ context }
+				severity={ severity }
+			/>
 		</div>
 	);
 };
