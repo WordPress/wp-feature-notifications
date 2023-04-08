@@ -1,20 +1,20 @@
 /**
- *  @member {string} NOTIFY_NAMESPACE WP-Notify namespace
+ *  @member {string} NOTIFY_NAMESPACE WP Notification Feature namespace
  */
 export const NOTIFY_NAMESPACE = 'core/wp-notify';
 
 /**
- *  @member {string} API_PATH WP-Notify rest api path
+ *  @member {string} API_PATH WP Notification Feature rest api path
  */
 export const API_PATH = '/wp/v2/notifications/';
 
 /**
- *  @member {string} defaultContext WP-Notify default context
+ *  @member {string} defaultContext WP Notification Feature default context
  */
 export const defaultContext = 'adminbar';
 
 /**
- *  @member {Object} context WP-Notify default contexts
+ *  @member {Object} context WP Notification Feature default contexts
  */
 export const contexts = [ defaultContext, 'dashboard' ];
 

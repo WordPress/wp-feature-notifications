@@ -5,13 +5,13 @@ import { defaultContext, NOTIFY_NAMESPACE } from '../store/constants';
 import { NoticeEmpty } from './NoticeEmpty';
 import { NoticeHubSectionHeader } from './NoticeHubSectionHeader';
 import { NoticesLoop } from './NoticesLoop';
-import { getSorted } from '../utils/effects';
+import { getSorted } from '../utils/';
 import { NoticeHubFooter } from './NoticeHubFooter';
 
 export const WEEK_IN_SECONDS = 1000 - 3600 * 24 * 7;
 
 /**
- * WP-Notify toolbar in the secondary position of the admin bar
+ * WP Notification Feature toolbar in the secondary position of the admin bar
  * It watches for state updates and renders a <Notifications /> component with the updated state
  *
  * @param {Object} props

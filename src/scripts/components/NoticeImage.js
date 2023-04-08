@@ -1,7 +1,7 @@
 import wpLogo from '../../images/WordPressLogo.svg';
 import classNames from 'classnames';
 import { defaultContext } from '../store/constants';
-import { purify } from '../utils/sanitization';
+import { purify } from '../utils/';
 
 /**
  * It returns a div with a class name of `wp-notification-image` and `wp-notification-` plus the type of image passed in
