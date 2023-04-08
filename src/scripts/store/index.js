@@ -59,7 +59,7 @@ import * as resolvers from './resolvers';
  * @property {string=}       context      The rendering context of the notification.
  * @property {number}        date         The datetime from which the notification was emitted.
  * @property {string=}       dismissLabel The label of the dismiss action.
- * @property {boolean=}      dismissible  Predicate of whether or not the notification can be dismissed.
+ * @property {boolean=}      dismissible  Predicate of whether the notification can be dismissed.
  * @property {NoticeIcon=}   icon         The optional icon.
  * @property {number}        id           The database id of the notification message.
  * @property {string=}       message      The message content of the notification.
@@ -67,7 +67,7 @@ import * as resolvers from './resolvers';
  * @property {string=}       source       The source of the notification.
  * @property {NoticeStatus=} status       The status of the notification.
  * @property {string}        title        The title of the notification message.
- * @property {boolean=}      unread       Predicate of whether or not the notification is in an unread state.
+ * @property {boolean=}      unread       Predicate of whether the notification is in an unread state.
  */
 
 /**

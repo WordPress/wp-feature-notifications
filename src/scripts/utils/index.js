@@ -24,7 +24,7 @@ export const delay = ( ms ) => new Promise( ( f ) => setTimeout( f, ms ) );
  * @param {Notice[]} notifications
  * @param {SortBy}   by
  *
- * @return {Notice[][]|Notice[]} two list of Notifications, one for the new and one for the old
+ * @return {Notice[][]} two list of Notifications, one for the new and one for the old
  */
 export const getSorted = ( notifications, by = 'date' ) => {
 	const Limit = by === 'date' ? Date.now() - WEEK_IN_SECONDS : false;
@@ -38,7 +38,7 @@ export const getSorted = ( notifications, by = 'date' ) => {
 			[ [], [] ]
 		);
 	}
-	return notifications;
+	return [ notifications, [] ];
 };
 
 /**

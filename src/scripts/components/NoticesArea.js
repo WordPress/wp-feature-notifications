@@ -37,7 +37,6 @@ export const NoticesArea = ( props ) => {
 	/*
 	 * Todo: this method should supply to rest api the user data, current page, moreover the request args may be added (notice per page, notice filters and sort)
 	 */
-	// @ts-ignore
 	notifications = useSelect(
 		( select ) => select( store ).getNotices( context ),
 		[]
