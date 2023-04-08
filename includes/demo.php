@@ -15,22 +15,11 @@ function wp_admin_bar_wp_notify_item( WP_Admin_Bar $wp_admin_bar ) {
 		return;
 	}
 
-	$aside = sprintf(
-		'<aside id="wp-notification-hub">
-		<div class="wp-notification-hub-wrapper">
-			<h2 class="screen-reader-text">%s</h2>
-			<div id="wp-notify-adminbar"></div>
-		</div>
-	</aside>',
-		__( 'Notifications' )
-	);
-
 	$args = array(
-		'id'     => 'wp-notify',
-		'title'  => sprintf( "<span class='ab-icon' aria-hidden='true'></span><span class='ab-label'>%s</span>", __( 'Notifications' ) ),
+		'id'     => 'wp-notification-hub',
+		'title'  => __( 'loading' ),
 		'parent' => 'top-secondary',
 		'meta'   => array(
-			'html'     => $aside,
 			'tabindex' => 0,
 		),
 	);
@@ -42,7 +31,7 @@ add_action( 'admin_bar_menu', 'wp_admin_bar_wp_notify_item', 1 );
  * Adds WP Notify area at the top of the dashboard
  */
 function wp_notify_admin_notice() {
-	echo '<div id="wp-notify-dashboard" class="wrap"></div>';
+	echo '<div id="wp-notification-dashboard" class="wrap"></div>';
 }
 add_action( 'admin_notices', 'wp_notify_admin_notice' );
 

@@ -1,13 +1,9 @@
 /** WordPress Dependencies */
-import { createRoot } from '@wordpress/element';
 import { dispatch, select } from '@wordpress/data';
-
-/** WP Notify - Components */
-import { NoticesArea } from './components/NoticesArea';
-import Drawer from './components/Drawer';
 
 /** The store default data */
 import { NOTIFY_NAMESPACE, contexts } from './store/constants';
+import { addContext, addHub } from './utils/init';
 
 /**
  * @typedef {import('./store').Notice} Notice
@@ -87,39 +83,11 @@ contexts.forEach( ( context ) =>
 /** after registering contexts we could fetch the notifications */
 select( NOTIFY_NAMESPACE ).fetchUpdates();
 
-function addContext( context ) {
-	/** Get the component container */
-	const notifyContainer = document.getElementById( `wp-notify-${ context }` );
-
-	/** Creates a root for NoticesArea component. */
-	const notifyRoot = createRoot( notifyContainer );
-
-	/**
-	 * Renders the component into the specified context
-	 *
-	 * @member {HTMLElement} notifyDash - the area that will host the notifications
-	 */
-	notifyRoot.render( <NoticesArea context={ context } /> );
-}
-
-function addDrawer() {
-	/** Get the Notification Hub area (admin bar) */
-	const adminBarWpNotify = document.getElementById(
-		'wp-admin-bar-wp-notify'
-	);
-
-	/** Creates a root for Notification Hub area */
-	const hubRoot = createRoot( adminBarWpNotify );
-
-	/** Init the Notification Hub component */
-	hubRoot.render( <Drawer /> );
-}
-
 /**
  * Loops into contexts and adds a NoticesArea component for each one
  */
 contexts.forEach( ( context ) =>
-	context === 'adminbar' ? addDrawer() : addContext( context )
+	context === 'adminbar' ? addHub() : addContext( context )
 );
 
 /**
