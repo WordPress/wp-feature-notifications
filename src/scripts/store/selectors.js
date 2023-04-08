@@ -20,10 +20,10 @@ export const fetchUpdates = ( state ) => state || {};
  * @param {State}  state   the current state
  * @param {string} context the name of the list of notifications you want to retrieve
  *
- * @return {Notice[]} the list of notices of the context
+ * @return {Notice[]|Record<string, Notice[]>} the list of notices of the context
  */
 export const getNotices = ( state, context ) => {
-	return state[ context ];
+	return context ? state[ context ] : state;
 };
 
 /**
