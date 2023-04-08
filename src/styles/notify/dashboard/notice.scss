@@ -9,16 +9,16 @@
   }
 
   .wp-notification {
-    --wp-notify_hub-spacing-top: clamp(2em, 3vh, 3em);
-    --wp-notify_hub-element-bottom: clamp(1.5em, 3vh, 3em);
-    --wp-notify_hub-spacing-gap: clamp(2.5em, 3vh, 4em);
+    --wp-notify_hub-spacing-top: clamp(1em, 3vh, 2em);
+    --wp-notify_hub-element-bottom: clamp(1em, 3vh, 2em);
+    --wp-notify_hub-spacing-gap: clamp(2em, 3vh, 3em);
 
 		width: 100%;
 		box-sizing: border-box;
 
     display: grid;
     grid-template-rows: auto;
-    grid-template-columns: auto 200px;
+    grid-template-columns: 1fr 200px;
     grid-auto-flow: row;
     gap: 50px;
 
@@ -34,6 +34,9 @@
 
 		// removes the top and the bottom margin from the first and the last notification of the dashboard
 		&-wrap {
+      display: flex;
+      flex-direction: column;
+
 			> :first-child {
 				margin-top: 0;
 			}
@@ -52,6 +55,7 @@
 		// notification action buttons
 		&-actions {
 			display: flex;
+      margin-top: auto;
 
 			.wp-notification-action {
 				padding: 6px 32px;
