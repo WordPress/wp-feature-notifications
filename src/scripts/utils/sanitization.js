@@ -5,6 +5,7 @@ import DOMPurify from 'dompurify';
  *
  * @param {string} string  - The text to be purified.
  * @param {Object} options - https://github.com/cure53/DOMPurify#can-i-configure-dompurify
+ * @return {{ __html: string }} The sanitized string.
  */
 export const purify = ( string, options = {} ) => {
 	return {

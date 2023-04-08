@@ -46,21 +46,28 @@ import * as resolvers from './resolvers';
 /**
  * @typedef {Object} NoticeAction The notification action type.
  * @property {string} acceptLink    The url of the action.
- * @property {string} acceptMessage The message content of the action.
+ * @property {string} acceptMessage The label of the action.
+ */
+
+/**
+ * @typedef {'dismissing'} NoticeStatus The notification status type.
  */
 
 /**
  * @typedef {Object} Notice The notification type.
- * @property {NoticeAction=} action      The optional action associated to the notification.
- * @property {string=}       context     The rendering context of the notification.
- * @property {number}        date        The datetime from which the notification was emitted.
- * @property {boolean}       dismissible Predicate of whether or not the notification can be dismissed.
- * @property {NoticeIcon=}   icon        The optional icon.
- * @property {number}        id          The database id of the notification message.
- * @property {string=}       message     The message content of the notification.
- * @property {string=}       source      The source of the notification.
- * @property {string}        title       The title of the notification message.
- * @property {boolean}       unread      Predicate of whether or not the notification is in an unread state.
+ * @property {NoticeAction=} action       The optional action associated to the notification.
+ * @property {string=}       context      The rendering context of the notification.
+ * @property {number}        date         The datetime from which the notification was emitted.
+ * @property {string=}       dismissLabel The label of the dismiss action.
+ * @property {boolean=}      dismissible  Predicate of whether or not the notification can be dismissed.
+ * @property {NoticeIcon=}   icon         The optional icon.
+ * @property {number}        id           The database id of the notification message.
+ * @property {string=}       message      The message content of the notification.
+ * @property {string=}       severity     The severity of the notification.
+ * @property {string=}       source       The source of the notification.
+ * @property {NoticeStatus=} status       The status of the notification.
+ * @property {string}        title        The title of the notification message.
+ * @property {boolean=}      unread       Predicate of whether or not the notification is in an unread state.
  */
 
 /**

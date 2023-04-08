@@ -4,6 +4,10 @@
 import { dispatch } from '@wordpress/data';
 import { NOTIFY_NAMESPACE } from '../store/constants';
 
+/**
+ *  @typedef {import('../store').Notice} Notice
+ */
+
 window.addEventListener( 'load', () => {
 	/**
 	 * Adding an event listener to the form with the id of `wp-notification-metabox-form` that adds a new notification using the form data
@@ -15,18 +19,22 @@ window.addEventListener( 'load', () => {
 	if ( wpNotificationMetabox ) {
 		wpNotificationMetabox.addEventListener( 'submit', ( e ) => {
 			e.preventDefault();
-			const title = document.getElementById(
-				'wp-notification-metabox-form-title'
+			const title = /** @type {HTMLInputElement} */ (
+				document.getElementById( 'wp-notification-metabox-form-title' )
 			).value;
-			const message = document.getElementById(
-				'wp-notification-metabox-form-message'
+			const message = /** @type {HTMLInputElement} */ (
+				document.getElementById(
+					'wp-notification-metabox-form-message'
+				)
 			).value;
 
-			dispatch( NOTIFY_NAMESPACE ).addNotice( {
-				title,
-				message,
-				context: 'dashboard',
-			} );
+			dispatch( NOTIFY_NAMESPACE ).addNotice(
+				/** @type {Notice} */ ( {
+					title,
+					message,
+					context: 'dashboard',
+				} )
+			);
 		} );
 	}
 
@@ -38,6 +46,6 @@ window.addEventListener( 'load', () => {
 	);
 	if ( wpNotificationClearAll )
 		wpNotificationClearAll.addEventListener( 'click', () => {
-			wp.notify.clear( 'dashboard' );
+			window.wp.notify.clear( 'dashboard' );
 		} );
 } );
