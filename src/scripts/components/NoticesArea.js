@@ -5,23 +5,22 @@ import { defaultContext } from '../store/constants';
 import { NoticeEmpty } from './NoticeEmpty';
 import { NoticeHubSectionHeader } from './NoticeHubSectionHeader';
 import { NoticesLoop } from './NoticesLoop';
-import { getSorted } from '../utils/';
+import { sortedByDate } from '../utils/';
 import { NoticeHubFooter } from './NoticeHubFooter';
 import store from '../store';
 
-export const WEEK_IN_SECONDS = 1000 - 3600 * 24 * 7;
+export const WEEK_IN_SECONDS = 3600 * 24 * 7;
 
 /**
  * @typedef {import('../store').Notice} Notice
  * @typedef {import('../store').NoticeStore} NoticeStore
- * @typedef {import('../utils/index').SortBy} SortBy
+ * @typedef {import('../utils/index').sortedByDate} sortedByDate
  */
 
 /**
  * @typedef {Object} Props
  * @property {string=}   context       Optional notices context to render.
  * @property {Notice[]=} notifications The collection of notices to render.
- * @property {SortBy=}   splitBy       Optionally split notices base on criteria.
  */
 
 /**
@@ -32,7 +31,7 @@ export const WEEK_IN_SECONDS = 1000 - 3600 * 24 * 7;
  * @return {JSX.Element} Notifications
  */
 export const NoticesArea = ( props ) => {
-	let { notifications, splitBy, context = defaultContext } = props;
+	let { notifications, context = defaultContext } = props;
 
 	/*
 	 * Todo: this method should supply to rest api the user data, current page, moreover the request args may be added (notice per page, notice filters and sort)
@@ -52,7 +51,7 @@ export const NoticesArea = ( props ) => {
 		}
 
 		/** split the notifications by date */
-		const sorted = getSorted( notifications, splitBy );
+		const sorted = sortedByDate( notifications );
 
 		return (
 			<>
@@ -60,7 +59,11 @@ export const NoticesArea = ( props ) => {
 					<section key={ index }>
 						<NoticeHubSectionHeader
 							context={ context }
-							unreadCount={ list.length }
+							unreadCount={
+								list.filter(
+									( notice ) => notice.unread === true
+								).length
+							}
 							isMain={ index === 0 } // the main section is the first one
 						/>
 						<NoticesLoop notices={ list } />
