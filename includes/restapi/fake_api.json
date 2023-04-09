@@ -1,10 +1,10 @@
 [
 	{
-		"id": 1,
+		"id": 15,
 		"context": "dashboard",
 		"title": "Try this new Notification feature",
 		"source": "#WP-Notify",
-		"date": 1664992015,
+		"date": 1680653790,
 		"message": "👋 Hello from the WP Feature Notifications team! Thank you for testing out the plugin. You might want to give it a try so click on the bell icon on the right side of the adminbar.",
 		"dismissible": false,
 		"icon": {
@@ -16,20 +16,20 @@
 		}
 	},
 	{
-		"id": 3,
+		"id": 14,
 		"title": "Message variant #1 (copy)",
-		"date": 1654866081,
+		"date": 1680379386,
 		"action": {
 			"acceptMessage": "TEST",
 			"acceptLink": "https://github.com/WordPress/wp-notify"
 		}
 	},
 	{
-		"id": 4,
+		"id": 13,
 		"context": "adminbar",
 		"title": "Message variant #2",
 		"source": "#WP-Notify",
-		"date": 1654866091,
+		"date": 1680281825,
 		"message": "This is an example of on-page message variant #2. It has a title, a message, a custom date, an action button with a URL, is dismissable, but has no images.",
 		"dismissible": true,
 		"unread": true,
@@ -39,10 +39,10 @@
 		}
 	},
 	{
-		"id": 6,
+		"id": 12,
 		"title": "WordPress",
 		"message": "WordPress was successfully updated to version 6.1",
-		"date": 1664992015,
+		"date": 1680223450,
 		"source": "WordPress",
 		"unread": true,
 		"action": {
@@ -51,20 +51,20 @@
 		}
 	},
 	{
-		"id": 7,
+		"id": 11,
 		"message": "WordPress was successfully updated to version 5.9.",
 		"source": "WordPress",
-		"date": 1654866081,
+		"date": 1679663216,
 		"image": {
 			"svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"1.1\" id=\"Layer_1\" x=\"0px\" y=\"0px\" width=\"64px\" height=\"64px\" viewBox=\"0 0 64 64\" enable-background=\"new 0 0 64 64\" xml:space=\"preserve\"><style>.style0{fill:\t#0073aa;}</style><g><g><path d=\"M4.548 31.999c0 10.9 6.3 20.3 15.5 24.706L6.925 20.827C5.402 24.2 4.5 28 4.5 31.999z M50.531 30.614c0-3.394-1.219-5.742-2.264-7.57c-1.391-2.263-2.695-4.177-2.695-6.439c0-2.523 1.912-4.872 4.609-4.872 c0.121 0 0.2 0 0.4 0.022C45.653 7.3 39.1 4.5 32 4.548c-9.591 0-18.027 4.921-22.936 12.4 c0.645 0 1.3 0 1.8 0.033c2.871 0 7.316-0.349 7.316-0.349c1.479-0.086 1.7 2.1 0.2 2.3 c0 0-1.487 0.174-3.142 0.261l9.997 29.735l6.008-18.017l-4.276-11.718c-1.479-0.087-2.879-0.261-2.879-0.261 c-1.48-0.087-1.306-2.349 0.174-2.262c0 0 4.5 0.3 7.2 0.349c2.87 0 7.317-0.349 7.317-0.349 c1.479-0.086 1.7 2.1 0.2 2.262c0 0-1.489 0.174-3.142 0.261l9.92 29.508l2.739-9.148 C49.628 35.7 50.5 33 50.5 30.614z M32.481 34.4l-8.237 23.934c2.46 0.7 5.1 1.1 7.8 1.1 c3.197 0 6.262-0.552 9.116-1.556c-0.072-0.118-0.141-0.243-0.196-0.379L32.481 34.4z M56.088 18.8 c0.119 0.9 0.2 1.8 0.2 2.823c0 2.785-0.521 5.916-2.088 9.832l-8.385 24.242c8.161-4.758 13.65-13.6 13.65-23.728 C59.451 27.2 58.2 22.7 56.1 18.83z M32 0c-17.645 0-32 14.355-32 32C0 49.6 14.4 64 32 64s32-14.355 32-32.001 C64 14.4 49.6 0 32 0z M32 62.533c-16.835 0-30.533-13.698-30.533-30.534C1.467 15.2 15.2 1.5 32 1.5 s30.534 13.7 30.5 30.532C62.533 48.8 48.8 62.5 32 62.533z\" class=\"style0\"/></g></g></svg>"
 		}
 	},
 	{
-		"id": 8,
+		"id": 10,
 		"title": "WordPress",
 		"message": "WordPress was successfully updated to version 6.1",
 		"source": "WordPress",
-		"date": 1654850000,
+		"date": 1679661264,
 		"action": {
 			"acceptMessage": "Read what's new in 6.1",
 			"acceptLink": "#"
@@ -75,17 +75,17 @@
 		"title": "WordPress",
 		"message": "WordPress was successfully updated to version 6.1",
 		"source": "WordPress",
-		"date": 1654840000,
+		"date": 1679564550,
 		"action": {
 			"acceptMessage": "Read what's new in 6.1",
 			"acceptLink": "#"
 		}
 	},
 	{
-		"id": 10,
+		"id": 8,
 		"message": "There is a new version of Contact Form 7 available.",
 		"source": "Plugins Updates",
-		"date": 1654830000,
+		"date": 1679908713,
 		"icon": {
 			"src": "https://ps.w.org/contact-form-7/assets/icon-256x256.png"
 		},
@@ -95,10 +95,10 @@
 		}
 	},
 	{
-		"id": 11,
+		"id": 7,
 		"title": "Akismet",
 		"source": "Akismet",
-		"date": 1654820000,
+		"date": 1679281290,
 		"icon": {
 			"src": "https://ps.w.org/akismet/assets/icon-256x256.png"
 		},
@@ -108,61 +108,61 @@
 		}
 	},
 	{
-		"id": 12,
+		"id": 6,
 		"title": "Default",
 		"acceptLink": "#",
 		"source": "Wordpress",
-		"date": 1654800000,
+		"date": 1679198325,
 		"icon": {
 			"dashicons": "paperclip"
 		}
 	},
 	{
-		"id": 13,
+		"id": 5,
 		"severity": "alert",
 		"title": "Site Health status",
 		"message": "Your site has critical issues that should be addressed",
 		"source": "Wordpress",
-		"date": 1654800000,
+		"date": 1679111882,
 		"icon": {
 			"dashicons": "sos"
 		}
 	},
 	{
-		"id": 14,
+		"id": 4,
 		"severity": "warning",
 		"title": "Some plugins needs to be updated",
 		"source": "Wordpress",
-		"date": 1654800000,
+		"date": 1679024005,
 		"icon": {
 			"dashicons": "admin-plugins"
 		}
 	},
 	{
-		"id": 15,
+		"id": 3,
 		"severity": "success",
 		"title": "Word Camp Europe 2023",
 		"message": "Word Camp was successfully updated to version 2023",
 		"source": "Wordpress",
-		"date": 1654800000,
+		"date": 1679012568,
 		"icon": {
 			"dashicons": "megaphone"
 		}
 	},
 	{
-		"id": 16,
+		"id": 2,
 		"message": "WordPress User has left a message on Lorem Ipsum.",
 		"source": "Comment",
-		"date": 1654400000,
+		"date": 1678815732,
 		"icon": {
 			"src": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
 		}
 	},
 	{
-		"id": 17,
+		"id": 1,
 		"message": "WordPress User has left a message on Lorem Ipsum.",
 		"source": "Comment",
-		"date": 1654000000,
+		"date": 1678760378,
 		"icon": {
 			"src": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
 		}
