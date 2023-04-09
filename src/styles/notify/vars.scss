@@ -1,3 +1,6 @@
+// Mobile breakpoint used in wp-admin.
+$breakpoint: "screen and (max-width: 782px)";
+
 // https://make.wordpress.org/design/handbook/design-guide/foundations/colors/
 :root {
 	// WP Notification Feature base colors
@@ -29,6 +32,10 @@
 
 	// WP Notification Feature hub (admin top bar)
 	--wp-notify--hub-width: 320px;
+
+	@media #{$breakpoint} {
+		--wp-notify--hub-width: 100%;
+	}
 	--wp-notify--hub-image-size: 32px;
 
 	--wp-notify--hub-spacing-top: 15px;
@@ -36,6 +43,3 @@
 	--wp-notify--hub-spacing-horizontal: 16px;
 	--wp-notify--hub-spacing-gap: 8px;
 }
-
-// Mobile breakpoint used in wp-admin.
-$breakpoint: "screen and (max-width: 782px)";
