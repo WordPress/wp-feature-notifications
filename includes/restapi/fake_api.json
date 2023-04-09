@@ -21,7 +21,7 @@
 		"date": 1680799521,
 		"action": {
 			"acceptMessage": "TEST",
-			"acceptLink": "https://github.com/WordPress/wp-notify"
+			"acceptLink": "#"
 		}
 	},
 	{
@@ -35,7 +35,7 @@
 		"unread": true,
 		"action": {
 			"acceptMessage": "OK",
-			"acceptLink": "https://github.com/WordPress/wp-notify"
+			"acceptLink": "#"
 		}
 	},
 	{
