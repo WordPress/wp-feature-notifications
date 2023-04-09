@@ -1,5 +1,6 @@
 {
 	"**/*.(json|yml|yaml)": "prettier --write",
+	"**/*.(css|scss|sass)": "stylelint --fix",
 	"**/*.(js|jsx|cjs|mjs|ts|tsx)": "eslint --ext .js,.jsx,.cjs,.mjs,.ts,.tsx --fix",
 	"**/*.php": "php vendor/bin/phpcbf --standard=phpcs.xml.dist -s --report=summary"
 }
