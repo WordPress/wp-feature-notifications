@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 
-const fs = require( 'node:fs/promises' );
+const { mkdir, readFile, stat, writeFile } = require( 'node:fs/promises' );
 const path = require( 'node:path' );
 
 const { format, resolveConfig } = require( 'prettier' );
@@ -19,7 +19,7 @@ async function main() {
 		...( await resolveConfig( process.cwd() ) ),
 		parser: 'json',
 	};
-	const raw = await fs.readFile( inputPath, { encoding: 'utf-8' } );
+	const raw = await readFile( inputPath, { encoding: 'utf-8' } );
 	const { notices } = JSON.parse( raw );
 	// notices.sort( ( a, b ) =>  b.id - a.id); // ascending order by id
 	const count = notices.length;
@@ -32,7 +32,8 @@ async function main() {
 		result.push( { ...notice, date } );
 	}
 	const stringified = JSON.stringify( result, null, 2 );
-	await fs.writeFile( outputPath, format( stringified, prettierOptions ) );
+	await mkdirp( path.join( __dirname, '../', 'tmp' ) );
+	await writeFile( outputPath, format( stringified, prettierOptions ) );
 }
 
 /**
@@ -59,4 +60,22 @@ function randomDates( start, count ) {
 	}
 	result.sort( ( a, b ) => b - a ); // descending order
 	return result.map( ( x ) => Math.floor( x / 1000 ) ); // convert to seconds
+}
+/**
+ * Make a directory if it doesn't exist.
+ *
+ * @param {string} filePath The path to the directory to possibly create.
+ * @return {void}
+ */
+async function mkdirp( filePath ) {
+	try {
+		const { isDirectory } = await stat( filePath );
+		if ( ! isDirectory() ) {
+			throw new Error( 'expected tmp directory is not a directory' );
+		}
+	} catch ( error ) {
+		if ( error.code === 'ENOENT' ) {
+			mkdir( filePath );
+		}
+	}
 }
