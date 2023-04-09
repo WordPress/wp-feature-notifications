@@ -38,7 +38,7 @@
 		"date": 1654866081,
 		"action": {
 			"acceptMessage": "TEST",
-			"acceptLink": "https://github.com/WordPress/wp-notify"
+			"acceptLink": "#"
 		}
 	},
 	{
@@ -50,24 +50,7 @@
 		"message": "This is an example of on-page message variant #2. It has a title, a message, a custom date, an action button with a URL, is dismissable, but has no images.",
 		"action": {
 			"acceptMessage": "OK",
-			"acceptLink": "https://github.com/WordPress/wp-notify",
-			"dismissible": true,
-			"unread": true
-		}
-	},
-	{
-		"id": 5,
-		"context": "dashboard",
-		"date": 1654866101,
-		"title": "Message variant #3",
-		"message": "if you're wondering where notice #2 is try looking at the adminbar at the top right near the bell icon 😉.",
-		"icon": {
-			"src": "https://gifimage.net/wp-content/uploads/2018/10/animation-notification-gif-2.gif"
-		},
-		"action": {
-			"acceptLink": "https://github.com/WordPress/wp-notify",
-			"dismissible": true,
-			"unread": true
+			"acceptLink": "#"
 		}
 	},
 	{

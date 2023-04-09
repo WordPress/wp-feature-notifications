@@ -8,6 +8,7 @@
 		".prettierrc.js",
 		"babel.config.js",
 		"jest.config.js",
-		"webpack.config.js"
+		"webpack.config.js",
+		"scripts/**/*"
 	]
 }
