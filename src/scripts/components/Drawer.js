@@ -1,9 +1,14 @@
 import { __ } from '@wordpress/i18n';
 import { NoticesArea } from './NoticesArea';
 
-export const Drawer = ( { focus, blur } ) => {
+export const Drawer = ( { focus, blur, instance } ) => {
 	return (
-		<aside id="notification-hub" onFocus={ focus } onBlur={ blur }>
+		<aside
+			id="notification-hub"
+			onFocus={ focus }
+			onBlur={ blur }
+			ref={ instance }
+		>
 			<div className={ 'hub-wrapper' }>
 				<h2 className={ 'screen-reader-text' }>
 					{ __( 'Notifications' ) }

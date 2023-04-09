@@ -5,7 +5,7 @@ import { defaultContext } from '../store/constants';
 import { NoticeEmpty } from './NoticeEmpty';
 import { NoticeHubSectionHeader } from './NoticeHubSectionHeader';
 import { NoticesLoop } from './NoticesLoop';
-import { sortedByDate } from '../utils/';
+import { splitByDate } from '../utils/';
 import { NoticeHubFooter } from './NoticeHubFooter';
 import store from '../store';
 
@@ -14,7 +14,7 @@ export const WEEK_IN_SECONDS = 3600 * 24 * 7;
 /**
  * @typedef {import('../store').Notice} Notice
  * @typedef {import('../store').NoticeStore} NoticeStore
- * @typedef {import('../utils/index').sortedByDate} sortedByDate
+ * @typedef {import('../utils/index').splitByDate} sortedByDate
  */
 
 /**
@@ -51,16 +51,21 @@ export const NoticesArea = ( props ) => {
 		}
 
 		/** split the notifications by date */
-		const sorted = sortedByDate( notifications );
+		const sorted = splitByDate( notifications );
 
 		return (
 			<>
 				{ sorted.map( ( list, index ) => (
-					<section key={ index }>
+					<section
+						key={ index }
+						className={
+							'notification-hub-section section-' + index
+						}
+					>
 						<NoticeHubSectionHeader
 							context={ context }
 							unreadCount={
-								list.filter(
+								notifications.filter(
 									( notice ) => notice.unread === true
 								).length
 							}

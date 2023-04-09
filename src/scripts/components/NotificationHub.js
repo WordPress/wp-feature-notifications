@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useEffect, useState } from '@wordpress/element';
+import { useEffect, useState, useRef } from '@wordpress/element';
 import {
 	ShortcutProvider,
 	store as keyboardShortcutsStore,
@@ -12,6 +12,7 @@ import * as classNames from 'classnames';
 export const NotificationHub = () => {
 	/** Drawer state */
 	const [ isActive, setIsActive ] = useState( false );
+	const drawerRef = useRef( null );
 
 	/** Register the keyboard shortcut(s) */
 	const { registerShortcut } = useDispatch( keyboardShortcutsStore );
@@ -30,11 +31,29 @@ export const NotificationHub = () => {
 		setIsActive( ! isActive );
 	}
 
+	const handleOutsideClick = ( event ) => {
+		if (
+			drawerRef.current &&
+			! drawerRef.current.contains( event.target )
+		) {
+			setIsActive( false );
+		}
+	};
+
+	useEffect( () => {
+		if ( ! isActive ) {
+			document.addEventListener( 'mousedown', handleOutsideClick );
+			return () => {
+				document.removeEventListener( 'mousedown', handleOutsideClick );
+			};
+		}
+	}, [ isActive ] );
+
 	return (
 		<ShortcutProvider
 			className={ classNames( [
 				'notifications',
-				isActive ? ' active' : '',
+				isActive ? 'active' : '',
 			] ) }
 		>
 			<NotificationHubIcon
@@ -42,6 +61,7 @@ export const NotificationHub = () => {
 				isActive={ isActive }
 			/>
 			<Drawer
+				instance={ drawerRef }
 				focus={ () => setIsActive( true ) }
 				blur={ () => setIsActive( false ) }
 			/>
