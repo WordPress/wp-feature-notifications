@@ -7,13 +7,8 @@ const { format, resolveConfig } = require( 'prettier' );
 
 const TWO_WEEKS_IN_SECONDS = 60 * 60 * 24 * 14;
 
-const fakeApiJsonPath = path.join(
-	__dirname,
-	'../',
-	'includes',
-	'restapi',
-	'fake_api.json'
-);
+const inputPath = path.join( __dirname, 'scaffold-data.json' );
+const outputPath = path.join( __dirname, '../', 'tmp', 'demo-data.json' );
 
 main().catch( ( error ) => {
 	throw error;
@@ -24,8 +19,8 @@ async function main() {
 		...( await resolveConfig( process.cwd() ) ),
 		parser: 'json',
 	};
-	const raw = await fs.readFile( fakeApiJsonPath, { encoding: 'utf-8' } );
-	const notices = JSON.parse( raw );
+	const raw = await fs.readFile( inputPath, { encoding: 'utf-8' } );
+	const { notices } = JSON.parse( raw );
 	// notices.sort( ( a, b ) =>  b.id - a.id); // ascending order by id
 	const count = notices.length;
 	const start = Date.now() - TWO_WEEKS_IN_SECONDS * 1000;
@@ -37,10 +32,7 @@ async function main() {
 		result.push( { ...notice, date } );
 	}
 	const stringified = JSON.stringify( result, null, 2 );
-	await fs.writeFile(
-		fakeApiJsonPath,
-		format( stringified, prettierOptions )
-	);
+	await fs.writeFile( outputPath, format( stringified, prettierOptions ) );
 }
 
 /**
