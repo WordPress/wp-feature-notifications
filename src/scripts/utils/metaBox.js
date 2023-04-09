@@ -3,6 +3,7 @@
  */
 import { dispatch } from '@wordpress/data';
 import { NOTIFY_NAMESPACE } from '../store/constants';
+import { __ } from '@wordpress/i18n';
 
 /**
  *  @typedef {import('../store').Notice} Notice
@@ -19,20 +20,25 @@ window.addEventListener( 'load', () => {
 	if ( wpNotificationMetabox ) {
 		wpNotificationMetabox.addEventListener( 'submit', ( e ) => {
 			e.preventDefault();
-			const title = /** @type {HTMLInputElement} */ (
-				document.getElementById( 'wp-notification-metabox-form-title' )
-			).value;
-			const message = /** @type {HTMLInputElement} */ (
-				document.getElementById(
-					'wp-notification-metabox-form-message'
-				)
-			).value;
+			const title =
+				/** @type {HTMLInputElement} */ (
+					document.getElementById(
+						'wp-notification-metabox-form-title'
+					)
+				).value || __( 'New Notification' );
+			const message =
+				/** @type {HTMLInputElement} */ (
+					document.getElementById(
+						'wp-notification-metabox-form-message'
+					)
+				).value || __( 'Notification default text' );
 
 			dispatch( NOTIFY_NAMESPACE ).addNotice(
 				/** @type {Notice} */ ( {
 					title,
 					message,
 					context: 'dashboard',
+					dismissible: true,
 				} )
 			);
 		} );
