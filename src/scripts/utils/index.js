@@ -21,7 +21,7 @@ export const delay = ( ms ) => new Promise( ( f ) => setTimeout( f, ms ) );
  * @param {Notice[]} notifications The collection of notices to split.
  * @param {number}   limit         The date after which the notifications are considered to be old
  *
- * @return {Notice[][]} two list of Notifications, one for the new and one for the old
+ * @return {[Notice[], Notice[]]} two list of Notifications, one for the new and one for the old
  */
 export const splitByDate = (
 	notifications,

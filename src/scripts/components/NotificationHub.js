@@ -41,7 +41,7 @@ export const NotificationHub = () => {
 	};
 
 	useEffect( () => {
-		if ( ! isActive ) {
+		if ( isActive ) {
 			document.addEventListener( 'mousedown', handleOutsideClick );
 			return () => {
 				document.removeEventListener( 'mousedown', handleOutsideClick );
