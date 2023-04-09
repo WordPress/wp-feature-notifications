@@ -18,14 +18,14 @@ export const delay = ( ms ) => new Promise( ( f ) => setTimeout( f, ms ) );
 /**
  * At the moment the function return the notifications if the split by isn't set to "date"
  *
- * @param {Notice[]} notifications
- * @param {number}   limit
+ * @param {Notice[]} notifications The collection of notices to split.
+ * @param {number}   limit         The date after which the notifications are considered to be old
  *
  * @return {Notice[][]} two list of Notifications, one for the new and one for the old
  */
-export const sortedByDate = (
+export const splitByDate = (
 	notifications,
-	limit = Date.now() - WEEK_IN_SECONDS * 1000
+	limit = Date.now() * 0.001 - WEEK_IN_SECONDS
 ) => {
 	return notifications.reduce(
 		( [ current, past ], item ) => {
