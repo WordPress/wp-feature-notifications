@@ -2,70 +2,77 @@
  * Notification Hub Layout
  */
 #notification-hub {
-  position: fixed;
-  right: calc(0px - var(--wp-notify_hub-width));
-  top: 0;
-  z-index: 100001;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  max-width: var(--wp-notify_hub-width);
-  padding: 30px 0 50px;
-  background: var(--wp-notify_color-white);
-  box-shadow: 0 0 24px -16px var(--wp-notify_color-default);
-  box-sizing: border-box;
-  transform: translateX(0);
-  opacity: 0;
-  transition: transform 350ms, opacity 250ms;
+	position: fixed;
+	right: calc(0px - var(--wp-notify--hub-width));
+	top: 0;
+	z-index: 100001;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	max-width: var(--wp-notify--hub-width);
+	padding: 30px 0 0;
+	background: var(--wp-notify--color--white);
+	box-shadow: 0 0 24px -16px var(--wp-notify--color--default);
+	box-sizing: border-box;
+	overflow: hidden;
 
-  .notifications.active & {
-    opacity: 1;
-    transform: translateX(-100%);
-    padding-bottom: 0; // moves the shadow at the end of sidebar
-  }
+	// 👇 the drawer open/close state
+	transform: translateX(0);
+	opacity: 0;
+	transition: transform 350ms, opacity 250ms;
 
-  // Reset child icons color since by default the icon is lightened when the mouse is in hover state
-  #wpadminbar &:hover,
-  #wpadminbar &:active {
-    .wp-notification-image .ab-icon:before {
-      color: var(--wp-notify_color-white);
-    }
-  }
+	.notifications.active & {
+		opacity: 1;
+		transform: translateX(-100%);
+		padding-bottom: 0; // moves the shadow at the end of sidebar
+	}
 
-  .hub-wrapper {
-    position: relative;
-    height: inherit;
-    overflow: auto;
+	// Force child icons color to the default color
+	#wpadminbar &:focus,
+	#wpadminbar &:hover,
+	#wpadminbar &:active {
 
-    div#wp-notify-adminbar {
-      min-height: 100%;
-			padding-bottom: 48px;
-    }
+		.wp-notification-image .ab-icon::before {
+			color: var(--wp-notify--color--white);
+		}
+	}
 
-    // The shadow at the end of sidebar
-    &:after {
-      content: '';
-      display: block;
-      box-shadow: 0 10px 24px 2px var(--wp-notify_color-default);
-      width: 80%;
-      margin: auto;
-      position: absolute;
-      bottom: 0;
-    }
+	.hub-wrapper {
+		height: inherit;
+		overflow: auto;
+		padding-bottom: 56px;
 
-    // Scrollbar customization
-    &::-webkit-scrollbar {
-      width: 18px; // width = scrollbar width + border * 2
-      height: 48px;
+		.notification-hub-section {
+			position: relative;
+			padding-bottom: 1rem;
 
-      &-thumb {
-        height: 6px;
-        border: 6px solid transparent;
-        background-clip: padding-box;
-        -webkit-border-radius: 18px;
-        background-color: var(--wp-notify_color-scrollbar);
-      }
-    }
-  }
+			&:last-of-type {
+				// The shadow at the end of sidebar
+				&::after {
+					content: "";
+					display: block;
+					box-shadow: 0 1rem 24px 2px var(--wp-notify--color--default);
+					width: 80%;
+					margin: auto 10%;
+					position: absolute;
+					bottom: 0;
+				}
+			}
+		}
+
+		// Scrollbar customization
+		&::-webkit-scrollbar {
+			width: 18px; // width = scrollbar width + border * 2
+			height: 48px;
+
+			&-thumb {
+				height: 6px;
+				border: 6px solid transparent;
+				background-clip: padding-box;
+				-webkit-border-radius: 18px;
+				background-color: var(--wp-notify--color--scrollbar);
+			}
+		}
+	}
 }

@@ -2,63 +2,64 @@
  * WP admin bar
  */
 #wpadminbar #wp-admin-bar-wp-notification-hub {
-  padding-right: 8px;
-  position: relative;
-  z-index: 100002;
+	padding-right: 8px;
+	position: relative;
+	z-index: 100002;
 
-  .notifications {
+	.notifications {
 
-    /* the bell icon */
-    .ab-item {
-      appearance: none;
-      height: 32px;
-      display: block;
-      padding: 0 10px;
-      border: 0;
-      margin: 0;
-      background: none;
+		/* the bell icon */
+		.ab-item {
+			appearance: none;
+			height: 32px;
+			display: block;
+			padding: 0 10px;
+			border: 0;
+			margin: 0;
+			background: none;
 
-      .ab-icon:before {
-        content: "\f16d";
-        top: 1px;
-      }
-    }
+			.ab-icon::before {
+				content: "\f16d";
+				top: 1px;
+			}
+		}
 
-    /* When the drawer is enabled transforms the bell icon to overlay the drawer */
-    &.active > .ab-item .ab-icon {
-      filter: invert(1);
-      position: relative;
-      z-index: 100002;
-    }
+		/* if the drawer is enabled transforms the bell icon to overlay the drawer */
+		&.active > .ab-item .ab-icon {
+			filter: invert(1);
+			position: relative;
+			z-index: 100002;
+		}
 
-    /* The label is the red dot over the bell */
-    .ab-label {
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      top: 12px;
-      left: 20px;
-      border-radius: 50%;
-      font-size: 0;
+		/* The label is the red dot over the bell */
+		.ab-label {
+			position: absolute;
+			width: 6px;
+			height: 6px;
+			top: 12px;
+			left: 20px;
+			border-radius: 50%;
+			font-size: 0;
 
-      /* WP Editor / Alert Red */
-      background: var(--wp-notify_color-red);
+			/* WP Editor / Alert Red */
+			background: var(--wp-notify--color--red);
 
-      /* Classic / Dark Gray 800 */
-      border: 1px solid var(--wp-notify_color-light-gray-800);
-    }
+			/* Classic / Dark Gray 800 */
+			border: 1px solid var(--wp-notify--color--black-800);
+		}
 
-    /* Mobile */
-    @media #{$breakpoint} {
-      display: block;
-      .ab-label {
-        clip: unset;
-        clip-path: unset;
-        width: 11px;
-        height: 11px;
-        top: 16px;
-        left: 28px;
-      }
-    }
-  }
+		/* Mobile */
+		@media #{$breakpoint} {
+			display: block;
+
+			.ab-label {
+				clip: unset;
+				clip-path: unset;
+				width: 11px;
+				height: 11px;
+				top: 16px;
+				left: 28px;
+			}
+		}
+	}
 }

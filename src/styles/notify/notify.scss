@@ -2,26 +2,26 @@
  * General notifications style
  */
 .wp-notification {
-  background: var(--wp-notify_color-white);
-  color: var(--wp-notify_color-default);
-  overflow: hidden;
-  max-height: 600px;
+	background: var(--wp-notify--color--white);
+	color: var(--wp-notify--color--default);
+	overflow: hidden;
+	max-height: 600px;
 
-  &-action {
-    text-decoration-line: underline;
-    color: var(--wp-notify_color-link);
-  }
+	&-action {
+		text-decoration-line: underline;
+		color: var(--wp-notify--color--link);
+	}
 
-  &-meta {
-    color: var(--wp-notify_color-secondary);
-  }
+	&-meta {
+		color: var(--wp-notify--color--secondary);
+	}
 
 	// Default animation
-  &.dismissing {
-    transition: opacity 100ms, padding 100ms, max-height 100ms;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-    max-height: 0;
-    opacity: 0;
-  }
+	&.dismissing {
+		transition: opacity 100ms, padding 100ms, max-height 100ms;
+		padding-top: 0 !important;
+		padding-bottom: 0 !important;
+		max-height: 0;
+		opacity: 0;
+	}
 }
