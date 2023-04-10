@@ -15,6 +15,7 @@ import { purify } from '../utils/sanitization';
 import { defaultContext, NOTIFY_NAMESPACE } from '../store/constants';
 import { dispatch } from '@wordpress/data';
 import { NoticeMeta } from './NoticeMeta';
+import { delay } from '../utils';
 
 /**
  * @typedef {import('../store').Notice} Notice
@@ -47,10 +48,12 @@ export const Notice = ( props ) => {
 	 * Dismiss the target notification
 	 */
 	function dismissNotice() {
-		dispatch( NOTIFY_NAMESPACE ).updateNotice( {
-			id,
-			status: 'dismissing',
-		} );
+		delay( 500 ).then( () =>
+			dispatch( NOTIFY_NAMESPACE ).updateNotice( {
+				id,
+				status: 'dismissing',
+			} )
+		);
 		dispatch( NOTIFY_NAMESPACE ).removeNotice( id );
 	}
 

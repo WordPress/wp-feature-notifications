@@ -23,6 +23,6 @@ export const contexts = [ defaultContext, 'dashboard' ];
  */
 export const settingsPageUrl =
 	// eslint-disable-next-line camelcase
-	typeof window.wp_notify_data !== 'undefined'
-		? window.wp_notify_data?.settingsPage
+	typeof window.wp_notifications_data !== 'undefined'
+		? window.wp_notifications_data?.settingsPage
 		: '';

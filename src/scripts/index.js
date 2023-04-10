@@ -2,7 +2,7 @@
 import { dispatch, select } from '@wordpress/data';
 
 /** The store default data */
-import { NOTIFY_NAMESPACE, contexts } from './store/constants';
+import { contexts, NOTIFY_NAMESPACE } from './store/constants';
 import { addContext, addHub } from './utils/init';
 
 /**

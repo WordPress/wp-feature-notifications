@@ -8,7 +8,10 @@ export const NotificationHubIcon = ( { toggle, isActive } ) => {
 
 	return (
 		<button className={ 'ab-item' } aria-haspopup="menu" onClick={ toggle }>
-			<span className={ 'ab-icon' } aria-hidden="true"></span>
+			<span
+				className={ 'ab-icon dashicons dashicons-bell' }
+				aria-hidden="true"
+			></span>
 			<span className={ 'ab-label' }>{ __( 'Notifications' ) }</span>
 		</button>
 	);

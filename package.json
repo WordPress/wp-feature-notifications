@@ -1,5 +1,5 @@
 {
-	"name": "@wordpress/wp-feature-notifications",
+	"name": "wp-feature-notifications",
 	"version": "0.1.0",
 	"description": "A notification center for WordPress.",
 	"keywords": [
@@ -42,7 +42,7 @@
 		"test": "jest",
 		"storybook": "start-storybook -p 6006",
 		"build-storybook": "build-storybook",
-		"docGen": "npx docgen src/scripts/wp-notify.js",
+		"docGen": "npx docgen src/scripts/wp-notifications.js",
 		"wp-env:start": "wp-env start",
 		"wp-env:stop": "wp-env stop",
 		"wp-env:destroy": "wp-env destroy",
@@ -74,6 +74,7 @@
 		"lint-staged": "^13.2.0",
 		"moment": "^2.29.3",
 		"prettier": "npm:wp-prettier@^2.8.5",
+		"re-resizable": "^6.9.9",
 		"typescript": "^5.0.3"
 	},
 	"dependencies": {
