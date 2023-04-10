@@ -4,18 +4,9 @@
 
 $bullet-width: 6px;
 
-#wpbody .wp-notification-wrap > :first-child::before {
-	top: calc(10px - #{$bullet-width * 0.5 });
-	left: #{ (-36px - $bullet-width) * 0.5 }; // 9 - left padding - border /2  + bullet/2
-}
 
-#wpadminbar .wp-notification.unread > :first-child::before {
-	top: calc(var(--wp-notify--hub-image-size) / 2);
-	left: calc(var(--wp-notify--hub-image-size) * -1.6 - #{$bullet-width * 0.5 });
-}
-
-#wpadminbar .wp-notification.unread
-#wpbody .wp-notification-wrap {
+#wpbody .wp-notification-wrap,
+#wpadminbar .wp-notification.unread {
 	position: relative;
 
 	> :first-child::before {
@@ -24,9 +15,17 @@ $bullet-width: 6px;
 		position: absolute;
 		width: $bullet-width;
 		height: $bullet-width;
-		top: calc(50% - #{$bullet-width * 0.5 });
+
+		top: calc(10px - #{$bullet-width * 0.5 });
+		left: #{ (-36px - $bullet-width) * 0.5 }; // 9 - left padding - border /2  + bullet/2
 
 		border-radius: 50%;
 		background: var(--wp-notify--color--error);
 	}
+}
+
+
+#wpadminbar .wp-notification.unread > :first-child::before {
+	top: calc(var(--wp-notify--hub-image-size) * 0.5 + var(--wp-notify--hub-spacing-top));
+	left: 2px;
 }

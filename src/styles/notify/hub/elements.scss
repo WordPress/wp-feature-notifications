@@ -68,7 +68,7 @@
 				color: var(--wp-notify--color--link-active);
 
 				svg {
-					color: var(--wp-notify--color--link-active);
+					fill: var(--wp-notify--color--link-active);
 				}
 			}
 
@@ -77,20 +77,6 @@
 				border-radius: 2px;
 				outline: 2px solid var(--wp-notify--color--black);
 			}
-		}
-	}
-
-	/* Reset icon color to the default color */
-	#wpadminbar &:hover footer {
-
-		&,
-		a .ab-icon::before {
-			color: var(--wp-notify--color--link);
-		}
-
-		&:hover,
-		&:hover a .ab-icon::before {
-			color: var(--wp-notify--color--link-active);
 		}
 	}
 }

@@ -4,7 +4,7 @@
 #notification-hub {
 
 	.wp-notification {
-		max-width: calc(var(--wp-notify--hub-width) - var(--wp-notify--hub-spacing-gap) * 2);
+		max-width: 100%;
 		margin-left: var(--wp-notify--hub-spacing-gap);
 		margin-right: var(--wp-notify--hub-spacing-gap);
 		user-select: none;

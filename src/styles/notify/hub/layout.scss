@@ -3,14 +3,12 @@
  */
 #notification-hub {
 	position: fixed;
-	right: calc(0px - var(--wp-notify--hub-width));
+	right: 0;
 	top: 0;
 	z-index: 100001;
 	display: flex;
 	flex-direction: column;
-	width: 100%;
 	height: 100%;
-	max-width: var(--wp-notify--hub-width);
 	padding: 30px 0 0;
 	background: var(--wp-notify--color--white);
 	box-shadow: 0 0 24px -16px var(--wp-notify--color--default);
@@ -18,24 +16,14 @@
 	overflow: hidden;
 
 	// 👇 the drawer open/close state
-	transform: translateX(0);
+	transform: translateX(100%);
 	opacity: 0;
 	transition: transform 350ms, opacity 250ms;
 
 	.notifications.active & {
 		opacity: 1;
-		transform: translateX(-100%);
+		transform: translateX(0);
 		padding-bottom: 0; // moves the shadow at the end of sidebar
-	}
-
-	// Force child icons color to the default color
-	#wpadminbar &:focus,
-	#wpadminbar &:hover,
-	#wpadminbar &:active {
-
-		.wp-notification-image .ab-icon::before {
-			color: var(--wp-notify--color--white);
-		}
 	}
 
 	.hub-wrapper {
