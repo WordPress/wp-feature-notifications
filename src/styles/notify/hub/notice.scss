@@ -43,6 +43,11 @@
 			background: transparent;
 		}
 
+		&-actions {
+			display: flex;
+			gap: 0.5rem;
+		}
+
 		&-image {
 			min-width: var(--wp-notify--hub-image-size);
 			width: var(--wp-notify--hub-image-size);
@@ -72,11 +77,6 @@
 					opacity: 0.9;
 				}
 			}
-		}
-
-		.wp-notification-actions {
-			display: flex;
-			gap: 0.5rem;
 		}
 
 		/*
