@@ -16,7 +16,6 @@ import { defaultContext, NOTIFY_NAMESPACE } from '../store/constants';
 import { dispatch } from '@wordpress/data';
 import { NoticeMeta } from './NoticeMeta';
 import { delay } from '../utils';
-import { useEffect } from '@wordpress/element';
 
 /**
  * @typedef {import('../store').Notice} Notice
@@ -57,15 +56,6 @@ export const Notice = ( props ) => {
 			dispatch( NOTIFY_NAMESPACE ).removeNotice( id )
 		);
 	}
-
-	useEffect( () => {
-		if ( status === 'undisplayed' ) {
-			dispatch( NOTIFY_NAMESPACE ).updateNotice( {
-				id,
-				status: 'new',
-			} );
-		}
-	}, [] );
 
 	return (
 		<div

@@ -28,16 +28,27 @@ export const NoticeActions = ( { action, context, onDismiss } ) => {
 	} = action;
 
 	if ( context === defaultContext ) {
-		return acceptMessage ? (
-			<Button
-				variant={ 'link' }
-				// TODO: at the moment it is only possible to use a link but it would not be complex to extend this functionality
-				onClick={ () => ( window.location.href = acceptLink ) }
-				className={ 'wp-notification-action' }
-			>
-				{ acceptMessage }
-			</Button>
-		) : null;
+		return (
+			<div className="wp-notification-actions">
+				<Button
+					variant={ 'link' }
+					// TODO: at the moment it is only possible to use a link but it would not be complex to extend this functionality
+					onClick={ () => ( window.location.href = acceptLink ) }
+					className={ 'wp-notification-action' }
+				>
+					{ acceptMessage }
+				</Button>
+				{ dismissible ? (
+					<Button
+						variant={ 'link' }
+						onClick={ () => onDismiss() }
+						className={ 'wp-notification-action' }
+					>
+						{ dismissLabel }
+					</Button>
+				) : null }
+			</div>
+		);
 	}
 
 	return (

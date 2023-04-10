@@ -19,8 +19,9 @@
 		"id": 14,
 		"title": "Message variant #1 (copy)",
 		"date": 1680799521,
+		"dismissible": true,
 		"action": {
-			"acceptMessage": "TEST",
+			"acceptMessage": "Test",
 			"acceptLink": "#"
 		}
 	},
@@ -32,9 +33,9 @@
 		"date": 1680744049,
 		"message": "This is an example of on-page message variant #2. It has a title, a message, a custom date, an action button with a URL, is dismissable, but has no images.",
 		"dismissible": true,
-		"status": "undisplayed",
+		"status": "new",
 		"action": {
-			"acceptMessage": "OK",
+			"acceptMessage": "Ok",
 			"acceptLink": "#"
 		}
 	},
@@ -44,7 +45,7 @@
 		"message": "WordPress was successfully updated to version 6.1",
 		"date": 1680702629,
 		"source": "WordPress",
-		"status": "undisplayed",
+		"status": "new",
 		"action": {
 			"acceptMessage": "Read what's new in 6.1",
 			"acceptLink": "#"
