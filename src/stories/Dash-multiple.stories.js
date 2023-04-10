@@ -14,10 +14,10 @@ import '../../src/stories/assets/wp-core/normalize.css';
 import '../../src/stories/assets/wp-core/site-health.css';
 
 /** Wp-notify style */
-import '../styles/wp-notify.scss';
-import jsonData from '../../includes/restapi/fake_api.json';
+import '../styles/wp-notifications.scss';
+import * as jsonData from '../../includes/restapi/fake_api.json';
 import { NoticesLoop } from '../scripts/components/NoticesLoop';
-import { getSorted } from '../scripts/utils/drawer';
+import { splitByDate } from '../scripts/utils/';
 
 // filter out non dashboard notices
 const adminBarNotices = jsonData.filter(
@@ -51,7 +51,7 @@ const MultipleNotificationsTemplate = ( args ) => (
 					'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
 			} }
 		>
-			{ getSorted( adminBarNotices ).map( ( list, index ) => (
+			{ splitByDate( adminBarNotices ).map( ( list, index ) => (
 				<NoticesLoop
 					key={ index }
 					notices={ list }

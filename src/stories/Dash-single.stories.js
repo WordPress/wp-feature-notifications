@@ -14,7 +14,7 @@ import '../../src/stories/assets/wp-core/normalize.css';
 import '../../src/stories/assets/wp-core/site-health.css';
 
 /** Wp-notify style */
-import '../styles/wp-notify.scss';
+import '../styles/wp-notifications.scss';
 import '@wordpress/components/build-style/style.css';
 
 export default {

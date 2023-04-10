@@ -16,14 +16,13 @@ import '../../src/stories/assets/wp-core/normalize.css';
 import '../../src/stories/assets/wp-core/site-health.css';
 
 /** Wp-notify style */
-import '../styles/wp-notify.scss';
+import '../styles/wp-notifications.scss';
 import '@wordpress/components/build-style/style.css';
 
 import jsonData from '../../includes/restapi/fake_api.json';
 import { NoticeHubSectionHeader } from '../scripts/components/NoticeHubSectionHeader';
-import * as drawer from '../scripts/utils/drawer';
+import { splitByDate } from '../scripts/utils/';
 import { NoticeHubFooter } from '../scripts/components/NoticeHubFooter';
-const { getSorted } = drawer;
 
 // filter out non adminbar notices
 const adminBarNotices = jsonData.filter(
@@ -129,7 +128,7 @@ const Template = ( args ) => {
 								<div
 									className={ 'wp-notification-hub-wrapper' }
 								>
-									{ getSorted(
+									{ splitByDate(
 										adminBarNotices,
 										args.sortBy
 									).map( ( list, index ) => (
