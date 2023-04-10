@@ -25,7 +25,7 @@ export const delay = ( ms ) => new Promise( ( f ) => setTimeout( f, ms ) );
  */
 export const splitByDate = (
 	notifications,
-	limit = Date.now() * 0.001 - WEEK_IN_SECONDS
+	limit = nowInSeconds() - WEEK_IN_SECONDS
 ) => {
 	return notifications.reduce(
 		( [ current, past ], item ) => {
@@ -35,6 +35,26 @@ export const splitByDate = (
 		},
 		[ [], [] ]
 	);
+};
+
+/**
+ * Convert a `Date` to an integer of seconds
+ *
+ * @param {Date} date The date to convert.
+ *
+ * @return {number} The integer value of the `date` in seconds.
+ */
+export const dateToSeconds = ( date ) => {
+	return Math.floor( date.getTime() * 0.001 );
+};
+
+/**
+ * The current date time in seconds.
+ *
+ * @return {number} The integer value of the `date` in seconds.
+ */
+export const nowInSeconds = () => {
+	return Math.floor( Date.now() * 0.001 );
 };
 
 /**

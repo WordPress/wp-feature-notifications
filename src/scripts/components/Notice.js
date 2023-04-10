@@ -15,7 +15,7 @@ import { purify } from '../utils/sanitization';
 import { defaultContext, NOTIFY_NAMESPACE } from '../store/constants';
 import { dispatch } from '@wordpress/data';
 import { NoticeMeta } from './NoticeMeta';
-import { delay } from '../utils';
+import { delay, nowInSeconds } from '../utils';
 
 /**
  * @typedef {import('../store').Notice} Notice
@@ -31,7 +31,7 @@ export const Notice = ( props ) => {
 	const {
 		action,
 		context = defaultContext,
-		date = Math.floor(Date.now() * 0.001),
+		date = nowInSeconds(),
 		dismissLabel,
 		dismissible,
 		icon,
