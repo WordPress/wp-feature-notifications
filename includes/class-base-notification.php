@@ -19,7 +19,7 @@ class Base_Notification implements Notification {
 	/**
 	 * Sender of the notification.
 	 *
-	 * @var Sender
+	 * @var Senders\Sender
 	 */
 	protected $sender;
 
@@ -33,14 +33,14 @@ class Base_Notification implements Notification {
 	/**
 	 * Collection of notification recipients.
 	 *
-	 * @var Recipient_Collection
+	 * @var Recipients\Recipient_Collection
 	 */
 	protected $recipients;
 
 	/**
 	 * Notification message.
 	 *
-	 * @var Message
+	 * @var Messages\Message
 	 */
 	protected $message;
 
@@ -54,11 +54,11 @@ class Base_Notification implements Notification {
 	/**
 	 * Instantiates a Base_Notification object.
 	 *
-	 * @param Sender                          $sender     Sender that sent the
+	 * @param Senders\Sender                  $sender     Sender that sent the
 	 *                                                    notification.
 	 * @param Recipients\Recipient_Collection $recipients Recipients that should
 	 *                                                    receive the notification.
-	 * @param Message                         $message    Message of the notification.
+	 * @param Messages\Message                $message    Message of the notification.
 	 * @param mixed                           $timestamp  Optional. Timestamp of
 	 *                                                    when the notification
 	 *                                                    was triggered. Defaults

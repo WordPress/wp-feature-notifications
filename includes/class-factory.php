@@ -14,21 +14,21 @@ class Factory {
 	/**
 	 * Message factory implementation to use.
 	 *
-	 * @var Message_Factory
+	 * @var Messages\Message_Factory
 	 */
 	private $message_factory;
 
 	/**
 	 * Recipient factory implementation to use.
 	 *
-	 * @var Recipient_Factory
+	 * @var Recipients\Recipient_Factory
 	 */
 	private $recipient_factory;
 
 	/**
 	 * Sender factory implementation to use
 	 *
-	 * @var Sender_Factory
+	 * @var Senders\Sender_Factory
 	 */
 	private $sender_factory;
 
