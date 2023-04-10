@@ -67,9 +67,9 @@ Notifications can become overwhelming if the user isn't provided with options to
 
 ### wp_notifications_subscriptions
 
-- `user_id: int` - The ID of the user subscribed to the channel.
+- `user_id: BIGINT(20)` - The ID of the user subscribed to the channel.
 
-- `channel_name: int` - The scoped name of the channel subscribed to.
+- `channel_name: VARCHAR(32)` - The scoped name of the channel subscribed to.
 
 - `snoozed_until: DATETIME | null` - The optional timestamp of when to resume the channel.
 
