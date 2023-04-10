@@ -9,51 +9,37 @@
 
 ## Message schema
 
-Message data is stored separately from channel data and can be linked to many users through the `wp_notifications_queue` table.
+Message data is related to many users through the `wp_notifications_queue` table.
 
 ### wp_notifications_messages table
 
-- `id: int` - The ID of the notification.
-- `channel_id: int` - The ID of the channel this message was emitted from.
-- `created_at: timestamp` - The timestamp of when the message was broadcast.
-- `updated_at: timestamp` - The timestamp of when the message was last updated.
+- `id: BIGINT(30)` - The ID of the notification.
 
-  Maybe unnecessary, but it could be good to know if a message has been modify after a user dismissed it.
+- `channel_name: VARCHAR(32)` - The scoped channel name the notification was emitted from.
 
-- `expires_at:  timestamp | null` - The optional timestamp of when the message expires.
+- `channel_title: TINYTEXT` - The channel title.
+
+  This could possibly be stored in the `meta` column.
+
+- `created_at: DATETIME` - The timestamp of when the message was broadcast.
+
+- `expires_at:  DATETIME | null` - The optional timestamp of when the message expires.
 
   Allowing message emitters to specify when a message expires would help signal when it is appropriate to automatically dispose of a message. It should be best practice to provide `expires_at` for any message that isn't high priority.
 
-- `priority: int (maybe enum)` - The priority of the message, aka. INFO, WARNING, DANGER.
+- `severity: VARCHAR(20)` - The severity of the message, examples: info, warning, alert.
 
   This should be a predefined list of values.
 
-- `title_key: varchar(128) | null` - The translation key for the title of the notification.
+- `title: TINYTEXT | null` - The translated title of the notification.
 
-- `message_key: varchar(128)` - The translation key for the notification message content
+- `message: TINYTEXT` - The translated message content of the notification
 
-- `meta: JSON` - data that doesn’t have to be queried, like icon or image information.
-
-## Channel schema
-
-Core should have a set registered channels.
-
-Plugins can register channels of their own.
-
-### wp_notifications_channels table
-
-- `id: int` - The ID of the channel
-- `created_at: timestamp` - The timestamp of when the channel was created.
-- `updated_at: timestamp` - The timestamp of when the channel was last updated.
-- `source: varchar(128)` - The source of the channel, aka. the name of the plugin.
-- `name_key: varchar(128)` - The translation key for the name of the channel.
-- `description_key: varchar(128)` - The translation key for the description of the channel.
-- `role: varchar(128)` The minimum required role to subscribe to messages from the channel.
-- `meta: JSON` - Data that doesn’t have to be queried, like icon or images.
+- `meta: JSON` - Data that doesn’t have to be queried, like icon, image or action information.
 
 ## Message Queue
 
-Join table used to map messages to specific users. Could periodically be cleared depending on message `expires_at` and/or how long ago it was dismissed.
+Join table to map messages to specific users. Could periodically be cleared depending on message `expires_at` and/or how long ago it was dismissed.
 
 The full history of messages for every user is retained and could be easily looked up.
 
@@ -61,16 +47,19 @@ If a message has been orphan it can safely be deleted.
 
 ### wp_notifications_queue table
 
-- `message_id: int` - The ID of the enqueued message.
-- `user_id: int` - The ID of the user.
-- `dismissed_at: timestamp | null` - The timestamp of when the notification was dismissed.
-- `displayed_at: timestamp | null` - The timestamp of when the notification was first displayed.
+- `message_id: BIGINT(20)` - The ID of the enqueued message.
+
+- `user_id: BIGINT(20)` - The ID of the user.
+
+- `dismissed_at: DATETIME | null` - The timestamp of when the notification was dismissed.
+
+- `displayed_at: DATETIME | null` - The timestamp of when the notification was first displayed.
 
   There could definitely be addition statuses, and if the time of the state update is deemed unnecessary, perhaps they could be a single enum rather that timestamps.
 
 ## Subscriptions
 
-Join table used to determine for whom to enqueue messages when emitting to a channel.
+Table used to determine for whom to enqueue messages when emitting a notification from a channel.
 
 Logic to authorize a users to subscribe to a channel would be based on a comparison of the `role` property of the channel and user.
 
@@ -79,13 +68,15 @@ Notifications can become overwhelming if the user isn't provided with options to
 ### wp_notifications_subscriptions
 
 - `user_id: int` - The ID of the user subscribed to the channel.
-- `channel_id: int` - The ID of the channel subscribed to.
-- `snoozed_until: timestamp | null` - The optional timestamp of when to resume the channel.
+
+- `channel_name: int` - The scoped name of the channel subscribed to.
+
+- `snoozed_until: DATETIME | null` - The optional timestamp of when to resume the channel.
 
 ## Metadata
 
 The `meta` field of the message and channel tables could be stored in another table, similar to other WordPress schemas. Though keeping it in the same table reduces the number of queries.
 
-A message could be of a type defined in code that has metadata attached to it, similar to Gutenberg block registration. Attaching icons could be done in code, calling something like `wp_notifications_register_channel` or `wp_notifications_register_message_type`.
+## Channels
 
-Use case: icon, color, template
+The concept of channels is similar to block types in the editor. They are registered in code by plugins and the scoped name is used for channel discovery through the `Channel_Registry`. See PR [#251](https://github.com/WordPress/wp-feature-notifications/pull/251) for details about the channel registry.
