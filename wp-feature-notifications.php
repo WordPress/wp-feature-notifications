@@ -19,6 +19,8 @@ namespace WP\Notifications;
 
 use WP\Notifications\REST;
 
+use function WP\Notifications\register_channel;
+
 if ( ! defined( 'WP_FEATURE_NOTIFICATION_PLUGIN_VERSION' ) ) {
 	define( 'WP_FEATURE_NOTIFICATION_PLUGIN_VERSION', '0.0.1' );
 }
@@ -32,6 +34,9 @@ if ( ! defined( 'WP_FEATURE_NOTIFICATION_PLUGIN_DIR_URL' ) ) {
 }
 
 // Require interface/class declarations..
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/class-channel.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/class-channel-registry.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/channels.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/exceptions/interface-exception.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/exceptions/class-runtime-exception.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/exceptions/class-invalid-recipient.php';
