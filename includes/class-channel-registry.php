@@ -30,7 +30,7 @@ final class Channel_Registry {
 	 * Registers a channel.
 	 *
 	 * @param Channel $name A Channel instance.
-   *
+	 *
 	 * @return Channel|false The registered channel on success, or false on failure.
 	 */
 	public function register( $name ) {
@@ -91,7 +91,7 @@ final class Channel_Registry {
 	 * Checks if a channel is registered.
 	 *
 	 * @param string $name Chanel name including namespace.
-   *
+	 *
 	 * @return bool True if the channel is registered, false otherwise.
 	 */
 	public function is_registered( $name ) {
