@@ -40,16 +40,16 @@ add_action( 'admin_notices', 'wp_notify_admin_notice' );
  */
 function wp_notify_enqueue_admin_assets() {
 	/* Load styles */
-	wp_register_style( 'wp_notify_css', WP_NOTIFICATION_CENTER_PLUGIN_DIR_URL . '/build/wp-notify.css', array(), WP_NOTIFICATION_CENTER_PLUGIN_VERSION );
-	wp_enqueue_style( 'wp_notify_css' );
+	wp_register_style( 'wp_notifications_css', WP_NOTIFICATION_CENTER_PLUGIN_DIR_URL . '/build/wp-notifications.css', array(), WP_NOTIFICATION_CENTER_PLUGIN_VERSION );
+	wp_enqueue_style( 'wp_notifications_css' );
 
 	/* Load scripts */
-	$asset = include WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/build/wp-notify.asset.php';
-	wp_register_script( 'wp_notify_js', WP_NOTIFICATION_CENTER_PLUGIN_DIR_URL . '/build/wp-notify.js', $asset['dependencies'], WP_NOTIFICATION_CENTER_PLUGIN_VERSION, true );
-	wp_enqueue_script( 'wp_notify_js' );
+	$asset = include WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/build/wp-notifications.asset.php';
+	wp_register_script( 'wp_notifications_js', WP_NOTIFICATION_CENTER_PLUGIN_DIR_URL . '/build/wp-notifications.js', $asset['dependencies'], WP_NOTIFICATION_CENTER_PLUGIN_VERSION, true );
+	wp_enqueue_script( 'wp_notifications_js' );
 	wp_localize_script(
-		'wp_notify_js',
-		'wp_notify_data',
+		'wp_notifications_js',
+		'wp_notifications_data',
 		array(
 			'settingsPage' => esc_url( admin_url( 'options-general.php?page=wp-notify' ) ),
 		)
