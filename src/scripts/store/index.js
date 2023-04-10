@@ -50,7 +50,7 @@ import * as resolvers from './resolvers';
  */
 
 /**
- * @typedef {'dismissing'} NoticeStatus The notification status type.
+ * @typedef {'undisplayed'|'displayed'|'dismissed'|'new'} NoticeStatus The notification status type.
  */
 
 /**
@@ -67,7 +67,6 @@ import * as resolvers from './resolvers';
  * @property {string=}       source       The source of the notification.
  * @property {NoticeStatus=} status       The status of the notification.
  * @property {string}        title        The title of the notification message.
- * @property {boolean=}      unread       Predicate of whether the notification is in an unread state.
  */
 
 /**

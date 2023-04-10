@@ -16,12 +16,13 @@
 		color: var(--wp-notify--color--secondary);
 	}
 
-	// Default animation
-	&.dismissing {
+	// TODO exit animation
+
+	/*	&.dismissing {
 		transition: opacity 100ms, padding 100ms, max-height 100ms;
 		padding-top: 0 !important;
 		padding-bottom: 0 !important;
 		max-height: 0;
 		opacity: 0;
-	}
+	}*/
 }

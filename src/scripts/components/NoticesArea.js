@@ -66,7 +66,7 @@ export const NoticesArea = ( props ) => {
 							context={ context }
 							unreadCount={
 								notifications.filter(
-									( notice ) => notice.unread === true
+									( notice ) => notice.status === 'new'
 								).length
 							}
 							isMain={ index === 0 } // the main section is the first one

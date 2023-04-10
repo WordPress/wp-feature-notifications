@@ -6,7 +6,8 @@ $bullet-width: 6px;
 
 
 #wpbody .wp-notification-wrap,
-#wpadminbar .wp-notification.unread {
+// TODO replace undisplayed with "new" 👇
+#wpadminbar .wp-notification.undisplayed {
 	position: relative;
 
 	> :first-child::before {
@@ -20,12 +21,12 @@ $bullet-width: 6px;
 		left: #{ (-36px - $bullet-width) * 0.5 }; // 9 - left padding - border /2  + bullet/2
 
 		border-radius: 50%;
-		background: var(--wp-notify--color--error);
+		background: var(--wp-notify--color--link);
 	}
 }
 
-
-#wpadminbar .wp-notification.unread > :first-child::before {
+// TODO replace undisplayed with "new" 👇
+#wpadminbar .wp-notification.undisplayed > :first-child::before {
 	top: calc(var(--wp-notify--hub-image-size) * 0.5 + var(--wp-notify--hub-spacing-top));
 	left: 2px;
 }

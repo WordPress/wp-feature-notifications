@@ -16,6 +16,7 @@ import { defaultContext, NOTIFY_NAMESPACE } from '../store/constants';
 import { dispatch } from '@wordpress/data';
 import { NoticeMeta } from './NoticeMeta';
 import { delay } from '../utils';
+import { useEffect } from '@wordpress/element';
 
 /**
  * @typedef {import('../store').Notice} Notice
@@ -41,21 +42,30 @@ export const Notice = ( props ) => {
 		source = 'WordPress',
 		status,
 		title,
-		unread,
 	} = props;
 
 	/**
 	 * Dismiss the target notification
 	 */
 	function dismissNotice() {
+		dispatch( NOTIFY_NAMESPACE ).updateNotice( {
+			id,
+			status: 'dismissed',
+		} );
+		// TODO missing exit animation
 		delay( 500 ).then( () =>
+			dispatch( NOTIFY_NAMESPACE ).removeNotice( id )
+		);
+	}
+
+	useEffect( () => {
+		if ( status === 'undisplayed' ) {
 			dispatch( NOTIFY_NAMESPACE ).updateNotice( {
 				id,
-				status: 'dismissing',
-			} )
-		);
-		dispatch( NOTIFY_NAMESPACE ).removeNotice( id );
-	}
+				status: 'new',
+			} );
+		}
+	}, [] );
 
 	return (
 		<div
@@ -64,7 +74,6 @@ export const Notice = ( props ) => {
 				'wp-notice-' + id,
 				dismissible ? 'dismissible' : null,
 				severity ? severity : null,
-				unread ? 'unread' : null,
 				status
 			) }
 		>
