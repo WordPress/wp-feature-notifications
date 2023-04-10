@@ -37,7 +37,7 @@ final class Channel_Registry {
 		$channel = null;
 		if ( $name instanceof Channel ) {
 			$channel = $name;
-			$name    = $channel->get_name();
+			$name    = $channel->name;
 		}
 	}
 
@@ -50,7 +50,7 @@ final class Channel_Registry {
 	 */
 	public function unregister( $name ) {
 		if ( $name instanceof Channel ) {
-			$name = $name->get_name();
+			$name = $name->name;
 		}
 
 		if ( ! $this->is_registered( $name ) ) {

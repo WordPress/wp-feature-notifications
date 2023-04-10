@@ -20,21 +20,21 @@ class Channel implements JsonSerializable {
 	 *
 	 * @var string
 	 */
-	protected $name;
+	public $name;
 
 	/**
 	 * Human-readable channel label.
 	 *
 	 * @var string
 	 */
-	protected $title = '';
+	public $title = '';
 
 	/**
 	 * Channel icon.
 	 *
 	 * @var string|null
 	 */
-	protected $icon = null;
+	public $icon = null;
 
 
 	/**
@@ -42,7 +42,7 @@ class Channel implements JsonSerializable {
 	 *
 	 * @var string|null
 	 */
-	protected $description = null;
+	public $description = null;
 
 	/**
 	 * Constructor.
@@ -61,42 +61,6 @@ class Channel implements JsonSerializable {
 		$this->title       = $title;
 		$this->icon        = $icon;
 		$this->description = $description;
-	}
-
-	/**
-   * Get the name of the channel.
-   *
-   * @return string Name of the channel.
-   */
-	public function get_name() {
-		return $this->name;
-	}
-
-	/**
-	 * Get the title of the channel.
-	 *
-	 * @return string Title of the channel.
-	 */
-	public function get_title() {
-		return $this->title;
-	}
-
-	/**
-	 * Get the icon of the channel.
-	 *
-	 * @return string|null Icon of the channel.
-	 */
-	public function get_icon() {
-		return $this->icon;
-	}
-
-	/**
-	 * Get the icon of the description.
-	 *
-	 * @return string|null Description of the channel.
-	 */
-	public function get_description() {
-		return $this->description;
 	}
 
 	/**
