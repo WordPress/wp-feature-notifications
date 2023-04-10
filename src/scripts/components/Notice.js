@@ -31,7 +31,7 @@ export const Notice = ( props ) => {
 	const {
 		action,
 		context = defaultContext,
-		date = Date.now() * 0.001,
+		date = Math.floor(Date.now() * 0.001),
 		dismissLabel,
 		dismissible,
 		icon,
