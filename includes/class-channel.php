@@ -12,7 +12,7 @@ use JsonSerializable;
 /**
  * Class representing a channel.
  *
- * @see wp_feature_notifications_register_channel()
+ * @see register_channel()
  */
 class Channel implements JsonSerializable {
 	/**
