@@ -21,12 +21,10 @@ function register_channel( $channel ) {
 /**
  * Unregister a channel.
  *
- * @since 5.0.0
- *
  * @param string|Channel $name Channel name including namespace, or alternatively a complete
  *                             Channel instance.
  * @return Channel|false The unregistered channel on success, or false on failure.
  */
-function unregister_block_type( $name ) {
+function unregister_channel( $name ) {
 	return Channel_Registry::get_instance()->unregister( $name );
 }
