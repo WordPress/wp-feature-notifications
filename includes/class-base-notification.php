@@ -33,7 +33,7 @@ class Base_Notification implements Notification {
 	/**
 	 * Collection of notification recipients.
 	 *
-	 * @var Recipients\Recipient_Collection
+	 * @var Recipients\Collection
 	 */
 	protected $recipients;
 
@@ -54,23 +54,16 @@ class Base_Notification implements Notification {
 	/**
 	 * Instantiates a Base_Notification object.
 	 *
-	 * @param Senders\Sender                  $sender     Sender that sent the
-	 *                                                    notification.
-	 * @param Recipients\Recipient_Collection $recipients Recipients that should
-	 *                                                    receive the notification.
-	 * @param Messages\Message                $message    Message of the notification.
-	 * @param mixed                           $timestamp  Optional. Timestamp of
-	 *                                                    when the notification
-	 *                                                    was triggered. Defaults
-	 *                                                    to the moment of
-	 *                                                    instantiation.
-	 * @param int                             $id         Optional. ID of the
-	 *                                                    notification. Defaults
-	 *                                                    to -1.
+	 * @param Senders\Sender        $sender     Sender that sent the notification.
+	 * @param Recipients\Collection $recipients Recipients that should receive the notification.
+	 * @param Messages\Message      $message    Message of the notification.
+	 * @param mixed                 $timestamp  Optional. Timestamp of when the notification was
+	 *                                          triggered. Defaults to the moment of instantiation.
+	 * @param int                   $id         Optional. ID of the notification. Defaults to -1.
 	 */
 	public function __construct(
 		Senders\Sender $sender,
-		Recipients\Recipient_Collection $recipients,
+		Recipients\Collection $recipients,
 		Messages\Message $message,
 		$timestamp = null,
 		$id = - 1
@@ -127,7 +120,7 @@ class Base_Notification implements Notification {
 	/**
 	 * Gets the recipients for the notification.
 	 *
-	 * @return Recipients\Recipient_Collection Notification recipients.
+	 * @return Recipients\Collection Notification recipients.
 	 */
 	public function get_recipients() {
 		return $this->recipients;

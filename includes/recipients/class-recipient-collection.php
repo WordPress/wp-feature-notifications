@@ -9,7 +9,7 @@ use JsonSerializable;
 use WP\Notifications;
 use WP\Notifications\Exceptions;
 
-class Recipient_Collection
+class Collection
 	implements Iterator,
 		Countable,
 		JsonSerializable,
@@ -23,7 +23,7 @@ class Recipient_Collection
 	protected $recipients = array();
 
 	/**
-	 * Instantiates a WPNotify_RecipientCollection object.
+	 * Instantiates a Collection object.
 	 *
 	 * @param array $recipients Array of recipients to instantiate the
 	 *                          collection with.

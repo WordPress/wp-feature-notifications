@@ -8,7 +8,7 @@ class Test_Base_Notification extends TestCase {
 
 	public function test_it_can_be_instantiated() {
 		$sender_mock     = $this->createMock( '\WP\Notifications\Senders\Base_Sender' );
-		$recipients_mock = $this->createMock( '\WP\Notifications\Recipients\Recipient_Collection' );
+		$recipients_mock = $this->createMock( '\WP\Notifications\Recipients\Collection' );
 		$testee          = new Notifications\Base_Notification(
 			$sender_mock,
 			$recipients_mock,
@@ -19,7 +19,7 @@ class Test_Base_Notification extends TestCase {
 
 	public function test_it_implements_the_interface() {
 		$sender_mock     = $this->createMock( '\WP\Notifications\Senders\Base_Sender' );
-		$recipients_mock = $this->createMock( '\WP\Notifications\Recipients\Recipient_Collection' );
+		$recipients_mock = $this->createMock( '\WP\Notifications\Recipients\Collection' );
 		$testee          = new Notifications\Base_Notification(
 			$sender_mock,
 			$recipients_mock,
@@ -30,7 +30,7 @@ class Test_Base_Notification extends TestCase {
 
 	public function test_it_can_return_its_content() {
 		$sender_mock     = $this->createMock( '\WP\Notifications\Senders\Base_Sender' );
-		$recipients_mock = $this->createMock( '\WP\Notifications\Recipients\Recipient_Collection' );
+		$recipients_mock = $this->createMock( '\WP\Notifications\Recipients\Collection' );
 		$dummy_message   = new Dummy_Message();
 		$testee          = new Notifications\Base_Notification(
 			$sender_mock,

@@ -4,7 +4,7 @@ namespace WP\Notifications\Recipients;
 
 use WP\Notifications\Exceptions;
 
-final class Base_Recipient_Factory implements Recipient_Factory {
+final class Base_Factory implements Factory {
 
 	const TYPE_USER = 'user';
 	const TYPE_ROLE = 'role';

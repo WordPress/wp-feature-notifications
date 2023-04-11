@@ -4,7 +4,7 @@ namespace WP\Notifications\Messages;
 
 use WP\Notifications\Exceptions;
 
-class Base_Message_Factory implements Message_Factory {
+class Base_Factory implements Factory {
 
 	const TYPE_STANDARD = 'standard';
 

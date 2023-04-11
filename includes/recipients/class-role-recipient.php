@@ -2,7 +2,7 @@
 
 namespace WP\Notifications\Recipients;
 
-final class Role_Recipient implements Recipient {
+final class Role implements Recipient {
 
 	private $role;
 

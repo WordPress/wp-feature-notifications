@@ -6,7 +6,7 @@ use WP_User;
 
 use WP\Notifications\Exceptions\Invalid_Recipient;
 
-final class User_Recipient implements Recipient {
+final class User implements Recipient {
 
 	private $user_id;
 	private $user_object;

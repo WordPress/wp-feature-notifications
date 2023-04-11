@@ -2,7 +2,7 @@
 
 namespace WP\Notifications\Senders;
 
-interface Sender_Factory {
+interface Factory {
 
 	/**
 	 * Create a new instance of notification sender

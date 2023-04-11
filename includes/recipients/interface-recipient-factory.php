@@ -2,7 +2,7 @@
 
 namespace WP\Notifications\Recipients;
 
-interface Recipient_Factory {
+interface Factory {
 
 	/**
 	 * Create a new instance of a notification recipient.

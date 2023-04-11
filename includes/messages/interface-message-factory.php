@@ -2,7 +2,7 @@
 
 namespace WP\Notifications\Messages;
 
-interface Message_Factory {
+interface Factory {
 
 	/**
 	 * Create a new instance of a notification message.

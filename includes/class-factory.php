@@ -14,28 +14,28 @@ class Factory {
 	/**
 	 * Message factory implementation to use.
 	 *
-	 * @var Messages\Message_Factory
+	 * @var Messages\Factory
 	 */
 	private $message_factory;
 
 	/**
 	 * Recipient factory implementation to use.
 	 *
-	 * @var Recipients\Recipient_Factory
+	 * @var Recipients\Factory
 	 */
 	private $recipient_factory;
 
 	/**
 	 * Sender factory implementation to use
 	 *
-	 * @var Senders\Sender_Factory
+	 * @var Senders\Factory
 	 */
 	private $sender_factory;
 
 	public function __construct(
-		Messages\Message_Factory $message_factory,
-		Recipients\Recipient_Factory $recipient_factory,
-		Senders\Sender_Factory $sender_factory
+		Messages\Factory $message_factory,
+		Recipients\Factory $recipient_factory,
+		Senders\Factory $sender_factory
 	) {
 		$this->message_factory   = $message_factory;
 		$this->recipient_factory = $recipient_factory;
@@ -54,7 +54,7 @@ class Factory {
 		list( $message_args, $recipients_args, $sender_args ) = $this->validate( $args );
 
 		$sender     = $this->sender_factory->create( $sender_args );
-		$recipients = new Recipients\Recipient_Collection();
+		$recipients = new Recipients\Collection();
 		$message    = $this->message_factory->create( $message_args );
 
 		foreach ( $recipients_args as $type => $value ) {
