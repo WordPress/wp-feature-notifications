@@ -1,4 +1,9 @@
 <?php
+/**
+ * Notifications API:Logger class
+ *
+ * @package wordpress/wp-feature-notifications
+ */
 
 namespace WP\Notifications;
 
@@ -6,8 +11,6 @@ namespace WP\Notifications;
  * Class Logger
  *
  * Defines the plugin's conditional logging logic.
- *
- * @package WP_Notifications
  */
 class Logger {
 	/**
