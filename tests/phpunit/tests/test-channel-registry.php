@@ -12,7 +12,9 @@ class Test_Channel_Registry extends WP_Notify_TestCase {
 		$expected = new Notifications\Channel(
 			'core/test',
 			array(
-				'title' => 'Test Channel',
+				'title'       => 'Testing',
+				'icon'        => 'wordpress',
+				'description' => 'Test notification channel.',
 			)
 		);
 
