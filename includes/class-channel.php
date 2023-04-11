@@ -49,7 +49,7 @@ class Channel implements JsonSerializable {
 	 *
 	 * Instantiates a Channel object.
 	 *
-	 * @see wp_feature_notifications_register_channel()
+	 * @see WP\Notifications\register_channel()
 	 *
 	 * @param string       $channel Channel name including namespace.
 	 * @param array|string $args    {
