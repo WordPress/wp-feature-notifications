@@ -15,7 +15,7 @@ final class Channel_Registry {
 	/**
 	 * Registered channels, as `$name => $instance` pairs.
 	 *
-	 * @var Channel
+	 * @var Channel[]
 	 */
 	private $registered_channels = array();
 
