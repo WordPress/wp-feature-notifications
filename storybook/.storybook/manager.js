@@ -1,4 +1,7 @@
-import { addons } from '@storybook/addons';
+/**
+ * External dependencies
+ */
+import {addons} from '@storybook/addons';
 
 import wpNotifyTheme from './wp-notify-theme';
 

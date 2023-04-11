@@ -1,21 +1,5 @@
 /** the empty notification component */
 
-/** Backend style */
-import './assets/wp-core/admin-bar.css';
-import './assets/wp-core/admin-menu.css';
-import './assets/wp-core/buttons.css';
-import './assets/wp-core/common.css';
-import './assets/wp-core/dashboard.css';
-import './assets/wp-core/dashicons.css';
-import './assets/wp-core/edit.css';
-import './assets/wp-core/nav-menus.css';
-import './assets/wp-core/normalize.css';
-import './assets/wp-core/site-health.css';
-
-/** Wp-notify style */
-import '../../build/wp-notify.css';
-import '@wordpress/components/build-style/style.css';
-
 import { Notice } from '../../src/scripts/components/Notice';
 import { NoticeEmpty } from '../../src/scripts/components/NoticeEmpty';
 import { __ } from '@wordpress/i18n';
@@ -34,7 +18,7 @@ export default {
 /**
  * Notification UI component
  *
- * @param args
+ * @param {Object} args - the sidebar template arguments
  */
 const Template = ( args ) => {
 	return (

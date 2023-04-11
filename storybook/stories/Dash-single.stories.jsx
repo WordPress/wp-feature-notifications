@@ -1,26 +1,15 @@
 /** the single notification component */
 import { Notice } from '../../src/scripts/components/Notice';
 
-/** Backend style */
-import './assets/wp-core/admin-bar.css';
-import './assets/wp-core/admin-menu.css';
-import './assets/wp-core/buttons.css';
-import './assets/wp-core/common.css';
-import './assets/wp-core/dashboard.css';
-import './assets/wp-core/dashicons.css';
-import './assets/wp-core/edit.css';
-import './assets/wp-core/nav-menus.css';
-import './assets/wp-core/normalize.css';
-import './assets/wp-core/site-health.css';
-
-/** Wp-notify style */
-import '../styles/wp-notify.scss';
-import '@wordpress/components/build-style/style.css';
-
 export default {
 	title: 'wp-feature-notifications/Dashboard/Single',
 	component: Notice,
 	parameters: {
+		docs: {
+			description: {
+				component: 'A single notification component',
+			},
+		},
 		backgrounds: {
 			default: 'WordPress',
 			values: [ { name: 'WordPress', value: '#f0f0f1' } ],
@@ -55,7 +44,7 @@ single.args = {
 	title: 'Notice Example',
 	message:
 		'Notice message. This is a simple example and will be shown in the dashboard',
-	date: Date.now(),
+	date: Date.now() * 0.001,
 	dismissible: true,
 	action: {
 		acceptMessage: 'Accept',

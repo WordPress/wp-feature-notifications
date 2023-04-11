@@ -3,26 +3,11 @@ import { useEffect, useRef } from '@wordpress/element';
 /** the single notification component */
 import { NoticesLoop } from '../../src/scripts/components/NoticesLoop';
 
-/** Backend style */
-import './assets/wp-core/admin-bar.css';
-import './assets/wp-core/admin-menu.css';
-import './assets/wp-core/buttons.css';
-import './assets/wp-core/common.css';
-import './assets/wp-core/dashboard.css';
-import './assets/wp-core/dashicons.css';
-import './assets/wp-core/edit.css';
-import './assets/wp-core/nav-menus.css';
-import './assets/wp-core/normalize.css';
-import './assets/wp-core/site-health.css';
-
-/** Wp-notify style */
-import '../styles/wp-notify.scss';
-import '@wordpress/components/build-style/style.css';
-
 import jsonData from './assets/fake_api.json';
 import { NoticeHubSectionHeader } from '../../src/scripts/components/NoticeHubSectionHeader';
 import * as drawer from '../../src/scripts/utils/drawer';
 import { NoticeHubFooter } from '../../src/scripts/components/NoticeHubFooter';
+
 const { getSorted } = drawer;
 
 // filter out non adminbar notices

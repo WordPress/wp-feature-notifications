@@ -1,15 +1,3 @@
 {
-  "sourceType": "unambiguous",
-  "presets": [
-    [
-      "@babel/preset-env",
-      {
-        "targets": {
-          "chrome": 100
-        }
-      }
-    ],
-    "@babel/preset-react"
-  ],
-  "plugins": []
+	"presets": [ "@wordpress/babel-preset-default" ]
 }
