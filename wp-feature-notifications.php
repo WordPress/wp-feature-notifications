@@ -19,8 +19,6 @@ namespace WP\Notifications;
 
 use WP\Notifications\REST;
 
-use function WP\Notifications\register_channel;
-
 if ( ! defined( 'WP_FEATURE_NOTIFICATION_PLUGIN_VERSION' ) ) {
 	define( 'WP_FEATURE_NOTIFICATION_PLUGIN_VERSION', '0.0.1' );
 }
