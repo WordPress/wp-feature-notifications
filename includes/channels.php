@@ -8,14 +8,18 @@
 namespace WP\Notifications;
 
 /**
- * Register a channel.
+ * Register a notification channel.
  *
- * @param Channel $channel A complete Channel instance.
- *
+ * @param string|Channel $name  Channel name including namespace, or alternatively a complete
+ *                              Channel instance. In case a Channel is provided, the $args
+ *                              parameter will be ignored.
+ * @param array          $args  Optional. Array of channel arguments. Accepts any public property
+ *                              of `Channel`. See Channel::__construct() for information on
+ *                              accepted arguments. Default empty array.
  * @return Channel|false The registered channel on success, or false on failure.
  */
-function register_channel( $channel ) {
-	return Channel_Registry::get_instance()->register( $channel );
+function register_channel( $name, $args = array() ) {
+	return Channel_Registry::get_instance()->register( $name, $args );
 }
 
 /**

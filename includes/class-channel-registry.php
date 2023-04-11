@@ -29,13 +29,64 @@ final class Channel_Registry {
 	/**
 	 * Registers a channel.
 	 *
-	 * @param Channel $channel A Channel instance.
+	 * @see Channel::__construct()
 	 *
+	 * @param string|Channel $name  Channel name including namespace, or alternatively a complete
+	 *                              Channel instance. In case a Channel is provided, the $args
+	 *                              parameter will be ignored.
+	 * @param array          $args  Optional. Array of channel arguments. Accepts any public property
+	 *                              of `Channel`. See Channel::__construct() for information on
+	 *                              accepted arguments. Default empty array.
 	 * @return Channel|false The registered channel on success, or false on failure.
 	 */
-	public function register( $channel ) {
-		if ( ! ( $channel instanceof Channel ) ) {
+	public function register( $name, $args = array() ) {
+		$channel = null;
+
+		if ( $name instanceof Channel ) {
+			$channel = $name;
+			$name    = $channel->name;
+		}
+
+		if ( ! is_string( $name ) ) {
+			_doing_it_wrong(
+				__METHOD__,
+				__( 'Channel names must be strings.' ),
+				'1.0.0'
+			);
 			return false;
+		}
+
+		if ( preg_match( '/[A-Z]+/', $name ) ) {
+			_doing_it_wrong(
+				__METHOD__,
+				__( 'Channel names must not contain uppercase characters.' ),
+				'1.0.0'
+			);
+			return false;
+		}
+
+		$name_matcher = '/^[a-z0-9-]+\/[a-z0-9-]+$/';
+		if ( ! preg_match( $name_matcher, $name ) ) {
+			_doing_it_wrong(
+				__METHOD__,
+				__( 'Channel names must contain a namespace prefix. Example: my-plugin/my-channel' ),
+				'1.0.0'
+			);
+			return false;
+		}
+
+		if ( $this->is_registered( $name ) ) {
+			_doing_it_wrong(
+				__METHOD__,
+				/* translators: %s: Channel name. */
+				sprintf( __( 'Channel "%s" is already registered.' ), $name ),
+				'1.0.0'
+			);
+			return false;
+		}
+
+		if ( ! $channel ) {
+			$channel = new Channel( $name, $args );
 		}
 
 		$this->registered_channels[ $channel->name ] = $channel;
@@ -56,6 +107,12 @@ final class Channel_Registry {
 		}
 
 		if ( ! $this->is_registered( $name ) ) {
+			_doing_it_wrong(
+				__METHOD__,
+				/* translators: %s: Channel name. */
+				sprintf( __( 'Channel "%s" is not registered.' ), $name ),
+				'1.0.0'
+			);
 			return false;
 		}
 
