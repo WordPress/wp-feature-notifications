@@ -29,16 +29,18 @@ final class Channel_Registry {
 	/**
 	 * Registers a channel.
 	 *
-	 * @param Channel $name A Channel instance.
+	 * @param Channel $channel A Channel instance.
 	 *
 	 * @return Channel|false The registered channel on success, or false on failure.
 	 */
-	public function register( $name ) {
-		$channel = null;
-		if ( $name instanceof Channel ) {
-			$channel = $name;
-			$name    = $channel->name;
+	public function register( $channel ) {
+		if ( ! ( $channel instanceof Channel ) ) {
+			return false;
 		}
+
+		$this->registered_channels[ $channel->name ] = $channel;
+
+		return $channel;
 	}
 
 	/**
