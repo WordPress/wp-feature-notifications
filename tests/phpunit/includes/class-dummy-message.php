@@ -1,6 +1,10 @@
 <?php
 
-class Dummy_Message implements WP_Notify_Message {
+namespace WP\Notifications\Tests;
+
+use WP\Notifications\Messages;
+
+class Dummy_Message implements Messages\Message {
 
 	public function serialize() {
 		return ''; }
