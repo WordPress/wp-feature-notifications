@@ -109,43 +109,49 @@ class Notification_Controller extends WP_REST_Controller {
 			'title'      => 'notification',
 			'type'       => 'object',
 			'properties' => array(
-				'id'           => array(
+				'id'            => array(
 					'description' => __( 'Unique identifier for the notification.' ),
 					'type'        => 'integer',
 					'context'     => array( 'view', 'edit', 'embed' ),
 					'readonly'    => true,
 				),
-				'channel_id'   => array(
+				'channel_name'  => array(
 					'description' => __( 'Unique identifier for the notification channel.' ),
-					'type'        => 'integer',
+					'type'        => 'string',
 					'context'     => array( 'view', 'edit', 'embed' ),
 					'readonly'    => true,
 				),
-				'created_at'   => array(
+				'channel_title' => array(
+					'description' => __( 'The title of the notification channel.' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'embed' ),
+					'readonly'    => true,
+				),
+				'created_at'    => array(
 					'description' => __( "The datetime the notification was broadcast, in the site's timezone." ),
 					'type'        => 'string',
 					'format'      => 'date-time',
-					'context'     => array( 'view', 'edit', 'embed' ),
+					'context'     => array( 'view', 'embed' ),
 				),
-				'dismissed_at' => array(
+				'dismissed_at'  => array(
 					'description' => __( "The datetime the notification was dismissed, in the site's timezone." ),
 					'type'        => array( 'string', 'null' ),
 					'format'      => 'date-time',
-					'context'     => array( 'view', 'edit', 'embed' ),
+					'context'     => array( 'view', 'embed' ),
 				),
-				'displayed_at' => array(
+				'displayed_at'  => array(
 					'description' => __( "The datetime the notification was displayed, in the site's timezone." ),
 					'type'        => array( 'string', 'null' ),
 					'format'      => 'date-time',
-					'context'     => array( 'view', 'edit', 'embed' ),
+					'context'     => array( 'view', 'embed' ),
 				),
-				'expires_at'   => array(
+				'expires_at'    => array(
 					'description' => __( "The datetime the notification expires, in the site's timezone." ),
 					'type'        => 'string',
 					'format'      => 'date-time',
 					'context'     => array( 'view', 'edit', 'embed' ),
 				),
-				'context'      => array(
+				'context'       => array(
 					'description' => __( 'The view context the notification.' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit', 'embed' ),
@@ -156,7 +162,7 @@ class Notification_Controller extends WP_REST_Controller {
 						'hub',
 					),
 				),
-				'severity'     => array(
+				'severity'      => array(
 					'description' => __( 'The severity of the notification.' ),
 					'type'        => array( 'string', 'null' ),
 					'context'     => array( 'view', 'edit', 'embed' ),
@@ -167,7 +173,7 @@ class Notification_Controller extends WP_REST_Controller {
 						'success',
 					),
 				),
-				'status'       => array(
+				'status'        => array(
 					'description' => __( 'The status of the notification.' ),
 					'type'        => 'string',
 					'default'     => 'undisplayed',
@@ -175,29 +181,20 @@ class Notification_Controller extends WP_REST_Controller {
 						'undisplayed',
 						'displayed',
 						'dismissed',
+						'new',
 					),
 				),
-				'title'        => array(
+				'title'         => array(
 					'description' => __( 'The title of the notification.' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'embed' ),
 				),
-				'title_key'    => array(
-					'description' => __( 'The translation title key of the notification.' ),
-					'type'        => 'string',
-					'context'     => array( 'edit' ),
-				),
-				'message'      => array(
+				'message'       => array(
 					'description' => __( 'The message content of the notification.' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'embed' ),
 				),
-				'message_key'  => array(
-					'description' => __( 'The translation message key of the notification.' ),
-					'type'        => 'string',
-					'context'     => array( 'edit' ),
-				),
-				'meta'         => array(
+				'meta'          => array(
 					'description' => __( 'The metadata of the notification.' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit', 'embed' ),
@@ -264,6 +261,7 @@ class Notification_Controller extends WP_REST_Controller {
 				'undisplayed',
 				'displayed',
 				'dismissed',
+				'new',
 			),
 		);
 
