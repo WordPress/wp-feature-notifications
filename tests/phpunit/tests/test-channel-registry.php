@@ -7,10 +7,10 @@ use WP\Notifications;
 
 class Test_Channel_Registry extends WP_UnitTestCase {
 	/**
-	   * Fake channel registry.
-	   *
-	   * @var Channel_Registry
-	   */
+	 * Fake channel registry.
+	 *
+	 * @var Channel_Registry
+	 */
 	private $registry = null;
 
 	/**
@@ -32,20 +32,20 @@ class Test_Channel_Registry extends WP_UnitTestCase {
 	}
 
 	/**
-	   * Should reject channel without a namespace.
-	   *
-	   * @expectedIncorrectUsage WP\Notifications\Channel_Registry::register
-	   */
+	 * Should reject channel without a namespace.
+	 *
+	 * @expectedIncorrectUsage WP\Notifications\Channel_Registry::register
+	 */
 	public function test_invalid_names_without_namespace() {
 		$result = $this->registry->register( 'test', array() );
 		$this->assertFalse( $result );
 	}
 
 	/**
-	   * Should reject channels with invalid characters.
-	   *
-	   * @expectedIncorrectUsage WP\Notifications\Channel_Registry::register
-	   */
+	 * Should reject channels with invalid characters.
+	 *
+	 * @expectedIncorrectUsage WP\Notifications\Channel_Registry::register
+	 */
 	public function test_invalid_characters() {
 		$result = $this->registry->register( 'test/_doing_it_wrong', array() );
 		$this->assertFalse( $result );
@@ -72,7 +72,7 @@ class Test_Channel_Registry extends WP_UnitTestCase {
 
 		$channel = $this->registry->register( $name, $settings );
 		$this->assertSame( $name, $channel->name );
-		$this->assertSame( $settings['description'], $channel->description );
+		$this->assertSame( $settings['title'], $channel->title );
 		$this->assertSame( $channel, $this->registry->get_registered( $name ) );
 	}
 
@@ -125,7 +125,7 @@ class Test_Channel_Registry extends WP_UnitTestCase {
 		$this->registry->register( $name, $settings );
 		$channel = $this->registry->unregister( $name );
 		$this->assertSame( $name, $channel->name );
-		$this->assertSame( $settings['icon'], $channel->icon );
+		$this->assertSame( $settings['title'], $channel->title );
 		$this->assertFalse( $this->registry->is_registered( $name ) );
 	}
 
