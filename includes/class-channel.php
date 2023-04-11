@@ -52,15 +52,20 @@ class Channel implements JsonSerializable {
 	 * @see wp_feature_notifications_register_channel()
 	 *
 	 * @param string      $channel     Channel name including namespace.
-	 * @param string      $title       Human-readable channel label.
-	 * @param string|null $icon        Channel icon.
-	 * @param string|null $description A detailed channel description.
+	 * @param array|string $args       {
+	 *     Array or string of arguments for registering a channel. Supported arguments are
+	 *     described below.
+	 *
+	 *     @type string        $title                    Human-readable channel label.
+	 *     @type string|null   $icon      Channel icon.
+	 *     @type string|null   $description A detailed channel description.
+	 * }
 	 */
-	public function __construct( $channel, $title, $icon = null, $description = null ) {
+	public function __construct( $channel, $args ) {
 		$this->name        = $channel;
-		$this->title       = $title;
-		$this->icon        = $icon;
-		$this->description = $description;
+		$this->title       = $args['title'];
+		$this->icon        = $args['icon'];
+		$this->description = $args['description'];
 	}
 
 	/**
