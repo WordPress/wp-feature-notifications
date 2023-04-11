@@ -16,16 +16,12 @@
 		"@storybook/react": "^7.0.2",
 		"@storybook/react-webpack5": "^7.0.2",
 		"@storybook/theming": "^7.0.2",
-		"@wordpress/api-fetch": "^6.21.0",
-		"@wordpress/components": "^23.1.0",
-		"@wordpress/data": "^8.1.0",
-		"@wordpress/element": "^5.1.0",
-		"@wordpress/i18n": "^4.24.0",
-		"@wordpress/icons": "^9.15.0",
-		"@wordpress/scripts": "^26.1.0",
-		"classnames": "^2.3.2",
-		"moment": "^2.29.3",
+		"@wordpress/wp-feature-notifications": "../",
 		"storybook": "^7.0.2"
+	},
+	"peerDependencies": {
+		"@wordpress/components": "^23.1.0",
+		"@wordpress/element": "^5.1.0"
 	},
 	"eslintConfig": {
 		"overrides": [
