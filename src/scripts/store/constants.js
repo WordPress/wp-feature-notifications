@@ -6,7 +6,7 @@ export const NOTIFY_NAMESPACE = 'core/wp-notify';
 /**
  *  @member {string} API_PATH WP Notification Feature rest api path
  */
-export const API_PATH = '/wp/v2/notifications/';
+export const API_PATH = '/wp-notifications/v1/notifications';
 
 /**
  *  @member {string} defaultContext WP Notification Feature default context
