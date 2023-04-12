@@ -35,7 +35,7 @@ add_action( 'admin_bar_menu', '\WP\Notifications\admin_bar_item', 1 );
 /**
  * Adds WP Notify area at the top of the dashboard
  */
-function wp_notify_admin_notice() {
+function admin_notice() {
 	echo '<div id="wp-notification-dashboard" class="wrap"></div>';
 }
 add_action( 'admin_notices', '\WP\Notifications\admin_notice' );
@@ -49,8 +49,8 @@ function enqueue_admin_assets() {
 	wp_enqueue_style( 'wp_notifications' );
 
 	/* Load scripts */
-	$asset = include WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/build/wp-notify.asset.php';
-	wp_register_script( 'wp_notifications', WP_FEATURE_NOTIFICATION_PLUGIN_DIR_URL . '/build/wp-notificationss.js', $asset['dependencies'], WP_FEATURE_NOTIFICATION_PLUGIN_VERSION, true );
+	$asset = include WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/build/wp-notifications.asset.php';
+	wp_register_script( 'wp_notifications', WP_FEATURE_NOTIFICATION_PLUGIN_DIR_URL . '/build/wp-notifications.js', $asset['dependencies'], WP_FEATURE_NOTIFICATION_PLUGIN_VERSION, true );
 	wp_enqueue_script( 'wp_notifications' );
 
 	wp_localize_script(
