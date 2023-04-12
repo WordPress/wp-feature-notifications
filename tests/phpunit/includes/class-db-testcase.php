@@ -1,8 +1,10 @@
 <?php
 
+namespace WP\Notifications\Tests;
+
 use PHPUnit\Framework\TestCase;
 
-class WP_Notifications_DB_TestCase extends TestCase {
+class DB_TestCase extends TestCase {
 	protected function table_exists( string $table_name ): bool {
 		global $wpdb;
 		$expected = $wpdb->prefix . $table_name;

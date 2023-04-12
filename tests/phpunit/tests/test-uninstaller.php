@@ -1,15 +1,19 @@
 <?php
 
-use WP\Notifications\Activator;
-use WP\Notifications\Uninstaller;
+namespace WP\Notifications\Tests;
 
-class Test_WP_Notify_Uninstaller extends WP_Notifications_DB_TestCase {
+use WP\Notifications;
+
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/class-activator.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/class-uninstaller.php';
+
+class Test_Uninstaller extends DB_TestCase {
 
 	/**
 	 * Ensure tables are created before tests.
 	 */
 	public static function setUpBeforeClass(): void {
-		Activator::create_tables_v1();
+		Notifications\Activator::create_tables_v1();
 	}
 
 	// Sanity checks to ensure the database tables initially do exist.
@@ -34,7 +38,7 @@ class Test_WP_Notify_Uninstaller extends WP_Notifications_DB_TestCase {
 	 * Test to ensure the uninstall procedure drops the correct tables.
 	 */
 	public function test_it_should_drops_tables() {
-		Uninstaller::uninstall();
+		Notifications\Uninstaller::uninstall();
 
 		$this->assertFalse( $this->table_exists( 'notifications_messages' ) );
 		$this->assertFalse( $this->table_exists( 'notifications_channels' ) );
