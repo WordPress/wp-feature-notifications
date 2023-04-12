@@ -11,7 +11,7 @@ use WP_Admin_Bar;
 use WP_List_Table;
 
 /**
- * Adds WP Notify icon after the user avatar in the top admin bar in the "secondary" position
+ * Adds WP Notifications icon after the user avatar in the top admin bar in the "secondary" position
  *
  * @param WP_Admin_Bar $wp_admin_bar Toolbar instance.
  */
@@ -33,7 +33,7 @@ function admin_bar_item( WP_Admin_Bar $wp_admin_bar ) {
 add_action( 'admin_bar_menu', '\WP\Notifications\admin_bar_item', 1 );
 
 /**
- * Adds WP Notify area at the top of the dashboard
+ * Adds WP Notifications area at the top of the dashboard
  */
 function admin_notice() {
 	echo '<div id="wp-notification-dashboard" class="wrap"></div>';
@@ -41,7 +41,7 @@ function admin_notice() {
 add_action( 'admin_notices', '\WP\Notifications\admin_notice' );
 
 /**
- * Register and enqueue a wp notify scripts and stylesheet in WordPress admin.
+ * Register and enqueue a wp-notifications scripts and stylesheet in WordPress admin.
  */
 function enqueue_admin_assets() {
 	/* Load styles */
@@ -57,7 +57,7 @@ function enqueue_admin_assets() {
 		'wp_notifications',
 		'wp_notifications_data',
 		array(
-			'settingsPage' => esc_url( admin_url( 'options-general.php?page=wp-notify' ) ),
+			'settingsPage' => esc_url( admin_url( 'options-general.php?page=notifications' ) ),
 		)
 	);
 }
@@ -71,7 +71,7 @@ add_action( 'admin_enqueue_scripts', '\WP\Notifications\enqueue_admin_assets', 0
  * @return void
  */
 function add_admin_options_page() {
-	add_options_page( 'Notifications', 'Notifications', 'manage_options', 'wp-notify', '\WP\Notifications\render_admin_options_page' );
+	add_options_page( 'Notifications', 'Notifications', 'manage_options', 'notifications', '\WP\Notifications\render_admin_options_page' );
 }
 add_action( 'admin_menu', '\WP\Notifications\add_admin_options_page' );
 
@@ -223,7 +223,7 @@ function render_admin_options_page() {    ?>
  * Registers our dashboard widget.
  */
 function dashboard_widget() {
-	add_meta_box( 'wp_notify', __( 'WP Notify' ), '\WP\Notifications\render_dashboard_widget', 'dashboard', 'side', 'high' );
+	add_meta_box( 'wp_notifications', __( 'WP Notifications Feature' ), '\WP\Notifications\render_dashboard_widget', 'dashboard', 'side', 'high' );
 }
 add_action( 'wp_dashboard_setup', '\WP\Notifications\dashboard_widget' );
 
@@ -247,8 +247,8 @@ function render_dashboard_widget() {
 			</div>
 
 			<p class="submit">
-				<input type="submit" name="save" id="save-wp-notify" class="button button-primary" value="<?php esc_attr_e( 'Test Notification' ); ?>">
-				<input type="button" id="clear-all-wp-notify" class="button" value="<?php esc_attr_e( 'Clear All Notifications' ); ?>">
+				<input type="submit" name="save" id="save-wp-notifications" class="button button-primary" value="<?php esc_attr_e( 'Test Notification' ); ?>">
+				<input type="button" id="clear-all-wp-notifications" class="button" value="<?php esc_attr_e( 'Clear All Notifications' ); ?>">
 				<br class="clear">
 			</p>
 		</form>
