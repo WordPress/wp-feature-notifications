@@ -4,7 +4,6 @@ namespace WP\Notifications\Commands;
 
 use Exception;
 
-use WP_User_Query;
 use WP_CLI;
 use Faker;
 
@@ -18,11 +17,9 @@ use Faker;
 class Seed_Users {
 
 	/**
-	 * @param Channel_Factory    $channel_factory
-	 * @param Channel_Repository $channel_repository
+	 * TODO is a constructor necessary?
 	 */
-	public function __construct() {
-	}
+	public function __construct() {}
 
 	/**
 	 * Seed the WordPress database with test users.
@@ -39,7 +36,7 @@ class Seed_Users {
 	 *
 	 * ## EXAMPLES
 	 *
-	 *     wp notifications seed-users --count=10 --preview
+	 *     wp notifications seed-users --count=10 --preview=true
 	 *
 	 * @when after_wp_load
 	 */
@@ -76,7 +73,7 @@ class Seed_Users {
 			WP_CLI\Utils\format_items(
 				'table',
 				$users,
-				'login,email,password,first_name,last_name'
+				'user_login,user_email,user_pass,role'
 			);
 		} else {
 			$progress = WP_CLI\Utils\make_progress_bar( 'Generating ', $count );
@@ -102,14 +99,6 @@ class Seed_Users {
 
 					$progress->tick();
 				}
-
-				$query = new WP_User_Query(
-					array(
-						'include' => $user_ids,
-					)
-				);
-
-				$result = array();
 
 				$progress->finish();
 			} catch ( Exception $e ) {

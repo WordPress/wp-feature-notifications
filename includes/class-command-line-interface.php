@@ -28,6 +28,7 @@ class Command_Line_Interface {
 	 * Add CLI commands.
 	 */
 	static function add_commands() {
+		WP_CLI::add_command( 'notifications channel list', Commands\Channel_List::class );
 		WP_CLI::add_command( 'notifications seed-users', Commands\Seed_Users::class );
 	}
 }

@@ -74,6 +74,7 @@ require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/persistence/class-a
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/persistence/class-wpdb-notification-repository.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/demo.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/restapi/class-notification-controller.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/commands/class-channel-list.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/commands/class-seed-users.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/class-command-line-interface.php';
 
