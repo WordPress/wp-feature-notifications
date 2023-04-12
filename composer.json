@@ -9,6 +9,7 @@
 		"phpunit/phpunit": "^9.6",
 		"yoast/phpunit-polyfills": "1.0.5",
 		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+		"wp-cli/wp-cli-bundle": "^2.7",
 		"wp-coding-standards/wpcs": "^2.3",
 		"wp-phpunit/wp-phpunit": "^6.2",
 		"squizlabs/php_codesniffer": "^3.7",
