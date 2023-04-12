@@ -22,10 +22,6 @@ class Test_Activator extends DB_TestCase {
 		$this->assertFalse( $this->table_exists( 'notifications_messages' ) );
 	}
 
-	public function test_it_should_initially_not_have_channels_table() {
-		$this->assertFalse( $this->table_exists( 'notifications_channels' ) );
-	}
-
 	public function test_it_should_initially_not_have_subscriptions_table() {
 		$this->assertFalse( $this->table_exists( 'notifications_subscriptions' ) );
 	}
@@ -43,7 +39,6 @@ class Test_Activator extends DB_TestCase {
 		Notifications\Activator::create_tables_v1();
 
 		$this->assertTrue( $this->table_exists( 'notifications_messages' ) );
-		$this->assertTrue( $this->table_exists( 'notifications_channels' ) );
 		$this->assertTrue( $this->table_exists( 'notifications_subscriptions' ) );
 		$this->assertTrue( $this->table_exists( 'notifications_queue' ) );
 	}

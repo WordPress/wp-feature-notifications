@@ -26,7 +26,7 @@ class Activator {
 	public static function init_options() {
 
 		self::$default_options = array(
-			'version'           => WP_NOTIFICATION_CENTER_PLUGIN_VERSION,
+			'version'           => WP_FEATURE_NOTIFICATION_PLUGIN_VERSION,
 			'max_lifespan'      => 1000 * 60 * 60 * 24 * 31 * 6, // 6 months
 			'delete_on_dismiss' => false,
 		);
@@ -113,7 +113,7 @@ class Activator {
 
 		if ( ! $db_version ) {
 			self::create_tables_v1();
-			update_option( 'wp_notifications_db_version', WP_NOTIFICATION_CENTER_DB_VERSION );
+			update_option( 'wp_notifications_db_version', WP_FEATURE_NOTIFICATION_DB_VERSION );
 		}
 
 		// If the options do not exist then create them
@@ -138,44 +138,29 @@ class Activator {
 		if ( ! in_array( $wpdb->prefix . 'notifications_messages', $tables, true ) ) {
 			$messages_sql = 'CREATE TABLE `' . $wpdb->prefix . "notifications_messages` (
 				`id` BIGINT(20) NOT NULL,
-				`channel_id` BIGINT(20) NOT NULL,
+				`channel_name` VARCHAR(50) NOT NULL,
+				`channel_title` TINYTEXT NOT NULL,
 				`created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
 				`expires_at` DATETIME NULL,
 				`severity` VARCHAR(16) NULL,
-				`title_key` VARCHAR(127) NULL,
-				`message_key` VARCHAR(127) NULL,
+				`title` TINYTEXT NULL,
+				`message` TINYTEXT NULL,
 				`meta` TEXT NULL,
 				PRIMARY KEY  (`id`),
-				KEY `channel_id` (`channel_id` ASC)
+				KEY `channel_name` (`channel_name`)
 			) $charset_collate;\n";
 
 			dbDelta( $messages_sql );
-		}
-
-		// Create the channels table
-		if ( ! in_array( $wpdb->prefix . 'notifications_channels', $tables, true ) ) {
-			$channels_sql = 'CREATE TABLE `' . $wpdb->prefix . "notifications_channels` (
-				`id` BIGINT(20) NOT NULL,
-				`created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-				`source` VARCHAR(127) NULL,
-				`name_key` VARCHAR(127) NULL,
-				`description_key` VARCHAR(127) NULL,
-				`role` VARCHAR(127) NULL,
-				`meta` TEXT NULL,
-				PRIMARY KEY  (`id`)
-			) $charset_collate;\n";
-
-			dbDelta( $channels_sql );
 		}
 
 		// Create the subscriptions table
 		if ( ! in_array( $wpdb->prefix . 'notifications_subscriptions', $tables, true ) ) {
 			$subscriptions_sql = 'CREATE TABLE `' . $wpdb->prefix . "notifications_subscriptions` (
 				`user_id` BIGINT(20) NOT NULL,
-				`channel_id` BIGINT(20) NOT NULL,
+				`channel_name` VARCHAR(50) NOT NULL,
 				`snoozed_until` DATETIME NULL,
-				KEY `channel_id` (`channel_id` ASC),
-				KEY `user_id` (`user_id` ASC)
+				KEY `user_id` (`user_id`),
+				KEY `channel_name` (`channel_name`)
 			) $charset_collate;\n";
 
 			dbDelta( $subscriptions_sql );
@@ -188,8 +173,8 @@ class Activator {
 				`user_id` BIGINT(20) NOT NULL,
 				`dismissed_at` DATETIME NULL,
 				`displayed_at` DATETIME NULL,
-				KEY `message_id` (`message_id` ASC),
-				KEY `user_id` (`user_id` ASC)
+				KEY `message_id` (`message_id`),
+				KEY `user_id` (`user_id`)
 			) $charset_collate;\n";
 
 			dbDelta( $queue_sql );
