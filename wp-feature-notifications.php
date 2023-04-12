@@ -40,6 +40,9 @@ if ( ! defined( 'WP_FEATURE_NOTIFICATION_PLUGIN_DIR_URL' ) ) {
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/vendor/autoload.php';
 
 // Require interface/class declarations..
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/class-channel.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/class-channel-registry.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/channels.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/exceptions/interface-exception.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/exceptions/class-runtime-exception.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/exceptions/class-invalid-recipient.php';
