@@ -62,7 +62,7 @@ class WP_Test_REST_Notification_Controller extends WP_Test_REST_Controller_Testc
 		$response   = rest_get_server()->dispatch( $request );
 		$data       = $response->get_data();
 		$properties = $data['schema']['properties'];
-		$this->assertCount( 14, $properties );
+		$this->assertCount( 13, $properties );
 		$this->assertArrayHasKey( 'channel_name', $properties );
 		$this->assertArrayHasKey( 'channel_title', $properties );
 		$this->assertArrayHasKey( 'context', $properties );
