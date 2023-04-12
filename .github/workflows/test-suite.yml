@@ -3,6 +3,8 @@ name: Test Suite
 on:
     pull_request:
         branches: [develop, trunk]
+    push:
+        branches: [feature/mvp]
     workflow_dispatch:
 
 jobs:
