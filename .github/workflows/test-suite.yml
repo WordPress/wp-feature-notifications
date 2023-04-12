@@ -1,49 +1,51 @@
 name: Test Suite
 
 on:
-  pull_request:
-    branches: [develop, trunk]
-  workflow_dispatch:
+    pull_request:
+        branches: [develop, trunk]
+    push:
+        branches: [feature/mvp]
+    workflow_dispatch:
 
 jobs:
-  test:
-    name: PHP ${{ matrix.php }} WP ${{ matrix.wp }}
-    timeout-minutes: 15
-    runs-on: ubuntu-latest
-    env:
-      WP_TESTS_DIR: /tmp/wordpress-tests-lib
-    strategy:
-      fail-fast: false
-      matrix:
-        php: ['7.2', '7.4', '8.0']
-        wp: ['latest']
-    services:
-      database:
-        image: mysql:5.6
+    test:
+        name: PHP ${{ matrix.php }} WP ${{ matrix.wp }}
+        timeout-minutes: 15
+        runs-on: ubuntu-latest
         env:
-          MYSQL_ROOT_PASSWORD: wordpress
-        ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=5
+            WP_TESTS_DIR: /tmp/wordpress-tests-lib
+        strategy:
+            fail-fast: false
+            matrix:
+                php: ['7.4', '8.0', '8.1']
+                wp: ['latest']
+        services:
+            database:
+                image: mysql:5.6
+                env:
+                    MYSQL_ROOT_PASSWORD: wordpress
+                ports:
+                    - 3306:3306
+                options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=5
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: ./.github/actions/node
+            - name: Setup Node.js
+              uses: ./.github/actions/node
 
-      - name: Setup PHP
-        uses: ./.github/actions/php
+            - name: Setup PHP
+              uses: ./.github/actions/php
 
-      - name: Install WordPress and initialize database
-        run: ./tests/bin/install-wp-tests.sh wp_notify_tests root wordpress 127.0.0.1 latest
+            - name: Install WordPress and initialize database
+              run: ./tests/bin/install-wp-tests.sh wp_notify_tests root wordpress 127.0.0.1 latest
 
-      - name: Run PHP Unit tests
-        run: composer run test
+            - name: Run PHP Unit tests
+              run: composer run test
 
-      - name: Starting the WordPress Environment
-        run: npm run wp-env:start
+            - name: Starting the WordPress Environment
+              run: npm run wp-env:start
 
-      - name: Running the tests
-        run: npm run test
+            - name: Running the tests
+              run: npm run test
