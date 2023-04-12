@@ -36,5 +36,6 @@ require $tests_dir . '/includes/bootstrap.php';
 
 remove_filter( 'wp_die_handler', 'handle_wp_setup_failure' );
 
+require dirname( __FILE__ ) . '/class-db-testcase.php';
 require dirname( __FILE__ ) . '/class-dummy-message.php';
 require dirname( __FILE__ ) . '/class-test-case.php';
