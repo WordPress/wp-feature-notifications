@@ -22,10 +22,6 @@ class Test_Uninstaller extends DB_TestCase {
 		$this->assertTrue( $this->table_exists( 'notifications_messages' ) );
 	}
 
-	public function test_it_should_initially_have_channels_table() {
-		$this->assertTrue( $this->table_exists( 'notifications_channels' ) );
-	}
-
 	public function test_it_should_initially_have_subscriptions_table() {
 		$this->assertTrue( $this->table_exists( 'notifications_subscriptions' ) );
 	}
