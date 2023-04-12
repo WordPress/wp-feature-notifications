@@ -17,11 +17,6 @@ use Faker;
 class Seed_Users {
 
 	/**
-	 * TODO is a constructor necessary?
-	 */
-	public function __construct() {}
-
-	/**
 	 * Seed the WordPress database with test users.
 	 *
 	 * ## OPTIONS
