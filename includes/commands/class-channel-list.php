@@ -1,34 +1,55 @@
 <?php
-
-namespace WP\Notifications\Commands;
-
-use WP_CLI;
-use WP\Notifications;
-
 /**
- * Class Channel_List
- *
  * A WP-CLI command for inspecting notification channels.
  *
  * @package wordpress/wp-feature-notifications
  */
-class Channel_List {
+
+namespace WP\Notifications\Commands;
+
+use WP_CLI;
+use WP_CLI_Command;
+use WP\Notifications;
+
+/**
+ * Inspect the registered notification channels.
+ *
+ * @when after_wp_load
+ */
+class Channel_List extends WP_CLI_Command {
 
 	/**
-	 * List registered notification channels.
-	*
+	 * List all registered notification channels.
+	 *
+	 * ## OPTIONS
+	 *
+	 * [--format=<format>]
+	 * : Render output in a particular format.
+	 * ---
+	 * default: table
+	 * options:
+	 *   - table
+	 *   - csv
+	 *   - json
+	 *   - count
+	 *   - yaml
+	 * ---
+	 *
 	 * ## EXAMPLES
 	 *
-	 *     wp notifications channel list
+	 *     # List all registered channels.
+	 *     $ wp notifications channel list
 	 *
 	 * @when after_wp_load
 	 */
 	public function __invoke( $args, $assoc_args ) {
 		$channels = Notifications\Channel_Registry::get_instance()->get_all_registered();
-		WP_CLI\Utils\format_items(
-			'table',
-			$channels,
-			'name,title'
+
+		$formatter = new WP_CLI\Formatter(
+			$assoc_args,
+			'name,title,icon'
 		);
+
+		$formatter->display_items( $channels );
 	}
 }
