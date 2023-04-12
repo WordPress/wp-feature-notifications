@@ -12,7 +12,7 @@ use JsonSerializable;
 /**
  * Class representing a channel.
  *
- * @see register_channel()
+ * @see \WP\Notifications\register_channel()
  */
 class Channel implements JsonSerializable {
 	/**
@@ -49,7 +49,7 @@ class Channel implements JsonSerializable {
 	 *
 	 * Instantiates a Channel object.
 	 *
-	 * @see WP\Notifications\register_channel()
+	 * @see \WP\Notifications\register_channel()
 	 *
 	 * @param string       $channel Channel name including namespace.
 	 * @param array|string $args    {

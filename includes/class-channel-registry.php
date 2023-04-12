@@ -29,7 +29,7 @@ final class Channel_Registry {
 	/**
 	 * Registers a channel.
 	 *
-	 * @see Channel::__construct()
+	 * @see \WP\Notifications\Channel::__construct()
 	 *
 	 * @param string|Channel $name  Channel name including namespace, or alternatively a complete
 	 *                              Channel instance. In case a Channel is provided, the $args
