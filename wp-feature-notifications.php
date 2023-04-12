@@ -15,52 +15,53 @@
  * @package wp-feature-notifications
  */
 
+namespace WP\Notifications;
+
 use WP\Notifications\REST;
 
-if ( ! defined( 'WP_NOTIFICATION_CENTER_PLUGIN_VERSION' ) ) {
-	define( 'WP_NOTIFICATION_CENTER_PLUGIN_VERSION', '0.0.1' );
+if ( ! defined( 'WP_FEATURE_NOTIFICATION_PLUGIN_VERSION' ) ) {
+	define( 'WP_FEATURE_NOTIFICATION_PLUGIN_VERSION', '0.0.1' );
 }
 
-if ( ! defined( 'WP_NOTIFICATION_CENTER_PLUGIN_DIR' ) ) {
-	define( 'WP_NOTIFICATION_CENTER_PLUGIN_DIR', dirname( __FILE__ ) );
+if ( ! defined( 'WP_FEATURE_NOTIFICATION_PLUGIN_DIR' ) ) {
+	define( 'WP_FEATURE_NOTIFICATION_PLUGIN_DIR', dirname( __FILE__ ) );
 }
 
-if ( ! defined( 'WP_NOTIFICATION_CENTER_PLUGIN_DIR_URL' ) ) {
-	define( 'WP_NOTIFICATION_CENTER_PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) );
+if ( ! defined( 'WP_FEATURE_NOTIFICATION_PLUGIN_DIR_URL' ) ) {
+	define( 'WP_FEATURE_NOTIFICATION_PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) );
 }
 
 // Require interface/class declarations..
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/exceptions/interface-wp-notify-exception.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/exceptions/class-wp-notify-runtime-exception.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/exceptions/class-wp-notify-invalid-recipient.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/exceptions/class-wp-notify-failed-to-add-recipient.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/interface-wp-notify-json-unserializable.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/interface-wp-notify-status.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/interface-wp-notify-notification.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/class-wp-notify-factory.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/class-wp-notify-aggregate-factory.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/class-wp-notify-base-notification.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/image/interface-wp-notify-image.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/image/class-wp-notify-base-image.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/senders/interface-wp-notify-sender.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/senders/class-wp-notify-base-sender.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/recipients/interface-wp-notify-recipient.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/recipients/class-wp-notify-recipient-collection.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/recipients/class-wp-notify-user-recipient.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/recipients/class-wp-notify-role-recipient.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/recipients/interface-wp-notify-recipient-factory.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/recipients/class-wp-notify-base-recipient-factory.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/recipients/class-wp-notify-aggregate-recipient-factory.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/messages/interface-wp-notify-message.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/messages/class-wp-notify-base-message.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/messages/interface-wp-notify-message-factory.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/messages/class-wp-notify-base-message-factory.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/messages/class-wp-notify-aggregate-message-factory.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/persistence/interface-wp-notify-notification-repository.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/persistence/class-wp-notify-abstract-notification-repository.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/persistence/class-wp-notify-wpdb-notification-repository.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/demo.php';
-require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/restapi/class-notification-controller.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/exceptions/interface-exception.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/exceptions/class-runtime-exception.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/exceptions/class-invalid-recipient.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/exceptions/class-failed-to-add-recipient.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/interface-json-unserializable.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/interface-status.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/interface-notification.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/class-factory.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/class-aggregate-factory.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/class-base-notification.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/image/interface-image.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/image/class-base-image.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/senders/interface-sender.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/senders/class-base-sender.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/recipients/interface-recipient.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/recipients/class-collection.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/recipients/class-user.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/recipients/class-role.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/recipients/interface-factory.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/recipients/class-base-factory.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/recipients/class-aggregate-factory.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/messages/interface-message.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/messages/class-base-message.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/messages/interface-factory.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/messages/class-base-factory.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/messages/class-aggregate-factory.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/persistence/interface-notification-repository.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/persistence/class-abstract-notification-repository.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/persistence/class-wpdb-notification-repository.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/demo.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/restapi/class-notification-controller.php';
 
-// TODO: Standardise structure and/or autoloading.
 new REST\Notification_Controller();

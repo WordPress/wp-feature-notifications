@@ -5,12 +5,17 @@
  * Development demo files
  **/
 
+namespace WP\Notifications;
+
+use WP_Admin_Bar;
+use WP_List_Table;
+
 /**
  * Adds WP Notify icon after the user avatar in the top admin bar in the "secondary" position
  *
  * @param WP_Admin_Bar $wp_admin_bar Toolbar instance.
  */
-function wp_admin_bar_wp_notify_item( WP_Admin_Bar $wp_admin_bar ) {
+function admin_bar_item( WP_Admin_Bar $wp_admin_bar ) {
 	if ( ! is_admin() ) {
 		return;
 	}
@@ -25,7 +30,7 @@ function wp_admin_bar_wp_notify_item( WP_Admin_Bar $wp_admin_bar ) {
 	);
 	$wp_admin_bar->add_node( $args );
 }
-add_action( 'admin_bar_menu', 'wp_admin_bar_wp_notify_item', 1 );
+add_action( 'admin_bar_menu', '\WP\Notifications\admin_bar_item', 1 );
 
 /**
  * Adds WP Notify area at the top of the dashboard
@@ -33,22 +38,23 @@ add_action( 'admin_bar_menu', 'wp_admin_bar_wp_notify_item', 1 );
 function wp_notify_admin_notice() {
 	echo '<div id="wp-notification-dashboard" class="wrap"></div>';
 }
-add_action( 'admin_notices', 'wp_notify_admin_notice' );
+add_action( 'admin_notices', '\WP\Notifications\admin_notice' );
 
 /**
  * Register and enqueue a wp notify scripts and stylesheet in WordPress admin.
  */
-function wp_notify_enqueue_admin_assets() {
+function enqueue_admin_assets() {
 	/* Load styles */
-	wp_register_style( 'wp_notifications_css', WP_NOTIFICATION_CENTER_PLUGIN_DIR_URL . '/build/wp-notifications.css', array(), WP_NOTIFICATION_CENTER_PLUGIN_VERSION );
-	wp_enqueue_style( 'wp_notifications_css' );
+	wp_register_style( 'wp_notifications', WP_FEATURE_NOTIFICATION_PLUGIN_DIR_URL . '/build/wp-notifications.css', array(), WP_FEATURE_NOTIFICATION_PLUGIN_VERSION );
+	wp_enqueue_style( 'wp_notifications' );
 
 	/* Load scripts */
-	$asset = include WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/build/wp-notifications.asset.php';
-	wp_register_script( 'wp_notifications_js', WP_NOTIFICATION_CENTER_PLUGIN_DIR_URL . '/build/wp-notifications.js', $asset['dependencies'], WP_NOTIFICATION_CENTER_PLUGIN_VERSION, true );
-	wp_enqueue_script( 'wp_notifications_js' );
+	$asset = include WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/build/wp-notify.asset.php';
+	wp_register_script( 'wp_notifications', WP_FEATURE_NOTIFICATION_PLUGIN_DIR_URL . '/build/wp-notificationss.js', $asset['dependencies'], WP_FEATURE_NOTIFICATION_PLUGIN_VERSION, true );
+	wp_enqueue_script( 'wp_notifications' );
+
 	wp_localize_script(
-		'wp_notifications_js',
+		'wp_notifications',
 		'wp_notifications_data',
 		array(
 			'settingsPage' => esc_url( admin_url( 'options-general.php?page=wp-notify' ) ),
@@ -56,7 +62,7 @@ function wp_notify_enqueue_admin_assets() {
 	);
 }
 
-add_action( 'admin_enqueue_scripts', 'wp_notify_enqueue_admin_assets', 0 );
+add_action( 'admin_enqueue_scripts', '\WP\Notifications\enqueue_admin_assets', 0 );
 
 
 /**
@@ -64,17 +70,17 @@ add_action( 'admin_enqueue_scripts', 'wp_notify_enqueue_admin_assets', 0 );
  *
  * @return void
  */
-function wp_notify_add_admin_options_page() {
-	add_options_page( 'Notifications', 'Notifications', 'manage_options', 'wp-notify', 'wp_notify_render_admin_options_page' );
+function add_admin_options_page() {
+	add_options_page( 'Notifications', 'Notifications', 'manage_options', 'wp-notify', '\WP\Notifications\render_admin_options_page' );
 }
-add_action( 'admin_menu', 'wp_notify_add_admin_options_page' );
+add_action( 'admin_menu', '\WP\Notifications\add_admin_options_page' );
 
 
 
 /**
  * Renders the options page.
  */
-function wp_notify_render_admin_options_page() {    ?>
+function render_admin_options_page() {    ?>
 
 	<h1><?php _e( 'Notifications settings' ); ?></h1>
 
@@ -216,16 +222,16 @@ function wp_notify_render_admin_options_page() {    ?>
 /**
  * Registers our dashboard widget.
  */
-function wp_notify_dashboard_widget() {
-	add_meta_box( 'wp_notify', __( 'WP Notify' ), 'wp_notify_render_dashboard_widget', 'dashboard', 'side', 'high' );
+function dashboard_widget() {
+	add_meta_box( 'wp_notify', __( 'WP Notify' ), '\WP\Notifications\render_dashboard_widget', 'dashboard', 'side', 'high' );
 }
-add_action( 'wp_dashboard_setup', 'wp_notify_dashboard_widget' );
+add_action( 'wp_dashboard_setup', '\WP\Notifications\dashboard_widget' );
 
 
 /**
  * Renders our dashboard widget.
  */
-function wp_notify_render_dashboard_widget() {
+function render_dashboard_widget() {
 	?>
 	<div id="wp-notification-metabox">
 		<form id="wp-notification-metabox-form" class="initial-form hide-if-no-js">
