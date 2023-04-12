@@ -1,48 +1,72 @@
 /** the single notification component */
 
-import { Notice } from '../../src/scripts/components/Notice';
+import { NotificationHub } from '../../src/scripts/components/NotificationHub';
+import { dispatch, select } from '@wordpress/data';
+import { NOTIFY_NAMESPACE } from '../../src/scripts/store/constants';
+
+/**
+ * Loops into contexts and register the found locations into the store state
+ *
+ * @param {string} context
+ */
+select( NOTIFY_NAMESPACE ).registerContext( 'adminbar' );
+
+dispatch( NOTIFY_NAMESPACE ).clear();
+
+dispatch( NOTIFY_NAMESPACE ).addNotice( {
+	id: 1,
+	title: 'Notice Example',
+	context: 'adminbar',
+	message:
+		'Notice message. This is a simple example and will be shown in the admin bar.',
+} );
 
 export default {
 	title: 'wp-feature-notifications/Notification Hub/Single',
-	component: Notice,
+	component: NotificationHub,
 	parameters: {
 		backgrounds: {
 			default: 'WordPress',
 			values: [ { name: 'WordPress', value: '#f0f0f1' } ],
 		},
 	},
-	argTypes: {
-		date: {
-			control: {
-				type: 'date',
-			},
-		},
-	},
 };
 
 /**
  * Notification UI component
- *
- * @param {Object} args - the sidebar template arguments
  */
-const Template = ( args ) => {
+const Template = () => {
 	return (
-		<aside id={ 'wp-notification-hub' } style={ { opacity: 1, right: 0 } }>
-			<Notice { ...args } context={ 'adminbar' } />
-		</aside>
+		<div id="wpcontent">
+			<div id="wpadminbar" className="nojq">
+				<div
+					className="quicklinks"
+					id="wp-toolbar"
+					role="navigation"
+					aria-label="Toolbar"
+				>
+					<ul
+						id="wp-admin-bar-top-secondary"
+						className="ab-top-secondary ab-top-menu"
+					>
+						{ /* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */ }
+						<NotificationHub />
+					</ul>
+				</div>
+			</div>
+			<p
+				style={ {
+					fontSize: '4rem',
+					padding: '2rem',
+				} }
+			>
+				Click the bell ➡️
+			</p>
+		</div>
 	);
 };
 
 export const Single = Template.bind( {} );
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 
-Single.args = {
-	title: 'Notice Example',
-	message:
-		'Notice message. This is a simple example and will be shown in the admin bar.',
-	date: Math.abs( Date.now() * 0.001 ),
-	action: {
-		acceptMessage: 'Aknowledge',
-		acceptLink: '#',
-	},
-};
+Single.args = {};

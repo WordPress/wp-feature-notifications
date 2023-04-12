@@ -2,6 +2,7 @@
 import { NotificationHub } from '../../src/scripts/components/NotificationHub';
 import { dispatch, select } from '@wordpress/data';
 import { NOTIFY_NAMESPACE } from '../../src/scripts/store/constants';
+import * as noticeFakeStore from './assets/fake_api.json';
 
 /**
  * Loops into contexts and register the found locations into the store state
@@ -10,12 +11,13 @@ import { NOTIFY_NAMESPACE } from '../../src/scripts/store/constants';
  */
 select( NOTIFY_NAMESPACE ).registerContext( 'adminbar' );
 
-dispatch( NOTIFY_NAMESPACE ).addNotice( {
-	id: 1,
-	title: 'Notice Example',
-	context: 'adminbar',
-	message:
-		'Notice message. This is a simple example and will be shown in the admin bar.',
+dispatch( NOTIFY_NAMESPACE ).clear();
+
+noticeFakeStore.forEach( ( notice ) => {
+	dispatch( NOTIFY_NAMESPACE ).addNotice( {
+		...notice,
+		context: 'adminbar',
+	} );
 } );
 
 export default {

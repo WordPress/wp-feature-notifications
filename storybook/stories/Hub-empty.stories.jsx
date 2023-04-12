@@ -1,12 +1,17 @@
 /** the empty notification component */
 
-import { Notice } from '../../src/scripts/components/Notice';
-import { NoticeEmpty } from '../../src/scripts/components/NoticeEmpty';
 import { __ } from '@wordpress/i18n';
+import { NotificationHub } from '../../src/scripts/components/NotificationHub';
+import { dispatch, select } from '@wordpress/data';
+import { NOTIFY_NAMESPACE } from '../../src/scripts/store/constants';
+
+select( NOTIFY_NAMESPACE ).registerContext( 'adminbar' );
+
+dispatch( NOTIFY_NAMESPACE ).clear();
 
 export default {
 	title: 'wp-feature-notifications/Notification Hub/Empty',
-	component: Notice,
+	component: NotificationHub,
 	parameters: {
 		backgrounds: {
 			default: 'WordPress',
@@ -17,14 +22,35 @@ export default {
 
 /**
  * Notification UI component
- *
- * @param {Object} args - the sidebar template arguments
  */
-const Template = ( args ) => {
+const Template = () => {
 	return (
-		<aside id={ 'wp-notification-hub' } style={ { opacity: 1, right: 0 } }>
-			<NoticeEmpty { ...args } />
-		</aside>
+		<div id="wpcontent">
+			<div id="wpadminbar" className="nojq">
+				<div
+					className="quicklinks"
+					id="wp-toolbar"
+					role="navigation"
+					aria-label="Toolbar"
+				>
+					<ul
+						id="wp-admin-bar-top-secondary"
+						className="ab-top-secondary ab-top-menu"
+					>
+						{ /* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */ }
+						<NotificationHub />
+					</ul>
+				</div>
+			</div>
+			<p
+				style={ {
+					fontSize: '4rem',
+					padding: '2rem',
+				} }
+			>
+				Click the bell ➡️
+			</p>
+		</div>
 	);
 };
 
