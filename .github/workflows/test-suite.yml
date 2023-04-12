@@ -2,7 +2,7 @@ name: Test Suite
 
 on:
     pull_request:
-        branches: [develop, trunk]
+        branches: [develop, trunk, feature/mvp]
     push:
         branches: [feature/mvp]
     workflow_dispatch:
