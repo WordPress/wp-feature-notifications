@@ -11,7 +11,7 @@ use WP_Admin_Bar;
 use WP_List_Table;
 
 /**
- * Adds WP Notify icon after the user avatar in the top admin bar in the "secondary" position
+ * Adds WP Notifications icon after the user avatar in the top admin bar in the "secondary" position
  *
  * @param WP_Admin_Bar $wp_admin_bar Toolbar instance.
  */
@@ -20,22 +20,11 @@ function admin_bar_item( WP_Admin_Bar $wp_admin_bar ) {
 		return;
 	}
 
-	$aside = sprintf(
-		'<aside id="wp-notification-hub">
-		<div class="wp-notification-hub-wrapper">
-			<h2 class="screen-reader-text">%s</h2>
-			<div id="wp-notify-adminbar"></div>
-		</div>
-	</aside>',
-		__( 'Notifications' )
-	);
-
 	$args = array(
-		'id'     => 'wp-notify',
-		'title'  => sprintf( "<span class='ab-icon' aria-hidden='true'></span><span class='ab-label'>%s</span>", __( 'Notifications' ) ),
+		'id'     => 'wp-notification-hub',
+		'title'  => __( 'loading' ),
 		'parent' => 'top-secondary',
 		'meta'   => array(
-			'html'     => $aside,
 			'tabindex' => 0,
 		),
 	);
@@ -44,30 +33,31 @@ function admin_bar_item( WP_Admin_Bar $wp_admin_bar ) {
 add_action( 'admin_bar_menu', '\WP\Notifications\admin_bar_item', 1 );
 
 /**
- * Adds WP Notify area at the top of the dashboard
+ * Adds WP Notifications area at the top of the dashboard
  */
 function admin_notice() {
-	echo '<div id="wp-notify-dashboard" class="wrap"></div>';
+	echo '<div id="wp-notification-dashboard" class="wrap"></div>';
 }
 add_action( 'admin_notices', '\WP\Notifications\admin_notice' );
 
 /**
- * Register and enqueue a wp notify scripts and stylesheet in WordPress admin.
+ * Register and enqueue a wp-notifications scripts and stylesheet in WordPress admin.
  */
 function enqueue_admin_assets() {
 	/* Load styles */
-	wp_register_style( 'wp_notify_css', WP_FEATURE_NOTIFICATION_PLUGIN_DIR_URL . '/build/wp-notify.css', array(), WP_FEATURE_NOTIFICATION_PLUGIN_VERSION );
-	wp_enqueue_style( 'wp_notify_css' );
+	wp_register_style( 'wp_notifications', WP_FEATURE_NOTIFICATION_PLUGIN_DIR_URL . '/build/wp-notifications.css', array(), WP_FEATURE_NOTIFICATION_PLUGIN_VERSION );
+	wp_enqueue_style( 'wp_notifications' );
 
 	/* Load scripts */
-	$asset = include WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/build/wp-notify.asset.php';
-	wp_register_script( 'wp_notify_js', WP_FEATURE_NOTIFICATION_PLUGIN_DIR_URL . '/build/wp-notify.js', $asset['dependencies'], WP_FEATURE_NOTIFICATION_PLUGIN_VERSION, true );
-	wp_enqueue_script( 'wp_notify_js' );
+	$asset = include WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/build/wp-notifications.asset.php';
+	wp_register_script( 'wp_notifications', WP_FEATURE_NOTIFICATION_PLUGIN_DIR_URL . '/build/wp-notifications.js', $asset['dependencies'], WP_FEATURE_NOTIFICATION_PLUGIN_VERSION, true );
+	wp_enqueue_script( 'wp_notifications' );
+
 	wp_localize_script(
-		'wp_notify_js',
-		'wp_notify_data',
+		'wp_notifications',
+		'wp_notifications_data',
 		array(
-			'settingsPage' => esc_url( admin_url( 'options-general.php?page=wp-notify' ) ),
+			'settingsPage' => esc_url( admin_url( 'options-general.php?page=notifications' ) ),
 		)
 	);
 }
@@ -81,7 +71,7 @@ add_action( 'admin_enqueue_scripts', '\WP\Notifications\enqueue_admin_assets', 0
  * @return void
  */
 function add_admin_options_page() {
-	add_options_page( 'Notifications', 'Notifications', 'manage_options', 'wp-notify', '\WP\Notifications\render_admin_options_page' );
+	add_options_page( 'Notifications', 'Notifications', 'manage_options', 'notifications', '\WP\Notifications\render_admin_options_page' );
 }
 add_action( 'admin_menu', '\WP\Notifications\add_admin_options_page' );
 
@@ -233,7 +223,7 @@ function render_admin_options_page() {    ?>
  * Registers our dashboard widget.
  */
 function dashboard_widget() {
-	add_meta_box( 'wp_notify', __( 'WP Notify' ), '\WP\Notifications\render_dashboard_widget', 'dashboard', 'side', 'high' );
+	add_meta_box( 'wp_notifications', __( 'WP Notifications Feature' ), '\WP\Notifications\render_dashboard_widget', 'dashboard', 'side', 'high' );
 }
 add_action( 'wp_dashboard_setup', '\WP\Notifications\dashboard_widget' );
 
@@ -257,8 +247,8 @@ function render_dashboard_widget() {
 			</div>
 
 			<p class="submit">
-				<input type="submit" name="save" id="save-wp-notify" class="button button-primary" value="<?php esc_attr_e( 'Test Notification' ); ?>">
-				<input type="button" id="clear-all-wp-notify" class="button" value="<?php esc_attr_e( 'Clear All Notifications' ); ?>">
+				<input type="submit" name="save" id="save-wp-notifications" class="button button-primary" value="<?php esc_attr_e( 'Test Notification' ); ?>">
+				<input type="button" id="clear-all-wp-notifications" class="button" value="<?php esc_attr_e( 'Clear All Notifications' ); ?>">
 				<br class="clear">
 			</p>
 		</form>

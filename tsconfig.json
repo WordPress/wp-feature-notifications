@@ -1,0 +1,21 @@
+{
+	"compilerOptions": {
+		"lib": [ "DOM", "DOM.Iterable", "ES2019" ],
+		"target": "ES2017",
+		"module": "ES2015",
+		"moduleResolution": "node",
+
+		"allowJs": true,
+		"checkJs": true,
+
+		"jsx": "react-jsx",
+		"jsxImportSource": "react",
+
+		"types": [ "./types/global.d.ts", "jest" ],
+		"baseUrl": "./src",
+
+		"noEmit": true
+	},
+	"include": [ "./src/**/*.js", "./src/**/*.jsx" ],
+	"exclude": [ "./node_modules" ]
+}

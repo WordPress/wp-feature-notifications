@@ -1,43 +1,44 @@
 /*
  * Dashboard notifications
  */
-
 #wpbody {
 
-  #wp-notify-dashboard-notices,
-  #wp-notify-notice-demo {
-    clear: both;
-  }
+	#wp-notification-dashboard-notices {
+		clear: both;
+	}
 
-  .wp-notification {
-    --wp-notify_hub-spacing-top: clamp(2em, 3vh, 3em);
-    --wp-notify_hub-element-bottom: clamp(1.5em, 3vh, 3em);
-    --wp-notify_hub-spacing-gap: clamp(2.5em, 3vh, 4em);
+	.wp-notification {
+		--wp-notify--hub-spacing-top: clamp(1em, 3vh, 2em);
+		--wp-notify--hub-element-bottom: clamp(1em, 3vh, 2em);
+		--wp-notify--hub-spacing-gap: clamp(2em, 3vh, 3em);
 
 		width: 100%;
 		box-sizing: border-box;
 
-    display: grid;
-    grid-template-rows: auto;
-    grid-template-columns: auto 200px;
-    grid-auto-flow: row;
-    gap: 50px;
+		display: grid;
+		grid-template-rows: auto;
+		grid-template-columns: 1fr 200px;
+		grid-auto-flow: row;
+		gap: 50px;
 
-    justify-content: space-between;
+		justify-content: space-between;
 
-    padding: var(--wp-notify_hub-spacing-top) 20px var(--wp-notify_hub-spacing-gap) 36px;
-    margin: 10px 0 var(--wp-notify_hub-element-bottom);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+		padding: var(--wp-notify--hub-spacing-top) 20px var(--wp-notify--hub-spacing-gap) 36px;
+		margin: 10px 0 var(--wp-notify--hub-element-bottom);
+		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
 
-    border-left-width: 4px;
-    border-left-style: solid;
-    border-color: var(--wp-notify_color-light-gray);
+		border-left-width: 4px;
+		border-left-style: solid;
+		border-color: var(--wp-notify--color--default);
 
-		.dashicons {
-		}
-
-		// removes the top and the bottom margin from the first and the last notification of the dashboard
+		/**
+		 * will removes the top-margin from the first
+		 * and bottom-margin from the last dash notifications
+		 */
 		&-wrap {
+			display: flex;
+			flex-direction: column;
+
 			> :first-child {
 				margin-top: 0;
 			}
@@ -49,26 +50,29 @@
 
 		// join subsequent notifications
 		+ .wp-notification {
-			margin-top: calc(var(--wp-notify_hub-element-bottom) * -1);
+			margin-top: calc(var(--wp-notify--hub-element-bottom) * -1);
 			border-top: none;
 		}
 
 		// notification action buttons
 		&-actions {
 			display: flex;
+			margin-top: auto;
 
 			.wp-notification-action {
 				padding: 6px 32px;
 				text-decoration: none;
 			}
 
-		  .button-tertiary {
+			.button-tertiary {
 				padding-left: 16px;
 				padding-right: 16px;
 				background-color: transparent;
 				border: none;
-				&:hover, &:focus {
-					background-color: var(--wp-notify_color-light-gray-400);
+
+				&:hover,
+				&:focus {
+					background-color: var(--wp-notify--color--black-300);
 				}
 			}
 		}
@@ -77,6 +81,7 @@
 			max-width: 200px;
 			max-height: 200px;
 			margin: 0;
+
 			img {
 				width: 100%;
 				object-position: center;
@@ -84,11 +89,12 @@
 			}
 		}
 
-    @media #{$breakpoint} {
-      grid-template-columns: auto;
-      .wp-notification-wrap {
-        order: 2
-      }
-    }
-  }
+		@media #{$breakpoint} {
+			grid-template-columns: auto;
+
+			.wp-notification-wrap {
+				order: 2;
+			}
+		}
+	}
 }

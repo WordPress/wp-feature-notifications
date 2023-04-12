@@ -3,5 +3,10 @@ const path = require( 'path' );
 
 module.exports = {
 	...defaultConfig,
-	entry: { 'wp-notify': path.resolve( process.cwd(), `src/wp-notify.js` ) },
+	entry: {
+		'wp-notifications': path.resolve(
+			process.cwd(),
+			`src/wp-notifications`
+		),
+	},
 };

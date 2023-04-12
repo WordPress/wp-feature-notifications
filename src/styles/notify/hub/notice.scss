@@ -1,28 +1,28 @@
 /*
  * The single notification
  */
-#wp-notification-hub {
-  .wp-notification {
+#notification-hub {
 
-    max-width: calc(var(--wp-notify_hub-width) - var(--wp-notify_hub-spacing-gap) * 2);
-		margin-left: var(--wp-notify_hub-spacing-gap);
-		margin-right: var(--wp-notify_hub-spacing-gap);
-    user-select: none;
-    -webkit-user-drag: none;
+	.wp-notification {
+		max-width: 100%;
+		margin-left: var(--wp-notify--hub-spacing-gap);
+		margin-right: var(--wp-notify--hub-spacing-gap);
+		user-select: none;
+		-webkit-user-drag: none;
 
-    padding: var(--wp-notify_hub-spacing-top) var(--wp-notify_hub-spacing-horizontal) var(--wp-notify_hub-spacing-gap);
+		padding: var(--wp-notify--hub-spacing-top) var(--wp-notify--hub-spacing-horizontal) var(--wp-notify--hub-spacing-gap);
 
-    gap: 12px;
-    display: grid;
-    grid-template-rows: auto;
-    grid-template-columns: var(--wp-notify_hub-image-size) auto;
-    grid-auto-flow: row;
+		gap: 12px;
+		display: grid;
+		grid-template-rows: auto;
+		grid-template-columns: var(--wp-notify--hub-image-size) auto;
+		grid-auto-flow: row;
 
 		// shows the selected item using the webkit default styling
-    &:focus-visible {
+		&:focus-visible {
 			border-radius: 2px;
-			outline: 2px solid black;
-    }
+			outline: 2px solid var(--wp-notify--color--black);
+		}
 
 		&-wrap {
 			margin-top: -4px;
@@ -43,10 +43,15 @@
 			background: transparent;
 		}
 
+		&-actions {
+			display: flex;
+			gap: 0.5rem;
+		}
+
 		&-image {
-			min-width: var(--wp-notify_hub-image-size);
-			width: var(--wp-notify_hub-image-size);
-			height: var(--wp-notify_hub-image-size);
+			min-width: var(--wp-notify--hub-image-size);
+			width: var(--wp-notify--hub-image-size);
+			height: var(--wp-notify--hub-image-size);
 			position: relative;
 			grid-row: 1;
 
@@ -59,7 +64,7 @@
 
 		&-icon {
 
-			background: var(--wp-notify_color-light-gray-500);
+			background: var(--wp-notify--color--black-200);
 			border-radius: 8px;
 
 			.ab-icon {
@@ -67,9 +72,9 @@
 				padding: 4px;
 				line-height: 1;
 
-				&:before {
-					color: var(--wp-notify_color-white);
-					opacity: .9;
+				&::before {
+					color: var(--wp-notify--color--white);
+					opacity: 0.9;
 				}
 			}
 		}
@@ -77,29 +82,28 @@
 		/*
 		* Notice type
 		*/
-    &.user {
-      .wp-notification-image img {
-        border-radius: 8px;
-      }
-    }
+		&.user {
 
-    &.plugin {}
-  }
+			.wp-notification-image img {
+				border-radius: 8px;
+			}
+		}
+	}
 
 
 	/*
 	* Notice Severity
 	*/
 	$alertSeverity: (
-			"alert": var(--wp-notify_color-error),
-			"warning": var(--wp-notify_color-warning),
-			"success": var(--wp-notify_color-success),
-			"info": var(--wp-notify_color-blue)
+		"alert": var(--wp-notify--color--error),
+		"warning": var(--wp-notify--color--warning),
+		"success": var(--wp-notify--color--success),
+		"info": var(--wp-notify--color--blue)
 	);
 
 	@each $key, $value in $alertSeverity {
 		.wp-notification .severity-#{$key} {
-				background-color: #{$value};
+			background-color: #{$value};
 		}
 	}
 }

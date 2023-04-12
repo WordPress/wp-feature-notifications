@@ -5,6 +5,7 @@ import { settingsPageUrl } from '../store/constants';
 
 /**
  * The footer for the notices section drawer.
+ * Has a button that links to the settings page.
  *
  * @return {JSX.Element} NoticeHubFooter
  * @function Object() { [native code] }
@@ -12,8 +13,10 @@ import { settingsPageUrl } from '../store/constants';
 export const NoticeHubFooter = () => (
 	<footer>
 		<Button
-			href={ settingsPageUrl }
-			className="wp-notification-action wp-notification-action-markread button-link"
+			onClick={ () => ( location.href = settingsPageUrl ) }
+			className={
+				'wp-notification-action wp-notification-action-markread button-link'
+			}
 			icon={ cog }
 			text={ __( 'Configure notification settings' ) }
 		/>

@@ -1,34 +1,45 @@
+// Mobile breakpoint used in wp-admin.
+$breakpoint: "screen and (max-width: 782px)";
+
 // https://make.wordpress.org/design/handbook/design-guide/foundations/colors/
 :root {
-  // WP-Notify base colors
-  --wp-notify_color-default: #404040;
-  --wp-notify_color-white: #fff; // Dark Gray 300
-	--wp-notify_color-light-gray-400: #E8EAEB; // Light Gray 400
-	--wp-notify_color-light-gray-500: #E2E4E7; // Light Gray 500
-  --wp-notify_color-light-gray: #c3c4c7;
-  --wp-notify_color-secondary: #6C7781; // Dark Gray 300
-  --wp-notify_color-light-gray-800: #23282D; // Light Gray 800
-  --wp-notify_color-red: #D94F4F; // Alert Red
-  --wp-notify_color-blue: #0071A1; // Blue Dark 900
-  --wp-notify_color-blue-light: #72aee6; // Blue 20
+	// WP Notification Feature base colors
+	--wp-notify--color--white: #fff;         // White
+	--wp-notify--color--black-200: #e2e4e7; // Gray 200
+	--wp-notify--color--black-300: #e8eaeb; // Gray 300
+	--wp-notify--color--black-400: #c3c4c7; // Gray 400
+	--wp-notify--color--black-500: #6c7781; // Gray 500
+	--wp-notify--color--black-700: #444;    // Gray 700
+	--wp-notify--color--black-800: #23282d; // Gray 800
+	--wp-notify--color--black: #000;        // Black
 
-  --wp-notify_color-link: var(--wp-notify_color-blue);
-  --wp-notify_color-link-active: var(--wp-notify_color-blue-light);
-  --wp-notify_color-scrollbar: var(--wp-notify_color-light-gray-400);
-  --wp-notify_color-error: var(--wp-notify_color-red);
-  --wp-notify_color-info: var(--wp-notify_color-blue);
-  --wp-notify_color-warning: #FFB900;
-  --wp-notify_color-success: #46B450;
+	--wp-notify--color--yellow: #ffb900;     // Yellow
+	--wp-notify--color--green: #46b450;      // Green
+	--wp-notify--color--red: #d94f4f;        // Alert Red
+	--wp-notify--color--blue: #0071a1;       // Blue Dark 900
+	--wp-notify--color--blue-light: #72aee6; // Blue 20
 
-  // WP-Notify hub (admin top bar)
-  --wp-notify_hub-width: 320px;
-  --wp-notify_hub-image-size: 32px;
+	--wp-notify--color--default: var(--wp-notify--color--black-700);
+	--wp-notify--color--secondary: var(--wp-notify--color--black-500);
 
-  --wp-notify_hub-spacing-top: 15px;
-  --wp-notify_hub-spacing-bottom: 17px;
-  --wp-notify_hub-spacing-horizontal: 16px;
-  --wp-notify_hub-spacing-gap: 8px;
+	--wp-notify--color--scrollbar: var(--wp-notify--color--black-300);
+	--wp-notify--color--link: var(--wp-notify--color--blue);
+	--wp-notify--color--link-active: var(--wp-notify--color--blue-light);
+	--wp-notify--color--error: var(--wp-notify--color--red);
+	--wp-notify--color--info: var(--wp-notify--color--blue);
+	--wp-notify--color--warning: var(--wp-notify--color--yellow);
+	--wp-notify--color--success: var(--wp-notify--color--green);
+
+	// WP Notification Feature hub (admin top bar)
+	--wp-notify--hub-width: 320px;
+
+	@media #{$breakpoint} {
+		--wp-notify--hub-width: 100%;
+	}
+	--wp-notify--hub-image-size: 32px;
+
+	--wp-notify--hub-spacing-top: 15px;
+	--wp-notify--hub-spacing-bottom: 17px;
+	--wp-notify--hub-spacing-horizontal: 16px;
+	--wp-notify--hub-spacing-gap: 8px;
 }
-
-// Mobile breakpoint used in wp-admin.
-$breakpoint: 'screen and (max-width: 782px)';

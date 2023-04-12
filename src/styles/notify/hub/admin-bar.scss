@@ -1,44 +1,68 @@
 /*
  * WP admin bar
  */
-#wpadminbar #wp-admin-bar-wp-notify {
-  padding-right: 8px;
-  position: relative;
-  z-index: 100002;
+#wpadminbar #wp-admin-bar-wp-notification-hub {
+	padding-right: 8px;
+	position: relative;
+	z-index: 100002;
+	display: block; // avoids to hide the bell icon (and the drawer) on mobile
 
-	/* this below is the bell located in the adminbar */
-  > .ab-item .ab-icon:before {
-    content: "\f16d";
-    top: 3px;
-  }
+	/**
+   * drawer icons color needs to be reset to prevent adminbar default icon color
+   */
+	&:hover #notification-hub {
 
-	/* the label is the red dot over the bell */
-  .ab-label {
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    top: 12px;
-    left: 20px;
-    border-radius: 50%;
-    font-size: 0;
+		.ab-icon::before {
+			color: var(--wp-notify--color--white);
+		}
+	}
 
-    /* WP Editor / Alert Red */
-    background: var(--wp-notify_color-red);
+	/* the bell icon */
+	.ab-item {
+		appearance: none;
+		height: 32px;
+		display: block;
+		padding: 0 10px;
+		border: 0;
+		margin: 0;
+		background: none;
+	}
 
-    /* Classic / Dark Gray 800 */
-    border: 1px solid var(--wp-notify_color-light-gray-800);
-  }
+	/* if the drawer is enabled transforms the bell icon to overlay the drawer */
+	.notifications.active > .ab-item .ab-icon {
+		filter: invert(1) hue-rotate(180deg);
+		position: relative;
+		z-index: 100002;
+	}
 
-  /* Mobile */
-  @media #{$breakpoint} {
-    display: block;
-    .ab-label {
-      clip: unset;
-      clip-path: unset;
-      width: 11px;
-      height: 11px;
-      top: 16px;
-      left: 28px;
-    }
-  }
+	/* The label is the red dot over the bell */
+	.ab-label {
+		position: absolute;
+		width: 6px;
+		height: 6px;
+		top: 12px;
+		left: 20px;
+		border-radius: 50%;
+		font-size: 0;
+
+		/* WP Editor / Alert Red */
+		background: var(--wp-notify--color--red);
+
+		/* Classic / Dark Gray 800 */
+		border: 1px solid var(--wp-notify--color--black-800);
+	}
+
+	/* Mobile */
+	@media #{$breakpoint} {
+		display: block;
+
+		.ab-label {
+			clip: unset;
+			clip-path: unset;
+			width: 11px;
+			height: 11px;
+			top: 16px;
+			left: 28px;
+		}
+	}
 }

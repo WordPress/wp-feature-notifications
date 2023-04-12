@@ -1,13 +1,13 @@
 /** WordPress Dependencies */
-import { createRoot } from '@wordpress/element';
 import { dispatch, select } from '@wordpress/data';
 
-/** WP Notify - Components */
-import { NoticesArea } from './components/NoticesArea';
-
 /** The store default data */
-import { NOTIFY_NAMESPACE, contexts } from './store/constants';
+import { contexts, NOTIFY_NAMESPACE } from './store/constants';
+import { addContext, addHub } from './utils/init';
 
+/**
+ * @typedef {import('./store').Notice} Notice
+ */
 /**
  * The redux store
  */
@@ -27,7 +27,7 @@ const notify = {
 	/**
 	 * List all notifications or those of a particular context
 	 *
-	 * @param {string|false} context
+	 * @param {string} context
 	 */
 	get: ( context = '' ) => select( NOTIFY_NAMESPACE ).getNotices( context ),
 
@@ -48,7 +48,7 @@ const notify = {
 	/**
 	 * Add a new notification
 	 *
-	 * @param {Object} payload
+	 * @param {Notice} payload
 	 */
 	add: ( payload ) => dispatch( NOTIFY_NAMESPACE ).addNotice( payload ),
 
@@ -62,7 +62,7 @@ const notify = {
 	/**
 	 * Clear all notifications
 	 *
-	 * @param {string|false} context
+	 * @param {string} context
 	 */
 	clear: ( context = 'adminbar' ) =>
 		dispatch( NOTIFY_NAMESPACE ).clear( context ),
@@ -86,25 +86,9 @@ select( NOTIFY_NAMESPACE ).fetchUpdates();
 /**
  * Loops into contexts and adds a NoticesArea component for each one
  */
-contexts.forEach( ( context ) => {
-	/** Get the component container */
-	const container = document.getElementById( `wp-notify-${ context }` );
-
-	/** Creates a root for NoticesArea component. */
-	const root = createRoot( container );
-
-	/**
-	 * Renders the component into the specified context
-	 *
-	 * @member {HTMLElement} notifyDash - the area that will host the notifications
-	 */
-	root.render(
-		<NoticesArea
-			context={ context }
-			splitBy={ context === 'adminbar' ? 'date' : undefined }
-		/>
-	);
-} );
+contexts.forEach( ( context ) =>
+	context === 'adminbar' ? addHub() : addContext( context )
+);
 
 /**
  *  exports notify store functions for further uses

@@ -1,7 +1,8 @@
 /*
  * Hub Elements style (header, footer etc)
  */
-#wp-notification-hub {
+#notification-hub {
+
 	* {
 		margin: 0;
 		padding: 0;
@@ -10,7 +11,7 @@
 	}
 
 	h2 {
-		font-weight: bold;
+		font-weight: 700;
 		font-size: 1.2rem;
 		margin: 0;
 	}
@@ -18,72 +19,63 @@
 	/*
 	 * Hub HEADER
 	 */
-  header {
-    position: sticky;
-    z-index: 2;
-    min-height: 50px;
-    top: 0;
-    background: var(--wp-notify_color-white);
-    box-shadow: 0 0 0 1px var(--wp-notify_color-white);
-    padding: 0 var(--wp-notify_hub-spacing-horizontal) 10px;
+	header {
+		position: sticky;
+		z-index: 2;
+		min-height: 50px;
+		top: 0;
+		background: var(--wp-notify--color--white);
+		box-shadow: 0 0 0 1px var(--wp-notify--color--white);
+		padding: 0 var(--wp-notify--hub-spacing-horizontal) 10px;
 
 		#clear-all-wp-notify-adminbar {
+
 			svg {
 				vertical-align: middle;
 			}
 		}
-  }
-
-  /* Reset icon color since by default the icon is lightened when the mouse is in hover state */
-  #wpadminbar &:hover footer  {
-		&,
-		a .ab-icon:before {
-      color: var(--wp-notify_color-link);
-    }
-
-		&:hover,
-    &:hover a .ab-icon:before {
-      color: var(--wp-notify_color-link-active);
-    }
-  }
+	}
 
 	/*
 	 * Hub FOOTER
 	 */
 	#wpadminbar & footer {
-    position: fixed;
-		text-align: center;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
 		display: flex;
 		justify-content: center;
-    align-items: center;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: var(--wp-notify_color-white);
-    padding: 15px var(--wp-notify_hub-spacing-horizontal);
-    border-top: 1px solid var(--wp-notify_color-light-gray);
+		width: 100%;
+		align-items: center;
 
-		a.components-button {
-			height: inherit;
+		.components-button {
 			line-height: 1;
+			height: 56px;
+			width: 100%;
+			text-align: center;
+			background: var(--wp-notify--color--white);
+			padding: 15px var(--wp-notify--hub-spacing-horizontal);
+			border-top: 1px solid var(--wp-notify--color--black-400);
+
+			svg {
+				fill: var(--wp-notify--color--link);
+				vertical-align: middle;
+			}
 
 			&:hover,
 			&:focus {
-				color: var(--wp-notify_color-link-active);
+				color: var(--wp-notify--color--link-active);
+
 				svg {
-					color: var(--wp-notify_color-link-active);
+					fill: var(--wp-notify--color--link-active);
 				}
 			}
 
 			// Outline the footer element if it is selected with tab
 			&:focus {
 				border-radius: 2px;
-				outline: 2px solid black;
-			}
-
-			svg {
-				fill: var(--wp-notify_color-link);
-				vertical-align: middle;
+				outline: 2px solid var(--wp-notify--color--black);
 			}
 		}
 	}

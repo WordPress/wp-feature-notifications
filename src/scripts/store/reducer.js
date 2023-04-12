@@ -1,17 +1,20 @@
 import { findContext } from './utils';
 
 /**
+ * @typedef {import('redux').Reducer<State, Action>} NoticeReducer
+ * @typedef {import('./index').State} State
+ * @typedef {import('./index').Action} Action
+ */
+
+/**
  * Reducer returning the next notices state. The notices state is an object
  * where each key is a context, its value an array of notice objects.
  *
- * @param {Object} state  Current state.
- * @param {Object} action Dispatched action.
- *
- * @return {Object} Updated state.
+ * @type {NoticeReducer}
  */
 const reducer = ( state = {}, action ) => {
 	switch ( action.type ) {
-		case 'HYDRATE':
+		case 'HYDRATE': {
 			let updated = { ...state };
 			action.payload.forEach( ( notification ) => {
 				const context = notification.context || 'adminbar';
@@ -21,8 +24,8 @@ const reducer = ( state = {}, action ) => {
 				};
 			} );
 			return updated;
-
-		case 'ADD':
+		}
+		case 'ADD': {
 			return {
 				...state,
 				[ action.payload.context ]: [
@@ -30,8 +33,8 @@ const reducer = ( state = {}, action ) => {
 					action.payload,
 				],
 			};
-
-		case 'DELETE':
+		}
+		case 'DELETE': {
 			const context = findContext( state, action.id );
 			return {
 				...state,
@@ -39,18 +42,22 @@ const reducer = ( state = {}, action ) => {
 					( notice ) => notice.id !== action.id
 				),
 			};
-
-		case 'CLEAR':
+		}
+		case 'CLEAR': {
 			state[ action.context ] = [];
 			return { ...state };
-
-		case 'UPDATE':
-			const location = findContext( state, action.payload.id );
-			state[ location ].map( ( notice ) =>
-				notice.id === action.payload.id
-					? { ...notice, ...action.payload } // merge the new object with the old object
-					: notice
-			);
+		}
+		case 'UPDATE': {
+			const context = findContext( state, action.payload.id );
+			return {
+				...state,
+				[ context ]: state[ context ].map( ( notice ) =>
+					notice.id === action.payload.id
+						? { ...notice, ...action.payload } // merge the new object with the old object
+						: notice
+				),
+			};
+		}
 	}
 
 	return state;

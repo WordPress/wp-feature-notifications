@@ -4,29 +4,29 @@
 
 $bullet-width: 6px;
 
-#wpadminbar .wp-notification.unread > :first-child,
-#wpbody .wp-notification-wrap > :first-child {
-  position: relative;
 
-  &:before {
-    content: '';
-    display: block;
-    position: absolute;
-    width: $bullet-width;
-    height: $bullet-width;
-    top: calc(50% - #{$bullet-width * .5 });
+#wpbody .wp-notification-wrap,
+// TODO replace undisplayed with "new" 👇
+#wpadminbar .wp-notification.undisplayed {
+	position: relative;
 
-    border-radius: 50%;
-    background: var(--wp-notify_color-error);
-  }
+	> :first-child::before {
+		content: "";
+		display: block;
+		position: absolute;
+		width: $bullet-width;
+		height: $bullet-width;
+
+		top: calc(10px - #{$bullet-width * 0.5 });
+		left: #{ (-36px - $bullet-width) * 0.5 }; // 9 - left padding - border /2  + bullet/2
+
+		border-radius: 50%;
+		background: var(--wp-notify--color--link);
+	}
 }
 
-#wpadminbar .wp-notification.unread > :first-child:before {
-  top: calc(var(--wp-notify_hub-image-size) / 2);
-  left: calc(var(--wp-notify_hub-image-size) * -1.6 - #{$bullet-width * .5 });
-}
-
-#wpbody .wp-notification-wrap > :first-child:before {
-  top: calc(10px - #{$bullet-width * .5 });
-  left: #{ (-36px - $bullet-width) * .5 }; // 9 - left padding - border /2  + bullet/2
+// TODO replace undisplayed with "new" 👇
+#wpadminbar .wp-notification.undisplayed > :first-child::before {
+	top: calc(var(--wp-notify--hub-image-size) * 0.5 + var(--wp-notify--hub-spacing-top));
+	left: 2px;
 }
