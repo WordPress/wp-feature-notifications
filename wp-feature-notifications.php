@@ -31,7 +31,7 @@ if ( ! defined( 'WP_FEATURE_NOTIFICATION_PLUGIN_DIR_URL' ) ) {
 	define( 'WP_FEATURE_NOTIFICATION_PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) );
 }
 
-require WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/vendor/autoload.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/vendor/autoload.php';
 
 // Require interface/class declarations..
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/exceptions/interface-exception.php';
