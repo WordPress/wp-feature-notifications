@@ -7,8 +7,12 @@ import { NoticesLoop } from '../../src/scripts/components/NoticesLoop';
 import { splitByDate } from '../../src/scripts/utils/';
 
 // filter out non dashboard notices
-const adminBarNotices = jsonData.filter(
-	( term ) => term.hasOwnProperty( 'context' ) && term.context === 'dashboard'
+const adminBarNotices = jsonData.map(
+	( notice ) =>
+		( notice = {
+			...notice,
+			context: 'dashboard',
+		} )
 );
 
 export default {
