@@ -79,12 +79,12 @@ new REST\Notification_Controller();
  *
  * @package wp-feature-notifications
  */
-function wp_notifications_activation_hook() {
+function activation_hook() {
 	require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/class-activator.php';
 	Activator::activate();
 }
 
-register_activation_hook( __FILE__, 'wp_notifications_activation_hook' );
+register_activation_hook( __FILE__, '\WP\Notifications\activation_hook' );
 
 /**
  * Uninstall hook function of the WP Notification plugin.
@@ -93,11 +93,11 @@ register_activation_hook( __FILE__, 'wp_notifications_activation_hook' );
  *
  * @package wp-feature-notifications
  */
-function wp_notifications_uninstall_hook() {
+function uninstall_hook() {
 	require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/class-uninstaller.php';
 	Uninstaller::uninstall();
 }
 
-register_uninstall_hook( __FILE__, 'wp_notifications_uninstall_hook' );
+register_uninstall_hook( __FILE__, '\WP\Notifications\uninstall_hook' );
 
 new REST\Notification_Controller();
