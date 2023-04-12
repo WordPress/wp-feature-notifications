@@ -31,6 +31,8 @@ if ( ! defined( 'WP_FEATURE_NOTIFICATION_PLUGIN_DIR_URL' ) ) {
 	define( 'WP_FEATURE_NOTIFICATION_PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) );
 }
 
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/vendor/autoload.php';
+
 // Require interface/class declarations..
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/exceptions/interface-exception.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/exceptions/class-runtime-exception.php';
@@ -63,5 +65,9 @@ require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/persistence/class-a
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/persistence/class-wpdb-notification-repository.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/demo.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/restapi/class-notification-controller.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/commands/class-seed-users.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/class-command-line-interface.php';
 
 new REST\Notification_Controller();
+
+Command_Line_Interface::boot();

@@ -1,7 +1,5 @@
 <?php
 
-require __DIR__ . '/../../../vendor/autoload.php';
-
 $tests_dir = getenv( 'WP_TESTS_DIR' );
 
 if ( ! $tests_dir ) {
