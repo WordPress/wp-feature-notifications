@@ -13,17 +13,17 @@
 		"@storybook/addon-links": "^7.0.2",
 		"@storybook/addon-essentials": "^7.0.2",
 		"@storybook/addon-interactions": "^7.0.2",
+		"@storybook/blocks": "^7.0.2",
 		"@storybook/react": "^7.0.2",
 		"@storybook/react-webpack5": "^7.0.2",
 		"@storybook/theming": "^7.0.2",
 		"@wordpress/wp-feature-notifications": "../",
 		"storybook": "^7.0.2"
 	},
-	"peerDependencies": {
-		"@wordpress/components": "^23.1.0",
-		"@wordpress/element": "^5.1.0"
-	},
 	"eslintConfig": {
+		"extends": [
+			"plugin:@wordpress/eslint-plugin/recommended"
+		],
 		"overrides": [
 			{
 				"files": [

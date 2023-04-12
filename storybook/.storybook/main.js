@@ -1,8 +1,9 @@
 // automatically get all the stories from the stories folder
-const stories = ['../stories/**/*.@(js|jsx|ts|tsx|mdx)'].filter(Boolean);
+const doc = ['../stories/**/*.@(mdx)'].filter(Boolean);
+const stories = ['../stories/**/*.@(js|jsx|ts|tsx)'].filter(Boolean);
 
 module.exports = {
-	stories,
+  stories: [...doc, ...stories],
 	addons: [
 		'@storybook/addon-a11y',
 		'@storybook/addon-links',

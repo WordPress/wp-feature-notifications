@@ -23,7 +23,7 @@ import '../stories/assets/wp-core/normalize.css';
 import '../stories/assets/wp-core/site-health.css';
 
 /** Wp-notify style */
-import '../../src/styles/wp-notify.scss';
+import '../../src/styles/wp-notifications.scss';
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },

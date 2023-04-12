@@ -1,23 +1,10 @@
 /** the single notification component */
-import { Notice } from '../scripts/components/Notice';
-
-/** Backend style */
-import '../../src/stories/assets/wp-core/admin-bar.css';
-import '../../src/stories/assets/wp-core/admin-menu.css';
-import '../../src/stories/assets/wp-core/buttons.css';
-import '../../src/stories/assets/wp-core/common.css';
-import '../../src/stories/assets/wp-core/dashboard.css';
-import '../../src/stories/assets/wp-core/dashicons.css';
-import '../../src/stories/assets/wp-core/edit.css';
-import '../../src/stories/assets/wp-core/nav-menus.css';
-import '../../src/stories/assets/wp-core/normalize.css';
-import '../../src/stories/assets/wp-core/site-health.css';
+import { Notice } from '../../src/scripts/components/Notice';
 
 /** Wp-notify style */
-import '../styles/wp-notifications.scss';
 import * as jsonData from '../../includes/restapi/fake_api.json';
-import { NoticesLoop } from '../scripts/components/NoticesLoop';
-import { splitByDate } from '../scripts/utils/';
+import { NoticesLoop } from '../../src/scripts/components/NoticesLoop';
+import { splitByDate } from '../../src/scripts/utils/';
 
 // filter out non dashboard notices
 const adminBarNotices = jsonData.filter(
@@ -25,7 +12,7 @@ const adminBarNotices = jsonData.filter(
 );
 
 export default {
-	title: 'Dashboard/Multiple',
+	title: 'wp-feature-notifications/Dashboard/Multiple',
 	component: Notice,
 	parameters: {
 		backgrounds: {
