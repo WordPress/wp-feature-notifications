@@ -12,7 +12,7 @@ use JsonSerializable;
 /**
  * Class representing a channel.
  *
- * @see \WP\Notifications\register_channel()
+ * @see register_channel()
  */
 class Channel implements JsonSerializable {
 	/**
@@ -20,14 +20,14 @@ class Channel implements JsonSerializable {
 	 *
 	 * @var string
 	 */
-	public $name;
+	public string $name;
 
 	/**
 	 * Human-readable channel label.
 	 *
 	 * @var string
 	 */
-	public $title = '';
+	public string $title = '';
 
 	/**
 	 * Channel icon.
@@ -49,7 +49,7 @@ class Channel implements JsonSerializable {
 	 *
 	 * Instantiates a Channel object.
 	 *
-	 * @see \WP\Notifications\register_channel()
+	 * @see register_channel()
 	 *
 	 * @param string       $channel Channel name including namespace.
 	 * @param array|string $args    {
@@ -61,11 +61,13 @@ class Channel implements JsonSerializable {
 	 *     @type string|null $description Optional detailed channel description.
 	 * }
 	 */
-	public function __construct( $channel, $args ) {
+	public function __construct( string $channel, $args ) {
+		$parsed = wp_parse_args( $args );
+
 		$this->name        = $channel;
-		$this->title       = $args['title'];
-		$this->icon        = array_key_exists( 'icon', $args ) ? $args['icon'] : null;
-		$this->description = array_key_exists( 'description', $args ) ? $args['description'] : null;
+		$this->title       = $parsed['title'];
+		$this->icon        = array_key_exists( 'icon', $parsed ) ? $parsed['icon'] : null;
+		$this->description = array_key_exists( 'description', $parsed ) ? $parsed['description'] : null;
 	}
 
 	/**
