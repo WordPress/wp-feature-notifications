@@ -1,5 +1,22 @@
 /** the single notification component */
 import { NotificationHub } from '../../src/scripts/components/NotificationHub';
+import { dispatch, select } from '@wordpress/data';
+import { NOTIFY_NAMESPACE } from '../../src/scripts/store/constants';
+
+/**
+ * Loops into contexts and register the found locations into the store state
+ *
+ * @param {string} context
+ */
+select( NOTIFY_NAMESPACE ).registerContext( 'adminbar' );
+
+dispatch( NOTIFY_NAMESPACE ).addNotice( {
+	id: 1,
+	title: 'Notice Example',
+	context: 'adminbar',
+	message:
+		'Notice message. This is a simple example and will be shown in the admin bar.',
+} );
 
 export default {
 	title: 'wp-feature-notifications/Notification Hub/Multiple',
@@ -8,12 +25,6 @@ export default {
 		backgrounds: {
 			default: 'WordPress',
 			values: [ { name: 'WordPress', value: '#f0f0f1' } ],
-		},
-	},
-	argTypes: {
-		sortBy: {
-			options: [ 'title', 'date', 'id' ],
-			control: { type: 'radio' },
 		},
 	},
 };
