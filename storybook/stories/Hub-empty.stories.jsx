@@ -38,18 +38,10 @@ const Template = () => {
 						className="ab-top-secondary ab-top-menu"
 					>
 						{ /* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */ }
-						<NotificationHub />
+						<NotificationHub initialActive={ true } />
 					</ul>
 				</div>
 			</div>
-			<p
-				style={ {
-					fontSize: '4rem',
-					padding: '2rem',
-				} }
-			>
-				Click the bell ➡️
-			</p>
 		</div>
 	);
 };
