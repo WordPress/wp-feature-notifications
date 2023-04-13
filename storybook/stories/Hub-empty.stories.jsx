@@ -2,12 +2,11 @@
 
 import { __ } from '@wordpress/i18n';
 import { NotificationHub } from '../../src/scripts/components/NotificationHub';
-import { dispatch, select } from '@wordpress/data';
+import { dispatch } from '@wordpress/data';
 import { NOTIFY_NAMESPACE } from '../../src/scripts/store/constants';
 
-select( NOTIFY_NAMESPACE ).registerContext( 'adminbar' );
-
-dispatch( NOTIFY_NAMESPACE ).clear();
+dispatch( NOTIFY_NAMESPACE ).clear( 'adminbar' );
+dispatch( NOTIFY_NAMESPACE ).addNotice( { context: 'adminbar' } );
 
 export default {
 	title: 'wp-feature-notifications/Notification Hub/Empty',
@@ -37,8 +36,9 @@ const Template = () => {
 						id="wp-admin-bar-top-secondary"
 						className="ab-top-secondary ab-top-menu"
 					>
-						{ /* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */ }
-						<NotificationHub initialActive={ true } />
+						<li id="wp-admin-bar-wp-notification-hub">
+							<NotificationHub initialActive={ true } />
+						</li>
 					</ul>
 				</div>
 			</div>

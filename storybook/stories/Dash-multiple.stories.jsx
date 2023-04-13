@@ -1,23 +1,21 @@
-/** the single notification component */
-import { Notice } from '../../src/scripts/components/Notice';
-
 /** Wp-notify style */
 import * as jsonData from '../../includes/restapi/fake_api.json';
 import { NoticesLoop } from '../../src/scripts/components/NoticesLoop';
-import { splitByDate } from '../../src/scripts/utils/';
 
 // filter out non dashboard notices
-const adminBarNotices = jsonData.map(
-	( notice ) =>
-		( notice = {
-			...notice,
-			context: 'dashboard',
-		} )
-);
+const adminBarNotices = jsonData
+	.filter( ( notice ) => notice.id && notice.id >= 10 )
+	.map(
+		( notice ) =>
+			( notice = {
+				...notice,
+				context: 'dashboard',
+			} )
+	);
 
 export default {
 	title: 'wp-feature-notifications/Dashboard/Multiple',
-	component: Notice,
+	component: NoticesLoop,
 	parameters: {
 		backgrounds: {
 			default: 'WordPress',
@@ -42,19 +40,14 @@ const MultipleNotificationsTemplate = ( args ) => (
 					'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
 			} }
 		>
-			{ splitByDate( adminBarNotices ).map( ( list, index ) => (
-				<NoticesLoop
-					key={ index }
-					notices={ list }
-					sortBy={ undefined }
-					context={ 'dashboard' }
-					{ ...args }
-				/>
-			) ) }
+			<NoticesLoop
+				notices={ adminBarNotices }
+				context={ 'dashboard' }
+				{ ...args }
+			/>
 		</div>
 	</>
 );
 
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-export const Multiple = MultipleNotificationsTemplate.bind( {} );
-Multiple.args = {};
+export const Multiple = MultipleNotificationsTemplate;

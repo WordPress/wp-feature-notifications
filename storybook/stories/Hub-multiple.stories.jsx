@@ -1,17 +1,10 @@
 /** the single notification component */
 import { NotificationHub } from '../../src/scripts/components/NotificationHub';
-import { dispatch, select } from '@wordpress/data';
+import { dispatch } from '@wordpress/data';
 import { NOTIFY_NAMESPACE } from '../../src/scripts/store/constants';
 import * as noticeFakeStore from './assets/fake_api.json';
 
-/**
- * Loops into contexts and register the found locations into the store state
- *
- * @param {string} context
- */
-select( NOTIFY_NAMESPACE ).registerContext( 'adminbar' );
-
-dispatch( NOTIFY_NAMESPACE ).clear();
+dispatch( NOTIFY_NAMESPACE ).clear( 'adminbar' );
 
 noticeFakeStore.forEach( ( notice ) => {
 	dispatch( NOTIFY_NAMESPACE ).addNotice( {
@@ -48,8 +41,9 @@ const Template = () => {
 						id="wp-admin-bar-top-secondary"
 						className="ab-top-secondary ab-top-menu"
 					>
-						{ /* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */ }
-						<NotificationHub initialActive={ true } />
+						<li id="wp-admin-bar-wp-notification-hub">
+							<NotificationHub initialActive={ true } />
+						</li>
 					</ul>
 				</div>
 			</div>
