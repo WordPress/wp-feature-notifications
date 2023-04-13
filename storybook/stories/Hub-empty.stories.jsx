@@ -5,9 +5,6 @@ import { NotificationHub } from '../../src/scripts/components/NotificationHub';
 import { dispatch } from '@wordpress/data';
 import { NOTIFY_NAMESPACE } from '../../src/scripts/store/constants';
 
-dispatch( NOTIFY_NAMESPACE ).clear( 'adminbar' );
-dispatch( NOTIFY_NAMESPACE ).addNotice( { context: 'adminbar' } );
-
 export default {
 	title: 'wp-feature-notifications/Notification Hub/Empty',
 	component: NotificationHub,
@@ -23,6 +20,8 @@ export default {
  * Notification UI component
  */
 const Template = () => {
+	dispatch( NOTIFY_NAMESPACE ).clear( 'adminbar' );
+
 	return (
 		<div id="wpcontent">
 			<div id="wpadminbar" className="nojq">

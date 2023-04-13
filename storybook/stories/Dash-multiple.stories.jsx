@@ -6,10 +6,11 @@ import { NoticesLoop } from '../../src/scripts/components/NoticesLoop';
 const adminBarNotices = jsonData
 	.filter( ( notice ) => notice.id && notice.id >= 10 )
 	.map(
-		( notice ) =>
+		( notice, index ) =>
 			( notice = {
 				...notice,
 				context: 'dashboard',
+				id: index,
 			} )
 	);
 
@@ -31,7 +32,7 @@ export default {
  */
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const MultipleNotificationsTemplate = ( args ) => (
+const MultipleNotificationsTemplate = () => (
 	<>
 		<div
 			id="wpbody"
@@ -40,11 +41,7 @@ const MultipleNotificationsTemplate = ( args ) => (
 					'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
 			} }
 		>
-			<NoticesLoop
-				notices={ adminBarNotices }
-				context={ 'dashboard' }
-				{ ...args }
-			/>
+			<NoticesLoop notices={ adminBarNotices } />
 		</div>
 	</>
 );

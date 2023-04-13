@@ -4,15 +4,6 @@ import { dispatch } from '@wordpress/data';
 import { NOTIFY_NAMESPACE } from '../../src/scripts/store/constants';
 import * as noticeFakeStore from './assets/fake_api.json';
 
-dispatch( NOTIFY_NAMESPACE ).clear( 'adminbar' );
-
-noticeFakeStore.forEach( ( notice ) => {
-	dispatch( NOTIFY_NAMESPACE ).addNotice( {
-		...notice,
-		context: 'adminbar',
-	} );
-} );
-
 export default {
 	title: 'wp-feature-notifications/Notification Hub/Multiple',
 	component: NotificationHub,
@@ -28,6 +19,15 @@ export default {
  * Notification HUB component
  */
 const Template = () => {
+	dispatch( NOTIFY_NAMESPACE ).clear( 'adminbar' );
+
+	noticeFakeStore.forEach( ( notice ) => {
+		dispatch( NOTIFY_NAMESPACE ).addNotice( {
+			...notice,
+			context: 'adminbar',
+		} );
+	} );
+
 	return (
 		<div id="wpcontent">
 			<div id="wpadminbar" className="nojq">
