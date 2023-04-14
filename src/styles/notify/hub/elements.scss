@@ -49,6 +49,22 @@
 		width: 100%;
 		align-items: center;
 
+		// The shadow at the end of sidebar
+		&::before {
+			content: "";
+			display: block;
+			box-shadow: 0 1rem 24px 2px var(--wp-notify--color--default);
+			width: 80%;
+			margin: auto 10%;
+			position: absolute;
+			z-index: -1;
+			top: 0;
+		}
+
+		&:focus {
+			outline: none;
+		}
+
 		.components-button {
 			line-height: 1;
 			height: 56px;

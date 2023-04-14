@@ -34,19 +34,6 @@
 		.notification-hub-section {
 			position: relative;
 			padding-bottom: 1rem;
-
-			&:last-of-type {
-				// The shadow at the end of sidebar
-				&::after {
-					content: "";
-					display: block;
-					box-shadow: 0 1rem 24px 2px var(--wp-notify--color--default);
-					width: 80%;
-					margin: auto 10%;
-					position: absolute;
-					bottom: 0;
-				}
-			}
 		}
 
 		// Scrollbar customization

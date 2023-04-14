@@ -1,5 +1,6 @@
 import { __ } from '@wordpress/i18n';
-import { useEffect, useRef, useState } from '@wordpress/element';
+import { useEffect, useRef } from '@wordpress/element';
+import { useControlledState } from '@wordpress/components/build-module/utils';
 import {
 	ShortcutProvider,
 	store as keyboardShortcutsStore,
@@ -9,9 +10,19 @@ import { Drawer } from './Drawer';
 import { NotificationHubIcon } from './NotificationHubIcon';
 import * as classNames from 'classnames';
 
-export const NotificationHub = () => {
+/**
+ * The notification hub component.
+ *
+ * @param {Object}   props
+ * @param {boolean}  props.active        Externally supplied active state.
+ * @param {boolean=} props.initialActive Optionally initially force the hub into an active state.
+ */
+export const NotificationHub = ( { active, initialActive } ) => {
 	/** Drawer state */
-	const [ isActive, setIsActive ] = useState( false );
+	const [ isActive, setIsActive ] = useControlledState( active, {
+		initial: initialActive === undefined ? false : initialActive,
+		fallback: false,
+	} );
 	const drawerRef = useRef( null );
 
 	/** Register the keyboard shortcut(s) */
@@ -28,7 +39,7 @@ export const NotificationHub = () => {
 	} );
 
 	function toggleDrawer() {
-		setIsActive( ! isActive );
+		setIsActive( ( prev ) => ! prev );
 	}
 
 	const handleOutsideClick = ( event ) => {

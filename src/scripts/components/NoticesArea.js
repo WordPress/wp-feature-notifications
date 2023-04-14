@@ -46,7 +46,7 @@ export const NoticesArea = ( props ) => {
 	 */
 	if ( context === defaultContext ) {
 		/** Returns the empty notice banner whenever the number of notices is 0 */
-		if ( ! notifications.length ) {
+		if ( ! notifications?.length ) {
 			return <NoticeEmpty size={ 96 } message={ __( 'empty' ) } />;
 		}
 
@@ -65,9 +65,9 @@ export const NoticesArea = ( props ) => {
 						<NoticeHubSectionHeader
 							context={ context }
 							unreadCount={
-								notifications.filter(
+								notifications?.filter(
 									( notice ) => notice.status === 'new'
-								).length
+								).length || 0
 							}
 							isMain={ index === 0 } // the main section is the first one
 						/>
