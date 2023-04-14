@@ -3,8 +3,8 @@
 	"version": "1.0.0",
 	"main": "stories/Introduction.stories.mdx",
 	"scripts": {
-		"storybook": "storybook dev -p 6006",
-		"build-storybook": "build-storybook -o ../docs/"
+		"start": "storybook dev -p 6006",
+		"build": "storybook build --output-dir ../docs/"
 	},
 	"devDependencies": {
 		"@storybook/addons": "^7.0.4",
