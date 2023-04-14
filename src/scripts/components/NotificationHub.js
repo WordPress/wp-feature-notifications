@@ -14,13 +14,16 @@ import * as classNames from 'classnames';
  * The notification hub component.
  *
  * @param {Object}   props
- * @param {boolean}  props.active        Externally supplied active state.
+ * @param {boolean=} props.active        Externally supplied active state.
  * @param {boolean=} props.initialActive Optionally initially force the hub into an active state.
  */
-export const NotificationHub = ( { active, initialActive } ) => {
+export const NotificationHub = ( {
+	active = false,
+	initialActive = false,
+} ) => {
 	/** Drawer state */
 	const [ isActive, setIsActive ] = useControlledState( active, {
-		initial: initialActive === undefined ? false : initialActive,
+		initial: initialActive,
 		fallback: false,
 	} );
 	const drawerRef = useRef( null );
