@@ -37,3 +37,25 @@ jobs:
                   target_commitish: trunk
                   generate_release_notes: true
                   draft: true
+
+    build-docs:
+        name: Deploy documentation to GitHub Pages
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+
+            - name: Setup Node.js
+              uses: ./.github/actions/node
+
+            - name: Build Storybook
+              shell: bash
+              run: npm run build:storybook
+
+            - name: Deploy
+              uses: peaceiris/actions-gh-pages@64b46b4226a4a12da2239ba3ea5aa73e3163c75b # v3.9.1
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./docs
+                  force_orphan: true
