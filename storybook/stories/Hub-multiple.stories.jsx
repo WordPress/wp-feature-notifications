@@ -2,7 +2,7 @@
 import { NotificationHub } from '../../src/scripts/components/NotificationHub';
 import { dispatch } from '@wordpress/data';
 import { NOTIFY_NAMESPACE } from '../../src/scripts/store/constants';
-import * as noticeFakeStore from './assets/fake_api.json';
+import * as jsonData from '../../includes/restapi/fake_api.json';
 
 export default {
 	title: 'wp-feature-notifications/Notification Hub/Multiple',
@@ -21,7 +21,7 @@ export default {
 const Template = () => {
 	dispatch( NOTIFY_NAMESPACE ).clear( 'adminbar' );
 
-	noticeFakeStore.forEach( ( notice ) => {
+	jsonData.forEach( ( notice ) => {
 		dispatch( NOTIFY_NAMESPACE ).addNotice( {
 			...notice,
 			context: 'adminbar',

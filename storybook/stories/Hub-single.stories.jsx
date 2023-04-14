@@ -1,6 +1,7 @@
 /** the single notification component */
 
 import { NotificationHub } from '../../src/scripts/components/NotificationHub';
+import * as jsonData from '../../includes/restapi/fake_api.json';
 import { dispatch } from '@wordpress/data';
 import { NOTIFY_NAMESPACE } from '../../src/scripts/store/constants';
 
@@ -21,13 +22,7 @@ export default {
 const Template = () => {
 	dispatch( NOTIFY_NAMESPACE ).clear( 'adminbar' );
 
-	dispatch( NOTIFY_NAMESPACE ).addNotice( {
-		id: 18,
-		title: 'Notice Example',
-		context: 'adminbar',
-		message:
-			'Notice message. This is a simple example and will be shown in the admin bar.',
-	} );
+	dispatch( NOTIFY_NAMESPACE ).addNotice( jsonData[ 0 ] );
 
 	return (
 		<div id="wpcontent">
