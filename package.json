@@ -28,7 +28,9 @@
 	],
 	"scripts": {
 		"start": "wp-scripts start",
+		"start:storybook": "npm run start --workspace=storybook",
 		"build": "wp-scripts build",
+		"build:storybook": "npm run build --workspace=storybook",
 		"prephp-install": "wp-env start",
 		"php-install": "wp-env run composer 'composer --ignore-platform-req=php install'",
 		"pretest-unit-php": "npm run php-install",
@@ -43,8 +45,6 @@
 		"lint:pkg-json": "wp-scripts lint-pkg-json ./src",
 		"plugin-zip": "wp-scripts plugin-zip",
 		"test": "jest",
-		"storybook": "start-storybook -p 6006",
-		"build-storybook": "npm run build-storybook --workspace=storybook",
 		"docGen": "npx docgen src/scripts/wp-notifications.js",
 		"wp-env:start": "wp-env start",
 		"wp-env:stop": "wp-env stop",
