@@ -16,13 +16,20 @@ export default {
 	},
 };
 
+const getNotificationByType = ( context, count ) => {
+	const notes = jsonData.filter( ( notice ) => notice.context === context );
+	return notes.slice( 0, count );
+};
+
 /**
  * Notification UI component
  */
 const Template = () => {
 	dispatch( NOTIFY_NAMESPACE ).clear( 'adminbar' );
 
-	dispatch( NOTIFY_NAMESPACE ).addNotice( jsonData[ 0 ] );
+	dispatch( NOTIFY_NAMESPACE ).addNotice(
+		...getNotificationByType( 'adminbar', 1 )
+	);
 
 	return (
 		<div id="wpcontent">
