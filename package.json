@@ -23,6 +23,9 @@
 		"readme.txt",
 		"wp-feature-notifications.php"
 	],
+	"workspaces": [
+		"./storybook"
+	],
 	"scripts": {
 		"start": "wp-scripts start",
 		"build": "wp-scripts build",
@@ -41,7 +44,7 @@
 		"plugin-zip": "wp-scripts plugin-zip",
 		"test": "jest",
 		"storybook": "start-storybook -p 6006",
-		"build-storybook": "build-storybook",
+		"build-storybook": "npm run build-storybook --workspace=storybook",
 		"docGen": "npx docgen src/scripts/wp-notifications.js",
 		"wp-env:start": "wp-env start",
 		"wp-env:stop": "wp-env stop",
