@@ -60,8 +60,10 @@
 		"@wordpress/api-fetch": "^6.27.0",
 		"@wordpress/components": "^23.7.0",
 		"@wordpress/data": "^9.0.0",
+		"@wordpress/date": "^4.31.0",
 		"@wordpress/e2e-test-utils": "^10.1.0",
 		"@wordpress/env": "^5.15.0",
+		"@wordpress/escape-html": "^2.31.0",
 		"@wordpress/i18n": "^4.30.0",
 		"@wordpress/icons": "^9.21.0",
 		"@wordpress/keyboard-shortcuts": "^4.7.0",
@@ -71,13 +73,9 @@
 		"husky": "^8.0.3",
 		"jest-puppeteer": "^6.2.0",
 		"lint-staged": "^13.2.0",
-		"moment": "^2.29.3",
 		"prettier": "npm:wp-prettier@^2.8.5",
 		"re-resizable": "^6.9.9",
 		"typescript": "^5.0.3"
-	},
-	"dependencies": {
-		"dompurify": "^2.4.0"
 	},
 	"browserslist": [
 		"extends @wordpress/browserslist-config"
