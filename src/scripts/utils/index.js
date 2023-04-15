@@ -1,5 +1,4 @@
-import { NOTIFY_NAMESPACE } from '../store/constants';
-import { WEEK_IN_SECONDS } from '../components/NoticesArea';
+import { WEEK_IN_MILLISECONDS, STORE_NAMESPACE } from '../constants';
 import { dispatch } from '@wordpress/data';
 import { dateI18n } from '@wordpress/date';
 
@@ -26,13 +25,13 @@ export const delay = ( ms ) => new Promise( ( f ) => setTimeout( f, ms ) );
  */
 export const splitByDate = (
 	notifications,
-	limit = nowInSeconds() - WEEK_IN_SECONDS
+	limit = Date.now() - WEEK_IN_MILLISECONDS
 ) => {
 	return notifications.reduce(
-		( [ current, past ], item ) => {
-			return item.date >= limit
-				? [ [ ...current, item ], past ]
-				: [ current, [ ...past, item ] ];
+		( [ current, past ], notice ) => {
+			return notice.date.getTime() >= limit
+				? [ [ ...current, notice ], past ]
+				: [ current, [ ...past, notice ] ];
 		},
 		[ [], [] ]
 	);
@@ -61,12 +60,12 @@ export const nowInSeconds = () => {
 /**
  * Format the date from epoch to human-readable format.
  *
- * @param {number} date The date to convert in epoch format.
+ * @param {Date} date The date to convert in epoch format.
  *
  * @return {string} The date in human-readable format.
  */
 export const formatDate = ( date ) => {
-	return dateI18n( 'l jS F Y - h:i A', new Date( date ), true );
+	return dateI18n( 'l jS F Y - h:i A', date, true );
 };
 
 /**
@@ -75,5 +74,5 @@ export const formatDate = ( date ) => {
  * @param {string} context - The context of the notices. This is used to determine which notices to clear.
  */
 export const clearNotifyDrawer = ( context ) => {
-	dispatch( NOTIFY_NAMESPACE ).clear( context );
+	dispatch( STORE_NAMESPACE ).clear( context );
 };

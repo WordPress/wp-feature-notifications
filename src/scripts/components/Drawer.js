@@ -3,7 +3,7 @@ import { NoticesArea } from './NoticesArea';
 import { Resizable } from 're-resizable';
 import { useState } from '@wordpress/element';
 import { useShortcut } from '@wordpress/keyboard-shortcuts';
-import { HUB_WIDTH } from '../store/constants';
+import { HUB_WIDTH } from '../constants';
 
 /**
  * This is a React component that renders a resizable drawer for displaying notifications.

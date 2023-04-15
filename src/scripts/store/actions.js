@@ -12,7 +12,7 @@
  */
 export const hydrate = ( payload ) => {
 	return {
-		type: /** @type {'HYDRATE'} */ ( 'HYDRATE' ),
+		type: /** @type {const} */ ( 'HYDRATE' ),
 		payload,
 	};
 };
@@ -25,7 +25,7 @@ export const hydrate = ( payload ) => {
  */
 export const clear = ( context ) => {
 	return {
-		type: /** @type {'CLEAR'} */ ( 'CLEAR' ),
+		type: /** @type {const} */ ( 'CLEAR' ),
 		context,
 	};
 };
@@ -38,7 +38,7 @@ export const clear = ( context ) => {
  */
 export const addNotice = ( payload ) => {
 	return {
-		type: /** @type {'ADD'} */ ( 'ADD' ),
+		type: /** @type {const} */ ( 'ADD' ),
 		payload,
 	};
 };
@@ -51,7 +51,7 @@ export const addNotice = ( payload ) => {
  */
 export const removeNotice = ( id ) => {
 	return {
-		type: /** @type {'DELETE'} */ ( 'DELETE' ),
+		type: /** @type {const} */ ( 'DELETE' ),
 		id,
 	};
 };
@@ -64,7 +64,7 @@ export const removeNotice = ( id ) => {
  */
 export const updateNotice = ( payload ) => {
 	return {
-		type: /** @type {'UPDATE'} */ ( 'UPDATE' ),
+		type: /** @type {const} */ ( 'UPDATE' ),
 		payload,
 	};
 };
@@ -77,7 +77,7 @@ export const updateNotice = ( payload ) => {
  */
 export const fetchAPI = ( path = '' ) => {
 	return {
-		type: /** @type {'FETCH'} */ ( 'FETCH' ),
+		type: /** @type {const} */ ( 'FETCH' ),
 		path,
 	};
 };

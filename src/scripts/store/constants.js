@@ -1,27 +1,12 @@
 /**
- *  @member {string} NOTIFY_NAMESPACE WP Notification Feature namespace
+ * The WP Notification Feature default context.
  */
-export const NOTIFY_NAMESPACE = 'core/wp-notify';
+export const defaultContext = /** @type {const} */ 'adminbar';
 
 /**
- *  @member {string} API_PATH WP Notification Feature rest api path
+ * The WP Notification Feature default contexts
  */
-export const API_PATH = '/wp/v2/notifications/';
-
-/**
- *  @member {string} defaultContext WP Notification Feature default context
- */
-export const defaultContext = 'adminbar';
-
-/**
- *  @member {Object} context WP Notification Feature default contexts
- */
-export const contexts = [ defaultContext, 'dashboard' ];
-
-/**
- *  @member {number} The width of the notification hub
- */
-export const HUB_WIDTH = 320;
+export const contexts = /** @type {const} */ [ defaultContext, 'dashboard' ];
 
 /**
  *  @member {string} the url of the notifications settings page

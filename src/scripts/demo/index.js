@@ -2,7 +2,7 @@
  * On load listen for metabox events like submit, clear etc
  */
 import { dispatch } from '@wordpress/data';
-import { NOTIFY_NAMESPACE } from '../store/constants';
+import { STORE_NAMESPACE } from '../constants';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -33,7 +33,7 @@ window.addEventListener( 'load', () => {
 					)
 				).value || __( 'Notification default text' );
 
-			dispatch( NOTIFY_NAMESPACE ).addNotice(
+			dispatch( STORE_NAMESPACE ).addNotice(
 				/** @type {Notice} */ ( {
 					title,
 					message,

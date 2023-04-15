@@ -1,6 +1,6 @@
 import { createReduxStore, register } from '@wordpress/data';
 
-import { NOTIFY_NAMESPACE } from './constants';
+import { STORE_NAMESPACE } from '../constants';
 import reducer from './reducer';
 import * as actions from './actions';
 import * as selectors from './selectors';
@@ -57,7 +57,7 @@ import * as resolvers from './resolvers';
  * @typedef {Object} Notice The notification type.
  * @property {NoticeAction=} action       The optional action associated to the notification.
  * @property {string=}       context      The rendering context of the notification.
- * @property {number}        date         The datetime from which the notification was emitted.
+ * @property {Date}          date         The date from which the notification was emitted.
  * @property {string=}       dismissLabel The label of the dismiss action.
  * @property {boolean=}      dismissible  Predicate of whether the notification can be dismissed.
  * @property {NoticeIcon=}   icon         The optional icon.
@@ -79,7 +79,7 @@ import * as resolvers from './resolvers';
  * A Redux store that lets you read the state, dispatch actions and subscribe to changes.
  */
 const store = /** @type {NoticeStore} */ (
-	createReduxStore( NOTIFY_NAMESPACE, {
+	createReduxStore( STORE_NAMESPACE, {
 		reducer,
 		actions,
 		selectors,
