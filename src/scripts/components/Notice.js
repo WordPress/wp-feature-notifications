@@ -27,7 +27,7 @@ import { delay, nowInSeconds } from '../utils';
  * It also includes a function to dismiss the notification when the user clicks on the dismiss button.
  *
  * @param {Notice} props
- * @return {JSX.Element} Notice - the single notice
+ * @return {JSX.Element} Notice The single notice.
  */
 export const Notice = ( props ) => {
 	const {
