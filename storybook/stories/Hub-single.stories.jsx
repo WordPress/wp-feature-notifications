@@ -16,6 +16,17 @@ export default {
 	},
 };
 
+/**
+ * @typedef {import('../../src/scripts/store').Notice} Notice
+ */
+/**
+ * Given a context, get the notifications for that context.
+ *
+ * @param {string} context The context to get the notifications for.
+ * @param {number} count   The number of notifications.
+ *
+ * @return {Notice[]} The context notification objects.
+ */
 const getNotificationByType = ( context, count ) => {
 	const notes = jsonData.filter( ( notice ) => notice.context === context );
 	return notes.slice( 0, count );
@@ -44,7 +55,7 @@ const Template = () => {
 						id="wp-admin-bar-top-secondary"
 						className="ab-top-secondary ab-top-menu"
 					>
-						<li id="wp-admin-bar-wp-notification-hub">
+						<li id="wp-admin-bar-wp-notifications-hub">
 							<NotificationHub initialActive={ true } />
 						</li>
 					</ul>

@@ -1,16 +1,16 @@
 /*
  * WP admin bar
  */
-#wpadminbar #wp-admin-bar-wp-notification-hub {
+#wpadminbar #wp-admin-bar-wp-notifications-hub {
 	padding-right: 8px;
 	position: relative;
 	z-index: 100002;
 	display: block; // avoids to hide the bell icon (and the drawer) on mobile
 
 	/**
-   * drawer icons color needs to be reset to prevent adminbar default icon color
+   * Drawer icons needs to be reset to avoid admin-bar default icon color
    */
-	&:hover #notification-hub {
+	&:hover #wp-notifications-hub {
 
 		.ab-icon::before {
 			color: var(--wp-notify--color--white);

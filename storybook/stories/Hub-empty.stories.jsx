@@ -35,7 +35,7 @@ const Template = () => {
 						id="wp-admin-bar-top-secondary"
 						className="ab-top-secondary ab-top-menu"
 					>
-						<li id="wp-admin-bar-wp-notification-hub">
+						<li id="wp-admin-bar-wp-notifications-hub">
 							<NotificationHub initialActive={ true } />
 						</li>
 					</ul>

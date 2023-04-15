@@ -1,7 +1,7 @@
 /*
  * Notification Hub Layout
  */
-#notification-hub {
+#wp-notifications-hub {
 	position: fixed;
 	right: 0;
 	top: 0;
@@ -31,7 +31,7 @@
 		overflow: auto;
 		padding-bottom: 56px;
 
-		.notification-hub-section {
+		.wp-notifications-hub-section {
 			position: relative;
 			padding-bottom: 1rem;
 		}

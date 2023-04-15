@@ -21,7 +21,7 @@ function admin_bar_item( WP_Admin_Bar $wp_admin_bar ) {
 	}
 
 	$args = array(
-		'id'     => 'wp-notification-hub',
+		'id'     => 'wp-notifications-hub',
 		'title'  => __( 'loading' ),
 		'parent' => 'top-secondary',
 		'meta'   => array(
@@ -36,7 +36,9 @@ add_action( 'admin_bar_menu', '\WP\Notifications\admin_bar_item', 1 );
  * Adds WP Notifications area at the top of the dashboard
  */
 function admin_notice() {
-	echo '<div id="wp-notification-dashboard" class="wrap"></div>';
+	if ( is_admin() && get_current_screen()->id === 'dashboard' ) {
+		echo '<div id="wp-notifications-dashboard" class="wrap"></div>';
+	}
 }
 add_action( 'admin_notices', '\WP\Notifications\admin_notice' );
 
@@ -81,6 +83,8 @@ add_action( 'admin_menu', '\WP\Notifications\add_admin_options_page' );
  * Renders the options page.
  */
 function render_admin_options_page() {    ?>
+
+	<div class="wrap">
 
 	<h1><?php _e( 'Notifications settings' ); ?></h1>
 
@@ -215,6 +219,10 @@ function render_admin_options_page() {    ?>
 		printf( '<input type="submit" id="doaction" class="button action primary" value="%s">', __( 'Apply' ) );
 	}
 	init_table();
+
+	?>
+	</div>
+	<?php
 }
 
 

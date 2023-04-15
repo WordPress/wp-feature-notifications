@@ -22,10 +22,12 @@ import { delay, nowInSeconds } from '../utils';
  */
 
 /**
- * It renders a single notice
+ * This is a functional component in JavaScript that defines the UI for a single notification.
+ * It takes in a set of props, destructures them, and uses them to render the notification with the appropriate title, message, icon, and actions.
+ * It also includes a function to dismiss the notification when the user clicks on the dismiss button.
  *
  * @param {Notice} props
- * @return {JSX.Element} Notice - the single notice
+ * @return {JSX.Element} Notice The single notice.
  */
 export const Notice = ( props ) => {
 	const {

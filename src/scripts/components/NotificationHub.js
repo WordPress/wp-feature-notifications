@@ -33,9 +33,9 @@ export const NotificationHub = ( { initialActive = false } ) => {
 		} );
 	} );
 
-	function toggleDrawer() {
+	const toggleDrawer = () => {
 		setIsActive( ( prev ) => ! prev );
-	}
+	};
 
 	const handleOutsideClick = ( event ) => {
 		if (
