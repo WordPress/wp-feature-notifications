@@ -84,6 +84,8 @@ add_action( 'admin_menu', '\WP\Notifications\add_admin_options_page' );
  */
 function render_admin_options_page() {    ?>
 
+	<div class="wrap">
+
 	<h1><?php _e( 'Notifications settings' ); ?></h1>
 
 	<p>Tailor which kinds of notifications you'd like to receive, and where.</p>
@@ -217,6 +219,10 @@ function render_admin_options_page() {    ?>
 		printf( '<input type="submit" id="doaction" class="button action primary" value="%s">', __( 'Apply' ) );
 	}
 	init_table();
+
+	?>
+	</div>
+<?php
 }
 
 
