@@ -10,7 +10,7 @@
 	/**
    * Drawer icons needs to be reset to avoid admin-bar default icon color
    */
-	&:hover #notifications-hub {
+	&:hover #wp-notifications-hub {
 
 		.ab-icon::before {
 			color: var(--wp-notify--color--white);

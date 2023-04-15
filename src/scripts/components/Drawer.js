@@ -25,7 +25,7 @@ export const Drawer = ( { focus, blur, instance } ) => {
 
 	return (
 		<aside
-			id="notifications-hub"
+			id="wp-notifications-hub"
 			onFocus={ focus }
 			onBlur={ blur }
 			ref={ instance }
