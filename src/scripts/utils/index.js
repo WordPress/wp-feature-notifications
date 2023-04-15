@@ -1,6 +1,7 @@
 import { NOTIFY_NAMESPACE } from '../store/constants';
 import { WEEK_IN_SECONDS } from '../components/NoticesArea';
 import { dispatch } from '@wordpress/data';
+import { dateI18n } from '@wordpress/date';
 
 /**
  * @typedef {import('../store').Notice} Notice
@@ -55,6 +56,17 @@ export const dateToSeconds = ( date ) => {
  */
 export const nowInSeconds = () => {
 	return Math.floor( Date.now() * 0.001 );
+};
+
+/**
+ * Format the date from epoch to human-readable format.
+ *
+ * @param {number} date The date to convert in epoch format.
+ *
+ * @return {string} The date in human-readable format.
+ */
+export const formatDate = ( date ) => {
+	return dateI18n( 'l jS F Y - h:i A', new Date( date ), true );
 };
 
 /**

@@ -1,4 +1,4 @@
-import * as moment from 'moment/moment';
+import { formatDate } from '../utils';
 
 /**
  * The notice metadata, for example the source of the notification or the date
@@ -10,6 +10,6 @@ import * as moment from 'moment/moment';
 export const NoticeMeta = ( { date, source } ) => (
 	<p className="wp-notification-meta">
 		<span className="name">{ source }</span> { '\u2022 ' }
-		<span className="date">{ moment( date ).fromNow() }</span>
+		<span className="date">{ formatDate( date ) }</span>
 	</p>
 );
