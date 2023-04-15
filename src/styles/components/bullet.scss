@@ -6,8 +6,7 @@ $bullet-width: 6px;
 
 
 #wpbody .wp-notification-wrap,
-// TODO replace undisplayed with "new" 👇
-#wpadminbar .wp-notification.undisplayed {
+#wpadminbar .wp-notification.new {
 	position: relative;
 
 	> :first-child::before {
@@ -25,8 +24,7 @@ $bullet-width: 6px;
 	}
 }
 
-// TODO replace undisplayed with "new" 👇
-#wpadminbar .wp-notification.undisplayed > :first-child::before {
+#wpadminbar .wp-notification.new > :first-child::before {
 	top: calc(var(--wp-notify--hub-image-size) * 0.5 + var(--wp-notify--hub-spacing-top));
 	left: 2px;
 }
