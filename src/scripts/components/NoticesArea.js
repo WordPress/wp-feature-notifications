@@ -59,7 +59,7 @@ export const NoticesArea = ( props ) => {
 					<section
 						key={ index }
 						className={
-							'notification-hub-section section-' + index
+							'wp-notifications-hub-section section-' + index
 						}
 					>
 						<NoticeHubSectionHeader
