@@ -1,6 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useEffect, useRef } from '@wordpress/element';
-import { useControlledState } from '@wordpress/components/build-module/utils';
+import { useEffect, useRef, useState } from '@wordpress/element';
 import {
 	ShortcutProvider,
 	store as keyboardShortcutsStore,
@@ -13,16 +12,12 @@ import * as classNames from 'classnames';
 /**
  * The notification hub component.
  *
- * @param {Object}   props
- * @param {boolean}  props.active        Externally supplied active state.
+ * @param {Object}   props               Properties
  * @param {boolean=} props.initialActive Optionally initially force the hub into an active state.
  */
-export const NotificationHub = ( { active, initialActive } ) => {
+export const NotificationHub = ( { initialActive = false } ) => {
 	/** Drawer state */
-	const [ isActive, setIsActive ] = useControlledState( active, {
-		initial: initialActive === undefined ? false : initialActive,
-		fallback: false,
-	} );
+	const [ isActive, setIsActive ] = useState( initialActive );
 	const drawerRef = useRef( null );
 
 	/** Register the keyboard shortcut(s) */
