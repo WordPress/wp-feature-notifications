@@ -41,9 +41,4 @@ single.args = {
 		'Notice message. This is a simple example and will be shown in the dashboard',
 	date: Date.now() * 0.001,
 	dismissible: true,
-	action: {
-		acceptMessage: 'Accept',
-		acceptLink: '#',
-		dismissLabel: 'Dismiss',
-	},
 };

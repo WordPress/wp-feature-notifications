@@ -16,6 +16,17 @@ export default {
 	},
 };
 
+/**
+ * @typedef {import('../../src/scripts/store').Notice} Notice
+ */
+/**
+ * Given a context, get the notifications for that context
+ *
+ * @param {string} context - the context to get the notifications for
+ * @param {number} count   - the number of notifications
+ *
+ * @return {Notice[]} the notifications
+ */
 const getNotificationByType = ( context, count ) => {
 	const notes = jsonData.filter( ( notice ) => notice.context === context );
 	return notes.slice( 0, count );
