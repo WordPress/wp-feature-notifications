@@ -10,8 +10,8 @@
 	flex-direction: column;
 	height: 100%;
 	padding: 30px 0 0;
-	background: var(--wp-notify--color--white);
-	box-shadow: 0 0 24px -16px var(--wp-notify--color--default);
+	background: var(--wp-notify--color--background);
+	box-shadow: 0 0 24px -16px var(--wp-notify--color--primary);
 	box-sizing: border-box;
 	overflow: hidden;
 

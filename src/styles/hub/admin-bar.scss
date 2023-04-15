@@ -13,7 +13,7 @@
 	&:hover #wp-notifications-hub {
 
 		.ab-icon::before {
-			color: var(--wp-notify--color--white);
+			color: $color-white;
 		}
 	}
 
@@ -45,11 +45,11 @@
 		border-radius: 50%;
 		font-size: 0;
 
-		/* WP Editor / Alert Red */
-		background: var(--wp-notify--color--red);
+		/* the dot color */
+		background: $color-red;
 
-		/* Classic / Dark Gray 800 */
-		border: 1px solid var(--wp-notify--color--black-800);
+		/* the dot color border */
+		border: 1px solid $color-black-800;
 	}
 
 	/* Mobile */

@@ -2,8 +2,8 @@
  * General notifications style
  */
 .wp-notification {
-	background: var(--wp-notify--color--white);
-	color: var(--wp-notify--color--default);
+	background: var(--wp-notify--color--background);
+	color: var(--wp-notify--color--primary);
 	overflow: hidden;
 	max-height: 600px;
 
