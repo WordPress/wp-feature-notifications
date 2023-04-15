@@ -21,7 +21,7 @@ function admin_bar_item( WP_Admin_Bar $wp_admin_bar ) {
 	}
 
 	$args = array(
-		'id'     => 'wp-notification-hub',
+		'id'     => 'wp-notifications-hub',
 		'title'  => __( 'loading' ),
 		'parent' => 'top-secondary',
 		'meta'   => array(
@@ -36,7 +36,9 @@ add_action( 'admin_bar_menu', '\WP\Notifications\admin_bar_item', 1 );
  * Adds WP Notifications area at the top of the dashboard
  */
 function admin_notice() {
-	echo '<div id="wp-notification-dashboard" class="wrap"></div>';
+	if ( is_admin() && get_current_screen()->id === 'dashboard' ) {
+		echo '<div id="wp-notifications-dashboard" class="wrap"></div>';
+	}
 }
 add_action( 'admin_notices', '\WP\Notifications\admin_notice' );
 

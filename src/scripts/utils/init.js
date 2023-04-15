@@ -4,8 +4,10 @@ import { NotificationHub as Hub } from '../components/NotificationHub';
 
 export function addContext( context ) {
 	/** Get the component container */
-	const notifyContainer = document.getElementById(
-		`wp-notification-${ context }`
+	const notificationContext = document.getElementById(
+		context === 'adminbar'
+			? 'wp-admin-bar-wp-notifications-hub'
+			: `wp-notifications-${ context }`
 	);
 
 	/** Creates a root for NoticesArea component. */
