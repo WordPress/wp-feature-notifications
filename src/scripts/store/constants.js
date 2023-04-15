@@ -19,6 +19,11 @@ export const defaultContext = 'adminbar';
 export const contexts = [ defaultContext, 'dashboard' ];
 
 /**
+ *  @member {number} The width of the notification hub
+ */
+export const hubWidth = 320;
+
+/**
  *  @member {string} the url of the notifications settings page
  */
 export const settingsPageUrl =

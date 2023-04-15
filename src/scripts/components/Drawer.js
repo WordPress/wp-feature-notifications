@@ -36,7 +36,7 @@ export const Drawer = ( { focus, blur, instance } ) => {
 				onResizeStop={ ( e, direction, ref, d ) => {
 					setWidth( width + d.width );
 				} }
-				minWidth={ 320 }
+				minWidth={ hubWidth }
 			>
 				<div className={ 'hub-wrapper' }>
 					<h2 className={ 'screen-reader-text' }>

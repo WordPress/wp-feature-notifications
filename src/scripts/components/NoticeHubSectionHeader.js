@@ -17,8 +17,7 @@ export const NoticeHubSectionHeader = ( { isMain, unreadCount, context } ) => {
 		<header>
 			<h2>{ unreadCount } new notifications</h2>
 			<Button
-				id="clear-all-wp-notify-adminbar"
-				className="wp-notification-action wp-notification-action-markread button-link"
+				className="wp-notifications-action mark-as-read button-link"
 				onClick={ () => clearNotifyDrawer( context ) }
 				icon={ check }
 				isSmall={ true }

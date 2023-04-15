@@ -3,7 +3,7 @@ import { dispatch, select } from '@wordpress/data';
 
 /** The store default data */
 import { contexts, NOTIFY_NAMESPACE } from './store/constants';
-import { addContext, addHub } from './utils/init';
+import { addContext } from './utils/init';
 
 /**
  * @typedef {import('./store').Notice} Notice
@@ -86,9 +86,7 @@ select( NOTIFY_NAMESPACE ).fetchUpdates();
 /**
  * Loops into contexts and adds a NoticesArea component for each one
  */
-contexts.forEach( ( context ) =>
-	context === 'adminbar' ? addHub() : addContext( context )
-);
+contexts.forEach( ( context ) => addContext( context ) );
 
 /**
  *  exports notify store functions for further uses
