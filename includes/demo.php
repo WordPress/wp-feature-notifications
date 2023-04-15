@@ -222,7 +222,7 @@ function render_admin_options_page() {    ?>
 
 	?>
 	</div>
-<?php
+	<?php
 }
 
 
