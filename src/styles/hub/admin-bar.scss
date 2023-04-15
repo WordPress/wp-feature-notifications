@@ -8,9 +8,9 @@
 	display: block; // avoids to hide the bell icon (and the drawer) on mobile
 
 	/**
-   * drawer icons color needs to be reset to prevent adminbar default icon color
+   * Drawer icons needs to be reset to avoid admin-bar default icon color
    */
-	&:hover #notification-hub {
+	&:hover #notifications-hub {
 
 		.ab-icon::before {
 			color: var(--wp-notify--color--white);

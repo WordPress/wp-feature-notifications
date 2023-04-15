@@ -1,7 +1,7 @@
 /*
  * Hub Elements style (header, footer etc)
  */
-#notification-hub {
+#notifications-hub {
 
 	* {
 		margin: 0;
@@ -28,7 +28,7 @@
 		box-shadow: 0 0 0 1px var(--wp-notify--color--white);
 		padding: 0 var(--wp-notify--hub-spacing-horizontal) 10px;
 
-		#clear-all-wp-notify-adminbar {
+		.wp-notifications-action.mark-as-read {
 
 			svg {
 				vertical-align: middle;

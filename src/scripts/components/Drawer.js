@@ -7,7 +7,7 @@ export const Drawer = ( { focus, blur, instance } ) => {
 	const [ width, setWidth ] = useState( 320 );
 	return (
 		<aside
-			id="notification-hub"
+			id="notifications-hub"
 			onFocus={ focus }
 			onBlur={ blur }
 			ref={ instance }
