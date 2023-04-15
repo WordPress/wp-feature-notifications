@@ -21,7 +21,7 @@
 		// shows the selected item using the webkit default styling
 		&:focus-visible {
 			border-radius: 2px;
-			outline: 2px solid var(--wp-notify--color--black);
+			outline: 2px solid $color-black;
 		}
 
 		&-wrap {
@@ -64,7 +64,7 @@
 
 		&-icon {
 
-			background: var(--wp-notify--color--black-200);
+			background: $color-black-200;
 			border-radius: 8px;
 
 			.ab-icon {
@@ -73,7 +73,7 @@
 				line-height: 1;
 
 				&::before {
-					color: var(--wp-notify--color--white);
+					color: $color-white;
 					opacity: 0.9;
 				}
 			}
@@ -98,7 +98,7 @@
 		"alert": var(--wp-notify--color--error),
 		"warning": var(--wp-notify--color--warning),
 		"success": var(--wp-notify--color--success),
-		"info": var(--wp-notify--color--blue)
+		"info": var(--wp-notify--color--info)
 	);
 
 	@each $key, $value in $alertSeverity {

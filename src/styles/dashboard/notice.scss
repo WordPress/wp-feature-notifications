@@ -27,9 +27,19 @@
 		margin: 10px 0 var(--wp-notify--hub-element-bottom);
 		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
 
+		// the notification left border
 		border-left-width: 4px;
 		border-left-style: solid;
-		border-color: var(--wp-notify--color--default);
+		border-color: var(--wp-notify--color--primary);
+
+		@media #{$breakpoint} {
+			grid-template-columns: auto;
+			gap: 50px;
+
+			.wp-notification-wrap {
+				order: 2;
+			}
+		}
 
 		/**
 		 * Will removes the top-margin from the first
@@ -72,7 +82,7 @@
 
 				&:hover,
 				&:focus {
-					background-color: var(--wp-notify--color--black-300);
+					background-color: $color-black-300;
 				}
 			}
 		}
@@ -86,14 +96,6 @@
 				width: 100%;
 				object-position: center;
 				object-fit: contain;
-			}
-		}
-
-		@media #{$breakpoint} {
-			grid-template-columns: auto;
-
-			.wp-notification-wrap {
-				order: 2;
 			}
 		}
 	}
