@@ -59,13 +59,14 @@ export const nowInSeconds = () => {
 };
 
 /**
- * Convert the date from epoch to human-readable format.
+ * Format the date from epoch to human-readable format.
  *
- * @param {string} date The date to convert.
+ * @param {number} date The date to convert in epoch format.
+ *
  * @return {string} The date in human-readable format.
  */
-export const noticeDateFormat = ( date ) => {
-	return dateI18n( 'l jS F Y - h:i A', date, true );
+export const formatDate = ( date ) => {
+	return dateI18n( 'l jS F Y - h:i A', new Date( date ), true );
 };
 
 /**
