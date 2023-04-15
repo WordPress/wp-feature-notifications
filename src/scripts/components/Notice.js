@@ -11,11 +11,12 @@ import { NoticeActions } from './NoticeAction';
 // Import utilities
 // @ts-ignore
 import classnames from 'classnames';
+import { STORE_NAMESPACE } from '../constants';
 import { purify } from '../utils/sanitization';
-import { defaultContext, NOTIFY_NAMESPACE } from '../store/constants';
+import { defaultContext } from '../store/constants';
 import { dispatch } from '@wordpress/data';
 import { NoticeMeta } from './NoticeMeta';
-import { delay, nowInSeconds } from '../utils';
+import { delay } from '../utils';
 
 /**
  * @typedef {import('../store').Notice} Notice
@@ -33,7 +34,7 @@ export const Notice = ( props ) => {
 	const {
 		action,
 		context = defaultContext,
-		date = nowInSeconds(),
+		date = new Date(),
 		dismissLabel,
 		dismissible,
 		icon,
@@ -49,13 +50,13 @@ export const Notice = ( props ) => {
 	 * Dismiss the target notification
 	 */
 	function dismissNotice() {
-		dispatch( NOTIFY_NAMESPACE ).updateNotice( {
+		dispatch( STORE_NAMESPACE ).updateNotice( {
 			id,
 			status: 'dismissed',
 		} );
 		// TODO missing exit animation
 		delay( 500 ).then( () =>
-			dispatch( NOTIFY_NAMESPACE ).removeNotice( id )
+			dispatch( STORE_NAMESPACE ).removeNotice( id )
 		);
 	}
 
@@ -79,7 +80,7 @@ export const Notice = ( props ) => {
 					onDismiss={ dismissNotice }
 					context={ context }
 				/>
-				<NoticeMeta date={ date * 1000 } source={ source } />
+				<NoticeMeta date={ date } source={ source } />
 			</div>
 
 			<NoticeIcon
