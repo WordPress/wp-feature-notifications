@@ -2,8 +2,9 @@
  * On load listen for metabox events like submit, clear etc
  */
 import { dispatch } from '@wordpress/data';
-import { STORE_NAMESPACE } from '../constants';
 import { __ } from '@wordpress/i18n';
+
+import { STORE_NAMESPACE } from '../constants';
 
 /**
  *  @typedef {import('../store').Notice} Notice

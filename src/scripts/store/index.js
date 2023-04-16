@@ -1,11 +1,12 @@
 import { createReduxStore, register } from '@wordpress/data';
 
 import { STORE_NAMESPACE } from '../constants';
-import reducer from './reducer';
+
 import * as actions from './actions';
-import * as selectors from './selectors';
 import * as controls from './controls';
+import reducer from './reducer';
 import * as resolvers from './resolvers';
+import * as selectors from './selectors';
 
 /**
  *

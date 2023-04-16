@@ -1,10 +1,11 @@
-import { __ } from '@wordpress/i18n';
-import { NoticesArea } from './NoticesArea';
-import { Resizable } from 're-resizable';
 import { useState } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
 import { useShortcut } from '@wordpress/keyboard-shortcuts';
+import { Resizable } from 're-resizable';
+
 import { HUB_WIDTH } from '../constants';
 
+import { NoticesArea } from './NoticesArea';
 /**
  * This is a React component that renders a resizable drawer for displaying notifications.
  * The `Drawer` component is being returned, which is an `aside` element containing a `Resizable` component and a `NoticesArea` component.

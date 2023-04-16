@@ -1,9 +1,10 @@
 // @ts-ignore
-import wpLogo from '../../images/WordPressLogo.svg';
 import * as classNames from 'classnames';
+
+import wpLogo from '../../images/WordPressLogo.svg';
 import { defaultContext } from '../store/constants';
-import { purify } from '../utils/sanitization';
 import { isDashiconsIcon, isSvgIcon } from '../utils/guards';
+import { purify } from '../utils/sanitization';
 
 /**
  * @typedef {import('../store').NoticeIcon} NoticeIcon

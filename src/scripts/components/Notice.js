@@ -4,19 +4,17 @@
  * https://github.com/WordPress/wp-feature-notifications/issues/37#issuecomment-896080025
  */
 
-// Register components
-import { NoticeIcon } from './NoticeImage';
-import { NoticeActions } from './NoticeAction';
-
-// Import utilities
-// @ts-ignore
-import classnames from 'classnames';
-import { STORE_NAMESPACE } from '../constants';
-import { purify } from '../utils/sanitization';
-import { defaultContext } from '../store/constants';
 import { dispatch } from '@wordpress/data';
-import { NoticeMeta } from './NoticeMeta';
+import classnames from 'classnames';
+
+import { STORE_NAMESPACE } from '../constants';
+import { defaultContext } from '../store/constants';
 import { delay } from '../utils';
+import { purify } from '../utils/sanitization';
+
+import { NoticeActions } from './NoticeAction';
+import { NoticeIcon } from './NoticeImage';
+import { NoticeMeta } from './NoticeMeta';
 
 /**
  * @typedef {import('../store').Notice} Notice

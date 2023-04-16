@@ -1,6 +1,7 @@
+import { Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { cog } from '@wordpress/icons';
-import { Button } from '@wordpress/components';
+
 import { settingsPageUrl } from '../store/constants';
 
 /**
