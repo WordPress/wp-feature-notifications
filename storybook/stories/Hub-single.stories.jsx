@@ -1,7 +1,8 @@
 /** the single notification component */
 
-import { NotificationHub } from '../../src/scripts/components/NotificationHub';
 import { dispatch } from '@wordpress/data';
+
+import { NotificationHub } from '../../src/scripts/components/NotificationHub';
 import { STORE_NAMESPACE } from '../../src/scripts/constants';
 
 export default {
