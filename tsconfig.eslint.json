@@ -4,6 +4,8 @@
 		"allowJs": true
 	},
 	"include": [
+		"tests/jse2e/**/*",
+		"tests/jsunit/**/*",
 		".eslintrc.js",
 		".prettierrc.js",
 		"babel.config.js",
