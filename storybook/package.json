@@ -7,18 +7,18 @@
 		"build": "storybook build --output-dir ../docs/"
 	},
 	"devDependencies": {
-		"@storybook/addons": "^7.0.4",
-		"@storybook/addon-a11y": "^7.0.4",
-		"@storybook/addon-docs": "^7.0.4",
-		"@storybook/addon-links": "^7.0.4",
-		"@storybook/addon-essentials": "^7.0.4",
-		"@storybook/addon-interactions": "^7.0.4",
-		"@storybook/blocks": "^7.0.4",
-		"@storybook/react": "^7.0.4",
-		"@storybook/react-webpack5": "^7.0.4",
-		"@storybook/theming": "^7.0.4",
+		"@storybook/addons": "^7.0.5",
+		"@storybook/addon-a11y": "^7.0.5",
+		"@storybook/addon-docs": "^7.0.5",
+		"@storybook/addon-links": "^7.0.5",
+		"@storybook/addon-essentials": "^7.0.5",
+		"@storybook/addon-interactions": "^7.0.5",
+		"@storybook/blocks": "^7.0.5",
+		"@storybook/react": "^7.0.5",
+		"@storybook/react-webpack5": "^7.0.5",
+		"@storybook/theming": "^7.0.5",
 		"@wordpress/wp-feature-notifications": "../",
-		"storybook": "^7.0.4"
+		"storybook": "^7.0.5"
 	},
 	"eslintConfig": {
 		"extends": [

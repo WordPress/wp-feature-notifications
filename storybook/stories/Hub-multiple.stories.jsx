@@ -1,7 +1,7 @@
 /** the single notification component */
 import { NotificationHub } from '../../src/scripts/components/NotificationHub';
 import { dispatch } from '@wordpress/data';
-import { NOTIFY_NAMESPACE } from '../../src/scripts/store/constants';
+import { STORE_NAMESPACE } from '../../src/scripts/constants';
 import * as jsonData from '../../includes/restapi/fake_api.json';
 
 export default {
@@ -19,12 +19,13 @@ export default {
  * Notification HUB component
  */
 const Template = () => {
-	dispatch( NOTIFY_NAMESPACE ).clear( 'adminbar' );
+	dispatch( STORE_NAMESPACE ).clear( 'adminbar' );
 
 	jsonData.forEach( ( notice ) => {
-		dispatch( NOTIFY_NAMESPACE ).addNotice( {
+		dispatch( STORE_NAMESPACE ).addNotice( {
 			...notice,
 			context: 'adminbar',
+			date: new Date( notice.date ),
 		} );
 	} );
 

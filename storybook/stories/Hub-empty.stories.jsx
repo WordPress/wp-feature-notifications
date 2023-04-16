@@ -3,7 +3,7 @@
 import { __ } from '@wordpress/i18n';
 import { NotificationHub } from '../../src/scripts/components/NotificationHub';
 import { dispatch } from '@wordpress/data';
-import { NOTIFY_NAMESPACE } from '../../src/scripts/store/constants';
+import { STORE_NAMESPACE } from '../../src/scripts/constants';
 
 export default {
 	title: 'wp-feature-notifications/Notification Hub/Empty',
@@ -20,7 +20,7 @@ export default {
  * Notification UI component
  */
 const Template = () => {
-	dispatch( NOTIFY_NAMESPACE ).clear( 'adminbar' );
+	dispatch( STORE_NAMESPACE ).clear( 'adminbar' );
 
 	return (
 		<div id="wpcontent">
