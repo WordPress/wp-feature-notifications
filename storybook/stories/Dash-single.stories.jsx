@@ -36,9 +36,11 @@ const Template = ( args ) => (
 export const single = Template.bind( {} );
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 single.args = {
-	title: 'Notice Example',
+	id: 15,
+	title: 'Try this new Notification feature',
+	source: '#WP-Notify',
+	date: '2023-04-15T19:35:56',
 	message:
-		'Notice message. This is a simple example and will be shown in the dashboard',
-	date: Date.now() * 0.001,
+		'👋 Hello from the WP Feature Notifications team! Thank you for testing out the plugin. You might want to give it a try so click on the bell icon on the right side of the adminbar.',
 	dismissible: true,
 };

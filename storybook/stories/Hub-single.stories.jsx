@@ -1,9 +1,8 @@
 /** the single notification component */
 
 import { NotificationHub } from '../../src/scripts/components/NotificationHub';
-import * as jsonData from '../../includes/restapi/fake_api.json';
 import { dispatch } from '@wordpress/data';
-import { NOTIFY_NAMESPACE } from '../../src/scripts/store/constants';
+import { STORE_NAMESPACE } from '../../src/scripts/constants';
 
 export default {
 	title: 'wp-feature-notifications/Notification Hub/Single',
@@ -17,30 +16,17 @@ export default {
 };
 
 /**
- * @typedef {import('../../src/scripts/store').Notice} Notice
- */
-/**
- * Given a context, get the notifications for that context.
- *
- * @param {string} context The context to get the notifications for.
- * @param {number} count   The number of notifications.
- *
- * @return {Notice[]} The context notification objects.
- */
-const getNotificationByType = ( context, count ) => {
-	const notes = jsonData.filter( ( notice ) => notice.context === context );
-	return notes.slice( 0, count );
-};
-
-/**
  * Notification UI component
+ *
+ * @param {Object} args The notice controls.
  */
-const Template = () => {
-	dispatch( NOTIFY_NAMESPACE ).clear( 'adminbar' );
+const Template = ( args ) => {
+	dispatch( STORE_NAMESPACE ).clear( 'adminbar' );
 
-	dispatch( NOTIFY_NAMESPACE ).addNotice(
-		...getNotificationByType( 'adminbar', 1 )
-	);
+	dispatch( STORE_NAMESPACE ).addNotice( {
+		...args,
+		context: 'adminbar',
+	} );
 
 	return (
 		<div id="wpcontent">
@@ -65,7 +51,14 @@ const Template = () => {
 	);
 };
 
-export const Single = Template.bind( {} );
+export const single = Template.bind( {} );
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-
-Single.args = {};
+single.args = {
+	id: 15,
+	title: 'Try this new Notification feature',
+	source: '#WP-Notify',
+	date: new Date(),
+	message:
+		'👋 Hello from the WP Feature Notifications team! Thank you for testing out the plugin. You might want to give it a try so click on the bell icon on the right side of the adminbar.',
+	dismissible: true,
+};
