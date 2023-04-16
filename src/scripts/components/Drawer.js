@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from '@wordpress/element';
+import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { useShortcut } from '@wordpress/keyboard-shortcuts';
 import { Resizable } from 're-resizable';
@@ -26,29 +26,6 @@ export const Drawer = ( { focus, blur, instance } ) => {
 	useShortcut( 'wp-feature-notifications/close-drawer', () => blur );
 	const [ width, setWidth ] = useState( /** @type {number} */ ( HUB_WIDTH ) );
 
-	/**
-	 * Maybe resize the maximum width of the drawer if it exceeds the window size.
-	 *
-	 * @return {void}
-	 */
-	const handleWindowResize = useCallback( () => {
-		if ( window.innerWidth < width ) {
-			if ( window.innerWidth < HUB_WIDTH ) {
-				setWidth( HUB_WIDTH );
-			} else {
-				setWidth( window.innerWidth );
-			}
-		}
-	}, [ width ] );
-
-	useEffect( () => {
-		window.addEventListener( 'resize', handleWindowResize );
-
-		return () => {
-			window.removeEventListener( 'resize', handleWindowResize );
-		};
-	}, [ handleWindowResize ] );
-
 	return (
 		<aside
 			id="wp-notifications-hub"
@@ -60,13 +37,9 @@ export const Drawer = ( { focus, blur, instance } ) => {
 				size={ { width, height: '100%' } }
 				enable={ { left: true } }
 				onResizeStop={ ( _e, _direction, _ref, d ) => {
-					const currentWidth = width + d.width;
-					if ( currentWidth > window.innerWidth ) {
-						setWidth( window.innerWidth );
-					} else {
-						setWidth( width + d.width );
-					}
+					setWidth( width + d.width );
 				} }
+				maxWidth={ '100vw' }
 				minWidth={ HUB_WIDTH }
 			>
 				<div className={ 'hub-wrapper' }>
