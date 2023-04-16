@@ -22,7 +22,7 @@ export const Drawer = ( { focus, blur, instance } ) => {
 	 * Enables the shortcut to close the drawer with the escape key
 	 */
 	useShortcut( 'wp-feature-notifications/close-drawer', () => blur );
-	const [ width, setWidth ] = useState( HUB_WIDTH );
+	const [ width, setWidth ] = useState( /** @type {number} */ ( HUB_WIDTH ) );
 
 	return (
 		<aside
