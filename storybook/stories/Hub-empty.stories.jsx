@@ -1,8 +1,9 @@
 /** the empty notification component */
 
-import { __ } from '@wordpress/i18n';
-import { NotificationHub } from '../../src/scripts/components/NotificationHub';
 import { dispatch } from '@wordpress/data';
+import { __ } from '@wordpress/i18n';
+
+import { NotificationHub } from '../../src/scripts/components/NotificationHub';
 import { STORE_NAMESPACE } from '../../src/scripts/constants';
 
 export default {

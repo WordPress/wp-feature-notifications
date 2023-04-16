@@ -1,8 +1,9 @@
 /** the single notification component */
-import { NotificationHub } from '../../src/scripts/components/NotificationHub';
 import { dispatch } from '@wordpress/data';
-import { STORE_NAMESPACE } from '../../src/scripts/constants';
+
 import * as jsonData from '../../includes/restapi/fake_api.json';
+import { NotificationHub } from '../../src/scripts/components/NotificationHub';
+import { STORE_NAMESPACE } from '../../src/scripts/constants';
 
 export default {
 	title: 'wp-feature-notifications/Notification Hub/Multiple',

@@ -28,6 +28,14 @@ module.exports = {
 			},
 		],
 	},
+	overrides: [
+		{
+			files: 'tests/**/*',
+			rules: {
+				'no-undef': 'off',
+			},
+		},
+	],
 	settings: {
 		'import/parsers': {
 			'@typescript-eslint/parser': [ '.js', '.jsx', '.ts', '.tsx' ],
