@@ -8,6 +8,26 @@ module.exports = {
 		project: [ './tsconfig.json', 'tsconfig.eslint.json' ],
 	},
 	extends: [ 'plugin:@wordpress/eslint-plugin/recommended' ],
+	rules: {
+		'import/order': [
+			'error',
+			{
+				alphabetize: {
+					order: 'asc',
+					caseInsensitive: true,
+				},
+				'newlines-between': 'always',
+				groups: [ 'builtin', 'external', 'parent', 'sibling', 'index' ],
+				pathGroups: [
+					{
+						pattern: '@wordpress/**',
+						group: 'external',
+					},
+				],
+				pathGroupsExcludedImportTypes: [ 'builtin' ],
+			},
+		],
+	},
 	settings: {
 		'import/parsers': {
 			'@typescript-eslint/parser': [ '.js', '.jsx', '.ts', '.tsx' ],

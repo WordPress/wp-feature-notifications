@@ -1,13 +1,14 @@
 import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 
+import store from '../store';
 import { defaultContext } from '../store/constants';
+import { splitByDate } from '../utils/';
+
 import { NoticeEmpty } from './NoticeEmpty';
+import { NoticeHubFooter } from './NoticeHubFooter';
 import { NoticeHubSectionHeader } from './NoticeHubSectionHeader';
 import { NoticesLoop } from './NoticesLoop';
-import { splitByDate } from '../utils/';
-import { NoticeHubFooter } from './NoticeHubFooter';
-import store from '../store';
 
 export const WEEK_IN_SECONDS = 3600 * 24 * 7;
 

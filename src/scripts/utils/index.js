@@ -1,6 +1,7 @@
-import { WEEK_IN_MILLISECONDS, STORE_NAMESPACE } from '../constants';
 import { dispatch } from '@wordpress/data';
 import { dateI18n } from '@wordpress/date';
+
+import { WEEK_IN_MILLISECONDS, STORE_NAMESPACE } from '../constants';
 
 /**
  * @typedef {import('../store').Notice} Notice

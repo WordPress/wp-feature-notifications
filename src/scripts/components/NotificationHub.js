@@ -1,13 +1,14 @@
-import { __ } from '@wordpress/i18n';
+import { useDispatch } from '@wordpress/data';
 import { useEffect, useRef, useState } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
 import {
 	ShortcutProvider,
 	store as keyboardShortcutsStore,
 } from '@wordpress/keyboard-shortcuts';
-import { useDispatch } from '@wordpress/data';
+import * as classNames from 'classnames';
+
 import { Drawer } from './Drawer';
 import { NotificationHubIcon } from './NotificationHubIcon';
-import * as classNames from 'classnames';
 
 /**
  * The notification hub component.

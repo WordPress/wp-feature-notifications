@@ -1,4 +1,5 @@
 import apiFetch from '@wordpress/api-fetch';
+
 import { API_PATH } from '../constants';
 
 /**

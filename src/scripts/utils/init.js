@@ -1,4 +1,5 @@
 import { createRoot } from '@wordpress/element';
+
 import { NoticesArea } from '../components/NoticesArea';
 import { NotificationHub } from '../components/NotificationHub';
 
