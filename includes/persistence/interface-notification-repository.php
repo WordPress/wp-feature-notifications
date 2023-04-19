@@ -6,7 +6,6 @@ use DateInterval;
 use DateTimeInterface;
 
 use WP\Notifications;
-use WP\Notifications\Recipients;
 
 
 interface Notification_Repository {
@@ -20,25 +19,6 @@ interface Notification_Repository {
 	 *                                          false if not found.
 	 */
 	public function find_by_id( $id );
-
-	/**
-	 * Find all notifications for a given recipient.
-	 *
-	 * @param Recipients\Recipient $recipient  Recipient to retrieve the
-	 *                                         notifications for.
-	 * @param int                  $pagination Optional. Number of elements per
-	 *                                         page. Defaults to 10.
-	 * @param int                  $offset     Optional. Offset into the result
-	 *                                         set. Defaults to 0.
-	 *
-	 * @return Notifications\Notification[] Array of notifications, empty array if
-	 *                                      none found.
-	 */
-	public function find_by_recipient(
-		Recipients\Recipient $recipient,
-		$pagination = 10,
-		$offset = 0
-	);
 
 	/**
 	 * Find all notifications for a given date period.

@@ -5,7 +5,6 @@ namespace WP\Notifications\Persistence;
 use DateTimeInterface;
 
 use WP\Notifications;
-use WP\Notifications\Recipients;
 
 class Wpdb_Notification_Repository
 	extends Abstract_Notification_Repository {
@@ -25,28 +24,6 @@ class Wpdb_Notification_Repository
 
 		// TODO: Implement query.
 		return false;
-	}
-
-	/**
-	 * Find all notifications for a given recipient.
-	 *
-	 * @param Recipients\Recipient $recipient  Recipient to retrieve the
-	 *                                         notifications for.
-	 * @param int                  $pagination Optional. Number of elements per
-	 *                                         page. Defaults to 10.
-	 * @param int                  $offset     Optional. Offset into the result
-	 *                                         set. Defaults to 0.
-	 *
-	 * @return Notifications\Notification[] Array of notifications, empty array if
-	 *                                      none found.
-	 */
-	public function find_by_recipient(
-		Recipients\Recipient $recipient,
-		$pagination = 10,
-		$offset = 0
-	) {
-		// TODO: Implement query.
-		return array();
 	}
 
 	/**

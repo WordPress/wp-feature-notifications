@@ -6,6 +6,6 @@ use JsonSerializable;
 
 use WP\Notifications;
 
-interface Image extends JsonSerializable, Notifications\Json_Unserializable {
+interface Image extends JsonSerializable {
 
 }
