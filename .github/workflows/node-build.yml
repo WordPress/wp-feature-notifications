@@ -3,8 +3,6 @@ name: JS Continuous Integration
 on:
     pull_request:
         branches: [develop, trunk]
-    push:
-        branches: [feature/mvp]
     workflow_dispatch:
 
 jobs:
@@ -23,6 +21,8 @@ jobs:
 
             - name: Setup Node.js
               uses: ./.github/actions/node
+              with:
+                  node-version: ${{ matrix.node-version }}
 
             - name: Build package
               shell: bash
