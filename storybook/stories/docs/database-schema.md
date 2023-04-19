@@ -11,31 +11,39 @@
 
 Message data is related to many users through the `wp_notifications_queue` table.
 
+Message are translated at the time of emission to the preferences of the users subscribed to the channel. A single notice emission may have multiple translated message row entries.
+
 ### wp_notifications_messages table
 
 - `id: BIGINT(30)` - The ID of the notification.
 
 - `channel_name: VARCHAR(32)` - The scoped channel name the notification was emitted from.
 
-- `channel_title: TINYTEXT` - The channel title.
-
-  This could possibly be stored in the `meta` column.
-
 - `created_at: DATETIME` - The timestamp of when the message was broadcast.
 
-- `expires_at:  DATETIME | null` - The optional timestamp of when the message expires.
+- `title: TINYTEXT` - The translated title of the notification.
 
-  Allowing message emitters to specify when a message expires would help signal when it is appropriate to automatically dispose of a message. It should be best practice to provide `expires_at` for any message that isn't high priority.
+- `message: TINYTEXT` - The translated message content of the notification.
 
-- `severity: VARCHAR(20)` - The severity of the message, examples: info, warning, alert.
+- `meta: JSON` - Data that doesn’t have to be queried and may change while development of the notification system.
 
-  This should be a predefined list of values.
+  - `accept_label:  string|null` - The translated accept action label.
 
-- `title: TINYTEXT | null` - The translated title of the notification.
+  - `accept_link:   string|null` - The URL of the accept action.
 
-- `message: TINYTEXT` - The translated message content of the notification
+  - `channel_title: string|null` - The translated, human-readable title of the channel the message was emitted from.
 
-- `meta: JSON` - Data that doesn’t have to be queried, like icon, image or action information.
+  - `dismiss_label: string|null` - The translated dismiss action label.
+
+  - `icon:          string|null` - The icon of the notification message.
+
+  - `is_dismissible boolean|null` - Whether the notification is dismissible.
+
+    Most persisted notifications should be dismissible, otherwise they will not be able to be removed from the notification system by the user. But this is left as a way to maintain a compatible API with the existing notices.
+
+  - `severity:      string|null` - The severity of the message, examples: info, warning, alert.
+
+    This should be a predefined list of values.
 
 ## Message Queue
 
@@ -47,15 +55,23 @@ If a message has been orphan it can safely be deleted.
 
 ### wp_notifications_queue table
 
-- `message_id: BIGINT(20)` - The ID of the enqueued message.
+- `message_id: BIGINT(20)` - The ID of the translated message related to the notice.
 
-- `user_id: BIGINT(20)` - The ID of the user.
+- `user_id: BIGINT(20)` - The ID of the user the notice belongs to.
 
-- `dismissed_at: DATETIME | null` - The timestamp of when the notification was dismissed.
+- `channel_name: VARCHAR(64)` - The namespaced channel name the notice was emitted from.
 
-- `displayed_at: DATETIME | null` - The timestamp of when the notification was first displayed.
+- `context: VARCHAR(64)` - The display context of the notice.
 
-  There could definitely be addition statuses, and if the time of the state update is deemed unnecessary, perhaps they could be a single enum rather that timestamps.
+- `created_at: DATETIME|NULL` - The datetime of when the notice was create.
+
+- `dismissed_at: DATETIME|NULL` - The datetime of when the notice was dismissed.
+
+- `displayed_at: DATETIME|NULL` - The datetime of when the notice was first displayed.
+
+- `expires_at:  DATETIME|NULL` - The optional datetime of when the message expires.
+
+  Allowing notice emitters to specify when a notice expires would help signal when it is appropriate to automatically dispose of a notice. It should be best practice to provide `expires_at` for any notice that isn't high priority.
 
 ## Subscriptions
 
@@ -67,11 +83,13 @@ Notifications can become overwhelming if the user isn't provided with options to
 
 ### wp_notifications_subscriptions
 
-- `user_id: BIGINT(20)` - The ID of the user subscribed to the channel.
+- `user_id: BIGINT(20)` - The ID of the user the subscription belongs to.
 
-- `channel_name: VARCHAR(32)` - The scoped name of the channel subscribed to.
+- `channel_name: VARCHAR(65)` - The scoped name of the channel subscribed to.
 
-- `snoozed_until: DATETIME | null` - The optional timestamp of when to resume the channel.
+- `created_at: DATETIME|NULL` - The datetime of when the subscription was create.
+
+- `snoozed_until: DATETIME|NULL` - The optional timestamp of when to resume the channel.
 
 ## Metadata
 
