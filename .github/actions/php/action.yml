@@ -1,29 +1,29 @@
 name: Setup PHP
 
 runs:
-  using: 'composite'
-  steps:
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{ matrix.php }}
-        tools: composer
-        extensions: mysql
-        coverage: none
+    using: 'composite'
+    steps:
+        - name: Setup PHP
+          uses: shivammathur/setup-php@v2
+          with:
+              php-version: ${{ matrix.php }}
+              tools: composer
+              extensions: mysql
+              coverage: none
 
-    - name: Get Composer cache directory
-      id: composer-cache
-      shell: bash
-      run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+        - name: Get Composer cache directory
+          id: composer-cache
+          shell: bash
+          run: echo "dir=$(composer config cache-files-dir)" >> ${GITHUB_OUTPUT}
 
-    - name: Cache Composer packages
-      uses: actions/cache@v3
-      with:
-        path: ${{ steps.composer-cache.outputs.dir }}
-        key: ${{ runner.os }}-php-${{ matrix.php }}-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-${{ matrix.php }}-
+        - name: Cache Composer packages
+          uses: actions/cache@v3
+          with:
+              path: ${{ steps.composer-cache.outputs.dir }}
+              key: ${{ runner.os }}-php-${{ matrix.php }}-${{ hashFiles('**/composer.lock') }}
+              restore-keys: |
+                  ${{ runner.os }}-php-${{ matrix.php }}-
 
-    - name: Install dependencies
-      shell: bash
-      run: composer install --prefer-dist --no-progress
+        - name: Install dependencies
+          shell: bash
+          run: composer install --prefer-dist --no-progress
