@@ -1,5 +1,5 @@
 /** Wp-notify style */
-import * as jsonData from '../../includes/restapi/fake_api.json';
+import jsonData from '../../includes/restapi/fake_api.json';
 import { NoticesLoop } from '../../src/scripts/components/NoticesLoop';
 
 // filter out non dashboard notices
