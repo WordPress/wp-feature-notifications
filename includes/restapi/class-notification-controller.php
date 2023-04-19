@@ -23,7 +23,7 @@ class Notification_Controller extends WP_REST_Controller {
 	 *
 	 * @type string
 	 */
-	const NAMESPACE = 'wp/v2';
+	const NAMESPACE = 'wp-notifications/v1';
 
 	/**
 	 * Base for notification REST routes.
