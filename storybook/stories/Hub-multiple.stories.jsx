@@ -1,7 +1,7 @@
 /** the single notification component */
 import { dispatch } from '@wordpress/data';
 
-import * as jsonData from '../../includes/restapi/fake_api.json';
+import jsonData from '../../includes/restapi/fake_api.json';
 import { NotificationHub } from '../../src/scripts/components/NotificationHub';
 import { STORE_NAMESPACE } from '../../src/scripts/constants';
 
