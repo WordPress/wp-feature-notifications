@@ -4,7 +4,7 @@ namespace WP\Notifications;
 
 use JsonSerializable;
 
-interface Notification extends JsonSerializable, Json_Unserializable {
+interface Notification extends JsonSerializable {
 
 	/**
 	 * Get the ID of the notification.

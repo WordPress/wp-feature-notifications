@@ -2,8 +2,11 @@
 
 namespace WP\Notifications;
 
-interface Status {
+interface Status_Interface {
 
-	const UNREAD = 'unread';
-	const READ   = 'read';
+	const NEW         = 'new';
+	const UNDISPLAYED = 'undisplayed';
+	const DISPLAYED   = 'displayed';
+	const DISMISSED   = 'dismissed';
+
 }
