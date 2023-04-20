@@ -24,7 +24,7 @@ class Test_BaseImage extends TestCase {
 	}
 
 	/**
-	 * Tests if an WPNotify_Image can be instantiated from JSON string
+	 * Tests if an Image can be instantiated from JSON string
 	 *
 	 * @param array  $image_data indexed array with [source,alt] elements
 	 * @param string $json

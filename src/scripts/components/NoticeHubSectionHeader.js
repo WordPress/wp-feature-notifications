@@ -2,7 +2,7 @@ import { Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { check } from '@wordpress/icons';
 
-import { clearNotifyDrawer } from '../utils/';
+import { clearNotificationsDrawer } from '../utils/';
 
 /**
  * The section header for the notices section drawer.
@@ -19,7 +19,7 @@ export const NoticeHubSectionHeader = ( { isMain, unreadCount, context } ) => {
 			<h2>{ unreadCount } new notifications</h2>
 			<Button
 				className="wp-notifications-action mark-as-read button-link"
-				onClick={ () => clearNotifyDrawer( context ) }
+				onClick={ () => clearNotificationsDrawer( context ) }
 				icon={ check }
 				isSmall={ true }
 				text={ __( 'Mark all as read' ) }

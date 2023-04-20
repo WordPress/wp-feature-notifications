@@ -3,7 +3,7 @@
  */
 #wpbody {
 
-	#wp-notification-dashboard-notices {
+	#wp-notifications-dashboard-notices {
 		clear: both;
 	}
 
@@ -19,7 +19,6 @@
 		grid-template-rows: auto;
 		grid-template-columns: 1fr 200px;
 		grid-auto-flow: row;
-		gap: 50px;
 
 		justify-content: space-between;
 
