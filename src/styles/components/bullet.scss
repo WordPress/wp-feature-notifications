@@ -5,7 +5,7 @@
 $bullet-width: 6px;
 
 #wpbody .wp-notification-wrap,
-#wpadminbar .wp-notifications.new {
+#wpadminbar .wp-notification.new {
 	position: relative;
 
 	> :first-child::before {
@@ -23,7 +23,7 @@ $bullet-width: 6px;
 	}
 }
 
-#wpadminbar .wp-notifications.new > :first-child::before {
+#wpadminbar .wp-notification.new > :first-child::before {
 	top: calc(var(--wp-notifications--hub-image-size) * 0.5 + var(--wp-notifications--hub-spacing-top));
 	left: 2px;
 }
