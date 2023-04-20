@@ -19,11 +19,11 @@ $bullet-width: 6px;
 		left: #{ (-36px - $bullet-width) * 0.5 }; // 9 - left padding - border /2  + bullet/2
 
 		border-radius: 50%;
-		background: var(--wp-notify--color--link);
+		background: var(--wp-notifications--color--link);
 	}
 }
 
 #wpadminbar .wp-notifications.new > :first-child::before {
-	top: calc(var(--wp-notify--hub-image-size) * 0.5 + var(--wp-notify--hub-spacing-top));
+	top: calc(var(--wp-notifications--hub-image-size) * 0.5 + var(--wp-notifications--hub-spacing-top));
 	left: 2px;
 }
