@@ -27,7 +27,7 @@ const Template = ( args ) => (
 				'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
 		} }
 	>
-		<div id="wp-notify-dashboard-notices" className="wrap">
+		<div id="wp-notifications-dashboard-notices" className="wrap">
 			<Notice { ...args } context={ 'dashboard' } />
 		</div>
 	</div>

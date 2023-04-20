@@ -17,9 +17,9 @@ export * as store from './store';
 /**
  * Wp-Notify Api
  *
- * @member {Object} notify
+ * @member {Object} notifications
  */
-const notify = {
+const notifications = {
 	/**
 	 * Fetch for new notices
 	 */
@@ -39,9 +39,9 @@ const notify = {
 	 * @param {Object} args
 	 * @example ```js
 	 * // if you need to find a notification by key
-	 * notify.find(5) // [{ 'id': 5, title: "hello", location: "dashboard", ... }]
+	 * notifications.find(5) // [{ 'id': 5, title: "hello", location: "dashboard", ... }]
 	 * // or by term
-	 * notify.find("hello", {term: 'title'}) // [{ 'id': 5, title: "hello", location: "dashboard", ... }, {...}]
+	 * notifications.find("hello", {term: 'title'}) // [{ 'id': 5, title: "hello", location: "dashboard", ... }, {...}]
 	 * ```
 	 */
 	find: ( term, args ) => select( STORE_NAMESPACE ).findNotice( term, args ),
@@ -69,8 +69,8 @@ const notify = {
 		dispatch( STORE_NAMESPACE ).clear( context ),
 };
 
-/** Appends the wp-notify instance to window.wp in order to provide a public API */
-window.wp.notify = notify;
+/** Appends the wp-notifications instance to window.wp in order to provide a public API */
+window.wp.notifications = notifications;
 
 /**
  * Loops into contexts and register the found locations into the store state
@@ -90,6 +90,6 @@ select( STORE_NAMESPACE ).fetchUpdates();
 contexts.forEach( ( context ) => addContext( context ) );
 
 /**
- *  exports notify store functions for further uses
+ *  exports notifications store functions for further uses
  */
-export default notify;
+export default notifications;

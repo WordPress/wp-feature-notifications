@@ -19,7 +19,7 @@ export function addContext( context ) {
 		/**
 		 * Renders the component into the specified context
 		 *
-		 * @member {HTMLElement} notifyDash - the area that will host the notifications
+		 * @member {HTMLElement} notificationDash - the area that will host the notifications
 		 */
 		componentRoot.render(
 			context === 'adminbar' ? (

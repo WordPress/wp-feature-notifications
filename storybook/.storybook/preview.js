@@ -22,7 +22,7 @@ import '../stories/assets/wp-core/nav-menus.css';
 import '../stories/assets/wp-core/normalize.css';
 import '../stories/assets/wp-core/site-health.css';
 
-/** Wp-notify style */
+/** wp-feature-notifications style */
 import '../../src/styles/wp-notifications.scss';
 
 export const parameters = {

@@ -1,4 +1,4 @@
-/** Wp-notify style */
+/** wp-feature-notifications style */
 import jsonData from '../../includes/restapi/fake_api.json';
 import { NoticesLoop } from '../../src/scripts/components/NoticesLoop';
 
