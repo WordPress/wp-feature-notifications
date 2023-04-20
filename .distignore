@@ -41,6 +41,7 @@ package-lock.json
 package.json
 phpcs.xml.dist
 phpunit.xml.dist
+CONTRIBUTING.md
 README.md
 readme.md
 tsconfig.eslint.json
