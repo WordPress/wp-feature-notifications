@@ -5,17 +5,17 @@
 
 	.wp-notification {
 		max-width: 100%;
-		margin-left: var(--wp-notify--hub-spacing-gap);
-		margin-right: var(--wp-notify--hub-spacing-gap);
+		margin-left: var(--wp-notifications--hub-spacing-gap);
+		margin-right: var(--wp-notifications--hub-spacing-gap);
 		user-select: none;
 		-webkit-user-drag: none;
 
-		padding: var(--wp-notify--hub-spacing-top) var(--wp-notify--hub-spacing-horizontal) var(--wp-notify--hub-spacing-gap);
+		padding: var(--wp-notifications--hub-spacing-top) var(--wp-notifications--hub-spacing-horizontal) var(--wp-notifications--hub-spacing-gap);
 
 		gap: 12px;
 		display: grid;
 		grid-template-rows: auto;
-		grid-template-columns: var(--wp-notify--hub-image-size) auto;
+		grid-template-columns: var(--wp-notifications--hub-image-size) auto;
 		grid-auto-flow: row;
 
 		// shows the selected item using the webkit default styling
@@ -49,9 +49,9 @@
 		}
 
 		&-image {
-			min-width: var(--wp-notify--hub-image-size);
-			width: var(--wp-notify--hub-image-size);
-			height: var(--wp-notify--hub-image-size);
+			min-width: var(--wp-notifications--hub-image-size);
+			width: var(--wp-notifications--hub-image-size);
+			height: var(--wp-notifications--hub-image-size);
 			position: relative;
 			grid-row: 1;
 
@@ -95,10 +95,10 @@
 	* Notice Severity
 	*/
 	$alertSeverity: (
-		"alert": var(--wp-notify--color--error),
-		"warning": var(--wp-notify--color--warning),
-		"success": var(--wp-notify--color--success),
-		"info": var(--wp-notify--color--info)
+		"alert": var(--wp-notifications--color--error),
+		"warning": var(--wp-notifications--color--warning),
+		"success": var(--wp-notifications--color--success),
+		"info": var(--wp-notifications--color--info)
 	);
 
 	@each $key, $value in $alertSeverity {

@@ -8,9 +8,9 @@
 	}
 
 	.wp-notification {
-		--wp-notify--hub-spacing-top: clamp(1em, 3vh, 2em);
-		--wp-notify--hub-element-bottom: clamp(1em, 3vh, 2em);
-		--wp-notify--hub-spacing-gap: clamp(2em, 3vh, 3em);
+		--wp-notifications--hub-spacing-top: clamp(1em, 3vh, 2em);
+		--wp-notifications--hub-element-bottom: clamp(1em, 3vh, 2em);
+		--wp-notifications--hub-spacing-gap: clamp(2em, 3vh, 3em);
 
 		width: 100%;
 		box-sizing: border-box;
@@ -23,14 +23,14 @@
 
 		justify-content: space-between;
 
-		padding: var(--wp-notify--hub-spacing-top) 20px var(--wp-notify--hub-spacing-gap) 36px;
-		margin: 10px 0 var(--wp-notify--hub-element-bottom);
+		padding: var(--wp-notifications--hub-spacing-top) 20px var(--wp-notifications--hub-spacing-gap) 36px;
+		margin: 10px 0 var(--wp-notifications--hub-element-bottom);
 		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
 
 		// the notification left border
 		border-left-width: 4px;
 		border-left-style: solid;
-		border-color: var(--wp-notify--color--primary);
+		border-color: var(--wp-notifications--color--primary);
 
 		@media #{$breakpoint} {
 			grid-template-columns: auto;
@@ -60,7 +60,7 @@
 
 		// join subsequent notifications
 		+ .wp-notification {
-			margin-top: calc(var(--wp-notify--hub-element-bottom) * -1);
+			margin-top: calc(var(--wp-notifications--hub-element-bottom) * -1);
 			border-top: none;
 		}
 
