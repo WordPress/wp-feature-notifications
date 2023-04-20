@@ -15,7 +15,7 @@ import { addContext } from './utils/init';
 export * as store from './store';
 
 /**
- * Wp-Notify Api
+ * WP Feature Notifications API
  *
  * @member {Object} notifications
  */

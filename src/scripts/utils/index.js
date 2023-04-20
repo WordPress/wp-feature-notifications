@@ -74,6 +74,6 @@ export const formatDate = ( date ) => {
  *
  * @param {string} context - The context of the notices. This is used to determine which notices to clear.
  */
-export const clearNotifyDrawer = ( context ) => {
+export const clearNotificationsDrawer = ( context ) => {
 	dispatch( STORE_NAMESPACE ).clear( context );
 };
