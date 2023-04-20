@@ -137,8 +137,6 @@ function render_admin_options_page() {    ?>
 				'show'   => __( 'Show in:' ),
 				'admin'  => __( 'Admin' ),
 				'email'  => __( 'Email' ),
-				'sms'    => __( 'Sms' ),
-				'app'    => __( 'App' ),
 			);
 		}
 
@@ -182,8 +180,6 @@ function render_admin_options_page() {    ?>
 					'show'   => '',
 					'admin'  => '<input type="checkbox" id="cb-admin-' . $i . '" />',
 					'email'  => '<input type="checkbox" id="cb-email-' . $i . '" />',
-					'sms'    => '<input type="checkbox" id="cb-sms-' . $i . '" />',
-					'app'    => '<input type="checkbox" id="cb-app-' . $i . '" />',
 				);
 			}
 			return $data;
@@ -196,8 +192,6 @@ function render_admin_options_page() {    ?>
 				case 'show':
 				case 'admin':
 				case 'email':
-				case 'sms':
-				case 'app':
 					return $item[ $column_name ];
 
 				default:
