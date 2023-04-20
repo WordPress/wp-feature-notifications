@@ -1,7 +1,8 @@
 import { Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { check } from '@wordpress/icons';
-import { clearNotifyDrawer } from '../utils/drawer';
+
+import { clearNotifyDrawer } from '../utils/';
 
 /**
  * The section header for the notices section drawer.
@@ -15,10 +16,9 @@ import { clearNotifyDrawer } from '../utils/drawer';
 export const NoticeHubSectionHeader = ( { isMain, unreadCount, context } ) => {
 	return isMain ? (
 		<header>
-			<h2>{ unreadCount } unread notifications</h2>
+			<h2>{ unreadCount } new notifications</h2>
 			<Button
-				id="clear-all-wp-notify-adminbar"
-				className="wp-notification-action wp-notification-action-markread button-link"
+				className="wp-notifications-action mark-as-read button-link"
 				onClick={ () => clearNotifyDrawer( context ) }
 				icon={ check }
 				isSmall={ true }

@@ -1,0 +1,47 @@
+// Mobile breakpoint used in wp-admin.
+$breakpoint: "screen and (max-width: 782px)";
+
+// WP Notification Feature base colors
+$color-yellow: #ffb900;     // Yellow
+$color-green: #46b450;      // Green
+$color-red: #d94f4f;        // Alert Red
+$color-blue: #0071a1;       // Blue Dark 900
+$color-blue-light: #72aee6; // Blue 20
+
+// WP Notification Feature base tones
+$color-white: #fff;         // White
+$color-black-200: #e2e4e7; // Gray 200
+$color-black-300: #e8eaeb; // Gray 300
+$color-black-400: #c3c4c7; // Gray 400
+$color-black-500: #6c7781; // Gray 500
+$color-black-700: #444;    // Gray 700
+$color-black-800: #23282d; // Gray 800
+$color-black: #000;        // Black
+
+// https://make.wordpress.org/design/handbook/design-guide/foundations/colors/
+:root {
+	--wp-notify--color--primary: #{$color-black-700};
+	--wp-notify--color--secondary: #{$color-black-500};
+	--wp-notify--color--background: #{$color-white};
+
+	--wp-notify--color--scrollbar: #{$color-black-300};
+	--wp-notify--color--link: #{$color-blue};
+	--wp-notify--color--link-active: #{$color-blue-light};
+	--wp-notify--color--error: #{$color-red};
+	--wp-notify--color--info: #{$color-blue};
+	--wp-notify--color--warning: #{$color-yellow};
+	--wp-notify--color--success: #{$color-green};
+
+	// WP Notification Feature hub (admin top bar)
+	--wp-notify--hub-width: 320px;
+
+	@media #{$breakpoint} {
+		--wp-notify--hub-width: 100%;
+	}
+	--wp-notify--hub-image-size: 32px;
+
+	--wp-notify--hub-spacing-top: 15px;
+	--wp-notify--hub-spacing-bottom: 17px;
+	--wp-notify--hub-spacing-horizontal: 16px;
+	--wp-notify--hub-spacing-gap: 8px;
+}

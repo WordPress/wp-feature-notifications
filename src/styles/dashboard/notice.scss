@@ -1,0 +1,102 @@
+/*
+ * Dashboard notifications
+ */
+#wpbody {
+
+	#wp-notification-dashboard-notices {
+		clear: both;
+	}
+
+	.wp-notification {
+		--wp-notify--hub-spacing-top: clamp(1em, 3vh, 2em);
+		--wp-notify--hub-element-bottom: clamp(1em, 3vh, 2em);
+		--wp-notify--hub-spacing-gap: clamp(2em, 3vh, 3em);
+
+		width: 100%;
+		box-sizing: border-box;
+
+		display: grid;
+		grid-template-rows: auto;
+		grid-template-columns: 1fr 200px;
+		grid-auto-flow: row;
+		gap: 50px;
+
+		justify-content: space-between;
+
+		padding: var(--wp-notify--hub-spacing-top) 20px var(--wp-notify--hub-spacing-gap) 36px;
+		margin: 10px 0 var(--wp-notify--hub-element-bottom);
+		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+
+		// the notification left border
+		border-left-width: 4px;
+		border-left-style: solid;
+		border-color: var(--wp-notify--color--primary);
+
+		@media #{$breakpoint} {
+			grid-template-columns: auto;
+			gap: 50px;
+
+			.wp-notification-wrap {
+				order: 2;
+			}
+		}
+
+		/**
+		 * Will removes the top-margin from the first
+		 * and bottom-margin from the last dash notifications
+		 */
+		&-wrap {
+			display: flex;
+			flex-direction: column;
+
+			> :first-child {
+				margin-top: 0;
+			}
+
+			> :last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		// join subsequent notifications
+		+ .wp-notification {
+			margin-top: calc(var(--wp-notify--hub-element-bottom) * -1);
+			border-top: none;
+		}
+
+		// notification action buttons
+		&-actions {
+			display: flex;
+			margin-top: auto;
+
+			.wp-notification-action {
+				padding: 6px 32px;
+				text-decoration: none;
+			}
+
+			.button-tertiary {
+				padding-left: 16px;
+				padding-right: 16px;
+				background-color: transparent;
+				border: none;
+
+				&:hover,
+				&:focus {
+					background-color: $color-black-300;
+				}
+			}
+		}
+
+		&-image figure {
+			max-width: 200px;
+			max-height: 200px;
+			margin: 0;
+
+			img {
+				width: 100%;
+				object-position: center;
+				object-fit: contain;
+			}
+		}
+	}
+}

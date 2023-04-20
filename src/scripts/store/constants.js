@@ -1,27 +1,18 @@
-/* global wp_notify_data */
 /**
- *  @member {string} NOTIFY_NAMESPACE WP-Notify namespace
+ * The WP Notification Feature default context.
  */
-export const NOTIFY_NAMESPACE = 'core/wp-notify';
+export const defaultContext = /** @type {const} */ 'adminbar';
 
 /**
- *  @member {string} API_PATH WP-Notify rest api path
+ * The WP Notification Feature default contexts
  */
-export const API_PATH = '/wp/v2/notifications/';
-
-/**
- *  @member {string} defaultContext WP-Notify default context
- */
-export const defaultContext = 'adminbar';
-
-/**
- *  @member {Object} context WP-Notify default contexts
- */
-export const contexts = [ defaultContext, 'dashboard' ];
+export const contexts = /** @type {const} */ [ defaultContext, 'dashboard' ];
 
 /**
  *  @member {string} the url of the notifications settings page
  */
 export const settingsPageUrl =
 	// eslint-disable-next-line camelcase
-	typeof wp_notify_data !== 'undefined' ? wp_notify_data?.settingsPage : '';
+	typeof window.wp_notifications_data !== 'undefined'
+		? window.wp_notifications_data?.settingsPage
+		: '';

@@ -1,0 +1,38 @@
+{
+	"name": "@wordpress/wp-feature-notifications-stories",
+	"version": "1.0.0",
+	"main": "stories/Introduction.stories.mdx",
+	"scripts": {
+		"start": "storybook dev -p 6006",
+		"build": "storybook build --output-dir ../docs/"
+	},
+	"devDependencies": {
+		"@storybook/addons": "^7.0.5",
+		"@storybook/addon-a11y": "^7.0.5",
+		"@storybook/addon-docs": "^7.0.5",
+		"@storybook/addon-links": "^7.0.5",
+		"@storybook/addon-essentials": "^7.0.5",
+		"@storybook/addon-interactions": "^7.0.5",
+		"@storybook/blocks": "^7.0.5",
+		"@storybook/react": "^7.0.5",
+		"@storybook/react-webpack5": "^7.0.5",
+		"@storybook/theming": "^7.0.5",
+		"@wordpress/wp-feature-notifications": "../",
+		"storybook": "^7.0.5"
+	},
+	"eslintConfig": {
+		"extends": [
+			"plugin:@wordpress/eslint-plugin/recommended"
+		],
+		"overrides": [
+			{
+				"files": [
+					"**/*.stories.*"
+				],
+				"rules": {
+					"import/no-anonymous-default-export": "off"
+				}
+			}
+		]
+	}
+}

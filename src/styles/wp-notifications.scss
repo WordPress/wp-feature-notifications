@@ -1,0 +1,19 @@
+/**
+ * WP Notification Feature Style
+ */
+
+/* Vars */
+@import "vars";
+
+/* Components */
+@import "components/notification";
+@import "components/bullet";
+
+// Dashboard notifications
+@import "dashboard/notice";
+
+// Hub notifications
+@import "hub/admin-bar";
+@import "hub/layout";
+@import "hub/elements";
+@import "hub/notice";
