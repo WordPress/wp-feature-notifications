@@ -10,8 +10,8 @@
 	flex-direction: column;
 	height: 100%;
 	padding: 30px 0 0;
-	background: var(--wp-notify--color--background);
-	box-shadow: 0 0 24px -16px var(--wp-notify--color--primary);
+	background: var(--wp-notifications--color--background);
+	box-shadow: 0 0 24px -16px var(--wp-notifications--color--primary);
 	box-sizing: border-box;
 	overflow: hidden;
 
@@ -46,7 +46,7 @@
 				border: 6px solid transparent;
 				background-clip: padding-box;
 				-webkit-border-radius: 18px;
-				background-color: var(--wp-notify--color--scrollbar);
+				background-color: var(--wp-notifications--color--scrollbar);
 			}
 		}
 	}

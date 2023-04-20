@@ -26,7 +26,7 @@
 		top: 0;
 		background: $color-white;
 		box-shadow: 0 0 0 1px $color-white;
-		padding: 0 var(--wp-notify--hub-spacing-horizontal) 10px;
+		padding: 0 var(--wp-notifications--hub-spacing-horizontal) 10px;
 
 		.wp-notifications-action.mark-as-read {
 
@@ -53,7 +53,7 @@
 		&::before {
 			content: "";
 			display: block;
-			box-shadow: 0 1rem 24px 2px var(--wp-notify--color--primary);
+			box-shadow: 0 1rem 24px 2px var(--wp-notifications--color--primary);
 			width: 80%;
 			margin: auto 10%;
 			position: absolute;
@@ -70,21 +70,21 @@
 			height: 56px;
 			width: 100%;
 			text-align: center;
-			background: var(--wp-notify--color--background);
-			padding: 15px var(--wp-notify--hub-spacing-horizontal);
+			background: var(--wp-notifications--color--background);
+			padding: 15px var(--wp-notifications--hub-spacing-horizontal);
 			border-top: 1px solid $color-black-400;
 
 			svg {
-				fill: var(--wp-notify--color--link);
+				fill: var(--wp-notifications--color--link);
 				vertical-align: middle;
 			}
 
 			&:hover,
 			&:focus {
-				color: var(--wp-notify--color--link-active);
+				color: var(--wp-notifications--color--link-active);
 
 				svg {
-					fill: var(--wp-notify--color--link-active);
+					fill: var(--wp-notifications--color--link-active);
 				}
 			}
 

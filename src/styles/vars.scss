@@ -20,28 +20,28 @@ $color-black: #000;        // Black
 
 // https://make.wordpress.org/design/handbook/design-guide/foundations/colors/
 :root {
-	--wp-notify--color--primary: #{$color-black-700};
-	--wp-notify--color--secondary: #{$color-black-500};
-	--wp-notify--color--background: #{$color-white};
+	--wp-notifications--color--primary: #{$color-black-700};
+	--wp-notifications--color--secondary: #{$color-black-500};
+	--wp-notifications--color--background: #{$color-white};
 
-	--wp-notify--color--scrollbar: #{$color-black-300};
-	--wp-notify--color--link: #{$color-blue};
-	--wp-notify--color--link-active: #{$color-blue-light};
-	--wp-notify--color--error: #{$color-red};
-	--wp-notify--color--info: #{$color-blue};
-	--wp-notify--color--warning: #{$color-yellow};
-	--wp-notify--color--success: #{$color-green};
+	--wp-notifications--color--scrollbar: #{$color-black-300};
+	--wp-notifications--color--link: #{$color-blue};
+	--wp-notifications--color--link-active: #{$color-blue-light};
+	--wp-notifications--color--error: #{$color-red};
+	--wp-notifications--color--info: #{$color-blue};
+	--wp-notifications--color--warning: #{$color-yellow};
+	--wp-notifications--color--success: #{$color-green};
 
 	// WP Notification Feature hub (admin top bar)
-	--wp-notify--hub-width: 320px;
+	--wp-notifications--hub-width: 320px;
 
 	@media #{$breakpoint} {
-		--wp-notify--hub-width: 100%;
+		--wp-notifications--hub-width: 100%;
 	}
-	--wp-notify--hub-image-size: 32px;
+	--wp-notifications--hub-image-size: 32px;
 
-	--wp-notify--hub-spacing-top: 15px;
-	--wp-notify--hub-spacing-bottom: 17px;
-	--wp-notify--hub-spacing-horizontal: 16px;
-	--wp-notify--hub-spacing-gap: 8px;
+	--wp-notifications--hub-spacing-top: 15px;
+	--wp-notifications--hub-spacing-bottom: 17px;
+	--wp-notifications--hub-spacing-horizontal: 16px;
+	--wp-notifications--hub-spacing-gap: 8px;
 }
