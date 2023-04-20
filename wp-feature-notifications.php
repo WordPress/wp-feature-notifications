@@ -41,6 +41,8 @@ require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/model/class-subscri
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/factory/class-messages.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/factory/class-notifications.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/factory/class-subscriptions.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/class-channel-registry.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/channels.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/exceptions/interface-exception.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/exceptions/class-runtime-exception.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/interface-status.php';
