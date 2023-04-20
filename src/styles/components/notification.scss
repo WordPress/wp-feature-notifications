@@ -2,18 +2,18 @@
  * General notifications style
  */
 .wp-notification {
-	background: var(--wp-notify--color--background);
-	color: var(--wp-notify--color--primary);
+	background: var(--wp-notifications--color--background);
+	color: var(--wp-notifications--color--primary);
 	overflow: hidden;
 	max-height: 600px;
 
 	&-action {
 		text-decoration-line: underline;
-		color: var(--wp-notify--color--link);
+		color: var(--wp-notifications--color--link);
 	}
 
 	&-meta {
-		color: var(--wp-notify--color--secondary);
+		color: var(--wp-notifications--color--secondary);
 	}
 
 	// TODO exit animation
