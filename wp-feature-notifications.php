@@ -32,7 +32,11 @@ if ( ! defined( 'WP_FEATURE_NOTIFICATION_PLUGIN_DIR_URL' ) ) {
 }
 
 // Require interface/class declarations..
-
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/helper/class-serde.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/model/class-channel.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/model/class-message.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/model/class-notification.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/model/class-subscription.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/exceptions/interface-exception.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/exceptions/class-runtime-exception.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/interface-status.php';
