@@ -6,7 +6,7 @@ import { API_PATH } from '../constants';
  * @typedef {import('./index').Notice} Notice
  */
 /**
- * Fetches the wp-notify rest api endpoint for the specified endpoint
+ * Fetches the wp-notifications rest api endpoint for the specified endpoint
  *
  * @param {{path: string}} action The action to execute
  * @return {Promise<Notice[]>} The Promise with the results

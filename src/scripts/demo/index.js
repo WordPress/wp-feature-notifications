@@ -49,10 +49,10 @@ window.addEventListener( 'load', () => {
 	 *  Adding an event listener to the form with the id of `wp-notification-metabox-form` that handles "clear all notifications"
 	 */
 	const wpNotificationClearAll = document.getElementById(
-		'clear-all-wp-notify'
+		'clear-all-wp-notifications'
 	);
 	if ( wpNotificationClearAll )
 		wpNotificationClearAll.addEventListener( 'click', () => {
-			window.wp.notify.clear( 'dashboard' );
+			window.wp.notifications.clear( 'dashboard' );
 		} );
 } );

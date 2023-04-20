@@ -57,7 +57,7 @@ export const single = Template.bind( {} );
 single.args = {
 	id: 15,
 	title: 'Try this new Notification feature',
-	source: '#WP-Notify',
+	source: 'WP Feature Notifications',
 	date: new Date(),
 	message:
 		'👋 Hello from the WP Feature Notifications team! Thank you for testing out the plugin. You might want to give it a try so click on the bell icon on the right side of the adminbar.',

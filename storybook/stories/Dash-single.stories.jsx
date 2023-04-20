@@ -27,7 +27,7 @@ const Template = ( args ) => (
 				'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
 		} }
 	>
-		<div id="wp-notify-dashboard-notices" className="wrap">
+		<div id="wp-notifications-dashboard-notices" className="wrap">
 			<Notice { ...args } context={ 'dashboard' } />
 		</div>
 	</div>
@@ -38,7 +38,7 @@ export const single = Template.bind( {} );
 single.args = {
 	id: 15,
 	title: 'Try this new Notification feature',
-	source: '#WP-Notify',
+	source: 'WP Feature Notifications',
 	date: '2023-04-15T19:35:56',
 	message:
 		'👋 Hello from the WP Feature Notifications team! Thank you for testing out the plugin. You might want to give it a try so click on the bell icon on the right side of the adminbar.',

@@ -29,7 +29,7 @@ export const getNotices = ( state, context ) => {
 
 /**
  * Adds a context to the current state.
- * commonly it's fired when the NotifyArea is registered
+ * commonly it's fired when the NotificationArea is registered
  *
  * @param {State}  state   the current state
  * @param {string} context the context to add

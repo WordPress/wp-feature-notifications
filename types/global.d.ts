@@ -3,7 +3,7 @@ import {default as store, NoticeStore} from '../src/scripts/store'
 import {STORE_NAMESPACE} from '../src/scripts/constants';
 
 declare global {
-  interface Window { wp: { notify: any }; wp_notifications_data?: { settingsPage: string } }
+  interface Window { wp: { notifications: any }; wp_notifications_data?: { settingsPage: string } }
 }
 
 declare module '@wordpress/data' {
