@@ -1,4 +1,9 @@
 <?php
+/**
+ * Notifications API:Uninstaller class
+ *
+ * @package wordpress/wp-feature-notifications
+ */
 
 namespace WP\Notifications;
 
@@ -19,7 +24,7 @@ class Uninstaller {
 	public static function full_reset() {
 		self::uninstall();
 
-		require_once WP_NOTIFICATION_CENTER_PLUGIN_DIR . '/includes/class-activator.php';
+		require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/class-activator.php';
 
 		Activator::install();
 	}

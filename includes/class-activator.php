@@ -1,13 +1,18 @@
 <?php
+/**
+ * Notifications API:Activator class
+ *
+ * @package wordpress/wp-feature-notifications
+ */
 
 namespace WP\Notifications;
+
+use WP\Notifications\Database;
 
 /**
  * Class Activator.
  *
  * Defines the plugin's activation procedure.
- *
- * @package wordpress/wp-feature-notifications
  */
 class Activator {
 
@@ -129,54 +134,25 @@ class Activator {
 		global $wpdb;
 
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
-
-		$charset_collate = $wpdb->get_charset_collate();
+		require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/database/class-schema.php';
 
 		$tables = $wpdb->get_results( 'SHOW TABLES' );
 
 		// Create the messages table
 		if ( ! in_array( $wpdb->prefix . 'notifications_messages', $tables, true ) ) {
-			$messages_sql = 'CREATE TABLE `' . $wpdb->prefix . "notifications_messages` (
-				`id` BIGINT(20) NOT NULL,
-				`channel_name` VARCHAR(50) NOT NULL,
-				`channel_title` TINYTEXT NOT NULL,
-				`created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-				`expires_at` DATETIME NULL,
-				`severity` VARCHAR(16) NULL,
-				`title` TINYTEXT NULL,
-				`message` TINYTEXT NULL,
-				`meta` TEXT NULL,
-				PRIMARY KEY  (`id`),
-				KEY `channel_name` (`channel_name`)
-			) $charset_collate;\n";
-
+			$messages_sql = Database\Schema::messages_table_v1();
 			dbDelta( $messages_sql );
 		}
 
 		// Create the subscriptions table
 		if ( ! in_array( $wpdb->prefix . 'notifications_subscriptions', $tables, true ) ) {
-			$subscriptions_sql = 'CREATE TABLE `' . $wpdb->prefix . "notifications_subscriptions` (
-				`user_id` BIGINT(20) NOT NULL,
-				`channel_name` VARCHAR(50) NOT NULL,
-				`snoozed_until` DATETIME NULL,
-				KEY `user_id` (`user_id`),
-				KEY `channel_name` (`channel_name`)
-			) $charset_collate;\n";
-
+			$subscriptions_sql = Database\Schema::subscriptions_table_v1();
 			dbDelta( $subscriptions_sql );
 		}
 
 		// Create the queue table
 		if ( ! in_array( $wpdb->prefix . 'notifications_queue', $tables, true ) ) {
-			$queue_sql = 'CREATE TABLE `' . $wpdb->prefix . "notifications_queue` (
-				`message_id` BIGINT(20) NOT NULL,
-				`user_id` BIGINT(20) NOT NULL,
-				`dismissed_at` DATETIME NULL,
-				`displayed_at` DATETIME NULL,
-				KEY `message_id` (`message_id`),
-				KEY `user_id` (`user_id`)
-			) $charset_collate;\n";
-
+			$queue_sql = Database\Schema::queue_table_v1();
 			dbDelta( $queue_sql );
 		}
 	}
