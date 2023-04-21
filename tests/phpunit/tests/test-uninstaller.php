@@ -37,7 +37,6 @@ class Test_Uninstaller extends DB_TestCase {
 		Notifications\Uninstaller::uninstall();
 
 		$this->assertFalse( $this->table_exists( 'notifications_messages' ) );
-		$this->assertFalse( $this->table_exists( 'notifications_channels' ) );
 		$this->assertFalse( $this->table_exists( 'notifications_subscriptions' ) );
 		$this->assertFalse( $this->table_exists( 'notifications_queue' ) );
 	}

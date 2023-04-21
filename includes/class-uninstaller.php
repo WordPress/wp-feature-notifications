@@ -71,7 +71,6 @@ class Uninstaller {
 		global $wpdb;
 
 		$wpdb->query( 'DROP TABLE IF EXISTS ' . $wpdb->prefix . 'notifications_messages' );
-		$wpdb->query( 'DROP TABLE IF EXISTS ' . $wpdb->prefix . 'notifications_channels' );
 		$wpdb->query( 'DROP TABLE IF EXISTS ' . $wpdb->prefix . 'notifications_subscriptions' );
 		$wpdb->query( 'DROP TABLE IF EXISTS ' . $wpdb->prefix . 'notifications_queue' );
 	}
