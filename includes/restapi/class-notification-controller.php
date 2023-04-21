@@ -1,7 +1,6 @@
 <?php
-
 /**
- * REST API controller to get and set notification messages.
+ * Notifications API:Notification_Controller.
  *
  * @package wordpress/wp-feature-notifications
  */
@@ -15,7 +14,7 @@ use WP_REST_Response;
 use WP_REST_Server;
 
 /**
- * REST API Controller class
+ * REST API Notification Controller class
  */
 class Notification_Controller extends WP_REST_Controller {
 
@@ -80,7 +79,7 @@ class Notification_Controller extends WP_REST_Controller {
 	/**
 	 * Get notifications for request.
 	 *
-	 * @param WP_REST_Request $request Recieved REST request
+	 * @param WP_REST_Request $request Received REST request
 	 *
 	 * @return WP_REST_RESPONSE|WP_Error REST response or WP Error
 	 */
