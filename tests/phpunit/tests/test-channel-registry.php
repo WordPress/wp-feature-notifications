@@ -1,12 +1,12 @@
 <?php
 
-namespace WP\Notifications\Test;
+namespace WP\Notifications\Tests;
 
-use WP_UnitTestCase;
+use WP_UnitTestCase_Base;
 use WP\Notifications;
 use WP\Notifications\Model;
 
-class Test_Channel_Registry extends WP_UnitTestCase {
+class Test_Channel_Registry extends WP_UnitTestCase_Base {
 	/**
 	 * Fake channel registry.
 	 *

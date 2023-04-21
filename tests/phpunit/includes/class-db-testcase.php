@@ -2,9 +2,9 @@
 
 namespace WP\Notifications\Tests;
 
-use PHPUnit\Framework\TestCase;
+use PHPUnit_Adapter_TestCase;
 
-class DB_TestCase extends TestCase {
+class DB_TestCase extends PHPUnit_Adapter_TestCase {
 	protected function table_exists( string $table_name ): bool {
 		global $wpdb;
 		$expected = $wpdb->prefix . $table_name;
