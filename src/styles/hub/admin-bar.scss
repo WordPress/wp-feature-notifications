@@ -1,0 +1,68 @@
+/*
+ * WP admin bar
+ */
+#wpadminbar #wp-admin-bar-wp-notifications-hub {
+	padding-right: 8px;
+	position: relative;
+	z-index: 100002;
+	display: block; // avoids to hide the bell icon (and the drawer) on mobile
+
+	/**
+   * Drawer icons needs to be reset to avoid admin-bar default icon color
+   */
+	&:hover #wp-notifications-hub {
+
+		.ab-icon::before {
+			color: $color-white;
+		}
+	}
+
+	/* the bell icon */
+	.ab-item {
+		appearance: none;
+		height: 32px;
+		display: block;
+		padding: 0 10px;
+		border: 0;
+		margin: 0;
+		background: none;
+	}
+
+	/* if the drawer is enabled transforms the bell icon to overlay the drawer */
+	.notifications.active > .ab-item .ab-icon {
+		filter: invert(1) hue-rotate(180deg);
+		position: relative;
+		z-index: 100002;
+	}
+
+	/* The label is the red dot over the bell */
+	.ab-label {
+		position: absolute;
+		width: 6px;
+		height: 6px;
+		top: 12px;
+		left: 20px;
+		border-radius: 50%;
+		font-size: 0;
+
+		/* the dot color */
+		background: $color-red;
+
+		/* the dot color border */
+		border: 1px solid $color-black-800;
+	}
+
+	/* Mobile */
+	@media #{$breakpoint} {
+		display: block;
+
+		.ab-label {
+			clip: unset;
+			clip-path: unset;
+			width: 11px;
+			height: 11px;
+			top: 16px;
+			left: 28px;
+		}
+	}
+}

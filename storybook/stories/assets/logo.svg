@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" clip-rule="evenodd" viewBox="0 0 200 40">
+	<path fill="#213fd4" fill-rule="nonzero" d="M17.214 35.472c2.306 0 4.192-1.741 4.192-3.868h-8.384c0 2.127 1.887 3.868 4.192 3.868Zm8.384-15.859v-4.448c0-3.48-2.515-6.575-6.288-7.542.21-.387.21-.774.42-.967-.21-1.16-1.258-2.127-2.516-2.127-1.257 0-2.305.966-2.305 2.127 0 .387.21.773.419.967-3.773.773-6.288 3.868-6.288 7.542v4.255c-.21 2.32-1.887 4.448-4.192 5.415v4.835H30v-4.835c-2.515-.774-4.192-2.901-4.402-5.222Z"/>
+	<text x="52.054" y="16.947" fill="#213fd4" font-family="&quot;Inter-ExtraBold&quot;,&quot;Inter&quot;" font-size="12" font-weight="800" transform="matrix(2.268 0 0 2.225 -78.372 -8.026)">W<tspan x="64.973" y="16.947">P</tspan></text>
+	<text x="71.934" y="16.947" fill="#393f48" font-family="&quot;Inter-ExtraBold&quot;,&quot;Inter&quot;" font-size="12" font-weight="800" transform="matrix(2.268 0 0 2.225 -76.09 -8.026)">N<tspan x="80.826 90.433 98.703 102.277 109.434" y="16.947 16.947 16.947 16.947 16.947">OTIFY</tspan></text>
+</svg>
