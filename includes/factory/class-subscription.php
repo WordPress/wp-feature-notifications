@@ -26,9 +26,9 @@ class Subscription extends Framework\Factory {
 	 *     Array or string of arguments for creating a subscription. Supported
 	 *     arguments are described below.
 	 *
-	 *     @type string               $channel_name  Namespaced channel name of the
+	 *     @type ?string              $channel_name  Namespaced channel name of the
 	 *                                               subscription.
-	 *     @type int                  $user_id       ID of the user the subscription
+	 *     @type ?int                 $user_id       ID of the user the subscription
 	 *                                               belongs to.
 	 *     @type string|DateTime|null $created_at    Optional datetime at which the
 	 *                                               subscription was created.
@@ -36,15 +36,15 @@ class Subscription extends Framework\Factory {
 	 *                                               of the subscription.
 	 * }
 	 *
-	 * @return Model\Subscription|false A newly created instance of Subscription or false.
+	 * @return Model\Subscription A newly created instance of Subscription or false.
 	 */
-	public function make( $args ) {
+	public function make( $args = array() ): Model\Subscription {
 		$parsed = wp_parse_args( $args );
 
 		// Required properties
 
-		$channel_name = $parsed['channel_name'];
-		$user_id      = $parsed['user_id'];
+		$channel_name = array_key_exists( 'channel_name', $parsed ) ? $parsed['channel_name'] : null;
+		$user_id      = array_key_exists( 'user_id', $parsed ) ? $parsed['user_id'] : null;
 
 		// Optional properties
 
@@ -56,13 +56,11 @@ class Subscription extends Framework\Factory {
 		$created_at    = Helper\Serde::maybe_deserialize_mysql_date( $created_at );
 		$snoozed_until = Helper\Serde::maybe_deserialize_mysql_date( $snoozed_until );
 
-		$subscription = new Model\Subscription(
+		return new Model\Subscription(
 			$channel_name,
 			$user_id,
 			$created_at,
 			$snoozed_until,
 		);
-
-		return $subscription;
 	}
 }

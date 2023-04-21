@@ -17,15 +17,14 @@ abstract class Factory {
 	/**
 	 * Container for the main instance of the class.
 	 *
-	 * @var ?Model
+	 * @property ?Model
 	 */
 	protected static $instance = null;
 
 	/**
 	 * Instantiates a model object.
-
+	 *
 	 * @param array|string $args Array or string of arguments for creating a model.
-
 	 *
 	 * @return Model|false A newly created instance of model or false.
 	 */
@@ -40,7 +39,7 @@ abstract class Factory {
 	 */
 	public static function get_instance() {
 		if ( null === self::$instance ) {
-			self::$instance = new self();
+			self::$instance = new static();
 		}
 
 		return self::$instance;

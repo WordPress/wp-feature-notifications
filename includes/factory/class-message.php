@@ -25,7 +25,7 @@ class Message extends Framework\Factory {
 	 *     Array or string of arguments for creating a message. Supported arguments
 	 *     are described below.
 	 *
-	 *     @type string    $message        Text content of the message.
+	 *     @type ?string   $message        Text content of the message.
 	 *     @type ?string   $accept_label   Optional label of the accept action.
 	 *     @type ?string   $accept_link    Optional url of the accept action.
 	 *     @type ?string   $accept_message Optional label of the accept action.
@@ -38,20 +38,20 @@ class Message extends Framework\Factory {
 	 *                                     Default `'null'`
 	 *     @type ?string   $icon           Optional icon of the message. Default `null`
 	 *     @type ?int      $id             Optional database ID of the message. Default `null`
-	 *     @type bool      $is_dismissible Optional boolean of whether the notice can
+	 *     @type ?bool     $is_dismissible Optional boolean of whether the notice can
 	 *                                     be dismissed. Default `true`
 	 *     @type ?string   $severity       Optional severity of the message. Default `null`
 	 *     @type string    $title          Optional human-readable message label. Default `''`
 	 * }
 	 *
-	 * @return Model\Message|false A newly created instance of Message or false.
+	 * @return Model\Message A newly created instance of Message or false.
 	 */
-	public function make( $args ) {
+	public function make( $args = array() ): Model\Message {
 		$parsed = wp_parse_args( $args );
 
 		// Required properties
 
-		$message = $parsed['message'];
+		$message = array_key_exists( 'message', $parsed ) ? $parsed['message'] : null;
 
 		// Optional properties
 

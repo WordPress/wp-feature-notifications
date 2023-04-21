@@ -25,11 +25,11 @@ class Notification extends Framework\Factory {
 	 * @param array|string $args     {
 	 *     Array or string of arguments for creating a notification. Supported arguments are described below.
 	 *
-	 *     @type string               $channel_name Channel name, including namespace,
+	 *     @type ?string              $channel_name Channel name, including namespace,
 	 *                                              the notification was emitted from.
-	 *     @type int                  $message_id   ID of the message related to the
+	 *     @type ?int                 $message_id   ID of the message related to the
 	 *                                              notification.
-	 *     @type int                  $user_id      ID of the user the notification
+	 *     @type ?int                 $user_id      ID of the user the notification
 	 *                                              belongs to.
 	 *     @type ?string              $context      Optional display context of the
 	 *                                              notification. Default `'adminbar'`
@@ -43,18 +43,17 @@ class Notification extends Framework\Factory {
 	 *     @type string|DateTime|null $expires_at   Optional datetime at which the
 	 *                                              notification expires. Default `null`
 	 * }
-	 * @param bool         $validate Optionally validate the arguments.
 	 *
-	 * @return Model\Notification|false A newly created instance of Channel or false.
+	 * @return Model\Notification A newly created instance of Channel or false.
 	 */
-	public function make( $args ) {
+	public function make( $args = array() ): Model\Notification {
 		$parsed = wp_parse_args( $args );
 
 		// Required properties
 
-		$channel_name = $parsed['channel_name'];
-		$message_id   = $parsed['message_id'];
-		$user_id      = $parsed['user_id'];
+		$channel_name = array_key_exists( 'channel_name', $parsed ) ? $parsed['channel_name'] : null;
+		$message_id   = array_key_exists( 'message_id', $parsed ) ? $parsed['message_id'] : null;
+		$user_id      = array_key_exists( 'user_id', $parsed ) ? $parsed['user_id'] : null;
 
 		// Optional properties
 
@@ -71,7 +70,7 @@ class Notification extends Framework\Factory {
 		$displayed_at = Helper\Serde::maybe_deserialize_mysql_date( $displayed_at );
 		$expires_at   = Helper\Serde::maybe_deserialize_mysql_date( $expires_at );
 
-		$notification = new Model\Notification(
+		return new Model\Notification(
 			$channel_name,
 			$message_id,
 			$user_id,
@@ -81,7 +80,5 @@ class Notification extends Framework\Factory {
 			$displayed_at,
 			$expires_at
 		);
-
-		return $notification;
 	}
 }

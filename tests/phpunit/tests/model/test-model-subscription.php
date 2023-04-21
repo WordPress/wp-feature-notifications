@@ -1,12 +1,11 @@
 <?php
 
-namespace WP\Notifications\Test;
+namespace WP\Notifications\Tests;
 
 use DateTime;
-use WP_UnitTestCase;
 use WP\Notifications\Model;
 
-class Test_Model_Subscription extends WP_UnitTestCase {
+class Test_Model_Subscription extends TestCase {
 
 	/**
 	 * Test message model.
