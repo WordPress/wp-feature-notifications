@@ -81,7 +81,7 @@ class Channel implements JsonSerializable {
 	/**
 	 * Specifies data which should be serialized to JSON.
 	 *
-	 * @return mixed Data which can be serialized by json_encode, which is a
+	 * @return array Data which can be serialized by json_encode, which is a
 	 *               value of any type other than a resource.
 	 */
 	public function jsonSerialize() {
