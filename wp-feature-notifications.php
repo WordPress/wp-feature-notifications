@@ -19,8 +19,14 @@ namespace WP\Notifications;
 
 use WP\Notifications\REST;
 
+define( 'WP_FEATURE_NOTIFICATION_LOG_PREFIX', 'WP_NOTIFICATIONS: ' );
+
 if ( ! defined( 'WP_FEATURE_NOTIFICATION_PLUGIN_VERSION' ) ) {
 	define( 'WP_FEATURE_NOTIFICATION_PLUGIN_VERSION', '0.0.1' );
+}
+
+if ( ! defined( 'WP_FEATURE_NOTIFICATION_DB_VERSION' ) ) {
+	define( 'WP_FEATURE_NOTIFICATION_DB_VERSION', '1' );
 }
 
 if ( ! defined( 'WP_FEATURE_NOTIFICATION_PLUGIN_DIR' ) ) {
@@ -54,5 +60,35 @@ require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/persistence/class-a
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/persistence/class-wpdb-notification-repository.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/demo.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/restapi/class-notification-controller.php';
+
+new REST\Notification_Controller();
+
+/**
+ * Activation hook function of the WP Notification plugin.
+ *
+ * @return void
+ *
+ * @package wp-feature-notifications
+ */
+function activation_hook() {
+	require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/class-activator.php';
+	Activator::activate();
+}
+
+register_activation_hook( __FILE__, '\WP\Notifications\activation_hook' );
+
+/**
+ * Uninstall hook function of the WP Notification plugin.
+ *
+ * @return void
+ *
+ * @package wp-feature-notifications
+ */
+function uninstall_hook() {
+	require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/class-uninstaller.php';
+	Uninstaller::uninstall();
+}
+
+register_uninstall_hook( __FILE__, '\WP\Notifications\uninstall_hook' );
 
 new REST\Notification_Controller();
