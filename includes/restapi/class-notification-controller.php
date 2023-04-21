@@ -96,9 +96,9 @@ class Notification_Controller extends WP_REST_Controller {
 	/**
 	 * Retrieves the notification's schema, conforming to JSON Schema.
 	 *
-	 * @return array
+	 * @return array The notification schema.
 	 */
-	public function get_item_schema() {
+	public function get_item_schema(): array {
 		if ( $this->schema ) {
 			return $this->add_additional_fields_schema( $this->schema );
 		}
@@ -108,95 +108,121 @@ class Notification_Controller extends WP_REST_Controller {
 			'title'      => 'notification',
 			'type'       => 'object',
 			'properties' => array(
-				'id'            => array(
-					'description' => __( 'Unique identifier for the notification.' ),
-					'type'        => 'integer',
-					'context'     => array( 'view', 'edit', 'embed' ),
+				'accept_label'   => array(
+					'description' => __( 'The label of the accept action.' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),
-				'channel_name'  => array(
+				'accept_link'    => array(
+					'description' => __( 'The URL of the accept action..' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'embed' ),
+					'readonly'    => true,
+				),
+				'channel_name'   => array(
 					'description' => __( 'Unique identifier for the notification channel.' ),
 					'type'        => 'string',
-					'context'     => array( 'view', 'edit', 'embed' ),
+					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),
-				'channel_title' => array(
+				'channel_title'  => array(
 					'description' => __( 'The title of the notification channel.' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),
-				'created_at'    => array(
+				'context'        => array(
+					'description' => __( 'The view context the notification.' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'embed' ),
+					'default'     => 'adminbar',
+					'enum'        => array(
+						'adminbar',
+						'dashboard',
+					),
+					'readonly'    => true,
+				),
+				'created_at'     => array(
 					'description' => __( "The datetime the notification was broadcast, in the site's timezone." ),
 					'type'        => 'string',
 					'format'      => 'date-time',
 					'context'     => array( 'view', 'embed' ),
+					'readonly'    => true,
 				),
-				'dismissed_at'  => array(
+				'dismiss_label'  => array(
+					'description' => __( 'The label of the dismiss action.' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'embed' ),
+					'readonly'    => true,
+				),
+				'dismissed_at'   => array(
 					'description' => __( "The datetime the notification was dismissed, in the site's timezone." ),
 					'type'        => array( 'string', 'null' ),
 					'format'      => 'date-time',
 					'context'     => array( 'view', 'embed' ),
 				),
-				'displayed_at'  => array(
+				'displayed_at'   => array(
 					'description' => __( "The datetime the notification was displayed, in the site's timezone." ),
 					'type'        => array( 'string', 'null' ),
 					'format'      => 'date-time',
 					'context'     => array( 'view', 'embed' ),
+					'readonly'    => true,
 				),
-				'expires_at'    => array(
+				'expires_at'     => array(
 					'description' => __( "The datetime the notification expires, in the site's timezone." ),
 					'type'        => 'string',
 					'format'      => 'date-time',
-					'context'     => array( 'view', 'edit', 'embed' ),
+					'context'     => array( 'view', 'embed' ),
+					'readonly'    => true,
 				),
-				'context'       => array(
-					'description' => __( 'The view context the notification.' ),
+				'id'             => array(
+					'description' => __( 'Unique identifier for the notification.' ),
+					'type'        => 'integer',
+					'context'     => array( 'view', 'edit', 'embed' ),
+					'readonly'    => true,
+				),
+				'is_dismissible' => array(
+					'description' => __( 'Whether the notification can be dismissed.' ),
+					'type'        => 'boolean',
+					'context'     => array( 'view', 'embed' ),
+					'readonly'    => true,
+				),
+				'message'        => array(
+					'description' => __( 'The message content of the notification.' ),
 					'type'        => 'string',
-					'context'     => array( 'view', 'edit', 'embed' ),
-					'default'     => 'hub',
-					'enum'        => array(
-						'adminbar',
-						'dashboard',
-						'hub',
-					),
+					'context'     => array( 'view', 'embed' ),
+					'readonly'    => true,
 				),
-				'severity'      => array(
+				'severity'       => array(
 					'description' => __( 'The severity of the notification.' ),
 					'type'        => array( 'string', 'null' ),
-					'context'     => array( 'view', 'edit', 'embed' ),
+					'context'     => array( 'view', 'embed' ),
 					'enum'        => array(
 						'alert',
 						'info',
 						'warning',
 						'success',
 					),
+					'readonly'    => true,
 				),
-				'status'        => array(
+				'status'         => array(
 					'description' => __( 'The status of the notification.' ),
 					'type'        => 'string',
-					'default'     => 'undisplayed',
 					'enum'        => array(
 						'undisplayed',
 						'displayed',
 						'dismissed',
 						'new',
 					),
+					'context'     => array( 'view', 'embed' ),
+					'readonly'    => true,
 				),
-				'title'         => array(
+				'title'          => array(
 					'description' => __( 'The title of the notification.' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'embed' ),
-				),
-				'message'       => array(
-					'description' => __( 'The message content of the notification.' ),
-					'type'        => 'string',
-					'context'     => array( 'view', 'embed' ),
-				),
-				'meta'          => array(
-					'description' => __( 'The metadata of the notification.' ),
-					'type'        => 'string',
-					'context'     => array( 'view', 'edit', 'embed' ),
+					'readonly'    => true,
 				),
 			),
 		);
@@ -212,7 +238,7 @@ class Notification_Controller extends WP_REST_Controller {
 	 *
 	 * @return array Comments collection parameters.
 	 */
-	public function get_collection_params() {
+	public function get_collection_params(): array {
 		$query_params = parent::get_collection_params();
 
 		$query_params['context']['default'] = 'view';
