@@ -1,11 +1,10 @@
 <?php
 
-namespace WP\Notifications\Test;
+namespace WP\Notifications\Tests;
 
-use WP_UnitTestCase;
 use WP\Notifications\Model;
 
-class Test_Model_Message extends WP_UnitTestCase {
+class Test_Model_Message extends TestCase {
 
 	/**
 	 * Test message model.
