@@ -123,12 +123,12 @@ final class Channel_Registry {
 	/**
 	 * Unregister a channel.
 	 *
-	 * @param string|Model/Channel $name Channel type name including namespace, or
+	 * @param string|Model\Channel $name Channel type name including namespace, or
 	 *                                   alternatively a complete Channel instance.
-	 * @return Model/Channel|false The unregistered channel on success, or false on failure.
+	 * @return Model\Channel|false The unregistered channel on success, or false on failure.
 	 */
 	public function unregister( $name ) {
-		if ( $name instanceof Channel ) {
+		if ( $name instanceof Model\Channel ) {
 			$name = $name->get_name();
 		}
 
