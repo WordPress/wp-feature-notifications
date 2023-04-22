@@ -1,8 +1,8 @@
 <?php
 /**
- * Unit tests covering WP/Notifications/Notification_Controller functionality.
+ * Unit tests covering WP/Notifications/Channel_Controller functionality.
  */
-class WP_Test_REST_Notification_Controller extends WP_Test_REST_Controller_Testcase {
+class WP_Test_REST_Channel_Controller extends WP_Test_REST_Controller_Testcase {
 	public function test_register_routes() {
 		$this->markTestSkipped( 'TODO Implement' );
 	}
@@ -36,50 +36,32 @@ class WP_Test_REST_Notification_Controller extends WP_Test_REST_Controller_Testc
 	}
 
 	public function test_registered_query_params() {
-		$request  = new WP_REST_Request( 'OPTIONS', '/wp-notifications/v1/notifications' );
+		$request  = new WP_REST_Request( 'OPTIONS', '/wp-notifications/v1/channels' );
 		$response = rest_get_server()->dispatch( $request );
 		$data     = $response->get_data();
 		$keys     = array_keys( $data['endpoints'][0]['args'] );
 		sort( $keys );
 		$this->assertSame(
 			array(
-				'channel',
 				'context',
 				'offset',
-				'order',
-				'orderby',
 				'page',
 				'per_page',
 				'search',
-				'status',
 			),
 			$keys
 		);
 	}
 
 	public function test_get_item_schema() {
-		$request    = new WP_REST_Request( 'OPTIONS', '/wp-notifications/v1/notifications' );
+		$request    = new WP_REST_Request( 'OPTIONS', '/wp-notifications/v1/channels' );
 		$response   = rest_get_server()->dispatch( $request );
 		$data       = $response->get_data();
 		$properties = $data['schema']['properties'];
-		$this->assertCount( 18, $properties );
-		$this->assertArrayHasKey( 'accept_label', $properties );
-		$this->assertArrayHasKey( 'accept_link', $properties );
-		$this->assertArrayHasKey( 'channel_name', $properties );
-		$this->assertArrayHasKey( 'channel_title', $properties );
+		$this->assertCount( 4, $properties );
 		$this->assertArrayHasKey( 'context', $properties );
-		$this->assertArrayHasKey( 'created_at', $properties );
-		$this->assertArrayHasKey( 'dismiss_label', $properties );
-		$this->assertArrayHasKey( 'dismissed_at', $properties );
-		$this->assertArrayHasKey( 'displayed_at', $properties );
-		$this->assertArrayHasKey( 'expires_at', $properties );
 		$this->assertArrayHasKey( 'icon', $properties );
-		$this->assertArrayHasKey( 'id', $properties );
-		$this->assertArrayHasKey( 'is_dismissible', $properties );
-		$this->assertArrayHasKey( 'message', $properties );
-		$this->assertArrayHasKey( 'severity', $properties );
-		$this->assertArrayHasKey( 'status', $properties );
+		$this->assertArrayHasKey( 'name', $properties );
 		$this->assertArrayHasKey( 'title', $properties );
-		$this->assertArrayHasKey( 'user_id', $properties );
 	}
 }

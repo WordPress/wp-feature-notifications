@@ -32,10 +32,6 @@ class Notification_Controller extends WP_REST_Controller {
 	 */
 	public const NOTIFICATION_BASE = 'notifications';
 
-	public function __construct() {
-		add_action( 'rest_api_init', array( $this, 'register_routes' ) );
-	}
-
 	/**
 	 * Register REST routes
 	 *
@@ -144,7 +140,7 @@ class Notification_Controller extends WP_REST_Controller {
 					'readonly'    => true,
 				),
 				'created_at'     => array(
-					'description' => __( "The datetime the notification was broadcast, in the site's timezone." ),
+					'description' => __( 'The datetime the notification was broadcast, in UTC time.' ),
 					'type'        => 'string',
 					'format'      => 'date-time',
 					'context'     => array( 'view', 'embed' ),
@@ -157,22 +153,28 @@ class Notification_Controller extends WP_REST_Controller {
 					'readonly'    => true,
 				),
 				'dismissed_at'   => array(
-					'description' => __( "The datetime the notification was dismissed, in the site's timezone." ),
+					'description' => __( 'The datetime the notification was dismissed, in UTC time.' ),
 					'type'        => array( 'string', 'null' ),
 					'format'      => 'date-time',
 					'context'     => array( 'view', 'embed' ),
 				),
 				'displayed_at'   => array(
-					'description' => __( "The datetime the notification was displayed, in the site's timezone." ),
+					'description' => __( 'The datetime the notification was displayed, in UTC time.' ),
 					'type'        => array( 'string', 'null' ),
 					'format'      => 'date-time',
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),
 				'expires_at'     => array(
-					'description' => __( "The datetime the notification expires, in the site's timezone." ),
+					'description' => __( 'The datetime the notification expires, in UTC time.' ),
 					'type'        => 'string',
 					'format'      => 'date-time',
+					'context'     => array( 'view', 'embed' ),
+					'readonly'    => true,
+				),
+				'icon'           => array(
+					'description' => __( 'The icon of the notification.' ),
+					'type'        => 'integer',
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),
@@ -224,6 +226,12 @@ class Notification_Controller extends WP_REST_Controller {
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),
+				'user_id'        => array(
+					'description' => __( 'The identifier of user the notification is belongs to.' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'embed' ),
+					'readonly'    => true,
+				),
 			),
 		);
 
@@ -236,7 +244,7 @@ class Notification_Controller extends WP_REST_Controller {
 	/**
 	 * Retrieves the query params for collections.
 	 *
-	 * @return array Comments collection parameters.
+	 * @return array Notifications collection parameters.
 	 */
 	public function get_collection_params(): array {
 		$query_params = parent::get_collection_params();
