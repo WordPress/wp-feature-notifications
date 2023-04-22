@@ -32,10 +32,6 @@ class Notification_Controller extends WP_REST_Controller {
 	 */
 	public const NOTIFICATION_BASE = 'notifications';
 
-	public function __construct() {
-		add_action( 'rest_api_init', array( $this, 'register_routes' ) );
-	}
-
 	/**
 	 * Register REST routes
 	 *
@@ -173,6 +169,12 @@ class Notification_Controller extends WP_REST_Controller {
 					'description' => __( "The datetime the notification expires, in the site's timezone." ),
 					'type'        => 'string',
 					'format'      => 'date-time',
+					'context'     => array( 'view', 'embed' ),
+					'readonly'    => true,
+				),
+				'icon'           => array(
+					'description' => __( 'The icon of the notification.' ),
+					'type'        => 'integer',
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),

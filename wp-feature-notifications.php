@@ -59,6 +59,7 @@ require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/persistence/interfa
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/persistence/class-abstract-notification-repository.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/persistence/class-wpdb-notification-repository.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/demo.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/restapi/class-channel-controller.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/restapi/class-notification-controller.php';
 
 new REST\Notification_Controller();
@@ -67,8 +68,6 @@ new REST\Notification_Controller();
  * Activation hook function of the WP Notification plugin.
  *
  * @return void
- *
- * @package wp-feature-notifications
  */
 function activation_hook() {
 	require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/class-activator.php';
@@ -81,8 +80,6 @@ register_activation_hook( __FILE__, '\WP\Notifications\activation_hook' );
  * Uninstall hook function of the WP Notification plugin.
  *
  * @return void
- *
- * @package wp-feature-notifications
  */
 function uninstall_hook() {
 	require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/class-uninstaller.php';
@@ -91,4 +88,17 @@ function uninstall_hook() {
 
 register_uninstall_hook( __FILE__, '\WP\Notifications\uninstall_hook' );
 
-new REST\Notification_Controller();
+/**
+ * REST API initialization hook of the WP Notification plugin.
+ *
+ * @return void
+ */
+function register_routes() {
+	$channel_controller      = new REST\Channel_Controller();
+	$notification_controller = new REST\Notification_Controller();
+
+	$channel_controller->register_routes();
+	$notification_controller->register_routes();
+}
+
+add_action( 'rest_api_init', '\WP\Notifications\register_routes' );
