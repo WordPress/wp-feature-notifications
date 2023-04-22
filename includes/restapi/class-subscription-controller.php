@@ -1,6 +1,6 @@
 <?php
 /**
- * Notifications API:Channel_Controller.
+ * Notifications API:Subscription_Controller.
  *
  * @package wordpress/wp-feature-notifications
  */
@@ -12,13 +12,11 @@ use WP_REST_Controller;
 use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
-use WP\Notifications;
-use WP\Notifications\Channel_Registry;
 
 /**
- * REST API Channel Controller class
+ * REST API Subscription Controller class
  */
-class Channel_Controller extends WP_REST_Controller {
+class Subscription_Controller extends WP_REST_Controller {
 
 	/**
 	 * Namespace for the REST endpoint.
@@ -32,7 +30,7 @@ class Channel_Controller extends WP_REST_Controller {
 	 *
 	 * @type string
 	 */
-	public const NOTIFICATION_BASE = 'channels';
+	public const NOTIFICATION_BASE = 'subscriptions';
 
 	/**
 	 * Register REST routes
@@ -57,42 +55,40 @@ class Channel_Controller extends WP_REST_Controller {
 	}
 
 	/**
-	 * Checks if a given request has access to view channels.
+	 * Checks if a given request has access to view subscriptions.
 	 *
 	 * @param WP_REST_Request $request Full details about the request.
 	 *
 	 * @return true|WP_Error True if the request has access to view the items, error object otherwise.
 	 */
 	public function get_items_permissions_check( $request ) {
-		if ( ! is_user_logged_in() ) {
-			return new WP_Error(
-				'rest_notifications_login_required',
-				__( 'Sorry, you must be logged to view channels.' ),
-				array( 'status' => 401 )
-			);
-		}
+		// if ( ! is_user_logged_in() ) {
+		// 	return new WP_Error(
+		// 		'rest_notifications_login_required',
+		// 		__( 'Sorry, you must be logged to view subscriptions.' ),
+		// 		array( 'status' => 401 )
+		// 	);
+		// }
 		return true;
 	}
 
 	/**
-	 * Get channels for request.
+	 * Get subscriptions for request.
 	 *
 	 * @param WP_REST_Request $request Received REST request
 	 *
 	 * @return WP_REST_RESPONSE|WP_Error REST response or WP Error
 	 */
 	public function get_items( $request ) {
-		$channels = Channel_Registry::get_instance()->get_all_registered();
+		// TODO query for the current users subscriptions
 
-		// TODO filter based on permissions.
-
-		return rest_ensure_response( $channels );
+		return rest_ensure_response( array() );
 	}
 
 	/**
-	 * Retrieves the channels' schema, conforming to JSON Schema.
+	 * Retrieves the subscription's schema, conforming to JSON Schema.
 	 *
-	 * @return array The notification channel schema.
+	 * @return array The notification subscription schema.
 	 */
 	public function get_item_schema(): array {
 		if ( $this->schema ) {
@@ -101,33 +97,30 @@ class Channel_Controller extends WP_REST_Controller {
 
 		$schema = array(
 			'$schema'    => 'http://json-schema.org/draft-04/schema#',
-			'title'      => 'channel',
+			'title'      => 'subscription',
 			'type'       => 'object',
 			'properties' => array(
-				'context' => array(
-					'description' => __( 'The default view context the notification channel.' ),
-					'type'        => 'string',
-					'context'     => array( 'view', 'embed' ),
-					'enum'        => array(
-						'adminbar',
-						'dashboard',
-					),
-					'readonly'    => true,
-				),
-				'icon'    => array(
-					'description' => __( 'The default icon of the notification channel.' ),
-					'type'        => 'integer',
-					'context'     => array( 'view', 'embed' ),
-					'readonly'    => true,
-				),
-				'name'    => array(
-					'description' => __( 'Unique identifier for the notification channel.' ),
+				'channel_name'  => array(
+					'description' => __( 'Unique identifier for the channel of the subscription.' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),
-				'title'   => array(
-					'description' => __( 'The human-readable label of the notification channel.' ),
+				'created_at'    => array(
+					'description' => __( 'The datetime the subscription was created, in UTC time.' ),
+					'type'        => 'string',
+					'format'      => 'date-time',
+					'context'     => array( 'view', 'embed' ),
+					'readonly'    => true,
+				),
+				'snoozed_until' => array(
+					'description' => __( 'The datetime to resume the subscription, in UTC time.' ),
+					'type'        => array( 'string', 'null' ),
+					'format'      => 'date-time',
+					'context'     => array( 'view', 'embed' ),
+				),
+				'user_id'       => array(
+					'description' => __( 'The identifier of user the subscription is belongs to.' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
@@ -144,22 +137,34 @@ class Channel_Controller extends WP_REST_Controller {
 	/**
 	 * Retrieves the query params for collections.
 	 *
-	 * @return array Channel collection parameters.
+	 * @return array Subscription collection parameters.
 	 */
 	public function get_collection_params(): array {
 		$query_params = parent::get_collection_params();
-
-		$query_params['context']['default'] = 'view';
 
 		$query_params['offset'] = array(
 			'description' => __( 'Offset the result set by a specific number of items.' ),
 			'type'        => 'integer',
 		);
 
-		$query_params['context'] = array(
-			'description' => __( 'Limit result set to channels assigned a specific display context.' ),
-			'default'     => 'all',
+		$query_params['order'] = array(
+			'description' => __( 'Order sort attribute ascending or descending.' ),
 			'type'        => 'string',
+			'default'     => 'desc',
+			'enum'        => array(
+				'asc',
+				'desc',
+			),
+		);
+
+		$query_params['orderby'] = array(
+			'description' => __( 'Sort collection by notifications attribute.' ),
+			'type'        => 'string',
+			'default'     => 'created_at',
+			'enum'        => array(
+				'created_at',
+				'snoozed_until',
+			),
 		);
 
 		return $query_params;
