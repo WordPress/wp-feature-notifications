@@ -67,7 +67,6 @@ function admin_bar_item( WP_Admin_Bar $wp_admin_bar ) {
 	);
 	$wp_admin_bar->add_node( $args );
 }
-
 add_action( 'admin_bar_menu', '\WP\Notifications\admin_bar_item', 1 );
 
 /**
@@ -82,14 +81,6 @@ function enqueue_admin_assets() {
 	$asset = include WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/build/wp-notifications.asset.php';
 	wp_register_script( 'wp_notifications', WP_FEATURE_NOTIFICATION_PLUGIN_DIR_URL . '/build/wp-notifications.js', $asset['dependencies'], WP_FEATURE_NOTIFICATION_PLUGIN_VERSION, true );
 	wp_enqueue_script( 'wp_notifications' );
-
-	wp_localize_script(
-		'wp_notifications',
-		'wp_notifications_data',
-		array(
-			'settingsPage' => esc_url( admin_url( 'options-general.php?page=notifications' ) ),
-		)
-	);
 }
 
 add_action( 'admin_enqueue_scripts', '\WP\Notifications\enqueue_admin_assets', 0 );
