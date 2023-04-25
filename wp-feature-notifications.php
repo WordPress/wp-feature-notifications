@@ -15,10 +15,6 @@
  * @package wp-feature-notifications
  */
 
-namespace WP\Notifications;
-
-use WP\Notifications\REST;
-
 define( 'WP_FEATURE_NOTIFICATION_LOG_PREFIX', 'WP_NOTIFICATIONS: ' );
 
 if ( ! defined( 'WP_FEATURE_NOTIFICATION_PLUGIN_VERSION' ) ) {
@@ -58,49 +54,7 @@ require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/image/class-base-im
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/persistence/interface-notification-repository.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/persistence/class-abstract-notification-repository.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/persistence/class-wpdb-notification-repository.php';
-require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/demo.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/restapi/class-channel-controller.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/restapi/class-notification-controller.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/restapi/class-subscription-controller.php';
-
-/**
- * Activation hook function of the WP Notification plugin.
- *
- * @return void
- */
-function activation_hook() {
-	require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/class-activator.php';
-	Activator::activate();
-}
-
-register_activation_hook( __FILE__, '\WP\Notifications\activation_hook' );
-
-/**
- * Uninstall hook function of the WP Notification plugin.
- *
- * @return void
- */
-function uninstall_hook() {
-	require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/class-uninstaller.php';
-	Uninstaller::uninstall();
-}
-
-register_uninstall_hook( __FILE__, '\WP\Notifications\uninstall_hook' );
-
-/**
- * REST API initialization hook of the WP Notification plugin.
- *
- * @return void
- */
-function register_routes() {
-	$channel_controller      = new REST\Channel_Controller();
-	$notification_controller = new REST\Notification_Controller();
-	$subscription_controller = new REST\Subscription_Controller();
-
-	$channel_controller->register_routes();
-	$notification_controller->register_routes();
-	$subscription_controller->register_routes();
-
-}
-
-add_action( 'rest_api_init', '\WP\Notifications\register_routes' );
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/load.php';
