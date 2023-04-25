@@ -1,6 +1,6 @@
 /** wp-feature-notifications style */
-import jsonData from '../../includes/restapi/fake_api.json';
 import { NoticesLoop } from '../../src/scripts/components/NoticesLoop';
+import jsonData from '../fake_api.json';
 
 // filter out non dashboard notices
 const adminBarNotices = jsonData
