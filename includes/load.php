@@ -51,12 +51,31 @@ function admin_bar_item( WP_Admin_Bar $wp_admin_bar ) {
 		return;
 	}
 
+	/**
+	 * This is the same HTML as the `src/scripts/components/NotificationHub.js`
+	 * If this is changed that file must also be updated.
+	 */
+	$notification_hub = sprintf(
+		'<aside id="wp-notifications-hub"><div class="hub-wrapper"><h2 class="screen-reader-text">%s</h2></div></aside>',
+		__( 'Notifications', 'wp-feature-notifications' )
+	);
+
+	/**
+	 * This is the same HTML as the `src/scripts/components/NotificationHubIcon.js`
+	 * If this is changed that file must also be updated.
+	 */
+	$notification_hub_icon = sprintf(
+		'<div class="notifications"><button class="hub-icon" aria-haspopup="menu"><span class="ab-icon dashicons dashicons-bell" aria-hidden="true"></span><span class="ab-label">%s</span></button></div>',
+		__( 'Notifications', 'wp-feature-notifications' )
+	);
+
 	$args = array(
 		'id'     => 'wp-notifications-hub',
-		'title'  => __( 'loading' ),
 		'parent' => 'top-secondary',
+		'title'  => $notification_hub_icon,
 		'meta'   => array(
 			'tabindex' => 0,
+			'html'     => $notification_hub,
 		),
 	);
 	$wp_admin_bar->add_node( $args );

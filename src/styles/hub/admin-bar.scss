@@ -18,18 +18,17 @@
 	}
 
 	/* the bell icon */
-	.ab-item {
+	.hub-icon {
 		appearance: none;
 		height: 32px;
 		display: block;
-		padding: 0 10px;
 		border: 0;
 		margin: 0;
 		background: none;
 	}
 
 	/* if the drawer is enabled transforms the bell icon to overlay the drawer */
-	.notifications.active > .ab-item .ab-icon {
+	.notifications.active > .hub-icon .ab-icon {
 		filter: invert(1) hue-rotate(180deg);
 		position: relative;
 		z-index: 100002;

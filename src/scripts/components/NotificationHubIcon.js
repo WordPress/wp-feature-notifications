@@ -3,6 +3,12 @@ import { useShortcut } from '@wordpress/keyboard-shortcuts';
 import classNames from 'classnames';
 
 /**
+ * The HTML rendered by this component is the same as the variable `notification_hub_icon`
+ * in`includes/load.php`. If the output of this component is modified that file must
+ * also be updated.
+ */
+
+/**
  * Notification icon UI component
  *
  * @param {Object}    Props
@@ -25,7 +31,7 @@ export const NotificationHubIcon = ( {
 
 	return (
 		<button
-			className={ 'ab-item' }
+			className={ 'hub-icon' }
 			aria-haspopup="menu"
 			onClick={ () => toggle() }
 		>
