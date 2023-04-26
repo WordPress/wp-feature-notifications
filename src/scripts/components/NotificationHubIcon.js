@@ -39,7 +39,9 @@ export const NotificationHubIcon = ( {
 				className={ classNames( 'ab-icon', 'dashicons', ...classes ) }
 				aria-hidden="true"
 			></span>
-			<span className={ 'ab-label' }>{ __( 'Notifications' ) }</span>
+			<span className="ab-label screen-reader-text">
+				{ __( 'Notifications' ) }
+			</span>
 		</button>
 	);
 };

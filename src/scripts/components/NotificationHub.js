@@ -63,8 +63,8 @@ export const NotificationHub = ( { initialActive = false } ) => {
 	}, [ isActive ] );
 
 	return (
-		<div className="ab-item ab-empty-item" tabIndex={ 0 }>
-			<ShortcutProvider
+		<ShortcutProvider className="ab-item ab-empty-item" tabIndex={ 0 }>
+			<div
 				className={ classNames( [
 					'notifications',
 					isActive ? 'active' : '',
@@ -79,7 +79,7 @@ export const NotificationHub = ( { initialActive = false } ) => {
 					focus={ () => setIsActive( true ) }
 					blur={ () => setIsActive( false ) }
 				/>
-			</ShortcutProvider>
-		</div>
+			</div>
+		</ShortcutProvider>
 	);
 };

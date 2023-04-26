@@ -35,7 +35,7 @@
 	}
 
 	/* The label is the red dot over the bell */
-	.ab-label {
+	.has-new-notifications {
 		position: absolute;
 		width: 6px;
 		height: 6px;
@@ -55,7 +55,7 @@
 	@media #{$breakpoint} {
 		display: block;
 
-		.ab-label {
+		.has-new-notifications {
 			clip: unset;
 			clip-path: unset;
 			width: 11px;
