@@ -12,14 +12,16 @@ import classNames from 'classnames';
  * Notification icon UI component
  *
  * @param {Object}    Props
- * @param {Function}  Props.toggle   Toggle the drawer on and off.
- * @param {boolean}   Props.isActive Predicate of whether the drawer is in an active state.
- * @param {string[]=} Props.classes  The icon class names (defaults to [ 'dashicons-bell' ])
+ * @param {Function}  Props.toggle    Toggle the drawer on and off.
+ * @param {boolean}   Props.isActive  Predicate of whether the drawer is in an active state.
+ * @param {boolean=}  Props.hasUnread Predicate of whether there are unread notifications.
+ * @param {string[]=} Props.classes   The icon class names (defaults to [ 'dashicons-bell' ])
  * @return {JSX.Element} - the Notification icon
  */
 export const NotificationHubIcon = ( {
 	toggle,
 	isActive,
+	hasUnread = false,
 	classes = [ 'dashicons-bell' ],
 } ) => {
 	/**
@@ -42,6 +44,12 @@ export const NotificationHubIcon = ( {
 			<span className="ab-label screen-reader-text">
 				{ __( 'Notifications' ) }
 			</span>
+			<span
+				className={ classNames(
+					'unread-dot',
+					hasUnread ? 'has-unread' : ''
+				) }
+			></span>
 		</button>
 	);
 };

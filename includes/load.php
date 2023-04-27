@@ -65,7 +65,7 @@ function admin_bar_item( WP_Admin_Bar $wp_admin_bar ) {
 	 * If this is changed that file must also be updated.
 	 */
 	$notification_hub_icon = sprintf(
-		'<div class="notifications"><button class="hub-icon" aria-haspopup="menu"><span class="ab-icon dashicons dashicons-bell" aria-hidden="true"></span><span class="ab-label screen-reader-text">%s</span></button></div>',
+		'<div class="notifications"><button class="hub-icon" aria-haspopup="menu"><span class="ab-icon dashicons dashicons-bell" aria-hidden="true"></span><span class="ab-label screen-reader-text">%s</span><span class="unread-dot"></span></button></div>',
 		__( 'Notifications', 'wp-feature-notifications' )
 	);
 

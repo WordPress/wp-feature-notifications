@@ -73,6 +73,7 @@ export const NotificationHub = ( { initialActive = false } ) => {
 				<NotificationHubIcon
 					toggle={ toggleDrawer }
 					isActive={ isActive }
+					hasUnread={ true }
 				/>
 				<Drawer
 					instance={ drawerRef }
