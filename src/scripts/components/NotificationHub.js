@@ -11,6 +11,12 @@ import { Drawer } from './Drawer';
 import { NotificationHubIcon } from './NotificationHubIcon';
 
 /**
+ * The HTML rendered by this component is the same as the variable `notification_hub`
+ * in`includes/load.php`. If the output of this component is modified that file must
+ * also be updated.
+ */
+
+/**
  * The notification hub component.
  *
  * @param {Object}   props               Properties
@@ -57,21 +63,23 @@ export const NotificationHub = ( { initialActive = false } ) => {
 	}, [ isActive ] );
 
 	return (
-		<ShortcutProvider
-			className={ classNames( [
-				'notifications',
-				isActive ? 'active' : '',
-			] ) }
-		>
-			<NotificationHubIcon
-				toggle={ toggleDrawer }
-				isActive={ isActive }
-			/>
-			<Drawer
-				instance={ drawerRef }
-				focus={ () => setIsActive( true ) }
-				blur={ () => setIsActive( false ) }
-			/>
+		<ShortcutProvider className="ab-item ab-empty-item" tabIndex={ 0 }>
+			<div
+				className={ classNames( [
+					'notifications',
+					isActive ? 'active' : '',
+				] ) }
+			>
+				<NotificationHubIcon
+					toggle={ toggleDrawer }
+					isActive={ isActive }
+				/>
+				<Drawer
+					instance={ drawerRef }
+					focus={ () => setIsActive( true ) }
+					blur={ () => setIsActive( false ) }
+				/>
+			</div>
 		</ShortcutProvider>
 	);
 };
