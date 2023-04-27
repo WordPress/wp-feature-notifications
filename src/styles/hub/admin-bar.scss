@@ -55,12 +55,12 @@
 		border: 1px solid $color-black-800;
 
 		/* initially it is hidden */
-		opacity: 0%;
+		opacity: 0;
 
 		transition: opacity 0.175s;
 
 		&.has-unread {
-			opacity: 100%;
+			opacity: 1;
 		}
 	}
 
