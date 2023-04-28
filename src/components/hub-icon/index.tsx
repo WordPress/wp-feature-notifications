@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useShortcut } from '@wordpress/keyboard-shortcuts';
 import classNames from 'classnames';
 
-import UnreadDot from '../../unread-dot';
+import UnreadDot from '../unread-dot';
 
 /**
  * The HTML rendered by this component is the same as the variable `notification_hub_icon`

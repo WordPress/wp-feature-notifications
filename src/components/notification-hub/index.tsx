@@ -8,8 +8,7 @@ import {
 import classNames from 'classnames';
 
 import Drawer from '../drawer';
-
-import HubIcon from './icon';
+import HubIcon from '../hub-icon';
 
 /**
  * The HTML rendered by this component is the same as the variable `notification_hub`
@@ -79,7 +78,11 @@ export default function NotificationHub( { initialActive = false }: Props ) {
 					isActive ? 'active' : '',
 				] ) }
 			>
-				<HubIcon toggle={ toggleDrawer } isActive={ isActive } />
+				<HubIcon
+					toggle={ toggleDrawer }
+					isActive={ isActive }
+					hasUnread={ true }
+				/>
 				<Drawer
 					drawRef={ drawerRef }
 					focus={ () => setIsActive( true ) }

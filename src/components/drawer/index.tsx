@@ -28,12 +28,12 @@ type Props = {
  * @param props.blur    The `onBlur` event listener for the drawer.
  * @param props.drawRef The reference to the drawer element.
  */
-export default function ( { focus, blur, drawRef }: Props ) {
+export default function Drawer( { focus, blur, drawRef }: Props ) {
 	/**
 	 * Enables the shortcut to close the drawer with the escape key
 	 */
 	useShortcut( 'wp-feature-notifications/close-drawer', () => blur );
-	const [ width, setWidth ] = useState( /** @type {number} */ HUB_WIDTH );
+	const [ width, setWidth ] = useState( HUB_WIDTH );
 
 	return (
 		<aside

@@ -1,5 +1,5 @@
 // @ts-ignore
-import * as classNames from 'classnames';
+import classNames from 'classnames';
 
 import { defaultContext } from '../../../store/constants';
 import type { NoticeIcon } from '../../../types';
