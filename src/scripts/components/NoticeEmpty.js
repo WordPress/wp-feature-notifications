@@ -1,10 +1,18 @@
 import { comment, Icon } from '@wordpress/icons';
 
-export const NoticeEmpty = (props) => {
+/**
+ * @param {Object} props
+ * @param {number} props.size    The size of the icon.
+ * @param {string} props.message The message of the notification.
+ */
+export const NoticeEmpty = ( props ) => {
 	return (
-		<div style={{ padding: '20px', textAlign: 'center' }}>
-			<Icon icon={comment} size={props.size} />
-			<p>{props.message}</p>
-		</div>
+		<section
+			className={ 'is-empty' }
+			style={ { padding: '20px', textAlign: 'center' } }
+		>
+			<Icon icon={ comment } size={ props.size } />
+			<p>{ props.message }</p>
+		</section>
 	);
 };

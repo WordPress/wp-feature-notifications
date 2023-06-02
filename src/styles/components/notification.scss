@@ -1,0 +1,28 @@
+/*
+ * General notifications style
+ */
+.wp-notification {
+	background: var(--wp-notifications--color--background);
+	color: var(--wp-notifications--color--primary);
+	overflow: hidden;
+	max-height: 600px;
+
+	&-action {
+		text-decoration-line: underline;
+		color: var(--wp-notifications--color--link);
+	}
+
+	&-meta {
+		color: var(--wp-notifications--color--secondary);
+	}
+
+	// TODO exit animation
+
+	/*	&.dismissing {
+		transition: opacity 100ms, padding 100ms, max-height 100ms;
+		padding-top: 0 !important;
+		padding-bottom: 0 !important;
+		max-height: 0;
+		opacity: 0;
+	}*/
+}

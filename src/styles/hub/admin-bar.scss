@@ -1,0 +1,90 @@
+/* stylelint-disable font-family-no-missing-generic-family-keyword */
+
+/*
+ * WP admin bar
+ */
+#wpadminbar #wp-admin-bar-wp-notifications-hub {
+	padding-right: 8px;
+	position: relative;
+	z-index: 100002;
+	display: block; // avoids to hide the bell icon (and the drawer) on mobile
+
+	/**
+   * Drawer icons needs to be reset to avoid admin-bar default icon color
+   */
+	&:hover #wp-notifications-hub {
+
+		.ab-icon::before {
+			color: $color-white;
+		}
+	}
+
+	/* the bell icon */
+	.hub-icon {
+		appearance: none;
+		width: 28px;
+		height: 32px;
+		display: block;
+		border: 0;
+		margin: 0;
+		background: none;
+
+	}
+
+	/* if the drawer is enabled transforms the bell icon to overlay the drawer */
+	.notifications.active > .hub-icon .ab-icon {
+		filter: invert(1) hue-rotate(180deg);
+		position: relative;
+		z-index: 100002;
+	}
+
+	/* The red dot over the bell */
+	.unread-dot {
+		position: absolute;
+		width: 6px;
+		height: 6px;
+		top: 12px;
+		left: 20px;
+		border-radius: 50%;
+		font-size: 0;
+
+		/* the dot color */
+		background: $color-red;
+
+		/* the dot color border */
+		border: 1px solid $color-black-800;
+
+		/* initially it is hidden */
+		opacity: 0;
+
+		transition: opacity 0.175s;
+
+		&.has-unread {
+			opacity: 1;
+		}
+	}
+
+	/* Mobile */
+	@media #{$breakpoint} {
+		display: block;
+
+		.hub-icon {
+			width: 54px;
+			height: 46px;
+
+			.ab-icon {
+				padding-top: 6px;
+				font: 32px/1 dashicons !important;
+			}
+		}
+
+		.unread-dot {
+			clip: unset;
+			clip-path: unset;
+			width: 9px;
+			height: 9px;
+			top: 16px;
+			left: 28px;
+		}
+	}
+}

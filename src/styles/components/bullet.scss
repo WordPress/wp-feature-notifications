@@ -1,0 +1,29 @@
+/*
+ * Elements - Bullet
+ */
+
+$bullet-width: 6px;
+
+#wpbody .wp-notification-wrap,
+#wpadminbar .wp-notification.new {
+	position: relative;
+
+	> :first-child::before {
+		content: "";
+		display: block;
+		position: absolute;
+		width: $bullet-width;
+		height: $bullet-width;
+
+		top: calc(10px - #{$bullet-width * 0.5 });
+		left: #{ (-36px - $bullet-width) * 0.5 }; // 9 - left padding - border /2  + bullet/2
+
+		border-radius: 50%;
+		background: var(--wp-notifications--color--link);
+	}
+}
+
+#wpadminbar .wp-notification.new > :first-child::before {
+	top: calc(var(--wp-notifications--hub-image-size) * 0.5 + var(--wp-notifications--hub-spacing-top));
+	left: 2px;
+}

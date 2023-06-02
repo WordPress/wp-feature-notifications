@@ -4,80 +4,88 @@
  * https://github.com/WordPress/wp-feature-notifications/issues/37#issuecomment-896080025
  */
 
-// Register components
-import { NoticeIcon } from './NoticeImage';
-import { NoticeActions } from './NoticeAction';
-
-// Import utilities
-import classnames from 'classnames';
-import { purify } from '../utils/sanitization';
-import moment from 'moment';
-import { __ } from '@wordpress/i18n';
-import { defaultContext, NOTIFY_NAMESPACE } from '../store/constants';
 import { dispatch } from '@wordpress/data';
+import classnames from 'classnames';
 
-export const NoticeMeta = ({ date, source }) => (
-	<p className="wp-notification-meta">
-		<span className="name">{source}</span> {'\u2022 '}
-		<span className="date">{moment(date).fromNow()}</span>
-	</p>
-);
+import { STORE_NAMESPACE } from '../constants';
+import { defaultContext } from '../store/constants';
+import { delay } from '../utils';
+import { purify } from '../utils/sanitization';
+
+import { NoticeActions } from './NoticeAction';
+import { NoticeIcon } from './NoticeImage';
+import { NoticeMeta } from './NoticeMeta';
 
 /**
- * It renders a single notice
- *
- * @param {Object} props
- * @return {JSX.Element} Notice - the single notice
+ * @typedef {import('../store').Notice} Notice
  */
-export const Notice = (props) => {
+
+/**
+ * This is a functional component in JavaScript that defines the UI for a single notification.
+ * It takes in a set of props, destructures them, and uses them to render the notification with the appropriate title, message, icon, and actions.
+ * It also includes a function to dismiss the notification when the user clicks on the dismiss button.
+ *
+ * @param {Notice} props
+ * @return {JSX.Element} Notice The single notice.
+ */
+export const Notice = ( props ) => {
 	const {
-		id,
-		title,
-		status,
+		action,
 		context = defaultContext,
-		source = 'WordPress',
-		date = __('Just now'),
+		date = new Date(),
+		dismissLabel,
+		dismissible,
+		icon,
+		id,
 		message,
 		severity,
-		dismissible,
-		unread,
+		source = 'WordPress',
+		status,
+		title,
 	} = props;
 
 	/**
 	 * Dismiss the target notification
 	 */
 	function dismissNotice() {
-		dispatch(NOTIFY_NAMESPACE).updateNotice({
+		dispatch( STORE_NAMESPACE ).updateNotice( {
 			id,
-			status: 'dismissing',
-		});
-		dispatch(NOTIFY_NAMESPACE).removeNotice(id);
+			status: 'dismissed',
+		} );
+		// TODO missing exit animation
+		delay( 500 ).then( () =>
+			dispatch( STORE_NAMESPACE ).removeNotice( id )
+		);
 	}
 
 	return (
 		<div
-			className={classnames(
+			className={ classnames(
 				'wp-notification',
 				'wp-notice-' + id,
-				dismissible,
+				dismissible ? 'dismissible' : null,
 				severity ? severity : null,
-				unread ? 'unread' : null,
 				status
-			)}
+			) }
 		>
 			<div className="wp-notification-wrap">
-				<h3 className="wp-notification-title">{title}</h3>
-				{message ?? <p dangerouslySetInnerHTML={purify(message)} />}
+				<h3 className="wp-notification-title">{ title }</h3>
+				{ message ? (
+					<p dangerouslySetInnerHTML={ purify( message ) }></p>
+				) : null }
 				<NoticeActions
-					action={props?.action ?? {}}
-					onDismiss={dismissNotice}
-					context={context}
-					dismissible={dismissible}
+					action={ { ...action, dismissLabel, dismissible } }
+					onDismiss={ dismissNotice }
+					context={ context }
 				/>
-				<NoticeMeta date={date} source={source} />
+				<NoticeMeta date={ date } source={ source } />
 			</div>
 
-			<NoticeIcon {...props} />
+			<NoticeIcon
+				icon={ icon }
+				context={ context }
+				severity={ severity }
+			/>
 		</div>
 	);
 };

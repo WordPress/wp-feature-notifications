@@ -1,15 +1,18 @@
 /**
+ * @typedef {import('./index').State} State
+ */
+/**
  * Find the context for the given notification key.
  *
- * @param {Object} notifications - The notifications object to search in
+ * @param {State}  notifications - The notifications object to search in
  * @param {number} id            - The notification id to search
  */
-export function findContext(notifications, id) {
-	for (const location in notifications) {
-		const found = notifications[location].find(
-			(notification) => notification.id === id
+export function findContext( notifications, id ) {
+	for ( const location in notifications ) {
+		const found = notifications[ location ].find(
+			( notification ) => notification.id === id
 		);
-		if (found) {
+		if ( found ) {
 			return location;
 		}
 	}
