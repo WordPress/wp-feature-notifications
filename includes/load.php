@@ -3,7 +3,6 @@
 namespace WP\Notifications;
 
 use WP_Admin_Bar;
-use WP\Notifications\REST;
 
 /**
  * Activation hook function of the WP Notification plugin.
@@ -13,7 +12,7 @@ function activation_hook() {
 	Activator::activate();
 }
 
-register_activation_hook( __FILE__, '\WP\Notifications\activation_hook' );
+register_activation_hook( WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/wp-feature-notifications.php', '\WP\Notifications\activation_hook' );
 
 /**
  * Uninstall hook function of the WP Notification plugin.
@@ -23,7 +22,7 @@ function uninstall_hook() {
 	Uninstaller::uninstall();
 }
 
-register_uninstall_hook( __FILE__, '\WP\Notifications\uninstall_hook' );
+register_uninstall_hook( WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/wp-feature-notifications.php', '\WP\Notifications\uninstall_hook' );
 
 /**
  * REST API initialization hook of the WP Notification plugin.
