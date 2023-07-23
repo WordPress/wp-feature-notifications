@@ -28,6 +28,7 @@
 	],
 	"scripts": {
 		"start": "wp-scripts start",
+		"start:environment": "wp-env start",
 		"start:storybook": "npm run start --workspace=storybook",
 		"build": "wp-scripts build",
 		"build:storybook": "npm run build --workspace=storybook",
@@ -45,7 +46,9 @@
 		"test:php": "wp-env run phpunit 'phpunit --configuration=/var/www/html/wp-content/plugins/wp-feature-notifications/phpunit.xml.dist'",
 		"test": "npm run test:php && npm run test:js",
 		"docGen": "npx docgen src/scripts/wp-notifications.js",
-		"prepare": "husky install"
+		"prepare": "husky install",
+		"wp-env": "wp-env",
+		"wp-scripts": "wp-scripts"
 	},
 	"repository": {
 		"type": "git",
@@ -62,7 +65,7 @@
 		"@wordpress/data": "^9.0.0",
 		"@wordpress/date": "^4.31.0",
 		"@wordpress/e2e-test-utils": "^10.1.0",
-		"@wordpress/env": "^5.15.0",
+		"@wordpress/env": "^8.3.0",
 		"@wordpress/escape-html": "^2.31.0",
 		"@wordpress/i18n": "^4.30.0",
 		"@wordpress/icons": "^9.21.0",
