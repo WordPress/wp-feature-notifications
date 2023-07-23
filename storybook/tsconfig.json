@@ -1,0 +1,10 @@
+{
+	"extends": "..",
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "es5",
+		"lib": [ "dom", "dom.iterable", "esnext" ]
+	},
+	"include": [ "stories" ],
+	"exclude": [ "node_modules" ]
+}
