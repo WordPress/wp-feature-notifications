@@ -1,5 +1,5 @@
 /** the single notification component */
-import { Notice } from '../../src/scripts/components/Notice';
+import Notice from '../../src/components/notice';
 
 export default {
 	title: 'wp-feature-notifications/Dashboard/Single',

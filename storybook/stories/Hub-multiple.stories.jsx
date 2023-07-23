@@ -1,8 +1,8 @@
 /** the single notification component */
 import { dispatch } from '@wordpress/data';
 
-import { NotificationHub } from '../../src/scripts/components/NotificationHub';
-import { STORE_NAMESPACE } from '../../src/scripts/constants';
+import NotificationHub from '../../src/components/notification-hub';
+import { STORE_NAMESPACE } from '../../src/constants';
 import jsonData from '../fake_api.json';
 
 export default {
