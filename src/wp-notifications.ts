@@ -1,7 +1,7 @@
 /** WordPress Dependencies */
 import { dispatch, select } from '@wordpress/data';
 
-import './wp-notifications.scss';
+import './styles/wp-notifications.scss';
 
 /** The store default data */
 import { STORE_NAMESPACE } from './constants';

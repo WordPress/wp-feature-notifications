@@ -28,6 +28,14 @@
 		border: 0;
 		margin: 0;
 		background: none;
+
+	}
+
+	/* if the drawer is enabled transforms the bell icon to overlay the drawer */
+	.notifications.active > .hub-icon .ab-icon {
+		filter: invert(1) hue-rotate(180deg);
+		position: relative;
+		z-index: 100002;
 	}
 
 	/* The red dot over the bell */
@@ -54,18 +62,6 @@
 		&.has-unread {
 			opacity: 1;
 		}
-	}
-
-	/* if the drawer is enabled transforms the bell icon to overlay the drawer */
-	.notifications.active > .hub-icon .ab-icon {
-		filter: invert(1) hue-rotate(180deg);
-		position: relative;
-		z-index: 100002;
-	}
-
-	.notifications.active > .hub-icon .unread-dot {
-		z-index: 100003;
-		border: 1px solid $color-black-300;
 	}
 
 	/* Mobile */
