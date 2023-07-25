@@ -3,8 +3,8 @@
 import { dispatch } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 
-import { NotificationHub } from '../../src/scripts/components/NotificationHub';
-import { STORE_NAMESPACE } from '../../src/scripts/constants';
+import NotificationHub from '../../src/components/notification-hub';
+import { STORE_NAMESPACE } from '../../src/constants';
 
 export default {
 	title: 'wp-feature-notifications/Notification Hub/Empty',

@@ -1,5 +1,5 @@
 /** wp-feature-notifications style */
-import { NoticesLoop } from '../../src/scripts/components/NoticesLoop';
+import NoticesLoop from '../../src/components/notice-loop';
 import jsonData from '../fake_api.json';
 
 // filter out non dashboard notices
