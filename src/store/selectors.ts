@@ -10,9 +10,11 @@ import type { State } from './index';
  * Fetch the rest api in order to get new notifications
  *
  * @param state the current state
+ * @param force
  * @return the new notifications
  */
-export const fetchUpdates = ( state: State ): State => state || {};
+export const fetchUpdates = ( state: State, force = false ): State =>
+	state || {};
 
 /**
  * Get the notices for the given context
