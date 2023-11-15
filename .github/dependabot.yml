@@ -12,6 +12,11 @@ updates:
           prefix: 'Composer'
       allow:
           - dependency-type: 'direct'
+      groups:
+          phpunit:
+              patterns:
+                  - 'phpunit/phpunit'
+                  - 'wp-phpunit/wp-phpunit'
 
     - package-ecosystem: 'npm'
       directory: '/'
@@ -26,3 +31,7 @@ updates:
           - dependency-type: 'direct'
           - dependency-name: '@wordpress/*'
             dependency-type: 'all'
+      groups:
+          wordpress:
+              patterns:
+                  - '@wordpress/*'
