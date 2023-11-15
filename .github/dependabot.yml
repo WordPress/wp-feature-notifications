@@ -17,6 +17,7 @@ updates:
               patterns:
                   - 'phpunit/phpunit'
                   - 'wp-phpunit/wp-phpunit'
+                  - 'yoast/phpunit-polyfills'
 
     - package-ecosystem: 'npm'
       directory: '/'
