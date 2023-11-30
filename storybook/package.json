@@ -7,20 +7,20 @@
 		"build": "storybook build --output-dir ../docs/"
 	},
 	"devDependencies": {
-		"@storybook/addon-a11y": "^7.1.0",
-		"@storybook/addon-docs": "^7.1.0",
-		"@storybook/addon-essentials": "^7.1.0",
-		"@storybook/addon-interactions": "^7.1.0",
-		"@storybook/addon-links": "^7.1.0",
-		"@storybook/addon-mdx-gfm": "^7.1.0",
-		"@storybook/addons": "^7.1.0",
-		"@storybook/blocks": "^7.1.0",
-		"@storybook/source-loader": "^7.1.0",
-		"@storybook/react": "^7.1.0",
-		"@storybook/react-webpack5": "^7.1.0",
-		"@storybook/theming": "^7.1.0",
+		"@storybook/addon-a11y": "^7.6.1",
+		"@storybook/addon-docs": "^7.6.1",
+		"@storybook/addon-essentials": "^7.6.1",
+		"@storybook/addon-interactions": "^7.6.1",
+		"@storybook/addon-links": "^7.6.1",
+		"@storybook/addon-mdx-gfm": "^7.6.1",
+		"@storybook/addons": "^7.6.1",
+		"@storybook/blocks": "^7.6.1",
+		"@storybook/source-loader": "^7.6.1",
+		"@storybook/react": "^7.6.1",
+		"@storybook/react-webpack5": "^7.6.1",
+		"@storybook/theming": "^7.6.1",
 		"@wordpress/wp-feature-notifications": "../",
-		"storybook": "^7.1.0"
+		"storybook": "^7.6.1"
 	},
 	"peerDependencies": {
 		"react": "^18.2.0",
