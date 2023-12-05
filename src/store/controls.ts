@@ -18,7 +18,7 @@ export function FETCH< Action extends { path: string } >( action: Action ) {
 				( {
 					...notice,
 					date: new Date( notice.date ),
-				} as Notice )
+				} ) as Notice
 		)
 	);
 }

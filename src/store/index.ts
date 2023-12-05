@@ -16,7 +16,7 @@ export type State = Record< string, Notice[] >;
 
 type ValuesOf<
 	T extends Record< string, unknown >,
-	K extends keyof T = keyof T
+	K extends keyof T = keyof T,
 > = T[ K ];
 
 /**

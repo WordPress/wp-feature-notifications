@@ -37,7 +37,7 @@ export default function NoticesArea( {
 	 */
 	notifications = useSelect(
 		( select ) => select( store ).getNotices( context ),
-		[]
+		[ context ]
 	);
 
 	/**
