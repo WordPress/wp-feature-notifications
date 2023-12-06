@@ -36,3 +36,6 @@ updates:
           wordpress:
               patterns:
                   - '@wordpress/*'
+          storybook:
+              patterns:
+                - '@storybook/*'
