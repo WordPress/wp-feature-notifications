@@ -5,6 +5,7 @@ import './styles/wp-notifications.scss';
 
 /** The store default data */
 import { STORE_NAMESPACE } from './constants';
+import { Poller } from './poller';
 import { contexts } from './store/constants';
 import type { Notice } from './types';
 import { addContext } from './utils/init';
@@ -20,8 +21,23 @@ export * as store from './store';
 const notifications = {
 	/**
 	 * Fetch for new notices
+	 *
+	 * @param forceRefresh - Whether to force a refresh of the notices, or use the cached value.
 	 */
-	fetchUpdates: () => select( STORE_NAMESPACE ).fetchUpdates(),
+	fetchUpdates: ( forceRefresh = false ) => {
+		return new Promise( ( resolve ) => {
+			if ( ! forceRefresh ) {
+				resolve( select( STORE_NAMESPACE ).fetchUpdates( false ) );
+				return;
+			}
+
+			dispatch( STORE_NAMESPACE )
+				.invalidateResolution( 'fetchUpdates', [ true ] )
+				.then( () => {
+					resolve( select( STORE_NAMESPACE ).fetchUpdates( true ) );
+				} );
+		} );
+	},
 
 	/**
 	 * List all notifications or those of a particular context
@@ -67,6 +83,8 @@ const notifications = {
 	 */
 	clear: ( context = 'adminbar' ) =>
 		dispatch( STORE_NAMESPACE ).clear( context ),
+
+	poller: new Poller(),
 };
 
 /** Appends the wp-notifications instance to window.wp in order to provide a public API */
@@ -81,6 +99,8 @@ contexts.forEach( ( context ) =>
 
 /** after registering contexts we could fetch the notifications */
 select( STORE_NAMESPACE ).fetchUpdates();
+
+notifications.poller.start();
 
 /**
  * Loops into contexts and adds a NoticesArea component for each one

@@ -24,6 +24,38 @@ const reducer: Reducer< State, Action > = ( state = {}, action ) => {
 			} );
 			return updated;
 		}
+		case 'REHYDRATE': {
+			let updated = { ...state };
+			// Merge the new notifications with the existing ones.
+			action.payload.forEach( ( notification ) => {
+				const context = notification.context || 'adminbar';
+
+				const existingOnes = updated[ context ] || [];
+				const existing = existingOnes.findIndex(
+					( notice ) => notice.id === notification.id
+				);
+
+				if ( existing > -1 ) {
+					updated[ context ][ existing ] = notification;
+				} else {
+					updated = {
+						...updated,
+						[ context ]: [ ...updated[ context ], notification ],
+					};
+				}
+			} );
+
+			// Remove any notifications that are no longer in the payload.
+			for ( const context in updated ) {
+				updated[ context ] = updated[ context ].filter( ( notice ) => {
+					return action.payload.find( ( payloadNotice ) => {
+						return payloadNotice.id === notice.id;
+					} );
+				} );
+			}
+
+			return updated;
+		}
 		case 'ADD': {
 			return {
 				...state,

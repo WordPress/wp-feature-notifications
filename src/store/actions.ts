@@ -13,6 +13,13 @@ export const hydrate = ( payload: Notice[] ) => {
 	};
 };
 
+export const rehydrate = ( payload: Notice[] ) => {
+	return {
+		type: 'REHYDRATE' as const,
+		payload,
+	};
+};
+
 /**
  * Action creator to clear a notification context from the store.
  *
