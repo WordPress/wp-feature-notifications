@@ -7,6 +7,7 @@
 # Vendor code
 /node_modules/
 /vendor/
+composer.lock
 
 # Build Files
 /build/
