@@ -15,12 +15,12 @@
 		"@storybook/addon-mdx-gfm": "^7.6.1",
 		"@storybook/addons": "^7.6.1",
 		"@storybook/blocks": "^7.6.1",
-		"@storybook/source-loader": "^7.6.1",
 		"@storybook/react": "^7.6.1",
 		"@storybook/react-webpack5": "^7.6.1",
+		"@storybook/source-loader": "^7.6.1",
 		"@storybook/theming": "^7.6.1",
 		"@wordpress/wp-feature-notifications": "../",
-		"storybook": "^7.6.1"
+		"storybook": "^7.6.24"
 	},
 	"peerDependencies": {
 		"react": "^18.2.0",
