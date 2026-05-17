@@ -24,10 +24,10 @@ runs:
           id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
           with:
               path: ${{ steps.npm-cache-dir.outputs.dir }}
-              key: ${{ runner.os }}-node-v2-${{ inputs.node-version  }}-${{ hashFiles('**/package-lock.json') }}
+              key: ${{ runner.os }}-node-${{ inputs.node-version  }}-${{ hashFiles('**/package-lock.json') }}
               restore-keys: |
-                  ${{ runner.os }}-node-v2-${{ inputs.node-version  }}
+                  ${{ runner.os }}-node-${{ inputs.node-version  }}
 
         - name: Install Packages
           shell: bash
-          run: npm install --legacy-peer-deps
+          run: npm ci --legacy-peer-deps
