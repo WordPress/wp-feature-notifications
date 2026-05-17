@@ -15,6 +15,7 @@ export default [
 				typescript: {
 					alwaysTryTypes: true,
 					project: [ './tsconfig.json', 'tsconfig.eslint.json' ],
+					noWarnOnMultipleProjects: true,
 				},
 			},
 		},
