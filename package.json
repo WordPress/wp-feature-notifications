@@ -45,7 +45,7 @@
 		"test:php": "wp-env run phpunit 'phpunit --configuration=/var/www/html/wp-content/plugins/wp-feature-notifications/phpunit.xml.dist'",
 		"test": "npm run test:php && npm run test:js",
 		"docGen": "npx docgen src/scripts/wp-notifications.js",
-		"prepare": "husky install"
+		"prepare": "husky"
 	},
 	"repository": {
 		"type": "git",
