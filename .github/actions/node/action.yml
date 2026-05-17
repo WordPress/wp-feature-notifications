@@ -30,4 +30,6 @@ runs:
 
         - name: Install Packages
           shell: bash
+          env:
+              PUPPETEER_SKIP_DOWNLOAD: 'true'
           run: npm ci --legacy-peer-deps
