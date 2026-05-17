@@ -1,0 +1,43 @@
+import wpConfig from '@wordpress/scripts/config/eslint.config.cjs';
+
+/**
+ * ESLint presets
+ */
+export default [
+	...wpConfig,
+	{
+		files: [ '**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx' ],
+		rules: {
+			'import/order': [
+				'error',
+				{
+					alphabetize: {
+						order: 'asc',
+						caseInsensitive: true,
+					},
+					'newlines-between': 'always',
+					groups: [
+						'builtin',
+						'external',
+						'parent',
+						'sibling',
+						'index',
+					],
+					pathGroups: [
+						{
+							pattern: '@wordpress/**',
+							group: 'external',
+						},
+					],
+					pathGroupsExcludedImportTypes: [ 'builtin' ],
+				},
+			],
+		},
+	},
+	{
+		files: [ 'tests/**/*' ],
+		rules: {
+			'no-undef': 'off',
+		},
+	},
+];
