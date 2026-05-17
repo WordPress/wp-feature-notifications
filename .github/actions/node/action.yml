@@ -5,13 +5,13 @@ inputs:
     node-version:
         description: 'Node.js version the action should use'
         required: true
-        default: '16'
+        default: '22'
 
 runs:
     using: 'composite'
     steps:
         - name: Setup node
-          uses: actions/setup-node@v3
+          uses: actions/setup-node@v6
           with:
               node-version: ${{ inputs.node-version }}
 
@@ -20,7 +20,7 @@ runs:
           shell: bash
           run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
 
-        - uses: actions/cache@v3
+        - uses: actions/cache@v4
           id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
           with:
               path: ${{ steps.npm-cache-dir.outputs.dir }}
