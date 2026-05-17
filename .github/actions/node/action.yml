@@ -30,4 +30,4 @@ runs:
 
         - name: Install Packages
           shell: bash
-          run: npm ci
+          run: npm install --legacy-peer-deps
