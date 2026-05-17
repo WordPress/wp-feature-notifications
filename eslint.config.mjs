@@ -7,6 +7,17 @@ export default [
 	...wpConfig,
 	{
 		files: [ '**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx' ],
+		settings: {
+			'import/parsers': {
+				'@typescript-eslint/parser': [ '.js', '.jsx', '.ts', '.tsx' ],
+			},
+			'import/resolver': {
+				typescript: {
+					alwaysTryTypes: true,
+					project: [ './tsconfig.json', 'tsconfig.eslint.json' ],
+				},
+			},
+		},
 		rules: {
 			'import/order': [
 				'error',

@@ -70,6 +70,7 @@
 		"@wordpress/scripts": "^32.2.0",
 		"classnames": "^2.3.2",
 		"eslint": "^10.4.0",
+		"eslint-import-resolver-typescript": "^4.4.4",
 		"husky": "^9.1.7",
 		"jest-puppeteer": "^11.0.0",
 		"lint-staged": "^16.4.0",
