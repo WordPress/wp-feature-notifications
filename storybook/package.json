@@ -8,16 +8,16 @@
 	},
 	"devDependencies": {
 		"@storybook/addon-a11y": "^7.6.1",
-		"@storybook/addon-docs": "^7.6.1",
-		"@storybook/addon-essentials": "^7.6.1",
+		"@storybook/addon-docs": "^10.4.0",
+		"@storybook/addon-essentials": "^8.6.14",
 		"@storybook/addon-interactions": "^7.6.1",
 		"@storybook/addon-links": "^7.6.1",
 		"@storybook/addon-mdx-gfm": "^7.6.1",
 		"@storybook/addons": "^7.6.1",
-		"@storybook/blocks": "^7.6.1",
+		"@storybook/blocks": "^8.6.14",
+		"@storybook/react": "^10.4.0",
+		"@storybook/react-webpack5": "^10.4.0",
 		"@storybook/source-loader": "^7.6.1",
-		"@storybook/react": "^7.6.1",
-		"@storybook/react-webpack5": "^7.6.1",
 		"@storybook/theming": "^7.6.1",
 		"@wordpress/wp-feature-notifications": "../",
 		"storybook": "^7.6.1"
@@ -40,5 +40,9 @@
 				}
 			}
 		]
+	},
+	"dependencies": {
+		"@wordpress/env": "11.6.0",
+		"@wordpress/scripts": "32.2.0"
 	}
 }
