@@ -8,5 +8,4 @@ interface Status_Interface {
 	const UNDISPLAYED = 'undisplayed';
 	const DISPLAYED   = 'displayed';
 	const DISMISSED   = 'dismissed';
-
 }

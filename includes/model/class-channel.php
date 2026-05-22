@@ -65,7 +65,7 @@ class Channel implements JsonSerializable {
 		$context = null,
 		$description = null,
 		$icon = null
-		) {
+	) {
 		// Required properties
 
 		$this->name  = $name;

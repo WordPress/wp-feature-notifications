@@ -6,8 +6,7 @@ use DateTimeInterface;
 
 use WP\Notifications;
 
-class Wpdb_Notification_Repository
-	extends Abstract_Notification_Repository {
+class Wpdb_Notification_Repository extends Abstract_Notification_Repository {
 
 	/**
 	 * Find a notification by ID.
