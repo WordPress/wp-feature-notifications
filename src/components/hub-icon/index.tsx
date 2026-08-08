@@ -39,7 +39,9 @@ export default function HubIcon( {
 	 * Enables the shortcut to close the drawer with the escape key
 	 */
 	useShortcut( 'wp-feature-notifications/close-drawer', () => {
-		if ( isActive ) toggle();
+		if ( isActive ) {
+			toggle();
+		}
 	} );
 
 	return (

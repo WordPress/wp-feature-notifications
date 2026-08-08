@@ -19,7 +19,7 @@ class Message implements JsonSerializable {
 	/**
 	 * The accepted keys of the message metadata.
 	 */
-	static protected $meta_keys = array(
+	protected static $meta_keys = array(
 		'accept_label',
 		'accept_link',
 		'channel_title',

@@ -123,5 +123,4 @@ class Subscription implements JsonSerializable {
 	public function get_user_id(): ?int {
 		return $this->user_id;
 	}
-
 }
