@@ -78,7 +78,7 @@ class Notification_Controller extends WP_REST_Controller {
 			self::NOTIFICATION_BASE . '/(?P<id>[\d]+)',
 			array(
 				array(
-					'methods'             => WP_REST_Server::EDITABLE,
+					'methods'             => 'PUT',
 					'args'                => array(
 						'id'           => array(
 							'description' => __( 'Unique identifier for the notification.' ),

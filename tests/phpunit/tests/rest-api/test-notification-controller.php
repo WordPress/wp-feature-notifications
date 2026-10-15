@@ -62,7 +62,7 @@ class WP_Test_REST_Notification_Controller extends WP_Test_REST_Controller_Testc
 			array( '%d', '%d' )
 		);
 
-		$request = new WP_REST_Request( 'PATCH', '/wp-notifications/v1/notifications/123' );
+		$request = new WP_REST_Request( 'PUT', '/wp-notifications/v1/notifications/123' );
 		$request->set_body_params(
 			array(
 				'dismissed_at' => '2026-10-15T12:30:00+02:00',
@@ -95,7 +95,7 @@ class WP_Test_REST_Notification_Controller extends WP_Test_REST_Controller_Testc
 	}
 
 	public function test_update_item_requires_a_state_field() {
-		$request  = new WP_REST_Request( 'PATCH', '/wp-notifications/v1/notifications/123' );
+		$request  = new WP_REST_Request( 'PUT', '/wp-notifications/v1/notifications/123' );
 		$response = rest_get_server()->dispatch( $request );
 
 		$this->assertSame( 400, $response->get_status() );
@@ -104,7 +104,7 @@ class WP_Test_REST_Notification_Controller extends WP_Test_REST_Controller_Testc
 	public function test_update_item_requires_authentication() {
 		wp_set_current_user( 0 );
 
-		$request = new WP_REST_Request( 'PATCH', '/wp-notifications/v1/notifications/123' );
+		$request = new WP_REST_Request( 'PUT', '/wp-notifications/v1/notifications/123' );
 		$request->set_body_params(
 			array( 'dismissed_at' => '2026-10-15T12:30:00Z' )
 		);
@@ -126,7 +126,7 @@ class WP_Test_REST_Notification_Controller extends WP_Test_REST_Controller_Testc
 			array( '%d', '%d' )
 		);
 
-		$request = new WP_REST_Request( 'PATCH', '/wp-notifications/v1/notifications/123' );
+		$request = new WP_REST_Request( 'PUT', '/wp-notifications/v1/notifications/123' );
 		$request->set_body_params(
 			array( 'dismissed_at' => '2026-10-15T12:30:00Z' )
 		);
