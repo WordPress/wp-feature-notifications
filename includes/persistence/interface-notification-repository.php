@@ -70,4 +70,15 @@ interface Notification_Repository {
 	 * @return int ID that the notification was stored under.
 	 */
 	public function add( Notifications\Notification $notification );
+
+	/**
+	 * Update state timestamps for a user's notification.
+	 *
+	 * @param int   $id      Notification message ID.
+	 * @param int   $user_id ID of the notification owner.
+	 * @param array $state   State timestamp fields to update.
+	 *
+	 * @return int|false One when the notification exists, zero when it does not, or false on error.
+	 */
+	public function update_state( $id, $user_id, array $state );
 }

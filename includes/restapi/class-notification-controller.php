@@ -7,16 +7,27 @@
 
 namespace WP\Notifications\REST;
 
+use DateTimeImmutable;
+use DateTimeZone;
 use WP_Error;
 use WP_REST_Controller;
 use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
+use WP\Notifications\Persistence\Notification_Repository;
+use WP\Notifications\Persistence\Wpdb_Notification_Repository;
 
 /**
  * REST API Notification Controller class
  */
 class Notification_Controller extends WP_REST_Controller {
+
+	/**
+	 * Notification persistence.
+	 *
+	 * @var Notification_Repository
+	 */
+	private $repository;
 
 	/**
 	 * Namespace for the REST endpoint.
@@ -31,6 +42,15 @@ class Notification_Controller extends WP_REST_Controller {
 	 * @type string
 	 */
 	public const NOTIFICATION_BASE = 'notifications';
+
+	/**
+	 * Create a notification controller.
+	 *
+	 * @param Notification_Repository|null $repository Notification persistence.
+	 */
+	public function __construct( ?Notification_Repository $repository = null ) {
+		$this->repository = $repository ? $repository : new Wpdb_Notification_Repository();
+	}
 
 	/**
 	 * Register REST routes
@@ -52,6 +72,116 @@ class Notification_Controller extends WP_REST_Controller {
 			),
 			false
 		);
+
+		register_rest_route(
+			self::NAMESPACE,
+			self::NOTIFICATION_BASE . '/(?P<id>[\d]+)',
+			array(
+				array(
+					'methods'             => WP_REST_Server::EDITABLE,
+					'args'                => array(
+						'id'           => array(
+							'description' => __( 'Unique identifier for the notification.' ),
+							'type'        => 'integer',
+							'minimum'     => 1,
+						),
+						'dismissed_at' => array(
+							'description' => __( 'The datetime the notification was dismissed, in UTC time.' ),
+							'type'        => array( 'string', 'null' ),
+							'format'      => 'date-time',
+						),
+						'displayed_at' => array(
+							'description' => __( 'The datetime the notification was displayed, in UTC time.' ),
+							'type'        => array( 'string', 'null' ),
+							'format'      => 'date-time',
+						),
+					),
+					'callback'            => array( $this, 'update_item' ),
+					'permission_callback' => array( $this, 'update_item_permissions_check' ),
+				),
+				'schema' => array( $this, 'get_public_item_schema' ),
+			),
+			false
+		);
+	}
+
+	/**
+	 * Checks whether the request can update a notification.
+	 *
+	 * @param WP_REST_Request $request Full details about the request.
+	 *
+	 * @return true|WP_Error True when allowed, otherwise an error.
+	 */
+	public function update_item_permissions_check( $request ) {
+		if ( ! is_user_logged_in() ) {
+			return new WP_Error(
+				'rest_notifications_login_required',
+				__( 'Sorry, you must be logged in to update notifications.' ),
+				array( 'status' => 401 )
+			);
+		}
+
+		return true;
+	}
+
+	/**
+	 * Update a notification for the current user.
+	 *
+	 * @param WP_REST_Request $request Received REST request.
+	 *
+	 * @return WP_REST_Response|WP_Error REST response or WP Error.
+	 */
+	public function update_item( $request ) {
+		$state = array();
+
+		foreach ( array( 'displayed_at', 'dismissed_at' ) as $field ) {
+			if ( $request->has_param( $field ) ) {
+				$state[ $field ] = null;
+
+				if ( null !== $request[ $field ] ) {
+					$date            = new DateTimeImmutable( $request[ $field ] );
+					$state[ $field ] = $date->setTimezone( new DateTimeZone( 'UTC' ) );
+				}
+			}
+		}
+
+		if ( empty( $state ) ) {
+			return new WP_Error(
+				'rest_notification_state_required',
+				__( 'At least one notification state field is required.' ),
+				array( 'status' => 400 )
+			);
+		}
+
+		$result = $this->repository->update_state(
+			$request['id'],
+			get_current_user_id(),
+			$state
+		);
+
+		if ( false === $result ) {
+			return new WP_Error(
+				'rest_notification_update_failed',
+				__( 'The notification could not be updated.' ),
+				array( 'status' => 500 )
+			);
+		}
+
+		if ( 0 === $result ) {
+			return new WP_Error(
+				'rest_notification_not_found',
+				__( 'The notification could not be found.' ),
+				array( 'status' => 404 )
+			);
+		}
+
+		$response = array( 'id' => (int) $request['id'] );
+
+		foreach ( $state as $field => $date ) {
+			$response[ $field ] = $date ? $date->format( DATE_RFC3339 ) : null;
+		}
+
+		return rest_ensure_response( $response );
 	}
 
 	/**
@@ -157,7 +287,6 @@ class Notification_Controller extends WP_REST_Controller {
 					'type'        => array( 'string', 'null' ),
 					'format'      => 'date-time',
 					'context'     => array( 'view', 'embed' ),
-					'readonly'    => true,
 				),
 				'expires_at'     => array(
 					'description' => __( 'The datetime the notification expires, in UTC time.' ),
