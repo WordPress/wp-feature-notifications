@@ -6,8 +6,7 @@ use DateTime;
 use DateInterval;
 use WP\Notifications;
 
-abstract class Abstract_Notification_Repository
-	implements Notification_Repository {
+abstract class Abstract_Notification_Repository implements Notification_Repository {
 
 	/**
 	 * Find the latest notifications for a given date range.
