@@ -15,11 +15,11 @@ namespace WP\Notifications\Framework;
 abstract class Factory {
 
 	/**
-	 * Container for the main instance of the class.
+	 * Container for the main instance of each factory subclass, keyed by class name.
 	 *
-	 * @property ?Model
+	 * @var array<class-string<static>, static>
 	 */
-	protected static $instance = null;
+	protected static $instances = array();
 
 	/**
 	 * Instantiates a model object.
@@ -33,15 +33,16 @@ abstract class Factory {
 	/**
 	 * Utility method to retrieve the main instance of the class.
 	 *
-	 * The instance will be created if it does not exist yet.
+	 * The instance will be created if it does not exist yet. Each subclass
+	 * has its own instance.
 	 *
-	 * @return Model The main instance.
+	 * @return static The main instance.
 	 */
 	public static function get_instance() {
-		if ( null === self::$instance ) {
-			self::$instance = new static();
+		if ( ! isset( static::$instances[ static::class ] ) ) {
+			static::$instances[ static::class ] = new static();
 		}
 
-		return self::$instance;
+		return static::$instances[ static::class ];
 	}
 }
