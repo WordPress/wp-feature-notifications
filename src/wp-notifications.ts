@@ -21,7 +21,7 @@ const notifications = {
 	/**
 	 * Fetch for new notices
 	 */
-	fetchUpdates: () => select( STORE_NAMESPACE ).fetchUpdates(),
+	fetchUpdates: () => dispatch( STORE_NAMESPACE ).fetchUpdates(),
 
 	/**
 	 * List all notifications or those of a particular context
@@ -76,11 +76,8 @@ window.wp.notifications = notifications;
  * Loops into contexts and register the found locations into the store state
  */
 contexts.forEach( ( context ) =>
-	select( STORE_NAMESPACE ).registerContext( context )
+	dispatch( STORE_NAMESPACE ).registerContext( context )
 );
-
-/** after registering contexts we could fetch the notifications */
-select( STORE_NAMESPACE ).fetchUpdates();
 
 /**
  * Loops into contexts and adds a NoticesArea component for each one
