@@ -65,7 +65,7 @@ class Notification_Controller extends WP_REST_Controller {
 		if ( ! is_user_logged_in() ) {
 			return new WP_Error(
 				'rest_notifications_login_required',
-				__( 'Sorry, you must be logged check notifications.' ),
+				__( 'Sorry, you must be logged in to check notifications.' ),
 				array( 'status' => 401 )
 			);
 		}
