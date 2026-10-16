@@ -8,7 +8,7 @@
 - Tested up to: 6.2
 - Requires PHP: 7.4
 - License: GPLv2 or later
-- License URI: https://www.gnu.org/licenses/gpl-2.0.html
+- License URI: <https://www.gnu.org/licenses/gpl-2.0.html>
 
 See also [Trac ticket #43484](https://core.trac.wordpress.org/ticket/43484).
 
@@ -30,10 +30,10 @@ We recommend using [nvm](https://github.com/nvm-sh/nvm) to ensure a compatible n
 ### Installation
 
 ```bash
-$ git clone https://github.com/WordPress/wp-feature-notifications.git
-$ cd wp-feature-notifications
-$ nvm use && npm i && composer install
-$ wp-env start
+git clone https://github.com/WordPress/wp-feature-notifications.git
+cd wp-feature-notifications
+nvm use && npm i && composer install
+wp-env start
 ```
 
 We take advantage of [wp-scripts](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-scripts/) to compile scripts and styles for this plugin.
@@ -51,7 +51,7 @@ Have an improvement, suggestion or bug? The first step is to [open an issue](htt
 Once your issue has been opened, it will be triaged, labelled and moved to the relevant [project board](https://github.com/WordPress/wp-feature-notifications/projects?type=classic).
 
 > [!IMPORTANT]
-> If your issue is a security vulnerabilty, please practice responsible disclosure and submit this at https://github.com/WordPress/wp-feature-notifications/security/advisories/new.
+> If your issue is a security vulnerabilty, please practice responsible disclosure and submit this at <https://github.com/WordPress/wp-feature-notifications/security/advisories/new>.
 
 
 ###  Working on an issue
