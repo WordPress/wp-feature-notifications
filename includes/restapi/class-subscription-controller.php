@@ -63,11 +63,11 @@ class Subscription_Controller extends WP_REST_Controller {
 	 */
 	public function get_items_permissions_check( $request ) {
 		// if ( ! is_user_logged_in() ) {
-		// 	return new WP_Error(
-		// 		'rest_notifications_login_required',
-		// 		__( 'Sorry, you must be logged to view subscriptions.' ),
-		// 		array( 'status' => 401 )
-		// 	);
+		//  return new WP_Error(
+		//      'rest_notifications_login_required',
+		//      __( 'Sorry, you must be logged to view subscriptions.' ),
+		//      array( 'status' => 401 )
+		//  );
 		// }
 		return true;
 	}
