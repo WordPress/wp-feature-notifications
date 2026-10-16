@@ -4,9 +4,7 @@ import { STORE_NAMESPACE } from '../constants';
 import type { Notice } from '../types';
 
 import * as actions from './actions';
-import * as controls from './controls';
 import reducer from './reducer';
-import * as resolvers from './resolvers';
 import * as selectors from './selectors';
 
 /**
@@ -14,15 +12,29 @@ import * as selectors from './selectors';
  */
 export type State = Record< string, Notice[] >;
 
-type ValuesOf<
-	T extends Record< string, unknown >,
-	K extends keyof T = keyof T,
-> = T[ K ];
+/**
+ * The plain (non-thunk) actions handled by the notifications reducer.
+ */
+export type Action =
+	| ReturnType< typeof actions.registerContext >
+	| ReturnType< typeof actions.hydrate >
+	| ReturnType< typeof actions.clear >
+	| ReturnType< typeof actions.addNotice >
+	| ReturnType< typeof actions.removeNotice >
+	| ReturnType< typeof actions.updateNotice >;
 
 /**
- * The actions of the notifications redux reducer.
+ * Resolvers fetch the notices the first time a context is read.
+ *
+ * Implemented as a thunk so no separate controls/resolvers indirection is needed.
  */
-export type Action = ReturnType< ValuesOf< typeof actions > >;
+const resolvers = {
+	getNotices:
+		() =>
+		async ( { dispatch }: actions.ThunkArgs ) => {
+			await dispatch.fetchUpdates();
+		},
+};
 
 /**
  * Creating a store for the redux state.
@@ -35,7 +47,6 @@ const store = createReduxStore< State, typeof actions, typeof selectors >(
 		reducer,
 		actions,
 		selectors,
-		controls,
 		resolvers,
 	}
 );
