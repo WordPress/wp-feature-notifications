@@ -42,6 +42,15 @@ You will mainly need these two commands:
 `npm run build` - Transforms your code according to the configuration provided, so it’s ready for production and optimized for the best performance.
 `npm run start`- Transforms your code according to the configuration provided, so it’s ready for development. The script will automatically rebuild if you make changes to the code, and you will see the build errors in the console.
 
+### Testing and linting
+
+With `wp-env` running:
+
+`npm run php-install` - Installs the Composer dependencies inside `wp-env`.
+`npm run test:php` - Runs the PHPUnit tests inside `wp-env`. Extra PHPUnit arguments can be passed after `--`, e.g. `npm run test:php -- --filter Test_Model_Message`.
+
+`npm run lint:js` and `npm run lint:css` lint the JavaScript/TypeScript and SCSS source files.
+
 ## Issue Workflow
 
 ### Creating an issue
