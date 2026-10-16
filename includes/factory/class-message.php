@@ -9,6 +9,7 @@ namespace WP\Notifications\Factory;
 
 use DateTime;
 use WP\Notifications\Framework;
+use WP\Notifications\Helper;
 use WP\Notifications\Model;
 
 /**
@@ -31,10 +32,12 @@ class Message extends Framework\Factory {
 	 *     @type ?string   $accept_message Optional label of the accept action.
 	 *     @type ?string   $channel_title  Optional human-readable title of the channel
 	 *                                     the message was emitted from.
-	 *     @type ?DateTime $created_at     Optional datetime at which a message was created.
+	 *     @type string|DateTime|null $created_at Optional datetime at which a message was created,
+	 *                                     as a DateTime or a MySQL datetime string in UTC.
 	 *                                     Default `'null'`
 	 *     @type ?string   $dismiss_label  Optional label of the dismiss action.
-	 *     @type ?DateTime $expires_at     Optional datetime at which a message expires.
+	 *     @type string|DateTime|null $expires_at Optional datetime at which a message expires,
+	 *                                     as a DateTime or a MySQL datetime string in UTC.
 	 *                                     Default `'null'`
 	 *     @type ?string   $icon           Optional icon of the message. Default `null`
 	 *     @type ?int      $id             Optional database ID of the message. Default `null`
@@ -66,6 +69,9 @@ class Message extends Framework\Factory {
 		$is_dismissible = array_key_exists( 'is_dismissible', $parsed ) ? $parsed['is_dismissible'] : true;
 		$severity       = array_key_exists( 'severity', $parsed ) ? $parsed['severity'] : null;
 		$title          = array_key_exists( 'title', $parsed ) ? $parsed['title'] : '';
+
+		$created_at = Helper\Serde::maybe_deserialize_mysql_date( $created_at );
+		$expires_at = Helper\Serde::maybe_deserialize_mysql_date( $expires_at );
 
 		return new Model\Message(
 			$message,

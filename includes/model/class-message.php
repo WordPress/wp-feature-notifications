@@ -18,16 +18,16 @@ class Message implements JsonSerializable {
 
 	/**
 	 * The accepted keys of the message metadata.
+	 *
+	 * Properties stored in their own database columns, or derived from the
+	 * channel registry, must not be listed here.
 	 */
 	protected static $meta_keys = array(
 		'accept_label',
 		'accept_link',
-		'channel_title',
 		'dismiss_label',
-		'expires_at',
 		'icon',
 		'is_dismissible',
-		'severity',
 	);
 
 	// Required properties
@@ -159,11 +159,13 @@ class Message implements JsonSerializable {
 		return array_merge(
 			$this->collect_meta(),
 			array(
-				'created_at' => Helper\Serde::maybe_serialize_json_date( $this->created_at ),
-				'expires_at' => Helper\Serde::maybe_serialize_json_date( $this->expires_at ),
-				'id'         => $this->id,
-				'message'    => $this->message,
-				'title'      => $this->title,
+				'channel_title' => $this->channel_title,
+				'created_at'    => Helper\Serde::maybe_serialize_json_date( $this->created_at ),
+				'expires_at'    => Helper\Serde::maybe_serialize_json_date( $this->expires_at ),
+				'id'            => $this->id,
+				'message'       => $this->message,
+				'severity'      => $this->severity,
+				'title'         => $this->title,
 			)
 		);
 	}
@@ -276,23 +278,6 @@ class Message implements JsonSerializable {
 	 */
 	public function get_severity(): ?string {
 		return $this->severity;
-	}
-
-	/**
-	 * Check whether the content of the message is valid.
-	 */
-	protected function validate_message() {
-		if ( ! is_string( $this->message ) ) {
-			return false;
-		}
-
-		$length = mb_strlen( $this->message, '8bit' );
-
-		if ( $length > 255 ) {
-			return false;
-		}
-
-		return true;
 	}
 
 	/**
