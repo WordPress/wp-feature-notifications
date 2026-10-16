@@ -26,7 +26,7 @@ if ( ! defined( 'WP_FEATURE_NOTIFICATION_DB_VERSION' ) ) {
 }
 
 if ( ! defined( 'WP_FEATURE_NOTIFICATION_PLUGIN_DIR' ) ) {
-	define( 'WP_FEATURE_NOTIFICATION_PLUGIN_DIR', dirname( __FILE__ ) );
+	define( 'WP_FEATURE_NOTIFICATION_PLUGIN_DIR', __DIR__ );
 }
 
 if ( ! defined( 'WP_FEATURE_NOTIFICATION_PLUGIN_DIR_URL' ) ) {

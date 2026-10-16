@@ -26,7 +26,5 @@ class DB_TestCase extends PHPUnit_Adapter_TestCase {
 		);
 
 		return $expected === $actual;
-
 	}
-
 }
