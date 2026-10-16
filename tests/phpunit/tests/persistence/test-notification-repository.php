@@ -27,7 +27,12 @@ class Test_Notification_Repository extends TestCase {
 				$offset = 0
 			): array {
 				$this->query = func_get_args();
-				return array( array( 'notification' => new Model\Notification(), 'message' => new Model\Message() ) );
+				return array(
+					array(
+						'notification' => new Model\Notification(),
+						'message'      => new Model\Message(),
+					),
+				);
 			}
 		};
 
