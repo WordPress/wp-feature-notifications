@@ -61,3 +61,40 @@ Issues needed to cover `RELEASE-PLAN-0.3.0.md` that don't exist yet. Section ref
 29. **CI updates** — MySQL 8.0, PHP 8.1–8.4 × WP 6.7/latest, `lint:css` in CI, `actions/checkout@v4`. (§F)
 30. **Delete `.distignore`; add `languages/` to `package.json` `files`.** (§D, §F)
 31. **Document the release process in `CONTRIBUTING.md`** — `develop` → `trunk` merge before tagging. (§F)
+
+## Which new issues belong in #302
+
+#302 is scoped to "a functional system with a focus on the minimum features required": emit (#303), query (#307), dismiss (#176/#305), poll (#306), display on page load, and seed (#200). It explicitly defers user-configurable subscriptions and emitting from the client. The test for inclusion is therefore: **without this issue, does one of the existing #302 checklist items fail to work?** Everything else stays in the 0.3.0 milestone but off the #302 checklist.
+
+### Add to #302 (MVP prerequisites)
+
+| # | Issue | Unblocks |
+|---|---|---|
+| 2 | User-scoped repository interface | #307, #176 — the current interface cannot ask "this user's notifications" |
+| 3 | `Framework\Factory` per-class instances | #307 — hydrating Message and Notification in one request breaks |
+| 4 | Serde UTC + trim `Message::$meta_keys` (also covers #372) | #303, #307 — dates and `meta` round-trip incorrectly |
+| 5 | Capabilities via `map_meta_cap` | #307, #176 authorization; #303's "all users with `read_notifications`" fallback |
+| 6 | Client store bug fixes + thunks + `normalize.ts` | "Notifications displayed on page load", #305, #306 — nothing enters the store today |
+| 7 | Schema v2 | #303 — second insert fails without `AUTO_INCREMENT` |
+| 8 | Migration gate + v1 → v2 upgrade | All items on any site that ran 0.2.0 (stuck on v1 otherwise) |
+| 10 | Instantiate and inject the repository | #307, #176 — the repository is never constructed |
+| 14 | REST schema/response cleanup | #176 (`status` must be writable), #306 (`after` param), "N new" header (`X-WP-Total`) |
+
+Also add the unmilestoned **#42** (repository) and **#38** (REST endpoint) only if they aren't closed as duplicates of #307 / #303 — they describe the same work.
+
+### Keep off #302 (milestone only)
+
+- **9** Subscription repository, **13** channel controller, **12** subscription permission check — subscriptions are deferred by #302 itself. **12 is still a release blocker** (anonymous access hole) and must ship in 0.3.0.
+- **15** `wp_notifications_data`, **16** batched `markDisplayed`, **17** `dashboard` context — polish; the MVP works without them (16 pairs with #33 instead).
+- **11** PHPCS sniffs, **18–20** tests — quality gates. Per §B7, the REST tests (18) land inside the controller PRs rather than as a separate checklist item.
+- **21–24** Phase C correctness/security, **25–31** release plumbing — release requirements, not MVP features. **23** (`acceptLink` scheme) is a release blocker.
+
+### Existing issues on the #302 checklist to adjust
+
+- Close #381 as a duplicate of #307, #376 of #176 — #302 already lists the survivors.
+- **#375 / #177** (POST `/notifications`) stay off #302: "emit a notification from the client" is explicitly deferred. Note that #302 lists it under "later iteration" but the milestone still contains it — decide whether it ships in 0.3.0 at all.
+- **#362** (GET `/notifications/{id}`) and **#363** (DELETE) are not needed by the client; #302 already says delete "may not be necessary initially". Leave them in the milestone, off #302.
+
+### Created (2026-10-16)
+
+Added to #302 along with the existing #42 and #382: 2 → #612, 3 → #613, 4 → #614, 7 → #615, 8 → #616, 10 → #617, 14 → #618, 6 → #619. Item 5 (capabilities) was folded into #382 as a comment rather than opened as a duplicate.
