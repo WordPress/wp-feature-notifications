@@ -62,4 +62,59 @@ class Wpdb_Notification_Repository extends Abstract_Notification_Repository {
 		// TODO: Implement query.
 		return -1;
 	}
+
+	/**
+	 * Update state timestamps for a user's notification.
+	 *
+	 * @param int   $id      Notification message ID.
+	 * @param int   $user_id ID of the notification owner.
+	 * @param array $state   State timestamp fields to update.
+	 *
+	 * @return int|false One when the notification exists, zero when it does not, or false on error.
+	 */
+	public function update_state( $id, $user_id, array $state ) {
+		global $wpdb;
+
+		$allowed_fields = array( 'displayed_at', 'dismissed_at' );
+		$data           = array();
+		$formats        = array();
+
+		foreach ( $allowed_fields as $field ) {
+			if ( array_key_exists( $field, $state ) ) {
+				$data[ $field ] = $state[ $field ] ? $state[ $field ]->format( 'Y-m-d H:i:s' ) : null;
+				$formats[]      = '%s';
+			}
+		}
+
+		if ( empty( $data ) ) {
+			return false;
+		}
+
+		$table  = $wpdb->prefix . 'notifications_queue';
+		$exists = $wpdb->get_var(
+			$wpdb->prepare(
+				// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- The table name is generated internally.
+				"SELECT 1 FROM {$table} WHERE message_id = %d AND user_id = %d LIMIT 1",
+				$id,
+				$user_id
+			)
+		);
+
+		if ( null === $exists ) {
+			return 0;
+		}
+
+		$result = $wpdb->update(
+			$table,
+			$data,
+			array(
+				'message_id' => $id,
+				'user_id'    => $user_id,
+			),
+			$formats,
+			array( '%d', '%d' )
+		);
+
+		return false === $result ? false : 1;
+	}
 }
