@@ -29,16 +29,26 @@ interface Notification_Repository {
 	 * @param array $args {
 	 *     Optional query arguments.
 	 *
-	 *     @type string $status          Notification status to match.
+	 *     @type string $status          One of the WP\Notifications\Status_Interface values:
+	 *                                   'new', 'undisplayed', 'displayed', or 'dismissed'.
+	 *                                   'new' and 'undisplayed' both require displayed_at and
+	 *                                   dismissed_at to be null. 'displayed' requires displayed_at
+	 *                                   to be set and dismissed_at to be null. 'dismissed' requires
+	 *                                   dismissed_at to be set, regardless of displayed_at.
+	 *                                   Omit to include all statuses.
 	 *     @type string $channel_name    Namespaced channel name to match.
 	 *     @type string $context         Display context to match.
-	 *     @type string $after           Lower date bound, used by polling.
-	 *     @type string $before          Upper date bound.
+	 *     @type string $after           Exclusive lower bound on created_at, used by polling.
+	 *                                   ISO 8601 in UTC, e.g. '2026-10-17T09:00:00Z'.
+	 *     @type string $before          Exclusive upper bound on created_at.
+	 *                                   ISO 8601 in UTC, e.g. '2026-10-18T09:00:00Z'.
 	 *     @type bool   $include_expired Include expired notifications. Default false.
-	 *     @type string $order           Sort direction.
-	 *     @type string $orderby         Field to sort by.
-	 *     @type int    $per_page        Number of results per page.
-	 *     @type int    $offset          Offset into the result set.
+	 *     @type string $order           Order::ASCENDING ('asc') or Order::DESCENDING ('desc').
+	 *                                   Default Order::DESCENDING.
+	 *     @type string $orderby         Field to sort by. Only 'created_at' is supported.
+	 *                                   Default 'created_at'.
+	 *     @type int    $per_page        Number of results per page. Default 10.
+	 *     @type int    $offset          Offset into the result set. Default 0.
 	 * }
 	 * @return array Array of array{notification: Model\Notification, message: Model\Message} pairs.
 	 */
@@ -91,6 +101,12 @@ interface Notification_Repository {
 
 	/**
 	 * Store a message and fan it out to the supplied users.
+	 *
+	 * Duplicate user IDs are collapsed into a single recipient. An empty recipient
+	 * list or any nonexistent user ID must return WP_Error without storing anything.
+	 * The operation is all-or-nothing: if storing the message or any recipient's
+	 * notification fails, return WP_Error and leave no message or notifications
+	 * from this operation persisted.
 	 *
 	 * @param Model\Message $message      Message to store.
 	 * @param string        $channel_name Namespaced channel name.
