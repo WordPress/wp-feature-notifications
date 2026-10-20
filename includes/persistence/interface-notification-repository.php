@@ -65,9 +65,20 @@ interface Notification_Repository {
 	/**
 	 * Add a new notification to the repository.
 	 *
-	 * @param Notifications\Notification $notification Notification to add.
+	 * @param Notifications\Model\Notification $notification Notification to add.
 	 *
-	 * @return int ID that the notification was stored under.
+	 * @return int|false Notification message ID, zero if the message does not exist, or false on error.
 	 */
-	public function add( Notifications\Notification $notification );
+	public function add( Notifications\Model\Notification $notification );
+
+	/**
+	 * Update state timestamps for a user's notification.
+	 *
+	 * @param int   $id      Notification message ID.
+	 * @param int   $user_id ID of the notification owner.
+	 * @param array $state   State timestamp fields to update.
+	 *
+	 * @return int|false One when the notification exists, zero when it does not, or false on error.
+	 */
+	public function update_state( $id, $user_id, array $state );
 }
