@@ -23,5 +23,4 @@ class TestCase extends PHPUnit_Adapter_TestCase {
 		sort( $actual );
 		$this->assertSame( $expected, $actual, $message );
 	}
-
 }
