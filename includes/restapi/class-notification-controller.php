@@ -14,6 +14,7 @@ use WP_REST_Controller;
 use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
+use WP\Notifications\Factory\Notification as Notification_Factory;
 use WP\Notifications\Persistence\Notification_Repository;
 use WP\Notifications\Persistence\Wpdb_Notification_Repository;
 
@@ -68,6 +69,19 @@ class Notification_Controller extends WP_REST_Controller {
 					'callback'            => array( $this, 'get_items' ),
 					'permission_callback' => array( $this, 'get_items_permissions_check' ),
 				),
+				array(
+					'methods'             => WP_REST_Server::CREATABLE,
+					'args'                => array(
+						'id' => array(
+							'description' => __( 'Unique identifier for the notification message.' ),
+							'type'        => 'integer',
+							'minimum'     => 1,
+							'required'    => true,
+						),
+					),
+					'callback'            => array( $this, 'create_item' ),
+					'permission_callback' => array( $this, 'create_item_permissions_check' ),
+				),
 				'schema' => array( $this, 'get_public_item_schema' ),
 			),
 			false
@@ -103,6 +117,72 @@ class Notification_Controller extends WP_REST_Controller {
 			),
 			false
 		);
+	}
+
+	/**
+	 * Checks whether the request can create a notification.
+	 *
+	 * @param WP_REST_Request $request Full details about the request.
+	 *
+	 * @return true|WP_Error True when allowed, otherwise an error.
+	 */
+	public function create_item_permissions_check( $request ) {
+		if ( ! is_user_logged_in() ) {
+			return new WP_Error(
+				'rest_notifications_login_required',
+				__( 'Sorry, you must be logged in to create notifications.' ),
+				array( 'status' => 401 )
+			);
+		}
+
+		return true;
+	}
+
+	/**
+	 * Add a notification for the current user.
+	 *
+	 * @param WP_REST_Request $request Received REST request.
+	 *
+	 * @return WP_REST_Response|WP_Error REST response or WP Error.
+	 */
+	public function create_item( $request ) {
+		$factory      = new Notification_Factory();
+		$notification = $factory->make(
+			array(
+				'message_id' => $request['id'],
+				'user_id'    => get_current_user_id(),
+			)
+		);
+		$result       = $this->repository->add( $notification );
+
+		if ( false === $result ) {
+			return new WP_Error(
+				'rest_notification_create_failed',
+				__( 'The notification could not be created.' ),
+				array( 'status' => 500 )
+			);
+		}
+
+		if ( 0 === $result ) {
+			return new WP_Error(
+				'rest_notification_message_not_found',
+				__( 'The notification message could not be found.' ),
+				array( 'status' => 404 )
+			);
+		}
+
+		$response = new WP_REST_Response(
+			array(
+				'id'           => $result,
+				'user_id'      => get_current_user_id(),
+				'dismissed_at' => null,
+				'displayed_at' => null,
+			),
+			201
+		);
+		$response->header( 'Location', rest_url( self::NAMESPACE . '/' . self::NOTIFICATION_BASE . '/' . $result ) );
+
+		return $response;
 	}
 
 	/**

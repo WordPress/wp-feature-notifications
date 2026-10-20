@@ -18,6 +18,7 @@ class WP_Test_REST_Notification_Controller extends WP_Test_REST_Controller_Testc
 		global $wpdb;
 
 		$wpdb->query( "DELETE FROM {$wpdb->prefix}notifications_queue" );
+		$wpdb->query( "DELETE FROM {$wpdb->prefix}notifications_messages" );
 		$this->user_id = self::factory()->user->create();
 		wp_set_current_user( $this->user_id );
 	}
@@ -47,7 +48,57 @@ class WP_Test_REST_Notification_Controller extends WP_Test_REST_Controller_Testc
 	}
 
 	public function test_create_item() {
-		$this->markTestSkipped( 'TODO Implement' );
+		global $wpdb;
+
+		$wpdb->insert(
+			$wpdb->prefix . 'notifications_messages',
+			array(
+				'id'            => 123,
+				'channel_name'  => 'test/channel',
+				'channel_title' => 'Test channel',
+			),
+			array( '%d', '%s', '%s' )
+		);
+
+		$other_user_id = self::factory()->user->create();
+		$request       = new WP_REST_Request( 'POST', '/wp-notifications/v1/notifications' );
+		$request->set_body_params(
+			array(
+				'id'      => 123,
+				'user_id' => $other_user_id,
+			)
+		);
+		$response = rest_get_server()->dispatch( $request );
+
+		$this->assertSame( 201, $response->get_status() );
+		$this->assertSame( 123, $response->get_data()['id'] );
+		$this->assertSame(
+			$this->user_id,
+			(int) $wpdb->get_var(
+				$wpdb->prepare(
+					"SELECT user_id FROM {$wpdb->prefix}notifications_queue WHERE message_id = %d",
+					123
+				)
+			)
+		);
+	}
+
+	public function test_create_item_requires_authentication() {
+		wp_set_current_user( 0 );
+
+		$request = new WP_REST_Request( 'POST', '/wp-notifications/v1/notifications' );
+		$request->set_body_params( array( 'id' => 123 ) );
+		$response = rest_get_server()->dispatch( $request );
+
+		$this->assertSame( 401, $response->get_status() );
+	}
+
+	public function test_create_item_requires_an_existing_message() {
+		$request = new WP_REST_Request( 'POST', '/wp-notifications/v1/notifications' );
+		$request->set_body_params( array( 'id' => 123 ) );
+		$response = rest_get_server()->dispatch( $request );
+
+		$this->assertSame( 404, $response->get_status() );
 	}
 
 	public function test_update_item() {
