@@ -65,7 +65,7 @@ class Subscription_Controller extends WP_REST_Controller {
 		// if ( ! is_user_logged_in() ) {
 		//  return new WP_Error(
 		//      'rest_notifications_login_required',
-		//      __( 'Sorry, you must be logged to view subscriptions.' ),
+		//      __( 'Sorry, you must be logged in to view subscriptions.', 'wp-feature-notifications' ),
 		//      array( 'status' => 401 )
 		//  );
 		// }
@@ -101,26 +101,26 @@ class Subscription_Controller extends WP_REST_Controller {
 			'type'       => 'object',
 			'properties' => array(
 				'channel_name'  => array(
-					'description' => __( 'Unique identifier for the channel of the subscription.' ),
+					'description' => __( 'Unique identifier for the channel of the subscription.', 'wp-feature-notifications' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),
 				'created_at'    => array(
-					'description' => __( 'The datetime the subscription was created, in UTC time.' ),
+					'description' => __( 'The datetime the subscription was created, in UTC time.', 'wp-feature-notifications' ),
 					'type'        => 'string',
 					'format'      => 'date-time',
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),
 				'snoozed_until' => array(
-					'description' => __( 'The datetime to resume the subscription, in UTC time.' ),
+					'description' => __( 'The datetime to resume the subscription, in UTC time.', 'wp-feature-notifications' ),
 					'type'        => array( 'string', 'null' ),
 					'format'      => 'date-time',
 					'context'     => array( 'view', 'embed' ),
 				),
 				'user_id'       => array(
-					'description' => __( 'The identifier of user the subscription is belongs to.' ),
+					'description' => __( 'The identifier of the user the subscription belongs to.', 'wp-feature-notifications' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
@@ -143,12 +143,12 @@ class Subscription_Controller extends WP_REST_Controller {
 		$query_params = parent::get_collection_params();
 
 		$query_params['offset'] = array(
-			'description' => __( 'Offset the result set by a specific number of items.' ),
+			'description' => __( 'Offset the result set by a specific number of items.', 'wp-feature-notifications' ),
 			'type'        => 'integer',
 		);
 
 		$query_params['order'] = array(
-			'description' => __( 'Order sort attribute ascending or descending.' ),
+			'description' => __( 'Order sort attribute ascending or descending.', 'wp-feature-notifications' ),
 			'type'        => 'string',
 			'default'     => 'desc',
 			'enum'        => array(
@@ -158,7 +158,7 @@ class Subscription_Controller extends WP_REST_Controller {
 		);
 
 		$query_params['orderby'] = array(
-			'description' => __( 'Sort collection by notifications attribute.' ),
+			'description' => __( 'Sort collection by notifications attribute.', 'wp-feature-notifications' ),
 			'type'        => 'string',
 			'default'     => 'created_at',
 			'enum'        => array(

@@ -65,7 +65,7 @@ class Notification_Controller extends WP_REST_Controller {
 		if ( ! is_user_logged_in() ) {
 			return new WP_Error(
 				'rest_notifications_login_required',
-				__( 'Sorry, you must be logged check notifications.' ),
+				__( 'Sorry, you must be logged in to check notifications.', 'wp-feature-notifications' ),
 				array( 'status' => 401 )
 			);
 		}
@@ -99,31 +99,31 @@ class Notification_Controller extends WP_REST_Controller {
 			'type'       => 'object',
 			'properties' => array(
 				'accept_label'   => array(
-					'description' => __( 'The label of the accept action.' ),
+					'description' => __( 'The label of the accept action.', 'wp-feature-notifications' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),
 				'accept_link'    => array(
-					'description' => __( 'The URL of the accept action..' ),
+					'description' => __( 'The URL of the accept action.', 'wp-feature-notifications' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),
 				'channel_name'   => array(
-					'description' => __( 'Unique identifier for the notification channel.' ),
+					'description' => __( 'Unique identifier for the notification channel.', 'wp-feature-notifications' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),
 				'channel_title'  => array(
-					'description' => __( 'The title of the notification channel.' ),
+					'description' => __( 'The title of the notification channel.', 'wp-feature-notifications' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),
 				'context'        => array(
-					'description' => __( 'The view context the notification.' ),
+					'description' => __( 'The view context of the notification.', 'wp-feature-notifications' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'embed' ),
 					'default'     => 'adminbar',
@@ -134,64 +134,64 @@ class Notification_Controller extends WP_REST_Controller {
 					'readonly'    => true,
 				),
 				'created_at'     => array(
-					'description' => __( 'The datetime the notification was broadcast, in UTC time.' ),
+					'description' => __( 'The datetime the notification was broadcast, in UTC time.', 'wp-feature-notifications' ),
 					'type'        => 'string',
 					'format'      => 'date-time',
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),
 				'dismiss_label'  => array(
-					'description' => __( 'The label of the dismiss action.' ),
+					'description' => __( 'The label of the dismiss action.', 'wp-feature-notifications' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),
 				'dismissed_at'   => array(
-					'description' => __( 'The datetime the notification was dismissed, in UTC time.' ),
+					'description' => __( 'The datetime the notification was dismissed, in UTC time.', 'wp-feature-notifications' ),
 					'type'        => array( 'string', 'null' ),
 					'format'      => 'date-time',
 					'context'     => array( 'view', 'embed' ),
 				),
 				'displayed_at'   => array(
-					'description' => __( 'The datetime the notification was displayed, in UTC time.' ),
+					'description' => __( 'The datetime the notification was displayed, in UTC time.', 'wp-feature-notifications' ),
 					'type'        => array( 'string', 'null' ),
 					'format'      => 'date-time',
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),
 				'expires_at'     => array(
-					'description' => __( 'The datetime the notification expires, in UTC time.' ),
+					'description' => __( 'The datetime the notification expires, in UTC time.', 'wp-feature-notifications' ),
 					'type'        => 'string',
 					'format'      => 'date-time',
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),
 				'icon'           => array(
-					'description' => __( 'The icon of the notification.' ),
+					'description' => __( 'The icon of the notification.', 'wp-feature-notifications' ),
 					'type'        => 'integer',
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),
 				'id'             => array(
-					'description' => __( 'Unique identifier for the notification.' ),
+					'description' => __( 'Unique identifier for the notification.', 'wp-feature-notifications' ),
 					'type'        => 'integer',
 					'context'     => array( 'view', 'edit', 'embed' ),
 					'readonly'    => true,
 				),
 				'is_dismissible' => array(
-					'description' => __( 'Whether the notification can be dismissed.' ),
+					'description' => __( 'Whether the notification can be dismissed.', 'wp-feature-notifications' ),
 					'type'        => 'boolean',
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),
 				'message'        => array(
-					'description' => __( 'The message content of the notification.' ),
+					'description' => __( 'The message content of the notification.', 'wp-feature-notifications' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),
 				'severity'       => array(
-					'description' => __( 'The severity of the notification.' ),
+					'description' => __( 'The severity of the notification.', 'wp-feature-notifications' ),
 					'type'        => array( 'string', 'null' ),
 					'context'     => array( 'view', 'embed' ),
 					'enum'        => array(
@@ -203,7 +203,7 @@ class Notification_Controller extends WP_REST_Controller {
 					'readonly'    => true,
 				),
 				'status'         => array(
-					'description' => __( 'The status of the notification.' ),
+					'description' => __( 'The status of the notification.', 'wp-feature-notifications' ),
 					'type'        => 'string',
 					'enum'        => array(
 						'undisplayed',
@@ -215,13 +215,13 @@ class Notification_Controller extends WP_REST_Controller {
 					'readonly'    => true,
 				),
 				'title'          => array(
-					'description' => __( 'The title of the notification.' ),
+					'description' => __( 'The title of the notification.', 'wp-feature-notifications' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),
 				'user_id'        => array(
-					'description' => __( 'The identifier of user the notification is belongs to.' ),
+					'description' => __( 'The identifier of the user the notification belongs to.', 'wp-feature-notifications' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
@@ -247,7 +247,7 @@ class Notification_Controller extends WP_REST_Controller {
 
 		$query_params['channel'] = array(
 			'default'     => array(),
-			'description' => __( 'Limit result set to notifications assigned to specific channel IDs.' ),
+			'description' => __( 'Limit result set to notifications assigned to specific channel IDs.', 'wp-feature-notifications' ),
 			'type'        => 'array',
 			'items'       => array(
 				'type' => 'integer',
@@ -255,12 +255,12 @@ class Notification_Controller extends WP_REST_Controller {
 		);
 
 		$query_params['offset'] = array(
-			'description' => __( 'Offset the result set by a specific number of items.' ),
+			'description' => __( 'Offset the result set by a specific number of items.', 'wp-feature-notifications' ),
 			'type'        => 'integer',
 		);
 
 		$query_params['order'] = array(
-			'description' => __( 'Order sort attribute ascending or descending. Requires authorization.' ),
+			'description' => __( 'Order sort attribute ascending or descending. Requires authorization.', 'wp-feature-notifications' ),
 			'type'        => 'string',
 			'default'     => 'desc',
 			'enum'        => array(
@@ -270,7 +270,7 @@ class Notification_Controller extends WP_REST_Controller {
 		);
 
 		$query_params['orderby'] = array(
-			'description' => __( 'Sort collection by notifications attribute. Requires authorization.' ),
+			'description' => __( 'Sort collection by notifications attribute. Requires authorization.', 'wp-feature-notifications' ),
 			'type'        => 'string',
 			'default'     => 'created_at',
 			'enum'        => array(
@@ -281,7 +281,7 @@ class Notification_Controller extends WP_REST_Controller {
 		);
 
 		$query_params['status'] = array(
-			'description' => __( 'Limit result set to notifications assigned a specific status.' ),
+			'description' => __( 'Limit result set to notifications assigned a specific status.', 'wp-feature-notifications' ),
 			'default'     => 'undisplayed',
 			'type'        => 'string',
 			'enum'        => array(
