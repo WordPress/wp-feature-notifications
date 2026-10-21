@@ -12,6 +12,8 @@ use WP_REST_Controller;
 use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
+use WP\Notifications\Persistence\Notification_Repository;
+use WP\Notifications\Persistence\Wpdb_Notification_Repository;
 
 /**
  * REST API Notification Controller class
@@ -33,6 +35,23 @@ class Notification_Controller extends WP_REST_Controller {
 	public const NOTIFICATION_BASE = 'notifications';
 
 	/**
+	 * Notification repository.
+	 *
+	 * @var Notification_Repository
+	 */
+	protected $repository;
+
+	/**
+	 * Constructor.
+	 *
+	 * @param Notification_Repository|null $repository Optional. Notification repository,
+	 *                                                 defaults to the wpdb repository.
+	 */
+	public function __construct( ?Notification_Repository $repository = null ) {
+		$this->repository = $repository ?? new Wpdb_Notification_Repository();
+	}
+
+	/**
 	 * Register REST routes
 	 *
 	 * @return void
@@ -47,6 +66,26 @@ class Notification_Controller extends WP_REST_Controller {
 					'args'                => $this->get_collection_params(),
 					'callback'            => array( $this, 'get_items' ),
 					'permission_callback' => array( $this, 'get_items_permissions_check' ),
+				),
+				'schema' => array( $this, 'get_public_item_schema' ),
+			),
+			false
+		);
+
+		register_rest_route(
+			self::NAMESPACE,
+			self::NOTIFICATION_BASE . '/(?P<id>[\d]+)',
+			array(
+				'args'   => array(
+					'id' => array(
+						'description' => __( 'Unique identifier for the notification.' ),
+						'type'        => 'integer',
+					),
+				),
+				array(
+					'methods'             => WP_REST_Server::DELETABLE,
+					'callback'            => array( $this, 'delete_item' ),
+					'permission_callback' => array( $this, 'delete_item_permissions_check' ),
 				),
 				'schema' => array( $this, 'get_public_item_schema' ),
 			),
@@ -81,6 +120,53 @@ class Notification_Controller extends WP_REST_Controller {
 	 */
 	public function get_items( $request ) {
 		return rest_ensure_response( array() );
+	}
+
+	/**
+	 * Checks if a given request has access to delete a notification.
+	 *
+	 * @param WP_REST_Request $request Full details about the request.
+	 *
+	 * @return true|WP_Error True if the request has access to delete the item, error object otherwise.
+	 */
+	public function delete_item_permissions_check( $request ) {
+		if ( ! is_user_logged_in() ) {
+			return new WP_Error(
+				'rest_notifications_login_required',
+				__( 'Sorry, you must be logged in to delete notifications.' ),
+				array( 'status' => 401 )
+			);
+		}
+		return true;
+	}
+
+	/**
+	 * Delete a notification of the current user.
+	 *
+	 * The ID is a message ID. Only the current user's copy is removed, so a
+	 * notification of another user returns the same error as a missing one.
+	 *
+	 * @param WP_REST_Request $request Received REST request
+	 *
+	 * @return WP_REST_RESPONSE|WP_Error REST response or WP Error
+	 */
+	public function delete_item( $request ) {
+		$id = (int) $request['id'];
+
+		if ( ! $this->repository->remove( $id, get_current_user_id() ) ) {
+			return new WP_Error(
+				'rest_notification_invalid_id',
+				__( 'Invalid notification ID.' ),
+				array( 'status' => 404 )
+			);
+		}
+
+		return rest_ensure_response(
+			array(
+				'deleted' => true,
+				'id'      => $id,
+			)
+		);
 	}
 
 	/**

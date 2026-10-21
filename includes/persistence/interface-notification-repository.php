@@ -70,4 +70,14 @@ interface Notification_Repository {
 	 * @return int ID that the notification was stored under.
 	 */
 	public function add( Notifications\Notification $notification );
+
+	/**
+	 * Remove a user's notification.
+	 *
+	 * @param int $message_id Message ID.
+	 * @param int $user_id    User who owns the notification.
+	 *
+	 * @return bool Whether a notification was removed.
+	 */
+	public function remove( int $message_id, int $user_id ): bool;
 }
