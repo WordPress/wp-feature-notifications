@@ -1,20 +1,20 @@
 <?php
 /**
- * Notifications API:channels Functions for registering channels.
+ * Notifications API: channels functions for registering channels.
  *
  * @package wordpress/wp-feature-notifications
  */
 
 namespace WP\Notifications;
 
-use WP\Notification\Model;
+use WP\Notifications\Model;
 
 /**
  * Register a notification channel.
  *
  * @param string|Model\Channel $name  Channel name including namespace, or
  *                                    alternatively a complete Channel instance.
- *                                    Incase a Channel is provided, the $args
+ *                                    In case a Channel is provided, the $args
  *                                    parameter will be ignored.
  * @param array                $args  Optional. Array of channel arguments. Accepts
  *                                    any public property of `Channel`. See
