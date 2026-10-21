@@ -1,25 +1,11 @@
 # Translations
 
-See also Database Schema
+See also Database Schema and Database Schema Design.
 
-To allow for internationalisation, the title and message text for a single notification is purposefully not stored in the database.
+The title and message of a notification are stored as translated text in the `wp_notifications_messages` table.
 
-Instead, a plugin or theme should store a key, which is linked to a translatable message in the plugin or theme's translation files.
+They are meant to be translated when a notice is emitted, into the locale of each subscribed user. So a single notice emission may create one message row per locale.
 
-For example, given the following list of translatable strings in a plugin 
+The channel title is not stored. It is read from the `Channel_Registry`, so it is translated when it is displayed, like any other string registered in code.
 
-```
-$notifications = array( 
-    'plugin_slug_new_podcast_title' => __('Some title', 'plugin-slug'), 
-    'plugin_slug_message' => __('Some message', 'plugin-slug'), 
-);
-```
-
-When adding a notification to the wp_notifications table, the values will be stored as follows
-
-```
-title_key = 'plugin_slug_new_podcast_title'
-message_key = 'plugin_slug_message'
-```
-
-The plugin will then be responsible for looking up these strings, and returning the translated version.
+An earlier idea was to store translation keys, like `title_key` and `message_key`, and let the plugin look up the translated strings when reading. The current schema does not do this.

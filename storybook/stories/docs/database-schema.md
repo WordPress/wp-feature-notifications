@@ -1,5 +1,7 @@
 # Database Schema
 
+This page lists the tables and columns. The reasons behind the design are explained in the "Database Schema Design" page.
+
 ## Key features
 
 - Ability to target individual users and maintain a history of their notifications.
@@ -11,7 +13,7 @@
 
 Message data is related to many users through the `wp_notifications_queue` table.
 
-Message are translated at the time of emission to the preferences of the users subscribed to the channel. A single notice emission may have multiple translated message row entries.
+Messages are meant to be translated when a notice is emitted, into the locale of each subscribed user. So a single notice emission may create one message row per locale.
 
 ### wp_notifications_messages table
 
@@ -33,21 +35,21 @@ Message are translated at the time of emission to the preferences of the users s
 
 - `message: TEXT|NULL` - The translated message content of the notification.
 
-- `meta: TEXT|NULL` - JSON-encoded data that doesn’t have to be queried and may change while development of the notification system.
+- `meta: TEXT|NULL` - JSON-encoded data that doesn't have to be queried and may change while development of the notification system.
 
   It is not a `JSON` column because MariaDB aliases `JSON` to `LONGTEXT`, so `dbDelta()` would see a difference on every run.
 
-  - `accept_label:  string|null` - The translated accept action label.
+    - `accept_label:  string|null` - The translated accept action label.
 
-  - `accept_link:   string|null` - The URL of the accept action.
+    - `accept_link:   string|null` - The URL of the accept action.
 
-  - `dismiss_label: string|null` - The translated dismiss action label.
+    - `dismiss_label: string|null` - The translated dismiss action label.
 
-  - `icon:          string|null` - The icon of the notification message.
+    - `icon:          string|null` - The icon of the notification message.
 
-  - `is_dismissible boolean|null` - Whether the notification is dismissible.
+    - `is_dismissible: boolean|null` - Whether the notification is dismissible.
 
-    Most persisted notifications should be dismissible, otherwise they will not be able to be removed from the notification system by the user. But this is left as a way to maintain a compatible API with the existing notices.
+      Most persisted notifications should be dismissible, otherwise they will not be able to be removed from the notification system by the user. But this is left as a way to maintain a compatible API with the existing notices.
 
 The human-readable channel title is not stored. It is read from the `Channel_Registry` using `channel_name`.
 
@@ -57,7 +59,7 @@ Join table to map messages to specific users. Could periodically be cleared depe
 
 The full history of messages for every user is retained and could be easily looked up.
 
-If a message has been orphan it can safely be deleted.
+If no queue row points to a message anymore, the message can safely be deleted.
 
 ### wp_notifications_queue table
 
@@ -81,7 +83,7 @@ The channel name and expiry date come from the related message.
 
 Table used to determine for whom to enqueue messages when emitting a notification from a channel.
 
-Logic to authorize a users to subscribe to a channel would be based on a comparison of the `role` property of the channel and user.
+Who is allowed to subscribe to a channel is not decided yet. Channels have no role or capability property today.
 
 Notifications can become overwhelming if the user isn't provided with options to snooze and/or unsubscribe from channels.
 
@@ -103,8 +105,8 @@ All dates are stored in UTC. Write them from PHP with `gmdate( 'Y-m-d H:i:s' )`.
 
 ## Metadata
 
-The `meta` field of the message and channel tables could be stored in another table, similar to other WordPress schemas. Though keeping it in the same table reduces the number of queries.
+The `meta` field of the messages table could be stored in another table, similar to other WordPress schemas. Though keeping it in the same table reduces the number of queries.
 
 ## Channels
 
-The concept of channels is similar to block types in the editor. They are registered in code by plugins and the scoped name is used for channel discovery through the `Channel_Registry`. See PR [#251](https://github.com/WordPress/wp-feature-notifications/pull/251) for details about the channel registry.
+The concept of channels is similar to block types in the editor. There is no channels table. They are registered in code by plugins and the scoped name is used for channel discovery through the `Channel_Registry`. See PR [#251](https://github.com/WordPress/wp-feature-notifications/pull/251) for details about the channel registry.
