@@ -8,7 +8,6 @@ import { splitByDate } from '../../utils';
 import NoticeEmpty from '../notice-empty';
 import NoticesLoop from '../notice-loop';
 
-import Footer from './footer';
 import SectionHeader from './section-header';
 
 /**
@@ -73,7 +72,6 @@ export default function NoticesArea( {
 						<NoticesLoop notices={ list } />
 					</section>
 				) ) }
-				<Footer />
 			</>
 		);
 	}
