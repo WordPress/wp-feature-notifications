@@ -116,8 +116,9 @@ class Activator {
 	public static function create_tables() {
 		$db_version = get_option( 'wp_notifications_db_version' );
 
+		// Existing v1 installs are upgraded separately, see #616.
 		if ( ! $db_version ) {
-			self::create_tables_v1();
+			self::create_tables_v2();
 			update_option( 'wp_notifications_db_version', WP_FEATURE_NOTIFICATION_DB_VERSION );
 		}
 
@@ -155,5 +156,23 @@ class Activator {
 			$queue_sql = Database\Schema::queue_table_v1();
 			dbDelta( $queue_sql );
 		}
+	}
+
+	/**
+	 * Create v2 WP Notifications tables.
+	 *
+	 * @return void
+	 */
+	public static function create_tables_v2() {
+		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+		require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/database/class-schema.php';
+
+		dbDelta(
+			array(
+				Database\Schema::messages_table_v2(),
+				Database\Schema::subscriptions_table_v2(),
+				Database\Schema::queue_table_v2(),
+			)
+		);
 	}
 }
