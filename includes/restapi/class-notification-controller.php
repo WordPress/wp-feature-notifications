@@ -12,6 +12,8 @@ use WP_REST_Controller;
 use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
+use WP\Notifications\Model;
+use WP\Notifications\Status_Interface;
 use WP\Notifications\Persistence\Notification_Repository;
 use WP\Notifications\Persistence\Wpdb_Notification_Repository;
 
@@ -83,6 +85,14 @@ class Notification_Controller extends WP_REST_Controller {
 					),
 				),
 				array(
+					'methods'             => WP_REST_Server::READABLE,
+					'args'                => array(
+						'context' => $this->get_context_param( array( 'default' => 'view' ) ),
+					),
+					'callback'            => array( $this, 'get_item' ),
+					'permission_callback' => array( $this, 'get_item_permissions_check' ),
+				),
+				array(
 					'methods'             => WP_REST_Server::DELETABLE,
 					'callback'            => array( $this, 'delete_item' ),
 					'permission_callback' => array( $this, 'delete_item_permissions_check' ),
@@ -120,6 +130,81 @@ class Notification_Controller extends WP_REST_Controller {
 	 */
 	public function get_items( $request ) {
 		return rest_ensure_response( array() );
+	}
+
+	/**
+	 * Checks if a given request has access to read a notification.
+	 *
+	 * @param WP_REST_Request $request Full details about the request.
+	 *
+	 * @return true|WP_Error True if the request has access to view the item, error object otherwise.
+	 */
+	public function get_item_permissions_check( $request ) {
+		return $this->get_items_permissions_check( $request );
+	}
+
+	/**
+	 * Get a notification of the current user.
+	 *
+	 * The ID is a message ID. A notification of another user returns the
+	 * same error as a missing one.
+	 *
+	 * @param WP_REST_Request $request Received REST request
+	 *
+	 * @return WP_REST_RESPONSE|WP_Error REST response or WP Error
+	 */
+	public function get_item( $request ) {
+		$item = $this->repository->find_by_id( (int) $request['id'], get_current_user_id() );
+
+		if ( null === $item ) {
+			return new WP_Error(
+				'rest_notification_invalid_id',
+				__( 'Invalid notification ID.' ),
+				array( 'status' => 404 )
+			);
+		}
+
+		return $this->prepare_item_for_response( $item, $request );
+	}
+
+	/**
+	 * Prepares a notification for the response.
+	 *
+	 * @param array           $item    {
+	 *     Notification and its message.
+	 *
+	 *     @type Model\Notification $notification The user's notification.
+	 *     @type Model\Message      $message      The notification message.
+	 * }
+	 * @param WP_REST_Request $request Request object.
+	 *
+	 * @return WP_REST_Response Response object.
+	 */
+	public function prepare_item_for_response( $item, $request ) {
+		$notification = $item['notification'];
+
+		if ( $notification->get_dismissed_at() ) {
+			$status = Status_Interface::DISMISSED;
+		} elseif ( $notification->get_displayed_at() ) {
+			$status = Status_Interface::DISPLAYED;
+		} else {
+			$status = Status_Interface::UNDISPLAYED;
+		}
+
+		// Start from every schema field so unset meta values come back as null.
+		$data = array_merge(
+			array_fill_keys( array_keys( $this->get_item_schema()['properties'] ), null ),
+			$item['message']->jsonSerialize(),
+			$notification->jsonSerialize(),
+			array( 'status' => $status )
+		);
+		unset( $data['message_id'] );
+
+		$context = ! empty( $request['context'] ) ? $request['context'] : 'view';
+		$data    = $this->add_additional_fields_to_object( $data, $request );
+		$data    = $this->filter_response_by_context( $data, $context );
+
+		return rest_ensure_response( $data );
 	}
 
 	/**
@@ -186,13 +271,13 @@ class Notification_Controller extends WP_REST_Controller {
 			'properties' => array(
 				'accept_label'   => array(
 					'description' => __( 'The label of the accept action.' ),
-					'type'        => 'string',
+					'type'        => array( 'string', 'null' ),
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),
 				'accept_link'    => array(
 					'description' => __( 'The URL of the accept action..' ),
-					'type'        => 'string',
+					'type'        => array( 'string', 'null' ),
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),
@@ -228,7 +313,7 @@ class Notification_Controller extends WP_REST_Controller {
 				),
 				'dismiss_label'  => array(
 					'description' => __( 'The label of the dismiss action.' ),
-					'type'        => 'string',
+					'type'        => array( 'string', 'null' ),
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),
@@ -247,14 +332,14 @@ class Notification_Controller extends WP_REST_Controller {
 				),
 				'expires_at'     => array(
 					'description' => __( 'The datetime the notification expires, in UTC time.' ),
-					'type'        => 'string',
+					'type'        => array( 'string', 'null' ),
 					'format'      => 'date-time',
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),
 				'icon'           => array(
 					'description' => __( 'The icon of the notification.' ),
-					'type'        => 'integer',
+					'type'        => array( 'string', 'null' ),
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),
@@ -272,7 +357,7 @@ class Notification_Controller extends WP_REST_Controller {
 				),
 				'message'        => array(
 					'description' => __( 'The message content of the notification.' ),
-					'type'        => 'string',
+					'type'        => array( 'string', 'null' ),
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),
@@ -302,13 +387,13 @@ class Notification_Controller extends WP_REST_Controller {
 				),
 				'title'          => array(
 					'description' => __( 'The title of the notification.' ),
-					'type'        => 'string',
+					'type'        => array( 'string', 'null' ),
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),
 				'user_id'        => array(
 					'description' => __( 'The identifier of user the notification is belongs to.' ),
-					'type'        => 'string',
+					'type'        => 'integer',
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),

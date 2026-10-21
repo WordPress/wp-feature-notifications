@@ -6,19 +6,21 @@ use DateInterval;
 use DateTimeInterface;
 
 use WP\Notifications;
+use WP\Notifications\Model;
 
 
 interface Notification_Repository {
 
 	/**
-	 * Find a notification by ID.
+	 * Find a user's notification by message ID.
 	 *
-	 * @param int $id ID to look for.
+	 * @param int $message_id Message ID.
+	 * @param int $user_id    User who owns the notification.
 	 *
-	 * @return Notifications\Notification|false Notification that matches the ID, or
-	 *                                          false if not found.
+	 * @return array{notification: Model\Notification, message: Model\Message}|null
+	 *         The notification and its message, or null if not found.
 	 */
-	public function find_by_id( $id );
+	public function find_by_id( int $message_id, int $user_id ): ?array;
 
 	/**
 	 * Find all notifications for a given date period.
