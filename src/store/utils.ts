@@ -6,7 +6,10 @@ import type { State } from './index';
  * @param notifications - The notifications object to search in
  * @param id            - The notification id to search
  */
-export function findContext( notifications: State, id: number ) {
+export function findContext(
+	notifications: State,
+	id: number
+): string | undefined {
 	for ( const location in notifications ) {
 		const found = notifications[ location ].find(
 			( notification ) => notification.id === id
@@ -15,4 +18,6 @@ export function findContext( notifications: State, id: number ) {
 			return location;
 		}
 	}
+
+	return undefined;
 }
