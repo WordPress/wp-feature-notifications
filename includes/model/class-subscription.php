@@ -79,7 +79,7 @@ class Subscription implements JsonSerializable {
 	 * @return array Data which can be serialized by json_encode, which is a
 	 *               value of any type other than a resource.
 	 */
-	public function jsonSerialize() {
+	public function jsonSerialize(): array {
 		return array(
 			'channel_name'  => $this->channel_name,
 			'created_at'    => Helper\Serde::maybe_serialize_json_date( $this->created_at ),
