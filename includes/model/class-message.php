@@ -22,12 +22,9 @@ class Message implements JsonSerializable {
 	protected static $meta_keys = array(
 		'accept_label',
 		'accept_link',
-		'channel_title',
 		'dismiss_label',
-		'expires_at',
 		'icon',
 		'is_dismissible',
-		'severity',
 	);
 
 	// Required properties
@@ -48,11 +45,6 @@ class Message implements JsonSerializable {
 	 * URL of the accept action.
 	 */
 	protected ?string $accept_link;
-
-	/**
-	 * Human-readable title of the channel of which the message was emitted.
-	 */
-	protected ?string $channel_title;
 
 	/**
 	 * Datetime at which a message was created.
@@ -102,8 +94,6 @@ class Message implements JsonSerializable {
 	 * @param ?string    $message        Text content of the message.
 	 * @param ?string    $accept_label   Optional label of the action.
 	 * @param ?string    $accept_link    Optional URL of the action.
-	 * @param ?string    $channel_title  Optional human-readable title of the channel
-	 *                                   the message was emitted from.
 	 * @param ?DateTime  $created_at     Optional datetime at which the message was
 	 *                                   created. Default `'null'`
 	 * @param ?string    $dismiss_label  Optional label of the dismiss action.
@@ -120,7 +110,6 @@ class Message implements JsonSerializable {
 		$message = null,
 		$accept_label = null,
 		$accept_link = null,
-		$channel_title = null,
 		$created_at = null,
 		$dismiss_label = null,
 		$expires_at = null,
@@ -138,7 +127,6 @@ class Message implements JsonSerializable {
 
 		$this->accept_label   = $accept_label;
 		$this->accept_link    = $accept_link;
-		$this->channel_title  = $channel_title;
 		$this->created_at     = $created_at;
 		$this->dismiss_label  = $dismiss_label;
 		$this->expires_at     = $expires_at;
@@ -163,6 +151,7 @@ class Message implements JsonSerializable {
 				'expires_at' => Helper\Serde::maybe_serialize_json_date( $this->expires_at ),
 				'id'         => $this->id,
 				'message'    => $this->message,
+				'severity'   => $this->severity,
 				'title'      => $this->title,
 			)
 		);
@@ -288,7 +277,8 @@ class Message implements JsonSerializable {
 
 		$length = mb_strlen( $this->message, '8bit' );
 
-		if ( $length > 255 ) {
+		// The `message` column is TEXT, which holds up to 65,535 bytes.
+		if ( $length > 65535 ) {
 			return false;
 		}
 

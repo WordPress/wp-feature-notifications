@@ -36,7 +36,7 @@ class Test_Activator extends DB_TestCase {
 	 * Test to ensure the uninstall procedure drops the correct tables.
 	 */
 	public function test_it_should_create_tables() {
-		Notifications\Activator::create_tables_v1();
+		Notifications\Activator::create_tables_v2();
 
 		$this->assertTrue( $this->table_exists( 'notifications_messages' ) );
 		$this->assertTrue( $this->table_exists( 'notifications_subscriptions' ) );

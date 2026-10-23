@@ -29,8 +29,6 @@ class Message extends Framework\Factory {
 	 *     @type ?string   $accept_label   Optional label of the accept action.
 	 *     @type ?string   $accept_link    Optional url of the accept action.
 	 *     @type ?string   $accept_message Optional label of the accept action.
-	 *     @type ?string   $channel_title  Optional human-readable title of the channel
-	 *                                     the message was emitted from.
 	 *     @type ?DateTime $created_at     Optional datetime at which a message was created.
 	 *                                     Default `'null'`
 	 *     @type ?string   $dismiss_label  Optional label of the dismiss action.
@@ -57,7 +55,6 @@ class Message extends Framework\Factory {
 
 		$accept_label   = array_key_exists( 'accept_label', $parsed ) ? $parsed['accept_label'] : null;
 		$accept_link    = array_key_exists( 'accept_link', $parsed ) ? $parsed['accept_link'] : null;
-		$channel_title  = array_key_exists( 'channel_title', $parsed ) ? $parsed['channel_title'] : null;
 		$created_at     = array_key_exists( 'created_at', $parsed ) ? $parsed['created_at'] : null;
 		$dismiss_label  = array_key_exists( 'dismiss_label', $parsed ) ? $parsed['dismiss_label'] : null;
 		$expires_at     = array_key_exists( 'expires_at', $parsed ) ? $parsed['expires_at'] : null;
@@ -71,7 +68,6 @@ class Message extends Framework\Factory {
 			$message,
 			$accept_label,
 			$accept_link,
-			$channel_title,
 			$created_at,
 			$dismiss_label,
 			$expires_at,
