@@ -51,6 +51,10 @@ With `wp-env` running:
 
 `npm run lint:js` and `npm run lint:css` lint the JavaScript/TypeScript and SCSS source files.
 
+## Demo notifications
+
+To install a few demo notifications for testing purposes, you can download and install [this plugin](https://gist.github.com/jonathanbossenger/63828e3bc436021ffedced0c67dc5450).
+
 ## Issue Workflow
 
 ### Creating an issue

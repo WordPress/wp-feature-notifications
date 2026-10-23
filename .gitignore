@@ -12,3 +12,6 @@ cghooks.lock
 # Build Files
 /build/
 /docs/
+
+# Local wp-env overrides (e.g. mapping the demo mu-plugin)
+.wp-env.override.json
