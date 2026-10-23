@@ -67,7 +67,7 @@ class Channel_Controller extends WP_REST_Controller {
 		if ( ! is_user_logged_in() ) {
 			return new WP_Error(
 				'rest_notifications_login_required',
-				__( 'Sorry, you must be logged to view channels.' ),
+				__( 'Sorry, you must be logged in to view channels.', 'wp-feature-notifications' ),
 				array( 'status' => 401 )
 			);
 		}
@@ -105,7 +105,7 @@ class Channel_Controller extends WP_REST_Controller {
 			'type'       => 'object',
 			'properties' => array(
 				'context' => array(
-					'description' => __( 'The default view context the notification channel.' ),
+					'description' => __( 'The default view context of the notification channel.', 'wp-feature-notifications' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'embed' ),
 					'enum'        => array(
@@ -115,19 +115,19 @@ class Channel_Controller extends WP_REST_Controller {
 					'readonly'    => true,
 				),
 				'icon'    => array(
-					'description' => __( 'The default icon of the notification channel.' ),
+					'description' => __( 'The default icon of the notification channel.', 'wp-feature-notifications' ),
 					'type'        => 'integer',
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),
 				'name'    => array(
-					'description' => __( 'Unique identifier for the notification channel.' ),
+					'description' => __( 'Unique identifier for the notification channel.', 'wp-feature-notifications' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
 				),
 				'title'   => array(
-					'description' => __( 'The human-readable label of the notification channel.' ),
+					'description' => __( 'The human-readable label of the notification channel.', 'wp-feature-notifications' ),
 					'type'        => 'string',
 					'context'     => array( 'view', 'embed' ),
 					'readonly'    => true,
@@ -152,12 +152,12 @@ class Channel_Controller extends WP_REST_Controller {
 		$query_params['context']['default'] = 'view';
 
 		$query_params['offset'] = array(
-			'description' => __( 'Offset the result set by a specific number of items.' ),
+			'description' => __( 'Offset the result set by a specific number of items.', 'wp-feature-notifications' ),
 			'type'        => 'integer',
 		);
 
 		$query_params['context'] = array(
-			'description' => __( 'Limit result set to channels assigned a specific display context.' ),
+			'description' => __( 'Limit result set to channels assigned a specific display context.', 'wp-feature-notifications' ),
 			'default'     => 'all',
 			'type'        => 'string',
 		);
