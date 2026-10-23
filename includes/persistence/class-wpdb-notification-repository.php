@@ -62,4 +62,30 @@ class Wpdb_Notification_Repository extends Abstract_Notification_Repository {
 		// TODO: Implement query.
 		return -1;
 	}
+
+	/**
+	 * Remove a user's notification.
+	 *
+	 * Only the user's queue row is removed, the message itself can still
+	 * belong to other users.
+	 *
+	 * @param int $message_id Message ID.
+	 * @param int $user_id    User who owns the notification.
+	 *
+	 * @return bool Whether a notification was removed.
+	 */
+	public function remove( int $message_id, int $user_id ): bool {
+		global $wpdb;
+
+		$deleted = $wpdb->delete(
+			$wpdb->prefix . 'notifications_queue',
+			array(
+				'message_id' => $message_id,
+				'user_id'    => $user_id,
+			),
+			array( '%d', '%d' )
+		);
+
+		return ! empty( $deleted );
+	}
 }
