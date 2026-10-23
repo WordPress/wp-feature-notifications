@@ -9,7 +9,7 @@
 		"phpunit/phpunit": "^9.6",
 		"yoast/phpunit-polyfills": "^1.1",
 		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
-		"wp-coding-standards/wpcs": "^2.3",
+		"wp-coding-standards/wpcs": "^3.1",
 		"wp-phpunit/wp-phpunit": "^6.2",
 		"squizlabs/php_codesniffer": "^3.7",
 		"friendsofphp/php-cs-fixer": "3.16"
@@ -19,8 +19,8 @@
 	"minimum-stability": "dev",
 	"prefer-stable": true,
 	"scripts": {
-		"lint": "vendor/squizlabs/php_codesniffer/bin/phpcs includes/ -s --report=full,summary,source",
-		"lint-fix": "vendor/bin/phpcbf --standard=phpcs.xml.dist includes/",
+		"lint": "vendor/bin/phpcs --standard=phpcs.xml.dist -s --report=full,summary,source",
+		"lint-fix": "vendor/bin/phpcbf --standard=phpcs.xml.dist",
 		"test": "vendor/bin/phpunit"
 	},
 	"config": {

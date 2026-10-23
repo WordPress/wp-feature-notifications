@@ -35,7 +35,6 @@ function register_routes() {
 	$channel_controller->register_routes();
 	$notification_controller->register_routes();
 	$subscription_controller->register_routes();
-
 }
 
 add_action( 'rest_api_init', '\WP\Notifications\register_routes' );
