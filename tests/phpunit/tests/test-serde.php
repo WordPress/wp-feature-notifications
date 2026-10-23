@@ -132,6 +132,7 @@ class Test_Serde extends TestCase {
 			'date only'          => array( '2024-01-02' ),
 			'out of range day'   => array( '2024-02-30 00:00:00' ),
 			'out of range month' => array( '2024-13-01 00:00:00' ),
+			'mysql zero date'    => array( '0000-00-00 00:00:00' ),
 			'integer'            => array( 1704164645 ),
 		);
 	}
