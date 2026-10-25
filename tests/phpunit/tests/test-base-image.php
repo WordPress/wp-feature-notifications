@@ -43,6 +43,16 @@ class Test_BaseImage extends TestCase {
 		$this->assertEquals( $instance->get_alt(), $test_instance->get_alt() );
 	}
 
+	/**
+	 * Tests that json_unserialize returns null for invalid JSON.
+	 */
+	public function test_json_unserialize_returns_null_for_invalid_json() {
+		$this->assertNull( Image\Base_Image::json_unserialize( 'not-valid-json' ) );
+		$this->assertNull( Image\Base_Image::json_unserialize( '' ) );
+		$this->assertNull( Image\Base_Image::json_unserialize( 'null' ) );
+		$this->assertNull( Image\Base_Image::json_unserialize( '"just-a-string"' ) );
+	}
+
 	public function data_provider_images() {
 
 		return array(
