@@ -30,7 +30,7 @@ class Base_Image implements Image {
 	/**
 	 * @return array
 	 */
-	public function jsonSerialize() {
+	public function jsonSerialize(): array {
 
 		$data = array();
 

@@ -84,7 +84,7 @@ class Channel implements JsonSerializable {
 	 * @return array Data which can be serialized by json_encode, which is a
 	 *               value of any type other than a resource.
 	 */
-	public function jsonSerialize() {
+	public function jsonSerialize(): array {
 		return array(
 			'context'     => $this->context,
 			'description' => $this->description,
