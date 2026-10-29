@@ -7,14 +7,6 @@ import { findContext } from './utils';
 import type { State } from './index';
 
 /**
- * Fetch the rest api in order to get new notifications
- *
- * @param state the current state
- * @return the new notifications
- */
-export const fetchUpdates = ( state: State ): State => state || {};
-
-/**
  * Get the notices for the given context
  *
  * @param state   the current state
@@ -26,23 +18,11 @@ export const getNotices = (
 	state: State,
 	context: string
 ): Notice[] | null => {
-	return context ? state[ context ] : null;
-};
-
-/**
- * Adds a context to the current state.
- * commonly it's fired when the NotificationArea is registered
- *
- * @param state   The current state.
- * @param context The context to add.
- *
- * @return the notice store state
- */
-export const registerContext = ( state: State, context: string ): State => {
-	if ( ! state[ context ] ) {
-		state[ context ] = [];
+	if ( ! context ) {
+		return null;
 	}
-	return state;
+
+	return state[ context ] ?? null;
 };
 
 /**
@@ -62,6 +42,11 @@ export const findNotice = (
 	// return the notification by id
 	if ( typeof searchTerm === 'number' ) {
 		const context = findContext( state, searchTerm );
+
+		if ( ! context ) {
+			return __( 'nothing was found' );
+		}
+
 		return state[ context ].find( ( notice ) => notice.id === searchTerm );
 	}
 
