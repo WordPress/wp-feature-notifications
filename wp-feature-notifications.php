@@ -51,6 +51,7 @@ require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/class-channel-regis
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/channels.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/image/interface-image.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/image/class-base-image.php';
+require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/persistence/interface-order.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/persistence/interface-notification-repository.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/persistence/class-abstract-notification-repository.php';
 require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/persistence/class-wpdb-notification-repository.php';
