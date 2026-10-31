@@ -29,7 +29,7 @@ Message are translated at the time of emission to the preferences of the users s
 
   This should be a predefined list of values.
 
-- `title: TINYTEXT|NULL` - The translated title of the notification.
+- `title: TEXT|NULL` - The translated title of the notification.
 
 - `message: TEXT|NULL` - The translated message content of the notification.
 

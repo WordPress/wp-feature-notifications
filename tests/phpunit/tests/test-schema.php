@@ -38,32 +38,6 @@ class Test_Schema extends DB_TestCase {
 	}
 
 	/**
-	 * Get the columns of a plugin table, keyed by column name.
-	 *
-	 * @param string $table_name Table name without the prefix.
-	 *
-	 * @return object[] Column rows from SHOW COLUMNS.
-	 */
-	private function get_columns( string $table_name ): array {
-		global $wpdb;
-
-		return $wpdb->get_results( 'SHOW COLUMNS FROM ' . esc_sql( $wpdb->prefix . $table_name ), OBJECT_K );
-	}
-
-	/**
-	 * Get the columns of a table's primary key, in index order.
-	 *
-	 * @param string $table_name Table name without the prefix.
-	 *
-	 * @return string[] Column names.
-	 */
-	private function get_primary_key( string $table_name ): array {
-		global $wpdb;
-
-		return $wpdb->get_col( 'SHOW INDEX FROM ' . esc_sql( $wpdb->prefix . $table_name ) . " WHERE Key_name = 'PRIMARY'", 4 );
-	}
-
-	/**
 	 * Insert a message row with only the required columns.
 	 *
 	 * @return int|false Number of rows inserted, or false on error.
@@ -108,6 +82,7 @@ class Test_Schema extends DB_TestCase {
 		$columns = $this->get_columns( 'notifications_messages' );
 
 		$this->assertArrayNotHasKey( 'channel_title', $columns );
+		$this->assertSame( 'text', $columns['title']->Type );
 		$this->assertSame( 'text', $columns['message']->Type );
 		$this->assertSame( 'text', $columns['meta']->Type );
 		$this->assertSame( 'varchar(64)', $columns['channel_name']->Type );
@@ -153,14 +128,7 @@ class Test_Schema extends DB_TestCase {
 	 * Running dbDelta again on v2 tables must not find anything to change.
 	 */
 	public function test_dbdelta_should_find_no_changes_on_v2_tables() {
-		$changes = dbDelta(
-			array(
-				Notifications\Database\Schema::messages_table_v2(),
-				Notifications\Database\Schema::subscriptions_table_v2(),
-				Notifications\Database\Schema::queue_table_v2(),
-			),
-			false
-		);
+		$changes = dbDelta( Notifications\Database\Schema::tables_v2(), false );
 
 		$this->assertSame( array(), $changes );
 	}

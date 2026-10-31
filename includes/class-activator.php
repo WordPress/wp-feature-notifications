@@ -167,12 +167,6 @@ class Activator {
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 		require_once WP_FEATURE_NOTIFICATION_PLUGIN_DIR . '/includes/database/class-schema.php';
 
-		dbDelta(
-			array(
-				Database\Schema::messages_table_v2(),
-				Database\Schema::subscriptions_table_v2(),
-				Database\Schema::queue_table_v2(),
-			)
-		);
+		dbDelta( Database\Schema::tables_v2() );
 	}
 }

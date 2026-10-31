@@ -94,6 +94,16 @@ final class Channel_Registry {
 			return false;
 		}
 
+		// The `channel_name` columns are varchar(64).
+		if ( strlen( $name ) > 64 ) {
+			_doing_it_wrong(
+				__METHOD__,
+				__( 'Channel names must not be longer than 64 characters.' ),
+				'1.0.0'
+			);
+			return false;
+		}
+
 		if ( $this->is_registered( $name ) ) {
 			_doing_it_wrong(
 				__METHOD__,

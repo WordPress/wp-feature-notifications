@@ -71,6 +71,19 @@ final class Schema {
 	 *   every run and it uses server time. Always write UTC with gmdate().
 	 */
 
+	/**
+	 * Get the SQL for all v2 tables.
+	 *
+	 * @return string[] CREATE TABLE statements for dbDelta().
+	 */
+	public static function tables_v2() {
+		return array(
+			self::messages_table_v2(),
+			self::subscriptions_table_v2(),
+			self::queue_table_v2(),
+		);
+	}
+
 	public static function messages_table_v2() {
 		global $wpdb;
 
@@ -84,7 +97,7 @@ final class Schema {
 			`created_at` datetime NOT NULL,
 			`expires_at` datetime NULL,
 			`severity` varchar(16) NULL,
-			`title` tinytext NULL,
+			`title` text NULL,
 			`message` text NULL,
 			`meta` text NULL,
 			PRIMARY KEY  (`id`),
