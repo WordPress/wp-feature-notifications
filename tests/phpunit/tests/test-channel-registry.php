@@ -63,6 +63,25 @@ class Test_Channel_Registry extends WP_UnitTestCase_Base {
 	}
 
 	/**
+	 * Should reject channel names longer than the 64 character column.
+	 *
+	 * @expectedIncorrectUsage WP\Notifications\Channel_Registry::register
+	 */
+	public function test_names_longer_than_64_characters() {
+		$result = $this->registry->register( 'core/' . str_repeat( 'a', 60 ), array() );
+		$this->assertFalse( $result );
+	}
+
+	/**
+	 * Should accept a channel name of exactly 64 characters.
+	 */
+	public function test_name_of_64_characters() {
+		$name   = 'core/' . str_repeat( 'a', 59 );
+		$result = $this->registry->register( $name, array( 'title' => 'Test' ) );
+		$this->assertInstanceOf( '\WP\Notifications\Model\Channel', $result );
+	}
+
+	/**
 	 * Should accept valid channel names
 	 */
 	public function test_register_channel() {
