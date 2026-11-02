@@ -10,6 +10,7 @@
 
 import { normalizeNotice } from '../../src/store/normalize';
 import reducer from '../../src/store/reducer';
+import { getNotices } from '../../src/store/selectors';
 import { findContext } from '../../src/store/utils';
 
 /**
@@ -84,6 +85,31 @@ describe( 'notifications reducer', () => {
 		expect( next.adminbar ).toHaveLength( 1 );
 	} );
 
+	it( 'hydrates several notices per context in one pass', () => {
+		const state = {
+			adminbar: [ notice( 1 ), notice( 2 ) ],
+		};
+
+		const next = reducer( state, {
+			type: 'HYDRATE',
+			payload: [
+				notice( 1 ),
+				{ ...notice( 2 ), message: 'Updated' },
+				notice( 3, 'dashboard' ),
+				{ ...notice( 3, 'dashboard' ), message: 'Updated' },
+			],
+		} );
+
+		expect(
+			next.adminbar.map( ( { id, message } ) => [ id, message ] )
+		).toEqual( [
+			[ 1, 'Hello' ],
+			[ 2, 'Updated' ],
+		] );
+		expect( next.dashboard ).toHaveLength( 1 );
+		expect( next.dashboard[ 0 ].message ).toBe( 'Updated' );
+	} );
+
 	// Bug 3: ADD spread a possibly-missing key.
 	it( 'adds into an unregistered context without throwing', () => {
 		const next = reducer(
@@ -95,6 +121,19 @@ describe( 'notifications reducer', () => {
 		);
 
 		expect( next.dashboard ).toHaveLength( 1 );
+	} );
+
+	it( 'adds a notice without a context to the default context', () => {
+		const next = reducer(
+			{},
+			{
+				type: 'ADD',
+				payload: { id: 901, message: 'Synthetic', date: new Date() },
+			}
+		);
+
+		expect( next.adminbar ).toHaveLength( 1 );
+		expect( next.adminbar[ 0 ].id ).toBe( 901 );
 	} );
 
 	// Bug 4: findContext returned undefined and DELETE indexed state[ undefined ].
@@ -147,6 +186,22 @@ describe( 'findContext', () => {
 		expect(
 			findContext( { adminbar: [ notice( 1 ) ] }, 2 )
 		).toBeUndefined();
+	} );
+} );
+
+describe( 'getNotices', () => {
+	it( 'returns the notices of a registered context', () => {
+		const state = { adminbar: [ notice( 1 ) ] };
+
+		expect( getNotices( state, 'adminbar' )?.[ 0 ].id ).toBe( 1 );
+	} );
+
+	it( 'returns null without a context', () => {
+		expect( getNotices( { adminbar: [ notice( 1 ) ] }, '' ) ).toBeNull();
+	} );
+
+	it( 'returns null for a context that is not registered', () => {
+		expect( getNotices( {}, 'dashboard' ) ).toBeNull();
 	} );
 } );
 

@@ -60,11 +60,18 @@ const reducer: Reducer< State, Action > = ( state = {}, action ) => {
 		}
 		case 'HYDRATE': {
 			const updated = { ...state };
+			const incomingByContext = new Map< string, Notice[] >();
 			action.payload.forEach( ( notification ) => {
 				const context = notification.context || defaultContext;
-				updated[ context ] = mergeNotices( updated[ context ], [
-					notification,
-				] );
+				const incoming = incomingByContext.get( context ) ?? [];
+				incoming.push( notification );
+				incomingByContext.set( context, incoming );
+			} );
+			incomingByContext.forEach( ( incoming, context ) => {
+				updated[ context ] = mergeNotices(
+					updated[ context ],
+					incoming
+				);
 			} );
 			return updated;
 		}

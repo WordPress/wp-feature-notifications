@@ -24,7 +24,7 @@ const notifications = {
 	fetchUpdates: () => dispatch( STORE_NAMESPACE ).fetchUpdates(),
 
 	/**
-	 * List all notifications or those of a particular context
+	 * List the notifications of a particular context, or null when none is given.
 	 *
 	 * @param context The display context to retrieve.
 	 */
