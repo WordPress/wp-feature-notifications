@@ -107,7 +107,7 @@ final class Channel_Registry {
 		if ( ! $channel ) {
 			$parsed = wp_parse_args( $args );
 
-			$title       = $parsed['title'];
+			$title       = array_key_exists( 'title', $parsed ) ? $parsed['title'] : '';
 			$context     = array_key_exists( 'context', $parsed ) ? $parsed['context'] : null;
 			$description = array_key_exists( 'description', $parsed ) ? $parsed['description'] : null;
 			$icon        = array_key_exists( 'icon', $parsed ) ? $parsed['icon'] : null;

@@ -95,6 +95,15 @@ class Test_Channel_Registry extends WP_UnitTestCase_Base {
 	}
 
 	/**
+	 * Should register a channel without a title without a PHP warning.
+	 */
+	public function test_register_channel_without_title() {
+		$channel = $this->registry->register( 'core/test', array() );
+		$this->assertInstanceOf( Model\Channel::class, $channel );
+		$this->assertSame( '', $channel->get_title() );
+	}
+
+	/**
 	 * Should accept a Channel instance.
 	 */
 	public function test_register_channel_instance() {
