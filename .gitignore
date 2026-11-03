@@ -2,7 +2,8 @@
 .DS_Store
 
 # IDE-specific
-.phpunit.result.cachecghooks.lock
+.phpunit.result.cache
+cghooks.lock
 
 # Vendor code
 /node_modules/
