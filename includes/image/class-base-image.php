@@ -68,11 +68,15 @@ class Base_Image implements Image {
 	 *
 	 * @param string $json
 	 *
-	 * @return Json_Unserializable
+	 * @return static|null Returns null when $json is not valid JSON.
 	 */
 	public static function json_unserialize( $json ) {
 
 		$data = json_decode( $json, true );
+
+		if ( ! is_array( $data ) ) {
+			return null;
+		}
 
 		$source = ! empty( $data['source'] ) ? $data['source'] : '';
 		$alt    = ! empty( $data['alt'] ) ? $data['alt'] : '';
