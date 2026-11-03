@@ -27,23 +27,23 @@ Message are translated at the time of emission to the preferences of the users s
 
 - `meta: JSON` - Data that doesn’t have to be queried and may change while development of the notification system.
 
-  - `accept_label:  string|null` - The translated accept action label.
+    - `accept_label:  string|null` - The translated accept action label.
 
-  - `accept_link:   string|null` - The URL of the accept action.
+    - `accept_link:   string|null` - The URL of the accept action.
 
-  - `channel_title: string|null` - The translated, human-readable title of the channel the message was emitted from.
+    - `channel_title: string|null` - The translated, human-readable title of the channel the message was emitted from.
 
-  - `dismiss_label: string|null` - The translated dismiss action label.
+    - `dismiss_label: string|null` - The translated dismiss action label.
 
-  - `icon:          string|null` - The icon of the notification message.
+    - `icon:          string|null` - The icon of the notification message.
 
-  - `is_dismissible boolean|null` - Whether the notification is dismissible.
+    - `is_dismissible boolean|null` - Whether the notification is dismissible.
 
-    Most persisted notifications should be dismissible, otherwise they will not be able to be removed from the notification system by the user. But this is left as a way to maintain a compatible API with the existing notices.
+      Most persisted notifications should be dismissible, otherwise they will not be able to be removed from the notification system by the user. But this is left as a way to maintain a compatible API with the existing notices.
 
-  - `severity:      string|null` - The severity of the message, examples: info, warning, alert.
+    - `severity:      string|null` - The severity of the message, examples: info, warning, alert.
 
-    This should be a predefined list of values.
+      This should be a predefined list of values.
 
 ## Message Queue
 

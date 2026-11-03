@@ -1,11 +1,25 @@
 {
 	"name": "@wordpress/wp-feature-notifications-stories",
 	"version": "1.0.0",
-	"main": "stories/Introduction.stories.mdx",
-	"scripts": {
-		"start": "storybook dev -p 6006",
-		"build": "storybook build --output-dir ../docs/"
+	"private": true,
+	"description": "Storybook documentation for the WordPress Feature Notifications plugin.",
+	"author": "The WordPress Contributors",
+	"license": "GPL-2.0-or-later",
+	"keywords": [
+		"WordPress",
+		"notifications",
+		"storybook"
+	],
+	"homepage": "https://github.com/WordPress/wp-feature-notifications#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/WordPress/wp-feature-notifications.git",
+		"directory": "storybook"
 	},
+	"bugs": {
+		"url": "https://github.com/WordPress/wp-feature-notifications/issues"
+	},
+	"main": "stories/Introduction.stories.mdx",
 	"devDependencies": {
 		"@storybook/addon-a11y": "^7.6.1",
 		"@storybook/addon-docs": "^7.6.1",
@@ -15,9 +29,9 @@
 		"@storybook/addon-mdx-gfm": "^7.6.1",
 		"@storybook/addons": "^7.6.1",
 		"@storybook/blocks": "^7.6.1",
-		"@storybook/source-loader": "^7.6.1",
 		"@storybook/react": "^7.6.1",
 		"@storybook/react-webpack5": "^7.6.1",
+		"@storybook/source-loader": "^7.6.1",
 		"@storybook/theming": "^7.6.1",
 		"@wordpress/wp-feature-notifications": "../",
 		"storybook": "^7.6.1"
@@ -25,6 +39,10 @@
 	"peerDependencies": {
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0"
+	},
+	"scripts": {
+		"start": "storybook dev -p 6006",
+		"build": "storybook build --output-dir ../docs/"
 	},
 	"eslintConfig": {
 		"extends": [

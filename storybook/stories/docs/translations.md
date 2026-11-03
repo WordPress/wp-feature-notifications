@@ -8,7 +8,7 @@ Instead, a plugin or theme should store a key, which is linked to a translatable
 
 For example, given the following list of translatable strings in a plugin 
 
-```
+```php
 $notifications = array( 
     'plugin_slug_new_podcast_title' => __('Some title', 'plugin-slug'), 
     'plugin_slug_message' => __('Some message', 'plugin-slug'), 
@@ -17,7 +17,7 @@ $notifications = array(
 
 When adding a notification to the wp_notifications table, the values will be stored as follows
 
-```
+```text
 title_key = 'plugin_slug_new_podcast_title'
 message_key = 'plugin_slug_message'
 ```
