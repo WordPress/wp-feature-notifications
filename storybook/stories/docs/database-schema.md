@@ -15,23 +15,31 @@ Message are translated at the time of emission to the preferences of the users s
 
 ### wp_notifications_messages table
 
-- `id: BIGINT(30)` - The ID of the notification.
+- `id: BIGINT(20) UNSIGNED AUTO_INCREMENT` - The ID of the message. Primary key.
 
-- `channel_name: VARCHAR(32)` - The scoped channel name the notification was emitted from.
+- `channel_name: VARCHAR(64)` - The scoped channel name the notification was emitted from. Indexed.
 
-- `created_at: DATETIME` - The timestamp of when the message was broadcast.
+- `created_at: DATETIME` - The UTC datetime of when the message was broadcast.
 
-- `title: TINYTEXT` - The translated title of the notification.
+- `expires_at: DATETIME|NULL` - The optional UTC datetime of when the message expires.
 
-- `message: TINYTEXT` - The translated message content of the notification.
+  Allowing notice emitters to specify when a notice expires would help signal when it is appropriate to automatically dispose of a notice. It should be best practice to provide `expires_at` for any notice that isn't high priority.
 
-- `meta: JSON` - Data that doesn’t have to be queried and may change while development of the notification system.
+- `severity: VARCHAR(16)|NULL` - The severity of the message, examples: info, warning, alert.
+
+  This should be a predefined list of values.
+
+- `title: TEXT|NULL` - The translated title of the notification.
+
+- `message: TEXT|NULL` - The translated message content of the notification.
+
+- `meta: TEXT|NULL` - JSON-encoded data that doesn’t have to be queried and may change while development of the notification system.
+
+  It is not a `JSON` column because MariaDB aliases `JSON` to `LONGTEXT`, so `dbDelta()` would see a difference on every run.
 
   - `accept_label:  string|null` - The translated accept action label.
 
   - `accept_link:   string|null` - The URL of the accept action.
-
-  - `channel_title: string|null` - The translated, human-readable title of the channel the message was emitted from.
 
   - `dismiss_label: string|null` - The translated dismiss action label.
 
@@ -41,9 +49,7 @@ Message are translated at the time of emission to the preferences of the users s
 
     Most persisted notifications should be dismissible, otherwise they will not be able to be removed from the notification system by the user. But this is left as a way to maintain a compatible API with the existing notices.
 
-  - `severity:      string|null` - The severity of the message, examples: info, warning, alert.
-
-    This should be a predefined list of values.
+The human-readable channel title is not stored. It is read from the `Channel_Registry` using `channel_name`.
 
 ## Message Queue
 
@@ -55,23 +61,21 @@ If a message has been orphan it can safely be deleted.
 
 ### wp_notifications_queue table
 
-- `message_id: BIGINT(20)` - The ID of the translated message related to the notice.
+Primary key: `(user_id, message_id)`. A message is queued at most once per user.
 
-- `user_id: BIGINT(20)` - The ID of the user the notice belongs to.
+- `message_id: BIGINT(20) UNSIGNED` - The ID of the translated message related to the notice. Indexed.
 
-- `channel_name: VARCHAR(64)` - The namespaced channel name the notice was emitted from.
+- `user_id: BIGINT(20) UNSIGNED` - The ID of the user the notice belongs to.
 
 - `context: VARCHAR(64)` - The display context of the notice.
 
-- `created_at: DATETIME|NULL` - The datetime of when the notice was create.
+- `created_at: DATETIME` - The UTC datetime of when the notice was created.
 
-- `dismissed_at: DATETIME|NULL` - The datetime of when the notice was dismissed.
+- `dismissed_at: DATETIME|NULL` - The UTC datetime of when the notice was dismissed.
 
-- `displayed_at: DATETIME|NULL` - The datetime of when the notice was first displayed.
+- `displayed_at: DATETIME|NULL` - The UTC datetime of when the notice was first displayed.
 
-- `expires_at:  DATETIME|NULL` - The optional datetime of when the message expires.
-
-  Allowing notice emitters to specify when a notice expires would help signal when it is appropriate to automatically dispose of a notice. It should be best practice to provide `expires_at` for any notice that isn't high priority.
+The channel name and expiry date come from the related message.
 
 ## Subscriptions
 
@@ -83,13 +87,19 @@ Notifications can become overwhelming if the user isn't provided with options to
 
 ### wp_notifications_subscriptions
 
-- `user_id: BIGINT(20)` - The ID of the user the subscription belongs to.
+Primary key: `(user_id, channel_name)`. A user subscribes to a channel at most once.
 
-- `channel_name: VARCHAR(65)` - The scoped name of the channel subscribed to.
+- `user_id: BIGINT(20) UNSIGNED` - The ID of the user the subscription belongs to.
 
-- `created_at: DATETIME|NULL` - The datetime of when the subscription was create.
+- `channel_name: VARCHAR(64)` - The scoped name of the channel subscribed to. Indexed.
 
-- `snoozed_until: DATETIME|NULL` - The optional timestamp of when to resume the channel.
+- `created_at: DATETIME` - The UTC datetime of when the subscription was created.
+
+- `snoozed_until: DATETIME|NULL` - The optional UTC datetime of when to resume the channel.
+
+## Dates
+
+All dates are stored in UTC. Write them from PHP with `gmdate( 'Y-m-d H:i:s' )`. The columns have no `DEFAULT CURRENT_TIMESTAMP()`, because that uses the database server time and `dbDelta()` sees it as a change on every run.
 
 ## Metadata
 

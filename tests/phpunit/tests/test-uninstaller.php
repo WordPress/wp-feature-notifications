@@ -13,7 +13,7 @@ class Test_Uninstaller extends DB_TestCase {
 	 * Ensure tables are created before tests.
 	 */
 	public static function setUpBeforeClass(): void {
-		Notifications\Activator::create_tables_v1();
+		Notifications\Activator::create_tables_v2();
 	}
 
 	// Sanity checks to ensure the database tables initially do exist.

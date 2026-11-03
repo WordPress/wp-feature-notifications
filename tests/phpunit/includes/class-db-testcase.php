@@ -27,4 +27,30 @@ class DB_TestCase extends PHPUnit_Adapter_TestCase {
 
 		return $expected === $actual;
 	}
+
+	/**
+	 * Get the columns of a plugin table, keyed by column name.
+	 *
+	 * @param string $table_name Table name without the prefix.
+	 *
+	 * @return object[] Column rows from SHOW COLUMNS.
+	 */
+	protected function get_columns( string $table_name ): array {
+		global $wpdb;
+
+		return $wpdb->get_results( 'SHOW COLUMNS FROM ' . esc_sql( $wpdb->prefix . $table_name ), OBJECT_K );
+	}
+
+	/**
+	 * Get the columns of a table's primary key, in index order.
+	 *
+	 * @param string $table_name Table name without the prefix.
+	 *
+	 * @return string[] Column names.
+	 */
+	protected function get_primary_key( string $table_name ): array {
+		global $wpdb;
+
+		return $wpdb->get_col( 'SHOW INDEX FROM ' . esc_sql( $wpdb->prefix . $table_name ) . " WHERE Key_name = 'PRIMARY'", 4 );
+	}
 }
