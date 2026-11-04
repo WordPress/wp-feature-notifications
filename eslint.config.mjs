@@ -50,6 +50,10 @@ export default [
 		files: [ 'tests/**/*' ],
 		rules: {
 			'no-undef': 'off',
+			'jsdoc/check-tag-names': [
+				'error',
+				{ definedTags: [ 'jest-environment' ] },
+			],
 		},
 	},
 ];
