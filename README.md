@@ -42,6 +42,10 @@ You will mainly need these two commands:
 `npm run build` - Transforms your code according to the configuration provided, so it’s ready for production and optimized for the best performance.
 `npm run start`- Transforms your code according to the configuration provided, so it’s ready for development. The script will automatically rebuild if you make changes to the code, and you will see the build errors in the console.
 
+## Demo notifications
+
+To install a few demo notifications for testing purposes, you can download and install [this plugin](https://gist.github.com/jonathanbossenger/63828e3bc436021ffedced0c67dc5450).
+
 ## Issue Workflow
 
 ### Creating an issue
