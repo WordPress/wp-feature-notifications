@@ -2,6 +2,7 @@
 
 Status: **draft for review**. No decisions have been made yet.
 Related draft issue: [`issue-channel-intent.md`](./issue-channel-intent.md)
+Proposed next step: [`admin-notices-with-intent.md`](./admin-notices-with-intent.md)
 
 ## Background
 
@@ -123,12 +124,18 @@ register_admin_notice( 'my-plugin/connect-account', array(
 
 Admin notice types (`error`, `warning`, `success`, `info`) map closely to severity. `success` only makes sense alongside `feedback`, which explains why the notification design has no "success" severity: the tray never shows feedback.
 
-## Decisions needed
+## Decisions
 
-1. **Which intents?** David's three, the four for the tray (adding `activity`), or all five (adding `feedback` for admin notices)?
-2. **Required or defaulted?** Make `intent` required in `register_channel()`, which breaks existing callers, or default to `operational` with a deprecation notice?
-3. **Fixed or filterable?** A fixed list is easier to check and harder to abuse.
-4. **Promotional off by default?**
-5. **Scope:** keep admin notices out of this plugin's first issue and follow up separately, or handle both together?
-6. **Validation work:** include "registered channels only" and "a fixed list of severities" in the intent issue, or split them out?
-7. **Next step in the discussion:** reply on the Make/Core post to propose `activity` and `feedback` and ask David and poligilad for feedback?
+Decided on 2026-11-11:
+
+1. **Which intents?** All five: `operational`, `setup`, `activity`, `feedback` and `promotional`.
+2. **Required or defaulted?** Required. A channel with no intent is rejected.
+3. **Fixed or filterable?** Fixed.
+5. **Scope:** channel intent comes first ([`issue-channel-intent.md`](./issue-channel-intent.md)). Admin notices follow, as proposed in [`admin-notices-with-intent.md`](./admin-notices-with-intent.md).
+6. **Validation work:** split into [`issue-send-path-validation.md`](./issue-send-path-validation.md).
+8. **Channels that mix intents:** one intent per channel. Split channels by who or what triggered the notification. A message can't change its channel's intent.
+
+Still open:
+
+4. **Promotional off by default?** Moved to the user preferences work.
+7. **Next step in the discussion:** reply on the Make/Core post to propose `activity` and `feedback`, and ask David and poligilad for feedback?
