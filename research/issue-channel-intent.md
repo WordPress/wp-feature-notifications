@@ -1,8 +1,10 @@
-# Add "intent" and "surfaces" to channel registration
+# Add "intent" and "surfaces" to channels, and validate the send path
 
 ## Summary
 
 When a plugin registers a notification channel, it must also say **why** that channel sends notifications. This is the channel's **intent**. It can also say **where** the channel's notifications may appear. These are the channel's **surfaces**.
+
+To make intent enforceable, messages must also use a registered channel and a severity from a fixed list. Neither is checked today.
 
 There are five intents. Core controls the list, and it can't be filtered.
 
@@ -14,14 +16,12 @@ There are five intents. Core controls the list, and it can't be filtered.
 | `feedback` | **You** just did something, and this is the result | "Settings saved", "Invalid email address" |
 | `promotional` | **None of the above**: the sender started it | Upsells, discounts, tips, review requests, surveys |
 
-There are two surfaces for now. More can be added later without changing this API.
+There are two surfaces for now. More, such as `email` and `push`, can be added later without changing this API.
 
 | Surface | Where it appears |
 |---|---|
 | `hub` | The notification centre in the admin bar. This is the default. |
 | `admin_notice` | Inline, as an admin notice |
-
-`email` and `push` are planned as later surfaces. See [`admin-notices-with-intent.md`](./admin-notices-with-intent.md).
 
 ## Why
 
@@ -30,17 +30,26 @@ There are two surfaces for now. More can be added later without changing this AP
 When every channel has an intent:
 
 - **Plugin Check can check it.** Each intent is declared once, in a place that can be read without running the plugin. This is what lets the plugin guidelines on admin notices be enforced by tools.
-- **WordPress can enforce rules.** For example, a promotional notification can never be marked critical.
+- **WordPress can enforce rules.** For example, a promotional notification can only use the `info` severity.
 - **Users can mute by intent.** For example, they can turn off every promotional notification with one switch. This is follow-up work.
 
-Surfaces prepare channels for admin notices, as proposed in [`admin-notices-with-intent.md`](./admin-notices-with-intent.md).
+Only plugins must declare intent. WordPress Core's own admin notices stay as they are.
+
+The full proposal, including how this leads to admin notices with declared intent, is in `research/declared-intent-proposal.md`.
 
 ## Rules for choosing an intent
 
 - **Is a person behind it?** That decides between `activity` and `operational`.
 - **`promotional` covers everything else.** There is no "informational" intent, because it would become a loophole.
-- **Intent is not urgency.** A security alert is `operational` with critical severity.
+- **Intent is not urgency.** A security alert is `operational` with the `alert` severity.
 - **One intent per channel.** A message can't change its channel's intent. If a topic covers more than one intent, register one channel per intent.
+
+## Severity rules
+
+The allowed severities are `alert`, `info`, `warning` and `success`, as in the current REST schema.
+
+- **`promotional`** messages may only use `info`, or no severity.
+- **`success`** may only be used by `feedback` channels.
 
 ## Example
 
@@ -75,6 +84,11 @@ Post and comment channels are for changes made by **another person**. Changes ma
 
 ## Work to be done
 
+**Validate the send path** (can land first)
+- [ ] Reject messages sent to unregistered channels, and call `_doing_it_wrong()`. Today nothing calls `Channel_Registry::is_registered()` on the send path. This applies to the PHP send path and to the REST create endpoint.
+- [ ] Define the allowed severities as constants in an interface, following `Status_Interface`.
+- [ ] Reject unknown severities in the message factory and the REST schema. Today the column is `VARCHAR(16)` and nothing validates it.
+
 **Channel model and registration**
 - [ ] Add `intent` and `surfaces` properties to `Model\Channel`. This replaces the unused `context` property.
 - [ ] Make `intent` required in `register_channel()`. If it's missing or unknown, call `_doing_it_wrong()` and don't register the channel.
@@ -87,22 +101,19 @@ Post and comment channels are for changes made by **another person**. Changes ma
 
 **Sending notifications**
 - [ ] Store the intent with each message, so it's still available after the plugin that sent it is removed. This needs a schema change to `notifications_messages`.
-- [ ] Reject `promotional` messages that use a critical severity.
+- [ ] Reject `promotional` messages with any severity other than `info` (or no severity).
+- [ ] Reject `success` messages on channels whose intent isn't `feedback`.
 
 **REST API**
 - [ ] Return `intent` and `surfaces` in channel responses.
 - [ ] Return `intent` in notification responses.
 
 **Tests and docs**
-- [ ] Add PHPUnit tests for validating registration, the defaults, the severity rule and the REST responses.
+- [ ] Add PHPUnit tests for unregistered channels, unknown severities, registration validation, the defaults, the two severity rules and the REST responses.
 - [ ] Update the developer docs and the database schema docs.
-
-## Depends on
-
-- [`issue-send-path-validation.md`](./issue-send-path-validation.md): messages must use registered channels, and severity must come from a fixed list. The "promotional is never critical" rule depends on the fixed list of severities.
 
 ## Out of scope
 
 - **Muting by intent, and whether `promotional` is off by default.** This belongs with the user preferences work.
-- **The `admin_notice` surface itself:** the `channel` argument for `wp_admin_notice()`, notices driven by a condition, and the intent rules for admin notices. See [`admin-notices-with-intent.md`](./admin-notices-with-intent.md).
+- **The `admin_notice` surface itself:** the `channel` argument for `wp_admin_notice()`, notices driven by a condition, and the intent rules for admin notices.
 - **The `Surface` interface and the delivery router, and the `email` and `push` surfaces.**
