@@ -15,6 +15,22 @@ class WP_Test_REST_Channel_Controller extends WP_Test_REST_Controller_Testcase {
 		$this->markTestSkipped( 'TODO Implement' );
 	}
 
+	public function test_get_items_requires_authentication() {
+		$request  = new WP_REST_Request( 'GET', '/wp-notifications/v1/channels' );
+		$response = rest_get_server()->dispatch( $request );
+
+		$this->assertErrorResponse( 'rest_notifications_login_required', $response, 401 );
+	}
+
+	public function test_authenticated_user_can_get_items() {
+		wp_set_current_user( self::factory()->user->create() );
+
+		$request  = new WP_REST_Request( 'GET', '/wp-notifications/v1/channels' );
+		$response = rest_get_server()->dispatch( $request );
+
+		$this->assertSame( 200, $response->get_status() );
+	}
+
 	public function test_get_item() {
 		$this->markTestSkipped( 'TODO Implement' );
 	}
