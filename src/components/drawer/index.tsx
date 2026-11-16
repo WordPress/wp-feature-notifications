@@ -1,10 +1,13 @@
+import { Button } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import { cog } from '@wordpress/icons';
 import { useShortcut } from '@wordpress/keyboard-shortcuts';
 import { Resizable } from 're-resizable';
 import type { FocusEventHandler, MutableRefObject } from 'react';
 
 import { HUB_WIDTH } from '../../constants';
+import { settingsPageUrl } from '../../store/constants';
 import NoticesArea from '../notice-area';
 
 /**
@@ -55,6 +58,15 @@ export default function Drawer( { focus, blur, drawRef }: Props ) {
 					<h2 className={ 'screen-reader-text' }>
 						{ __( 'Notifications' ) }
 					</h2>
+					<div className={ 'hub-toolbar' }>
+						<Button
+							className={ 'wp-notifications-action settings' }
+							href={ settingsPageUrl }
+							icon={ cog }
+							label={ __( 'Notification settings' ) }
+							size={ 'small' }
+						/>
+					</div>
 					<NoticesArea context={ 'adminbar' } />
 				</div>
 			</Resizable>
